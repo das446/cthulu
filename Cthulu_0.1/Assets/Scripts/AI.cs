@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AI : MonoBehaviour {
 
-    bool scare = false;
+    public bool scare = false;
     public float MoveSpeed = 5;
     public GameObject door;
     Rigidbody rb;
@@ -16,14 +16,16 @@ public class AI : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        /*
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Tentacle").Length; i++) {
             if (GameObject.FindGameObjectsWithTag("Tentacle")[i].GetComponent<Tentacle>().alive == true) {
                 scare = true;
                 break;
             }
         }
-        transform.LookAt(door.transform);
+        */
         if (scare) {
+            transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
             rb.AddForce((transform.forward) *  MoveSpeed);
         }
     }

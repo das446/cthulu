@@ -14,7 +14,7 @@ public class portal : MonoBehaviour {
     IEnumerator respaw(float time) {
         yield return new WaitForSeconds(time);
         GameObject tmp = Instantiate(monster,gameObject.transform.position + offset,gameObject.transform.rotation);
-        tmp.transform.parent = null;
+        tmp.transform.parent = transform.parent;
 
     }
 

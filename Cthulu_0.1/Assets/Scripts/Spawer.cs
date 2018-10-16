@@ -16,7 +16,7 @@ public class Spawer : MonoBehaviour {
     {
         yield return new WaitForSeconds(time);
         GameObject tmp = Instantiate(Portal, gameObject.transform.position + offset, gameObject.transform.rotation);
-        tmp.transform.parent = null;
+        tmp.transform.parent = transform;
 
     }
 
