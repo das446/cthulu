@@ -12,6 +12,7 @@ public class House : MonoBehaviour {
     private Vector3 position;
     public float lookuptime;
     private GameObject[] gb_list;
+    private bool stayinRoom;
 	void Start () {
 		
 	}
@@ -20,9 +21,16 @@ public class House : MonoBehaviour {
 	void Update () {
         
         if (inhouse) {
-            rand = Random.Range(0,house.childCount);
-            print("lookup called" + rand);
-            StartCoroutine(firstlookup(rand,lookuptime));
+            if (house.childCount > 0)
+            {
+                rand = Random.Range(0, house.childCount);
+                print("lookup called" + rand);
+                StartCoroutine(firstlookup(rand, lookuptime));
+            }
+            else {
+                // when no monster in room
+                finishCheck += 1;
+            }
             inhouse = false;
         }
 
@@ -30,16 +38,26 @@ public class House : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "House") {
+        if (other.tag == "House" && house == null) {
             print("Im in house!!!");
             inhouse = true;
+            stayinRoom = true;
             house = other.transform;
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        inhouse = false;
+        stayinRoom = false;
+        house = null;
     }
 
     IEnumerator firstlookup(int count, float time) {
         yield return new WaitForSeconds(time);
-        StartCoroutine(lookup(count, rand));
+        if (stayinRoom)
+        {
+            StartCoroutine(lookup(count, rand));
+        }
 
     }
 
@@ -62,7 +80,8 @@ public class House : MonoBehaviour {
             float rand = Random.Range(0, lookuptime);
             StartCoroutine(lookup(count - 1, rand));
         }
-        else {
+        else if(transform.GetComponent<AI>().scare == false)
+        {
             finishCheck += 1;
         }
     }

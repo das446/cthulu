@@ -7,6 +7,8 @@ public class AI : MonoBehaviour {
     public bool scare = false;
     public float MoveSpeed = 5;
     public GameObject door;
+    public GameObject mainPoint;
+    public bool firstShowoff = true;
     Rigidbody rb;
     // Use this for initialization
     void Start () {
@@ -24,6 +26,15 @@ public class AI : MonoBehaviour {
             }
         }
         */
+
+        if (firstShowoff) {
+            transform.LookAt(new Vector3(mainPoint.transform.position.x, transform.position.y, mainPoint.transform.position.z));
+            rb.AddForce((transform.forward) * MoveSpeed);
+            if (Mathf.Abs(transform.position.x - mainPoint.transform.position.x) <5 && Mathf.Abs(transform.position.z - mainPoint.transform.position.z) < 5) {
+                firstShowoff = false;
+            }
+        }
+
         if (scare) {
             transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
             rb.AddForce((transform.forward) *  MoveSpeed);
@@ -31,7 +42,7 @@ public class AI : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "door") {
+        if (other.tag == "door" && scare == true) {
             Destroy(gameObject);
         }
     }
