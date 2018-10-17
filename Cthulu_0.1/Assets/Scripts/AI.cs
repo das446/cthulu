@@ -31,7 +31,7 @@ public class AI : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "door") {
+        if (other.tag == "door" && scare == true) {
             Destroy(gameObject);
         }
     }
