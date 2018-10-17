@@ -26,6 +26,7 @@ public class Drag : MonoBehaviour {
                     hit.rigidbody.isKinematic = true;
                     hit.transform.parent = cam.transform;
                     hold = true;
+                    hit.transform.GetComponent<ScoreObject>().hasMoved();
 
                 } else if (hold == true && Input.GetKeyDown(KeyCode.F)) {
                     hit.rigidbody.isKinematic = false;
@@ -36,6 +37,7 @@ public class Drag : MonoBehaviour {
                     if (hit.rigidbody != null)
                     {
                         hit.rigidbody.velocity = GetComponent<Rigidbody>().velocity;
+                        // hit.transform.GetComponent<ScoreObject>().hasMoved();
                     }
 
                 }
