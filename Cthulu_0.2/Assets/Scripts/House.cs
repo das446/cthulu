@@ -1,8 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class House : MonoBehaviour {
+	
+	[SerializeField] private Text uiTextWinLose;
+	[SerializeField] private GameObject winLoseScreen;
+
 
     // Use this for initialization
     private bool inhouse;
@@ -33,6 +38,12 @@ public class House : MonoBehaviour {
             }
             inhouse = false;
         }
+		if(transform.GetComponent<AI>().scare == true)
+		{
+			winLoseScreen.SetActive(true);
+			uiTextWinLose.text = "YOU LOSE";
+			Time.timeScale = 0.0f;
+		}
 
 		
 	}
