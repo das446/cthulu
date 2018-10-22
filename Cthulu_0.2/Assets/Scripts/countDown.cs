@@ -13,6 +13,7 @@ public class countDown : MonoBehaviour
 	private float timer;
 	private bool canCount = true;
 	private bool doOnce = false;
+
 	
 	void Start()
 	{
@@ -35,7 +36,9 @@ public class countDown : MonoBehaviour
 			uiTextWinLose.text = "YOU WIN";
 			timer = 0.0f;
 			Time.timeScale = 0.0f;
-		}
+            FindObjectOfType<AudioManagement>().Stop("Theme");
+            FindObjectOfType<AudioManagement>().Play("Victory");
+        }
 	}
 
 }

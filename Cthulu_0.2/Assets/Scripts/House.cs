@@ -40,10 +40,13 @@ public class House : MonoBehaviour {
         }
 		if(transform.GetComponent<AI>().scare == true)
 		{
-			winLoseScreen.SetActive(true);
+            
+            winLoseScreen.SetActive(true);
 			uiTextWinLose.text = "YOU LOSE";
 			Time.timeScale = 0.0f;
-		}
+
+
+        }
 
 		
 	}
@@ -83,6 +86,8 @@ public class House : MonoBehaviour {
             print(house.GetChild(count).GetChild(i).tag);
             if (house.GetChild(count).GetChild(i).tag == "Tentacle" && house.GetChild(count).GetChild(i).GetComponent<Tentacle>().alive == true) {
                 transform.GetComponent<AI>().scare = true;
+                FindObjectOfType<AudioManagement>().Stop("Theme");
+                FindObjectOfType<AudioManagement>().Play("Defeat");
             }
         }
         yield return new WaitForSeconds(time);
