@@ -38,6 +38,7 @@ public class House : MonoBehaviour {
             }
             inhouse = false;
         }
+        /*
 		if(transform.GetComponent<AI>().scare == true)
 		{
             
@@ -47,7 +48,7 @@ public class House : MonoBehaviour {
 
 
         }
-
+        */
 		
 	}
     private void OnTriggerEnter(Collider other)

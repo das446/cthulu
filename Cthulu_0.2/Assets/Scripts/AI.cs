@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AI : MonoBehaviour {
 
@@ -10,9 +11,11 @@ public class AI : MonoBehaviour {
     public GameObject mainPoint;
     public bool firstShowoff = true;
     Rigidbody rb;
+    private NavMeshAgent agent;
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
     }
 	
 
@@ -28,16 +31,18 @@ public class AI : MonoBehaviour {
         */
 
         if (firstShowoff) {
-            transform.LookAt(new Vector3(mainPoint.transform.position.x, transform.position.y, mainPoint.transform.position.z));
-            rb.AddForce((transform.forward) * MoveSpeed);
+            //transform.LookAt(new Vector3(mainPoint.transform.position.x, transform.position.y, mainPoint.transform.position.z));
+            // rb.AddForce((transform.forward) * MoveSpeed);
+            move(new Vector3(mainPoint.transform.position.x, transform.position.y, mainPoint.transform.position.z));
             if (Mathf.Abs(transform.position.x - mainPoint.transform.position.x) <1 && Mathf.Abs(transform.position.z - mainPoint.transform.position.z) < 1) {
                 firstShowoff = false;
             }
         }
 
         if (scare) {
-            transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
-            rb.AddForce((transform.forward) *  MoveSpeed);
+            //transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
+            //rb.AddForce((transform.forward) *  MoveSpeed);
+            move(new Vector3(door.transform.position.x, transform.position.y, door.transform.position.z));
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -47,5 +52,8 @@ public class AI : MonoBehaviour {
         }
     }
 
+    public void move(Vector3 position) {
+        agent.SetDestination(position);
+    }
 
 }
