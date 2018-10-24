@@ -10,7 +10,7 @@ public class House : MonoBehaviour {
 
 
     // Use this for initialization
-    private bool inhouse;
+    public bool inhouse;
     private int rand;
     public int finishCheck = 0;
     private Transform house;
