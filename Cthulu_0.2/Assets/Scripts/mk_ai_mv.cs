@@ -25,13 +25,12 @@ public class mk_ai_mv : MonoBehaviour {
             {
                 if (hit.transform.tag == "AI") {
                     if (Input.GetKeyDown(KeyCode.Alpha1)) {
-                        GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[0];
-                        GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().move = true;
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[0];
                         FindObjectOfType<AudioManagement>().Play("MoveKitchen");
 
                     } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
-                        GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[1];
-                        GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().move = true;
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[1];
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().move = true;
                         
                     }
 

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Tentacle : MonoBehaviour {
 
-    public bool alive;
     // Use this for initialization
 	void Start () {
-        alive = true;
 	}
 	
 	// Update is called once per frame
@@ -17,15 +15,16 @@ public class Tentacle : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "pickable" || other.tag == "hider") {
-            alive = false;
+            Destroy(gameObject);
         }
     }
+    /*
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "pickable" || other.tag == "hider")
         {
-            alive = true;
-            print("Alive");
+            Destroy(gameObject);
         }
     }
+    */
 }

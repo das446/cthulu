@@ -6,16 +6,11 @@ using UnityEngine.AI;
 public class AI : MonoBehaviour {
 
     public bool scare = false;
-    public float MoveSpeed = 5;
     public GameObject door;
-    public GameObject mainPoint;
-    public bool firstShowoff = true;
-    Rigidbody rb;
-    private NavMeshAgent agent;
+    //public GameObject mainPoint;
     // Use this for initialization
     void Start () {
-        rb = GetComponent<Rigidbody>();
-        agent = GetComponent<NavMeshAgent>();
+        door = GameObject.FindGameObjectsWithTag("Door")[0];
     }
 	
 
@@ -29,31 +24,31 @@ public class AI : MonoBehaviour {
             }
         }
         */
-
-        if (firstShowoff) {
-            //transform.LookAt(new Vector3(mainPoint.transform.position.x, transform.position.y, mainPoint.transform.position.z));
-            // rb.AddForce((transform.forward) * MoveSpeed);
-            move(new Vector3(mainPoint.transform.position.x, transform.position.y, mainPoint.transform.position.z));
-            if (Mathf.Abs(transform.position.x - mainPoint.transform.position.x) <1 && Mathf.Abs(transform.position.z - mainPoint.transform.position.z) < 1) {
-                firstShowoff = false;
-            }
-        }
-
-        if (scare) {
+        if (scare || gameObject.GetComponent<Inspection>().finishInspection) {
             //transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
             //rb.AddForce((transform.forward) *  MoveSpeed);
-            move(new Vector3(door.transform.position.x, transform.position.y, door.transform.position.z));
+            //move(new Vector3(door.transform.position.x, transform.position.y, door.transform.position.z));
+            //print("im scared!!!!");
+            gameObject.GetComponent<Inspection>().setLocation(door.transform.position);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "door" && scare == true) {
+        if (other.tag == "Door" && scare == true)
+        {
             Destroy(gameObject);
         }
-    }
+        else if(other.tag == "Door" && scare == false && gameObject.GetComponent<Inspection>().finishInspection == true)
+        {
+            GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<countDown>().numberOfFinish +=1;
+            Destroy(gameObject);
 
+        }
+    }
+    /*
     public void move(Vector3 position) {
         agent.SetDestination(position);
     }
+    */
 
 }

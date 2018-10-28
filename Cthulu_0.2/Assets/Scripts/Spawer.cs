@@ -10,7 +10,9 @@ public class Spawer : MonoBehaviour {
     void Start()
     {
         float rnd = Random.Range(5f, 11f);
-        StartCoroutine(respaw(rnd));
+        if (Portal != null) {
+            StartCoroutine(respaw(rnd));
+        }
     }
     IEnumerator respaw(float time)
     {

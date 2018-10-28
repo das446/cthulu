@@ -9,7 +9,7 @@ public class Win : MonoBehaviour {
 	void Start () {
 		
 	}
-	
+	/*
 	// Update is called once per frame
 	void Update () {
         if(GameObject.FindGameObjectsWithTag("AI").Length <= 0 && once == false) {
@@ -22,4 +22,5 @@ public class Win : MonoBehaviour {
             once = true;
         }
 	}
+    */
 }

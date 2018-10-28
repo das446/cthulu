@@ -9,8 +9,9 @@ public class countDown : MonoBehaviour
 	[SerializeField] private Text uiTextWinLose;
 	[SerializeField] private float mainTimer;
 	[SerializeField] private GameObject winLoseScreen;
-	
-	private float timer;
+
+    public int numberOfFinish;
+    private float timer;
 	private bool canCount = true;
 	private bool doOnce = false;
     private bool win = true;
@@ -25,8 +26,8 @@ public class countDown : MonoBehaviour
 	void Update()
 	{
 
-        if (GameObject.FindGameObjectsWithTag("AI").Length == 0) {
-            timer = 0f;
+        if (timer <= 0 && numberOfFinish ==0) {
+            //timer = 0f;
             canCount = false;
             win = false;
         }
@@ -48,10 +49,12 @@ public class countDown : MonoBehaviour
             FindObjectOfType<AudioManagement>().Stop("Theme");
             FindObjectOfType<AudioManagement>().Play("Victory");
         }
-        else {
+        else{
             winLoseScreen.SetActive(true);
-            uiTextWinLose.text = "YOU LOSE";
             Time.timeScale = 0.0f;
+            uiText.text = "0.00";
+            uiTextWinLose.text = "YOU LOSE";
+            //Time.timeScale = 0.0f;
         }
 	}
 

@@ -14,7 +14,7 @@ public class checkRoom : MonoBehaviour {
         total = GameObject.FindGameObjectsWithTag("roomPoint").Length;
         
 	}
-	
+    /*	
 	// Update is called once per frame
 	void Update () {
         if (gameObject.GetComponent<House>().finishCheck < total) {
@@ -32,4 +32,5 @@ public class checkRoom : MonoBehaviour {
             gameObject.GetComponent<moveToRoom>().move = true;
         }
     }
+    */
 }
