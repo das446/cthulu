@@ -100,7 +100,7 @@ public class Inspection : MonoBehaviour {
     {
         yield return new WaitForSeconds(time);
         int count = Random.Range(0, house.childCount);
-        print(count);
+        //print(count);
         int rand = Random.Range(2,6);
         StartCoroutine(inspection(count, rand));
     }

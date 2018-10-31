@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class ScoringController : MonoBehaviour
 {
-    [SerializeField]
-    private int marketValue = 900000;
+    public int marketValue = 900000;
 
     public Text valueNum;
 

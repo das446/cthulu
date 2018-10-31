@@ -7,7 +7,7 @@ public class portal : MonoBehaviour {
     // Use this for initialization
     public Vector3 offset;
     public GameObject monster;
-    public bool spawn = true;
+    public bool spawn = false;
     public float rnd;
 
     void Start () {
@@ -19,29 +19,36 @@ public class portal : MonoBehaviour {
     }
     IEnumerator respaw(float time) {
         yield return new WaitForSeconds(time);
+        /*
         GameObject tmp = Instantiate(monster,gameObject.transform.position + offset,gameObject.transform.rotation);
         tmp.transform.parent = transform;
+        */
+        spawn = true;
 
     }
 
 	// Update is called once per frame
 	void Update () {
-        /*
         if (spawn) {
-            for(int i =0; i< gameObject.transform.childCount;i++){
-                if (gameObject.transform.GetChild(i).tag =="Tentacle") {
-                    spawn = false;
-                }
-            }
-            if (spawn) {
+            if (spawn && IfNoTentacle()) {
                 GameObject tmp = Instantiate(monster, gameObject.transform.position + offset, gameObject.transform.rotation);
                 tmp.transform.parent = transform;
+                spawn = false;
             }
 
         }
-        */
 	}
 
+    bool IfNoTentacle() {
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            if (gameObject.transform.GetChild(i).tag == "Tentacle")
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -57,7 +64,7 @@ public class portal : MonoBehaviour {
         if (other.tag == "pickable" || other.tag == "hider")
         {
             //Destroy(gameObject);
-            spawn = true;
+            //spawn = true;
             StartCoroutine(respaw(rnd));
         }
     }

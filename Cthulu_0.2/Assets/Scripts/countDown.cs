@@ -39,6 +39,7 @@ public class countDown : MonoBehaviour
         }
         else if (timer <= 0.0f && !doOnce && win)
         {
+            print(true);
             canCount = false;
             doOnce = true;
             uiText.text = "0.00";
@@ -49,7 +50,7 @@ public class countDown : MonoBehaviour
             FindObjectOfType<AudioManagement>().Stop("Theme");
             FindObjectOfType<AudioManagement>().Play("Victory");
         }
-        else{
+        else if(!doOnce){
             winLoseScreen.SetActive(true);
             Time.timeScale = 0.0f;
             uiText.text = "0.00";
