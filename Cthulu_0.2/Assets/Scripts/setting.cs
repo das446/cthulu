@@ -12,11 +12,26 @@ public class setting: MonoBehaviour
         menu.SetActive(isShowing);
     }
     void Update()
-    {   
-        if (Input.GetKeyDown("escape"))
+    {
+        if (Input.GetKeyDown("escape") && isShowing == false)
         {
             isShowing = !isShowing;
             menu.SetActive(isShowing);
+            Cursor.lockState = CursorLockMode.None;
         }
+        else if(Input.GetKeyDown("escape") && isShowing == true)
+        {
+            isShowing = !isShowing;
+            menu.SetActive(isShowing);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+    public void NumberOfBuyer(float number)
+    {
+        GameObject.FindGameObjectsWithTag("BuyerRespawn")[0].GetComponent<RespawnAI>().TotalNumberOfBuyer = (int)number;
+    }
+    public void Timer(float time)
+    {
+        GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<countDown>().timer = time;
     }
 }

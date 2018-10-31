@@ -7,11 +7,11 @@ public class countDown : MonoBehaviour
 {
 	[SerializeField] private Text uiText;
 	[SerializeField] private Text uiTextWinLose;
-	[SerializeField] private float mainTimer;
 	[SerializeField] private GameObject winLoseScreen;
 
+    public float mainTimer;
     public int numberOfFinish;
-    private float timer;
+    public float timer;
 	private bool canCount = true;
 	private bool doOnce = false;
     private bool win = true;
