@@ -17,9 +17,10 @@ public class Spawer : MonoBehaviour {
     IEnumerator respaw(float time)
     {
         yield return new WaitForSeconds(time);
-        GameObject tmp = Instantiate(Portal, gameObject.transform.position + offset, gameObject.transform.rotation);
+        GameObject tmp = Instantiate(Portal);
         tmp.transform.parent = transform;
-
+        tmp.transform.position = transform.position;
+        tmp.transform.rotation = transform.rotation;
     }
 
 }

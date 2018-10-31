@@ -14,6 +14,7 @@ public class Tentacle : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
+        print(other.tag);
         if (other.tag == "pickable" || other.tag == "hider") {
             Destroy(gameObject);
         }

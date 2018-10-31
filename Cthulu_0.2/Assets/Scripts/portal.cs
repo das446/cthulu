@@ -26,12 +26,20 @@ public class portal : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        /*
         if (spawn) {
-            if (gameObject.transform.childCount <=0) {
-                StartCoroutine(respaw(rnd));
+            for(int i =0; i< gameObject.transform.childCount;i++){
+                if (gameObject.transform.GetChild(i).tag =="Tentacle") {
+                    spawn = false;
+                }
+            }
+            if (spawn) {
+                GameObject tmp = Instantiate(monster, gameObject.transform.position + offset, gameObject.transform.rotation);
+                tmp.transform.parent = transform;
             }
 
         }
+        */
 	}
 
 
@@ -44,5 +52,13 @@ public class portal : MonoBehaviour {
             spawn = false;
         }
     }
-
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "pickable" || other.tag == "hider")
+        {
+            //Destroy(gameObject);
+            spawn = true;
+            StartCoroutine(respaw(rnd));
+        }
+    }
 }
