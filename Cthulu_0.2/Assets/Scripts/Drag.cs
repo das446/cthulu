@@ -39,6 +39,10 @@ public class Drag : MonoBehaviour {
                         hit.rigidbody.velocity = GetComponent<Rigidbody>().velocity;
                         // hit.transform.GetComponent<ScoreObject>().hasMoved();
                     }
+                    if(hit.transform.tag == "door")
+                    {
+                        hit.transform.GetComponent<Rigidbody>().freezeRotation = !hit.transform.GetComponent<Rigidbody>().freezeRotation;
+                    }
 
                 }
             }
