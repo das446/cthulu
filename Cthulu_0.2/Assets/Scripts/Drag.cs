@@ -22,18 +22,18 @@ public class Drag : MonoBehaviour {
             //hit F key to drag the box
             if (hit.distance <= distence)
             {
-                if (hold == false && hit.transform.tag == "pickable" && Input.GetKeyDown(KeyCode.F)) {
+                if (hold == false && hit.transform.tag == "pickable" && Input.GetMouseButtonDown(0)) {
                     hit.rigidbody.isKinematic = true;
                     hit.transform.parent = cam.transform;
                     hold = true;
                     hit.transform.GetComponent<ScoreObject>().hasMoved();
 
-                } else if (hold == true && Input.GetKeyDown(KeyCode.F)) {
+                } else if (hold == true && Input.GetMouseButtonDown(0)) {
                     hit.rigidbody.isKinematic = false;
                     hit.transform.parent = null;
                     hold = false;
 
-                } else if (Input.GetKey(KeyCode.F)) {
+                } else if (Input.GetMouseButton(0)) {
                     if (hit.rigidbody != null)
                     {
                         hit.rigidbody.velocity = GetComponent<Rigidbody>().velocity;
