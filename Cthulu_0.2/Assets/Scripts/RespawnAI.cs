@@ -19,6 +19,7 @@ public class RespawnAI : MonoBehaviour {
 	}
     IEnumerator respaw(float time)
     {
+		GameObject firstAI = Instantiate(buyer, gameObject.transform.position + offset, gameObject.transform.rotation);
         for (int i = 0; i < TotalNumberOfBuyer; i++)
         {
             yield return new WaitForSeconds(time);
