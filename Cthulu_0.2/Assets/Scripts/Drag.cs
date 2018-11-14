@@ -17,6 +17,7 @@ public class Drag : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
+            Debug.Log(hit.transform.tag);
             //print("I'm looking at " + hit.transform.name + " " + hit.distance);
             // if point at something under a close enough distance
             //hit F key to drag the box
@@ -41,7 +42,9 @@ public class Drag : MonoBehaviour {
                     }
                     if(hit.transform.tag == "door")
                     {
-                        hit.transform.GetComponent<Rigidbody>().freezeRotation = !hit.transform.GetComponent<Rigidbody>().freezeRotation;
+                        Rigidbody[] rigidbodies = hit.transform.GetComponentsInChildren<Rigidbody>();
+                        foreach(Rigidbody rigidbod in rigidbodies)
+                            rigidbod.freezeRotation = !rigidbod.freezeRotation;
                     }
 
                 }
