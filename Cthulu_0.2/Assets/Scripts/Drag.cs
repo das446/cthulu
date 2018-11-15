@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Drag : MonoBehaviour {
 
     public Camera cam;
     public float distence;
     public bool hold;
+	public RawImage handIcon;
     void Start()
     {
+		handIcon = GameObject.FindGameObjectsWithTag("handIcon")[0].GetComponent<RawImage>();
     }
 
     void Update()
@@ -48,4 +51,18 @@ public class Drag : MonoBehaviour {
             //print("I'm looking at nothing!");
         }
     }
+	private void OnTriggerEnter(Collider other)
+    {
+		if (other.tag == "moveable" )
+        {
+            handIcon.enabled = true;
+        }
+	}
+	private void OnTriggerExit(Collider other)
+    {
+		if (other.tag == "moveable" )
+        {
+            handIcon.enabled = false;
+        }
+	}
 }

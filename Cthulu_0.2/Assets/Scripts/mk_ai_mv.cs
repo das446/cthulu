@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mk_ai_mv : MonoBehaviour {
+public class mk_ai_mv : MonoBehaviour
+{
 
     // Use this for initialization
     // Update is called once per frame
@@ -13,8 +14,9 @@ public class mk_ai_mv : MonoBehaviour {
         distence = transform.GetComponent<Drag>().distence;
         cam = transform.GetComponent<Drag>().cam;
     }
-    void Update () {
-        Ray ray = cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+    void Update()
+    {
+        Ray ray = cam.ViewportPointToRay(new Vector3(2F, 2F, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
@@ -23,17 +25,45 @@ public class mk_ai_mv : MonoBehaviour {
             //hit F key to drag the box
             if (hit.distance <= distence)
             {
-                if (hit.transform.tag == "AI") {
-                    if (Input.GetKeyDown(KeyCode.Alpha1)) {
+                if (hit.transform.tag == "AI")
+                {
+                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                    {
                         //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[0];
                         FindObjectOfType<AudioManagement>().Play("MoveKitchen");
+                        Debug.LogError("Hey this works!");
 
-                    } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha2))
+                    {
                         //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[1];
                         //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().move = true;
-                        
+                        FindObjectOfType<AudioManagement>().Play("MoveStudy");
                     }
-
+                    else if (Input.GetKeyDown(KeyCode.Alpha3))
+                    {
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[1];
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().move = true;
+                        FindObjectOfType<AudioManagement>().Play("MoveLibrary");
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha4))
+                    {
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[1];
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().move = true;
+                        FindObjectOfType<AudioManagement>().Play("MovePantry");
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha5))
+                    {
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[1];
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().move = true;
+                        FindObjectOfType<AudioManagement>().Play("MoveDining");
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Alpha6))
+                    {
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[1];
+                        //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().move = true;
+                        FindObjectOfType<AudioManagement>().Play("MoveFamily");
+                    }
                 }
             }
         }
