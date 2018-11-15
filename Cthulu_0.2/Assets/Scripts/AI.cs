@@ -1,21 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AI : MonoBehaviour {
 
+    AudioSource scream;
     public bool scare = false;
     public GameObject door;
     //public GameObject mainPoint;
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        scream = GetComponent<AudioSource>();
         door = GameObject.FindGameObjectsWithTag("Door")[0];
+        StartCoroutine(RoomRecognition());
     }
-	
 
-	// Update is called once per frame
-	void Update () {
+    IEnumerator RoomRecognition()
+    {
+        yield return new WaitForSeconds(3);
+    }
+
+
+    // Update is called once per frame
+    void Update () {
         /*
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Tentacle").Length; i++) {
             if (GameObject.FindGameObjectsWithTag("Tentacle")[i].GetComponent<Tentacle>().alive == true) {
@@ -24,6 +34,10 @@ public class AI : MonoBehaviour {
             }
         }
         */
+        if(scare)
+        {
+            scream.Play();
+        }
         if (scare || gameObject.GetComponent<Inspection>().finishInspection) {
             //transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
             //rb.AddForce((transform.forward) *  MoveSpeed);
