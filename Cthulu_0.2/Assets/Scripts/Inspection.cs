@@ -61,6 +61,7 @@ public class Inspection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         move();
+        //check to see if NPC can see tentacle in cone of vision
         /*
         if (inhouse) {
             if (house.childCount > 0)
@@ -71,7 +72,7 @@ public class Inspection : MonoBehaviour {
             //inhouse = false;
         }
 		*/
-	}
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -122,15 +123,15 @@ public class Inspection : MonoBehaviour {
                     yield return new WaitForSeconds(time);
                     //check tentacle;
                     //print("scared2");
-                    if (house.GetChild(i).GetChild(i).childCount > 0 ) {
-                        for (int j =0; j <  house.GetChild(i).GetChild(i).childCount; j++) {
-                            if (house.GetChild(i).GetChild(i).GetChild(j).tag == "Tentacle") {
-                                gameObject.GetComponent<AI>().scare = true;
-                            }
+                   // if (house.GetChild(i).GetChild(i).childCount > 0 ) {
+                    //    for (int j =0; j <  house.GetChild(i).GetChild(i).childCount; j++) {
+                   //         if (house.GetChild(i).GetChild(i).GetChild(j).tag == "Tentacle") {
+                   //             gameObject.GetComponent<AI>().scare = true;
+                   //         }
 
-                        }
+                   //     }
                        // print("scared");
-                    }
+                   // }
 
                 }
             }
