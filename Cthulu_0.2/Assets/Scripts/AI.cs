@@ -13,13 +13,15 @@ public class AI : MonoBehaviour {
     public GameObject door;
 	public RawImage npcMenu;
 	public GameObject[] roomPoints;
+    public GameObject[] tentacles;
 
     bool oneScream = false;
     //public GameObject mainPoint;
     // Use this for initialization
     void Start ()
     {
-		roomPoints = GameObject.FindGameObjectsWithTag("roomPoint");
+        tentacles = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Tentacle>().tentacleArray;
+        roomPoints = GameObject.FindGameObjectsWithTag("roomPoint");
 		npcMenu = GameObject.FindGameObjectsWithTag("playerInteractMenu")[0].GetComponent<RawImage>();
 		npcMenu.enabled = false;
 		scream = GetComponent<AudioSource>();
@@ -36,6 +38,50 @@ public class AI : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        RaycastHit hit;
+        if (Physics.Linecast(gameObject.transform.position, tentacles[0].transform.position, out hit) && tentacles[0].activeInHierarchy)
+        {
+            if (hit.transform.tag == "Tentacle")
+            {
+                Debug.Log("hello tentacool1");
+            }
+
+        }
+        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
+        {
+            if (hit.transform.tag == "Tentacle")
+            {
+                Debug.Log("hello tentacool2");
+            }
+        }
+        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
+        {
+            if (hit.transform.tag == "Tentacle")
+            {
+                Debug.Log("hello tentacool3");
+            }
+        }
+        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
+        {
+            if (hit.transform.tag == "Tentacle")
+            {
+                Debug.Log("hello tentacool4");
+            }
+        }
+        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
+        {
+            if (hit.transform.tag == "Tentacle")
+            {
+                Debug.Log("hello tentacool5");
+            }
+        }
+        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
+        {
+            if (hit.transform.tag == "Tentacle")
+            {
+                Debug.Log("hello tentacool6");
+            }
+        }
         /*
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Tentacle").Length; i++) {
             if (GameObject.FindGameObjectsWithTag("Tentacle")[i].GetComponent<Tentacle>().alive == true) {
@@ -44,7 +90,7 @@ public class AI : MonoBehaviour {
             }
         }
         */
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (scare)
         {
             scare = true;
         }
