@@ -115,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4543120591133934}
   - component: {fileID: 65766394605221018}
+  - component: {fileID: 114175020920101532}
   m_Layer: 0
   m_Name: Door Set
   m_TagString: door
@@ -393,7 +394,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1443126525286902}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.536, y: 0.827, z: 5.045}
+  m_LocalPosition: {x: -2.536, y: 0.51, z: 5.03}
   m_LocalScale: {x: 0.8467559, y: 0.8467558, z: 0.8467559}
   m_Children:
   - {fileID: 4082462086480810}
@@ -408,7 +409,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1995637876165698}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8719, y: -0.3694, z: -0}
+  m_LocalPosition: {x: -1.8719, y: 0, z: -0}
   m_LocalScale: {x: 1.0185959, y: 1.1693127, z: 1}
   m_Children: []
   m_Father: {fileID: 4098703253022862}
@@ -421,7 +422,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1438056032447138}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8719, y: -0.3694, z: -0}
+  m_LocalPosition: {x: -1.8719, y: 0, z: -0}
   m_LocalScale: {x: 1.0185959, y: 1.1693127, z: 1}
   m_Children: []
   m_Father: {fileID: 4082462086480810}
@@ -553,7 +554,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!54 &54715515560888350
 Rigidbody:
@@ -568,7 +569,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!59 &59339093479134890
 HingeJoint:
@@ -580,7 +581,7 @@ HingeJoint:
   m_Anchor: {x: -0.38, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 12.758776, y: -0.9038799, z: -11.094522}
+  m_ConnectedAnchor: {x: 12.718569, y: -0.9151826, z: -11.092013}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -614,7 +615,7 @@ HingeJoint:
   m_Anchor: {x: -0.38, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 9.267181, y: -0.9038799, z: -10.876459}
+  m_ConnectedAnchor: {x: 9.2269745, y: -0.9151826, z: -10.873948}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -672,5 +673,20 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.7, z: 0.1}
-  m_Center: {x: -1.5, y: -0.35, z: 0}
+  m_Size: {x: 1.55, y: 1.85, z: 0.15}
+  m_Center: {x: -1.5, y: 0, z: 0}
+--- !u!114 &114175020920101532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1443126525286902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ed95e4b8ef0da428daa7879733f007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorsInSet:
+  - {fileID: 1438056032447138}
+  - {fileID: 1995637876165698}
+  isOpen: 0
