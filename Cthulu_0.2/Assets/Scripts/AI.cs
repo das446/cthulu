@@ -9,10 +9,15 @@ public class AI : MonoBehaviour {
     AudioSource scream;
     public bool scare = false;
     public GameObject door;
+	public GameObject npcMenu;
+	public GameObject[] roomPoints;
     //public GameObject mainPoint;
     // Use this for initialization
     void Start ()
     {
+		roomPoints = GameObject.FindGameObjectsWithTag("roomPoint");
+		npcMenu = GameObject.FindGameObjectsWithTag("playerInteractMenu")[0];
+		npcMenu.SetActive(false);
         scream = GetComponent<AudioSource>();
         door = GameObject.FindGameObjectsWithTag("Door")[0];
         StartCoroutine(RoomRecognition());
@@ -45,6 +50,30 @@ public class AI : MonoBehaviour {
             //print("im scared!!!!");
             gameObject.GetComponent<Inspection>().setLocation(door.transform.position);
         }
+		if(Input.GetKeyDown(KeyCode.Alpha1) && npcMenu.activeSelf)
+			{
+				this.gameObject.transform.position = roomPoints[0].transform.position;
+			}
+		else if(Input.GetKeyDown(KeyCode.Alpha2) && npcMenu.activeSelf)
+			{
+				this.gameObject.transform.position = roomPoints[1].transform.position;
+			}
+		else if(Input.GetKeyDown(KeyCode.Alpha3) && npcMenu.activeSelf)
+			{
+				this.gameObject.transform.position = roomPoints[2].transform.position;
+			}
+		else if(Input.GetKeyDown(KeyCode.Alpha4) && npcMenu.activeSelf)
+			{
+				this.gameObject.transform.position = roomPoints[3].transform.position;
+			}
+		else if(Input.GetKeyDown(KeyCode.Alpha5) && npcMenu.activeSelf)
+			{
+				this.gameObject.transform.position = roomPoints[4].transform.position;
+			}
+		else if(Input.GetKeyDown(KeyCode.Alpha6) && npcMenu.activeSelf)
+			{
+				this.gameObject.transform.position = roomPoints[5].transform.position;
+			}
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -58,7 +87,18 @@ public class AI : MonoBehaviour {
             Destroy(gameObject);
 
         }
+		else if (other.tag == "Player" )
+        {
+            npcMenu.SetActive(true);
+        }
     }
+	private void OnTriggerExit(Collider other)
+    {
+		if (other.tag == "Player" )
+        {
+            npcMenu.SetActive(false);
+        }
+	}
     /*
     public void move(Vector3 position) {
         agent.SetDestination(position);
