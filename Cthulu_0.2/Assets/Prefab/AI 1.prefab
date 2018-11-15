@@ -2031,7 +2031,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a4920baedb16a854db3b77228a49abf2, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
@@ -2240,9 +2240,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bc488660fc60d458a8795f93895e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scream: {fileID: 82851348254134436}
+  screamreal: {fileID: 8300000, guid: 0cb3e6fbb5ae30d4db7998829a330ee8, type: 3}
   scare: 0
   door: {fileID: 0}
   npcMenu: {fileID: 0}
+  roomPoints: []
 --- !u!114 &114537896262122772
 MonoBehaviour:
   m_ObjectHideFlags: 1

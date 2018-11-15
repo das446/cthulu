@@ -7,11 +7,14 @@ using UnityEngine.UI;
 
 public class AI : MonoBehaviour {
 
-    AudioSource scream;
+    public AudioSource scream;
+    public AudioClip screamreal;
     public bool scare = false;
     public GameObject door;
 	public RawImage npcMenu;
 	public GameObject[] roomPoints;
+
+    bool oneScream = false;
     //public GameObject mainPoint;
     // Use this for initialization
     void Start ()
@@ -27,6 +30,7 @@ public class AI : MonoBehaviour {
     IEnumerator RoomRecognition()
     {
         yield return new WaitForSeconds(3);
+       
     }
 
 
@@ -40,10 +44,12 @@ public class AI : MonoBehaviour {
             }
         }
         */
-        if(scare)
+        if(Input.GetKeyDown(KeyCode.Q))
         {
-            scream.Play();
+            scare = true;
         }
+         
+
         if (scare || gameObject.GetComponent<Inspection>().finishInspection) {
             //transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
             //rb.AddForce((transform.forward) *  MoveSpeed);
@@ -54,27 +60,33 @@ public class AI : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Alpha1) && npcMenu.enabled)
 			{
 				this.gameObject.transform.position = roomPoints[0].transform.position;
-			}
+                FindObjectOfType<AudioManagement>().Play("MoveKitchen");
+        }
 		else if(Input.GetKeyDown(KeyCode.Alpha2) && npcMenu.enabled)
 			{
 				this.gameObject.transform.position = roomPoints[1].transform.position;
-			}
+                FindObjectOfType<AudioManagement>().Play("MoveStudy");
+        }
 		else if(Input.GetKeyDown(KeyCode.Alpha3) && npcMenu.enabled)
 			{
 				this.gameObject.transform.position = roomPoints[2].transform.position;
-			}
+                FindObjectOfType<AudioManagement>().Play("MoveLibrary");
+        }
 		else if(Input.GetKeyDown(KeyCode.Alpha4) && npcMenu.enabled)
 			{
 				this.gameObject.transform.position = roomPoints[3].transform.position;
-			}
+                FindObjectOfType<AudioManagement>().Play("MovePantry");
+        }
 		else if(Input.GetKeyDown(KeyCode.Alpha5) && npcMenu.enabled)
 			{
 				this.gameObject.transform.position = roomPoints[4].transform.position;
-			}
+                FindObjectOfType<AudioManagement>().Play("MoveDining");
+        }
 		else if(Input.GetKeyDown(KeyCode.Alpha6) && npcMenu.enabled)
 			{
 				this.gameObject.transform.position = roomPoints[5].transform.position;
-			}
+                FindObjectOfType<AudioManagement>().Play("MoveFamily");
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -100,6 +112,15 @@ public class AI : MonoBehaviour {
             npcMenu.enabled = false;
         }
 	}
+
+    void Screamer()
+    {
+        if (scare && !oneScream)
+        {
+            scream.PlayOneShot(screamreal, 1f);
+            oneScream = true;
+        }
+    }
     /*
     public void move(Vector3 position) {
         agent.SetDestination(position);
