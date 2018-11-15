@@ -31,6 +31,7 @@ public class mk_ai_mv : MonoBehaviour
                     {
                         //GameObject.FindGameObjectsWithTag("AI")[0].GetComponent<moveToRoom>().mainPoint = GameObject.FindGameObjectsWithTag("roomPoint")[0];
                         FindObjectOfType<AudioManagement>().Play("MoveKitchen");
+                        Debug.LogError("Hey this works!");
 
                     }
                     else if (Input.GetKeyDown(KeyCode.Alpha2))

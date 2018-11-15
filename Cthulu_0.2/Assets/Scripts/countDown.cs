@@ -9,6 +9,7 @@ public class countDown : MonoBehaviour
 	[SerializeField] private Text uiTextWinLose;
 	[SerializeField] private GameObject winLoseScreen;
 
+
     public float mainTimer;
     public int numberOfFinish;
     public float timer;
