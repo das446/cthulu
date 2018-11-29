@@ -45,6 +45,7 @@ public class RespawnAI : MonoBehaviour {
 	{
 	if(stageNumber == 0)
 	{
+        spawnPortal(5);//2,3,1,5,4,0 fix these
 		yield return null;
 	}
 	else if (stageNumber == 1)
@@ -55,13 +56,13 @@ public class RespawnAI : MonoBehaviour {
 		//the NPC spawns at 10 seconds and takes 10 seconds to get to the lobby,
 		//and they all disappear at a world time of 25 (so the player has to distract the NPCs for 15 seconds)
 		yield return new WaitForSeconds(5);
-		spawnPortal(0);
+		spawnPortal(2);
 		yield return new WaitForSeconds(5);
 		spawnNPC();
 		yield return new WaitForSeconds(5);
 		spawnTentacle(0);
 		yield return new WaitForSeconds(25);
-		spawnPortal(0);
+		spawnPortal(2);
 		spawnTentacle(0);
 		//endLevel
 		Time.timeScale = 0.0f;
@@ -84,9 +85,9 @@ public class RespawnAI : MonoBehaviour {
 		//One would go to the kitchen and the other to the lobby. 
 		//The tentacle in the kitchen would spawn at 15 seconds in. So the second NPC would already be in the kitchen if the player hadn't taken care of it. 
 		//All disappear after 5 more seconds (meaning the whole thing disappears after 20 real seconds)
-		yield return new WaitForSeconds(5);
-		spawnPortal(3);
-		spawnPortal(0);
+		yield return new WaitForSeconds(5);//2,3,1,5,4,0 
+        spawnPortal(5);
+		spawnPortal(2);
 		yield return new WaitForSeconds(5);
 		spawnNPC();
 		spawnTentacle(3);
@@ -95,8 +96,8 @@ public class RespawnAI : MonoBehaviour {
 		yield return new WaitForSeconds(4);
 		spawnTentacle(0);
 		yield return new WaitForSeconds(5);
-		spawnPortal(3);
-		spawnPortal(0);
+		spawnPortal(5);
+		spawnPortal(2);
 		spawnTentacle(3);
 		spawnTentacle(0);
 		//endLevel
@@ -117,7 +118,7 @@ public class RespawnAI : MonoBehaviour {
 		//Spawn a portal in every room at the first second. 
 		//Spawn 2 NPCs at 5 second. 
 		//In a clockwise fashion the tentacles spawn every 5 seconds after the NPCs spawn 
-		spawnPortal(0);
+		spawnPortal(0);//2,3,1,5,4,0 
 		spawnPortal(1);
 		spawnPortal(2);
 		spawnPortal(3);

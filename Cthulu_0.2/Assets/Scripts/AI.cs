@@ -92,6 +92,7 @@ public class AI : MonoBehaviour {
         if (scare)
         {
             scare = true;
+            Screamer();
         }
          
 
