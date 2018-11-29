@@ -61,9 +61,12 @@ public class RespawnAI : MonoBehaviour {
 	if(stageNumber == 0)
 	{
 		spawnNPC();
+		spawnNPC();
 		sendNPCtoLocation(0,1);
+		sendNPCtoLocation(1,5);
 		yield return new WaitForSeconds(5);
 		sendNPCtoLocation(0,5);
+		sendNPCtoLocation(1,1);
 		yield return null;
 	}
 	else if (stageNumber == 1)
@@ -193,7 +196,7 @@ public class RespawnAI : MonoBehaviour {
 		
 	}
 	
-	void sendNPCtoLocation(int NPCNumber, int locationNumber)
+	public void sendNPCtoLocation(int NPCNumber, int locationNumber)
 	{
 		NPCs[NPCNumber].GetComponent<AI>().agent.SetDestination(roomPoints[locationNumber].transform.position);
 	}
@@ -218,6 +221,7 @@ public class RespawnAI : MonoBehaviour {
 	void spawnNPC() //add argument for array of roomPoints in order of visits
 	{
 		NPCs.Add(Instantiate(buyer, gameObject.transform.position + offset, gameObject.transform.rotation));
+		NPCs[NPCs.Count - 1].GetComponent<AI>().setNPCNumber(NPCs.Count - 1);
 	}
 	//toggles tentacle[n] on or off
 	bool spawnTentacle(int tentacleNumber)
