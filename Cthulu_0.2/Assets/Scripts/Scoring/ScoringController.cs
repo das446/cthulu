@@ -24,7 +24,7 @@ public class ScoringController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        valueNum.text = "$" + marketValue;
+        //valueNum.text = "$" + marketValue;
     }
 
     //updates score

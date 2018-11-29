@@ -20,19 +20,18 @@ public class AI : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        tentacles = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Tentacle>().tentacleArray;
+        tentacles = GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().tentacles;
         roomPoints = GameObject.FindGameObjectsWithTag("roomPoint");
 		npcMenu = GameObject.FindGameObjectsWithTag("playerInteractMenu")[0].GetComponent<RawImage>();
 		npcMenu.enabled = false;
 		scream = GetComponent<AudioSource>();
-        door = GameObject.FindGameObjectsWithTag("Door")[0];
+        //door = GameObject.FindGameObjectsWithTag("Door")[0];
         StartCoroutine(RoomRecognition());
     }
 
     IEnumerator RoomRecognition()
     {
         yield return new WaitForSeconds(3);
-       
     }
 
 
