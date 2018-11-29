@@ -39,28 +39,12 @@ public class Inspection : MonoBehaviour {
     private GameObject[] possibleRooms;
     //private GameObject temp;
     void Start () {
-        //initial
-        mainPoint = GameObject.FindGameObjectsWithTag("mainPoint")[0];
-
-
-        rb = GetComponent<Rigidbody>();
-        agent = GetComponent<NavMeshAgent>();
-        target = mainPoint.transform.position;
-        limit = 1;
-
-
-        possibleRooms = GameObject.FindGameObjectsWithTag("House");
-        for (int i=0; i < possibleRooms.Length;i++) {
-            //print(possibleRooms[i]);
-        }
-        Shuffle();
-        StartCoroutine(firstRoom(waitInlobay));
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        move();
+        //move();
         //check to see if NPC can see tentacle in cone of vision
         /*
         if (inhouse) {
@@ -162,7 +146,7 @@ public class Inspection : MonoBehaviour {
         limit = newLimit;
     }
 
-    private void move()
+    public void move()
     {
         if (Mathf.Abs(transform.position.x - target.x) >= limit || Mathf.Abs(transform.position.z - target.z) >= limit)
         {

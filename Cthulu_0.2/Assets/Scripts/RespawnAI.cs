@@ -60,6 +60,10 @@ public class RespawnAI : MonoBehaviour {
 	{
 	if(stageNumber == 0)
 	{
+		spawnNPC();
+		sendNPCtoLocation(0,1);
+		yield return new WaitForSeconds(5);
+		sendNPCtoLocation(0,5);
 		yield return null;
 	}
 	else if (stageNumber == 1)
@@ -187,6 +191,11 @@ public class RespawnAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+	
+	void sendNPCtoLocation(int NPCNumber, int locationNumber)
+	{
+		NPCs[NPCNumber].GetComponent<AI>().agent.SetDestination(roomPoints[locationNumber].transform.position);
 	}
 	
 	bool winLoseCheck()

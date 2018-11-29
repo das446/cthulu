@@ -12,8 +12,9 @@ public class AI : MonoBehaviour {
     public bool scare = false;
     public GameObject door;
 	public RawImage npcMenu;
-	public GameObject[] roomPoints;
+	public List<GameObject> roomPoints = new List<GameObject>();
     public List<GameObject> tentacles = new List<GameObject>();
+	public NavMeshAgent agent;
 
     bool oneScream = false;
     //public GameObject mainPoint;
@@ -21,13 +22,14 @@ public class AI : MonoBehaviour {
     void Start ()
     {
         tentacles = GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().tentacles;
-        roomPoints = GameObject.FindGameObjectsWithTag("roomPoint");
+		roomPoints = GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().roomPoints;
 		npcMenu = GameObject.FindGameObjectsWithTag("playerInteractMenu")[0].GetComponent<RawImage>();
 		npcMenu.enabled = false;
 		scream = GetComponent<AudioSource>();
         //door = GameObject.FindGameObjectsWithTag("Door")[0];
         StartCoroutine(RoomRecognition());
     }
+	
 
     IEnumerator RoomRecognition()
     {
