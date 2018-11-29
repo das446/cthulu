@@ -11,10 +11,10 @@ public class RespawnAI : MonoBehaviour {
     public int TotalNumberOfBuyer;
     public int time;
 	public List<GameObject> NPCs = new List<GameObject>();
-	public GameObject[] roomPoints; 
-	public GameObject[] tentacles; 
-	public GameObject[] portals; 
-	public RawImage npcMenu;
+    public List<GameObject> portals = new List<GameObject>();
+    public List<GameObject> tentacles = new List<GameObject>();
+    public List<GameObject> roomPoints = new List<GameObject>();
+    public RawImage npcMenu;
 	public RawImage winScreen;
 	public RawImage loseScreen;
 	public int stageSelect;
@@ -26,26 +26,40 @@ public class RespawnAI : MonoBehaviour {
 		loseScreen.enabled = false;
 		npcMenu.enabled = false;
 		//get array of tentacles and portals and make them invisible, so they can be turned on/off
-		tentacles = GameObject.FindGameObjectsWithTag("Tentacle");
-        for (int tentacleNumber = 0; tentacleNumber < tentacles.Length; tentacleNumber++)
+		tentacles.Add(GameObject.FindGameObjectsWithTag("tentacle0")[0]);
+        tentacles.Add(GameObject.FindGameObjectsWithTag("tentacle1")[0]);
+        tentacles.Add(GameObject.FindGameObjectsWithTag("tentacle2")[0]);
+        tentacles.Add(GameObject.FindGameObjectsWithTag("tentacle3")[0]);
+        tentacles.Add(GameObject.FindGameObjectsWithTag("tentacle4")[0]);
+        tentacles.Add(GameObject.FindGameObjectsWithTag("tentacle5")[0]);
+        for (int tentacleNumber = 0; tentacleNumber < tentacles.Count; tentacleNumber++)
         {
             tentacles[tentacleNumber].SetActive(false);
         }
-		portals = GameObject.FindGameObjectsWithTag("Portal");
-        for (int portalNumber = 0; portalNumber < portals.Length; portalNumber++)
+        portals.Add(GameObject.FindGameObjectsWithTag("portal0")[0]);
+        portals.Add(GameObject.FindGameObjectsWithTag("portal1")[0]);
+        portals.Add(GameObject.FindGameObjectsWithTag("portal2")[0]);
+        portals.Add(GameObject.FindGameObjectsWithTag("portal3")[0]);
+        portals.Add(GameObject.FindGameObjectsWithTag("portal4")[0]);
+        portals.Add(GameObject.FindGameObjectsWithTag("portal5")[0]);
+        for (int portalNumber = 0; portalNumber < portals.Count; portalNumber++)
         {
             portals[portalNumber].SetActive(false);
         }
-		roomPoints = GameObject.FindGameObjectsWithTag("roomPoint");
+        roomPoints.Add(GameObject.FindGameObjectsWithTag("roomPoint0")[0]);
+        roomPoints.Add(GameObject.FindGameObjectsWithTag("roomPoint1")[0]);
+        roomPoints.Add(GameObject.FindGameObjectsWithTag("roomPoint2")[0]);
+        roomPoints.Add(GameObject.FindGameObjectsWithTag("roomPoint3")[0]);
+        roomPoints.Add(GameObject.FindGameObjectsWithTag("roomPoint4")[0]);
+        roomPoints.Add(GameObject.FindGameObjectsWithTag("roomPoint5")[0]);
 
-		StartCoroutine(driver(stageSelect));
+        StartCoroutine(driver(stageSelect));
 	}
 	//Tentacle Number and locations: starts in lobby then goes clockwise around the house, starting with the immediate room to the left
 	IEnumerator driver(int stageNumber)
 	{
 	if(stageNumber == 0)
 	{
-        spawnPortal(5);//2,3,1,5,4,0 fix these
 		yield return null;
 	}
 	else if (stageNumber == 1)
@@ -56,13 +70,13 @@ public class RespawnAI : MonoBehaviour {
 		//the NPC spawns at 10 seconds and takes 10 seconds to get to the lobby,
 		//and they all disappear at a world time of 25 (so the player has to distract the NPCs for 15 seconds)
 		yield return new WaitForSeconds(5);
-		spawnPortal(2);
+		spawnPortal(0);
 		yield return new WaitForSeconds(5);
 		spawnNPC();
 		yield return new WaitForSeconds(5);
 		spawnTentacle(0);
 		yield return new WaitForSeconds(25);
-		spawnPortal(2);
+		spawnPortal(0);
 		spawnTentacle(0);
 		//endLevel
 		Time.timeScale = 0.0f;
@@ -86,8 +100,8 @@ public class RespawnAI : MonoBehaviour {
 		//The tentacle in the kitchen would spawn at 15 seconds in. So the second NPC would already be in the kitchen if the player hadn't taken care of it. 
 		//All disappear after 5 more seconds (meaning the whole thing disappears after 20 real seconds)
 		yield return new WaitForSeconds(5);//2,3,1,5,4,0 
-        spawnPortal(5);
-		spawnPortal(2);
+        spawnPortal(3);
+		spawnPortal(0);
 		yield return new WaitForSeconds(5);
 		spawnNPC();
 		spawnTentacle(3);
@@ -96,8 +110,8 @@ public class RespawnAI : MonoBehaviour {
 		yield return new WaitForSeconds(4);
 		spawnTentacle(0);
 		yield return new WaitForSeconds(5);
-		spawnPortal(5);
-		spawnPortal(2);
+		spawnPortal(3);
+		spawnPortal(0);
 		spawnTentacle(3);
 		spawnTentacle(0);
 		//endLevel

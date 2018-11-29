@@ -13,7 +13,7 @@ public class AI : MonoBehaviour {
     public GameObject door;
 	public RawImage npcMenu;
 	public GameObject[] roomPoints;
-    public GameObject[] tentacles;
+    public List<GameObject> tentacles = new List<GameObject>();
 
     bool oneScream = false;
     //public GameObject mainPoint;
