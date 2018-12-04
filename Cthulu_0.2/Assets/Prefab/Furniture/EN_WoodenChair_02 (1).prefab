@@ -30,9 +30,10 @@ GameObject:
   - component: {fileID: 65727463510226934}
   - component: {fileID: 65602979054899442}
   - component: {fileID: 54032299003912646}
+  - component: {fileID: 114327686844135782}
   m_Layer: 0
   m_Name: EN_WoodenChair_02 (1)
-  m_TagString: Untagged
+  m_TagString: pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,13 +44,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1353188245915128}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.845029, y: 0.24905193, z: 3.7625346}
-  m_LocalScale: {x: 0.0328084, y: 0.0328084, z: 0.0328084}
+  m_LocalRotation: {x: -0, y: -0.6750166, z: -0, w: -0.73780257}
+  m_LocalPosition: {x: -2.156, y: 0.08107293, z: -1.044}
+  m_LocalScale: {x: 0.055420015, y: 0.05542, z: 0.055420015}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -275.089, z: 0}
 --- !u!23 &23130010214385338
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -155,6 +156,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4719886, y: 1.3544376, z: 6.9531217}
   m_Center: {x: 3.4617724, y: 2.2481484, z: 0.6083858}
+--- !u!114 &114327686844135782
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1353188245915128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3ae1a60bec8745907d883f57f460b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 75
 --- !u!136 &136034910034413992
 CapsuleCollider:
   m_ObjectHideFlags: 1
