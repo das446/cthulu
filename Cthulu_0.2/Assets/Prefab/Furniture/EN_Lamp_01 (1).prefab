@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 23160567814587984}
   - component: {fileID: 136398460085461184}
   - component: {fileID: 54208805802893544}
+  - component: {fileID: 114802001756254806}
   m_Layer: 0
   m_Name: EN_Lamp_01 (1)
-  m_TagString: Untagged
+  m_TagString: moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,9 +37,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1531752438098048}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.081563, y: 0.271, z: 3.3106713}
-  m_LocalScale: {x: 0.0328084, y: 0.0328084, z: 0.0328084}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.367, y: 0.426, z: 0.381}
+  m_LocalScale: {x: 0.03589567, y: 0.03589567, z: 0.03589567}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,6 +101,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114802001756254806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1531752438098048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3ae1a60bec8745907d883f57f460b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 35
 --- !u!136 &136398460085461184
 CapsuleCollider:
   m_ObjectHideFlags: 1

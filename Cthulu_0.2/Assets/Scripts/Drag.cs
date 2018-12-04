@@ -41,7 +41,7 @@ public class Drag : MonoBehaviour {
                     if (hit.rigidbody != null)
                     {
                         hit.rigidbody.velocity = GetComponent<Rigidbody>().velocity;
-                        // hit.transform.GetComponent<ScoreObject>().hasMoved();
+                        hit.transform.GetComponent<ScoreObject>().hasMoved();
                     }
                 }
             }
