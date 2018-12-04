@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
 	{
 		isLocked = false;
 		isOpen = false;
+        open();
 	}
 
 	public void open()

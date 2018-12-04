@@ -452,8 +452,7 @@ GameObject:
   - component: {fileID: 82851348254134436}
   - component: {fileID: 195469363988472838}
   - component: {fileID: 114516849471749742}
-  - component: {fileID: 208294200580428592}
-  - component: {fileID: 114537896262122772}
+  - component: {fileID: 208281465037289584}
   m_Layer: 0
   m_Name: AI 1
   m_TagString: AI
@@ -2246,23 +2245,9 @@ MonoBehaviour:
   door: {fileID: 0}
   npcMenu: {fileID: 0}
   roomPoints: []
---- !u!114 &114537896262122772
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1545288910322120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cea111f7abae4540a3c7accce451f22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inhouse: 0
-  lookuptime: 10
-  waitInhouse: 0
-  waitInlobay: 0
-  finishInspection: 0
-  mainPoint: {fileID: 0}
+  tentacles: []
+  agent: {fileID: 195469363988472838}
+  NPCNumber: 0
 --- !u!136 &136473930008853208
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2386,7 +2371,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1545288910322120}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -2397,15 +2382,15 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 1
+  m_WalkableMask: 3
   m_ObstacleAvoidanceType: 4
---- !u!208 &208294200580428592
+--- !u!208 &208281465037289584
 NavMeshObstacle:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1545288910322120}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
   m_Extents: {x: 0.5, y: 1, z: 0.5}

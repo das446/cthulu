@@ -12,27 +12,38 @@ public class AI : MonoBehaviour {
     public bool scare = false;
     public GameObject door;
 	public RawImage npcMenu;
-	public GameObject[] roomPoints;
-    public GameObject[] tentacles;
+	public List<GameObject> roomPoints = new List<GameObject>();
+    public List<GameObject> tentacles = new List<GameObject>();
+	public NavMeshAgent agent;
+	public int NPCNumber;
+	private bool playerInCollider;
 
     bool oneScream = false;
     //public GameObject mainPoint;
     // Use this for initialization
     void Start ()
     {
-        tentacles = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Tentacle>().tentacleArray;
-        roomPoints = GameObject.FindGameObjectsWithTag("roomPoint");
+        tentacles = GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().tentacles;
+		roomPoints = GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().roomPoints;
 		npcMenu = GameObject.FindGameObjectsWithTag("playerInteractMenu")[0].GetComponent<RawImage>();
 		npcMenu.enabled = false;
 		scream = GetComponent<AudioSource>();
-        door = GameObject.FindGameObjectsWithTag("Door")[0];
+        //door = GameObject.FindGameObjectsWithTag("Door")[0];
         StartCoroutine(RoomRecognition());
     }
 
+	public void setNPCNumber(int numberNPC)
+	{
+		NPCNumber = numberNPC;
+	}
+	public int getNPCNumber()
+	{
+		return NPCNumber;
+	}
+	
     IEnumerator RoomRecognition()
     {
         yield return new WaitForSeconds(3);
-       
     }
 
 
@@ -93,9 +104,10 @@ public class AI : MonoBehaviour {
         if (scare)
         {
             scare = true;
+            Screamer();
         }
          
-
+		/*
         if (scare || gameObject.GetComponent<Inspection>().finishInspection) {
             //transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
             //rb.AddForce((transform.forward) *  MoveSpeed);
@@ -103,34 +115,36 @@ public class AI : MonoBehaviour {
             //print("im scared!!!!");
             gameObject.GetComponent<Inspection>().setLocation(door.transform.position);
         }
-		if(Input.GetKeyDown(KeyCode.Alpha1) && npcMenu.enabled)
+		*/
+		if(Input.GetKeyDown(KeyCode.Alpha1) && npcMenu.enabled && playerInCollider)
 			{
-				this.gameObject.transform.position = roomPoints[0].transform.position;
+				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,0);
+				//this.gameObject.transform.position = roomPoints[0].transform.position;
                 FindObjectOfType<AudioManagement>().Play("MoveKitchen");
         }
-		else if(Input.GetKeyDown(KeyCode.Alpha2) && npcMenu.enabled)
+		else if(Input.GetKeyDown(KeyCode.Alpha2) && npcMenu.enabled && playerInCollider)
 			{
-				this.gameObject.transform.position = roomPoints[1].transform.position;
+				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,1);
                 FindObjectOfType<AudioManagement>().Play("MoveStudy");
         }
-		else if(Input.GetKeyDown(KeyCode.Alpha3) && npcMenu.enabled)
+		else if(Input.GetKeyDown(KeyCode.Alpha3) && npcMenu.enabled && playerInCollider)
 			{
-				this.gameObject.transform.position = roomPoints[2].transform.position;
+				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,2);
                 FindObjectOfType<AudioManagement>().Play("MoveLibrary");
         }
-		else if(Input.GetKeyDown(KeyCode.Alpha4) && npcMenu.enabled)
+		else if(Input.GetKeyDown(KeyCode.Alpha4) && npcMenu.enabled && playerInCollider)
 			{
-				this.gameObject.transform.position = roomPoints[3].transform.position;
+				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,3);
                 FindObjectOfType<AudioManagement>().Play("MovePantry");
         }
-		else if(Input.GetKeyDown(KeyCode.Alpha5) && npcMenu.enabled)
+		else if(Input.GetKeyDown(KeyCode.Alpha5) && npcMenu.enabled && playerInCollider)
 			{
-				this.gameObject.transform.position = roomPoints[4].transform.position;
+				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,4);
                 FindObjectOfType<AudioManagement>().Play("MoveDining");
         }
-		else if(Input.GetKeyDown(KeyCode.Alpha6) && npcMenu.enabled)
+		else if(Input.GetKeyDown(KeyCode.Alpha6) && npcMenu.enabled && playerInCollider)
 			{
-				this.gameObject.transform.position = roomPoints[5].transform.position;
+				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,5);
                 FindObjectOfType<AudioManagement>().Play("MoveFamily");
         }
     }
@@ -140,15 +154,16 @@ public class AI : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        else if(other.tag == "Door" && scare == false && gameObject.GetComponent<Inspection>().finishInspection == true)
-        {
-            GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<countDown>().numberOfFinish +=1;
-            Destroy(gameObject);
+        //else if(other.tag == "Door" && scare == false && gameObject.GetComponent<Inspection>().finishInspection == true)
+        //{
+        //   GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<countDown>().numberOfFinish +=1;
+        //    Destroy(gameObject);
 
-        }
+        //}
 		else if (other.tag == "Player" )
         {
             npcMenu.enabled = true;
+			playerInCollider = true;
         }
     }
 	private void OnTriggerExit(Collider other)
@@ -156,6 +171,7 @@ public class AI : MonoBehaviour {
 		if (other.tag == "Player" )
         {
             npcMenu.enabled = false;
+			playerInCollider = false;
         }
 	}
 
