@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43909007, g: 0.48734236, b: 0.5675961, a: 1}
+  m_IndirectSpecularColor: {r: 0.43908975, g: 0.4873417, b: 0.5675948, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -614,6 +614,11 @@ Prefab:
     - target: {fileID: 1834534812057042, guid: dc61ea19870117b4b95cf085f5edb1f5, type: 2}
       propertyPath: m_Name
       value: EN_GrandfatherClock_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114729477393657404, guid: dc61ea19870117b4b95cf085f5edb1f5,
+        type: 2}
+      propertyPath: value
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc61ea19870117b4b95cf085f5edb1f5, type: 2}
@@ -2613,26 +2618,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 23
       objectReference: {fileID: 0}
-    - target: {fileID: 4110364936623690, guid: 1543a6734f4a4ae4bb6001af5d03f1c7, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.0881142
-      objectReference: {fileID: 0}
-    - target: {fileID: 4110364936623690, guid: 1543a6734f4a4ae4bb6001af5d03f1c7, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.0881142
-      objectReference: {fileID: 0}
-    - target: {fileID: 4110364936623690, guid: 1543a6734f4a4ae4bb6001af5d03f1c7, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.06608565
-      objectReference: {fileID: 0}
-    - target: {fileID: 4110364936623690, guid: 1543a6734f4a4ae4bb6001af5d03f1c7, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.32900003
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415124848058522, guid: 1543a6734f4a4ae4bb6001af5d03f1c7, type: 2}
-      propertyPath: m_TagString
-      value: moveable
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1543a6734f4a4ae4bb6001af5d03f1c7, type: 2}
   m_IsPrefabAsset: 0
@@ -2697,7 +2682,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1353188245915128, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
       propertyPath: m_TagString
-      value: moveable
+      value: pickable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
@@ -12226,7 +12211,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1353188245915128, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
       propertyPath: m_TagString
-      value: moveable
+      value: pickable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
@@ -12660,7 +12645,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1353188245915128, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
       propertyPath: m_TagString
-      value: moveable
+      value: pickable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
@@ -17693,26 +17678,6 @@ Prefab:
       propertyPath: m_Name
       value: EN_WoodenChair_02 (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 4490425916635248, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.055420015
-      objectReference: {fileID: 0}
-    - target: {fileID: 4490425916635248, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.05542
-      objectReference: {fileID: 0}
-    - target: {fileID: 4490425916635248, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.055420015
-      objectReference: {fileID: 0}
-    - target: {fileID: 4490425916635248, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -275.089
-      objectReference: {fileID: 0}
-    - target: {fileID: 1353188245915128, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
-      propertyPath: m_TagString
-      value: moveable
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
   m_IsPrefabAsset: 0
@@ -19096,26 +19061,6 @@ Prefab:
       propertyPath: m_Name
       value: OB_Couch_03 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4947049737873748, guid: cc32f793dbdcc674295676fc98aec78c, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 2.9720001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4947049737873748, guid: cc32f793dbdcc674295676fc98aec78c, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.0881142
-      objectReference: {fileID: 0}
-    - target: {fileID: 4947049737873748, guid: cc32f793dbdcc674295676fc98aec78c, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.0881142
-      objectReference: {fileID: 0}
-    - target: {fileID: 4947049737873748, guid: cc32f793dbdcc674295676fc98aec78c, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.0881142
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755660080017578, guid: cc32f793dbdcc674295676fc98aec78c, type: 2}
-      propertyPath: m_TagString
-      value: moveable
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc32f793dbdcc674295676fc98aec78c, type: 2}
   m_IsPrefabAsset: 0
@@ -19539,7 +19484,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1353188245915128, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
       propertyPath: m_TagString
-      value: moveable
+      value: pickable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec6856d5d913f26499adbed4c238fde7, type: 2}
@@ -21307,7 +21252,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1531752438098048, guid: 5b3eac47d78ecad49ac0ccd1870da099, type: 2}
       propertyPath: m_TagString
-      value: moveable
+      value: pickable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b3eac47d78ecad49ac0ccd1870da099, type: 2}
