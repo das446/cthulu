@@ -19,6 +19,7 @@ public class setting: MonoBehaviour
             isShowing = !isShowing;
             menu.SetActive(isShowing);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else if(Input.GetKeyDown("escape") && isShowing == true)
         {

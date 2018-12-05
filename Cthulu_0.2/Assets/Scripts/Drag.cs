@@ -51,18 +51,4 @@ public class Drag : MonoBehaviour {
             //print("I'm looking at nothing!");
         }
     }
-	private void OnTriggerEnter(Collider other)
-    {
-		if (other.tag == "moveable" )
-        {
-            handIcon.enabled = true;
-        }
-	}
-	private void OnTriggerExit(Collider other)
-    {
-		if (other.tag == "moveable" )
-        {
-            handIcon.enabled = false;
-        }
-	}
 }

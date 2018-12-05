@@ -49,6 +49,7 @@ public class AI : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        /*
         RaycastHit hit;
         if (Physics.Linecast(gameObject.transform.position, tentacles[0].transform.position, out hit) && tentacles[0].activeInHierarchy)
         {
@@ -93,6 +94,7 @@ public class AI : MonoBehaviour {
                 Debug.Log("hello tentacool6");
             }
         }
+        */
         /*
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Tentacle").Length; i++) {
             if (GameObject.FindGameObjectsWithTag("Tentacle")[i].GetComponent<Tentacle>().alive == true) {

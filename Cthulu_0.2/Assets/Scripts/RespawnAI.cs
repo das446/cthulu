@@ -78,11 +78,13 @@ public class RespawnAI : MonoBehaviour {
 		//and they all disappear at a world time of 25 (so the player has to distract the NPCs for 15 seconds)
 		yield return new WaitForSeconds(5);
 		spawnPortal(0);
+        //spawnPortal(1);
 		yield return new WaitForSeconds(5);
 		spawnNPC();
 		yield return new WaitForSeconds(5);
 		spawnTentacle(0);
-		yield return new WaitForSeconds(25);
+        //spawnTentacle(1);
+        yield return new WaitForSeconds(25);
 		spawnPortal(0);
 		spawnTentacle(0);
 		//endLevel

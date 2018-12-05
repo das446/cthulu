@@ -41,36 +41,36 @@ public class ScoringController : MonoBehaviour
         string marketString = marketValue.ToString();
         string textValue = string.Copy(marketString);
         textValue = textValue.Insert(textValue.Length-1, " ");
-        Debug.Log(textValue);
+        //Debug.Log(textValue);
         if(marketString.Length >= 2)
         {
             textValue = textValue.Insert(textValue.Length-3, " ");
-            Debug.Log(textValue);
+            //Debug.Log(textValue);
         }
         else
         {
             textValue = textValue.Insert(0, " 0");
-            Debug.Log(textValue);
+            //Debug.Log(textValue);
         }
         if(marketString.Length >= 3)
         {
             textValue = textValue.Insert(textValue.Length-5, " ");
-            Debug.Log(textValue);
+            ///Debug.Log(textValue);
         }
         else
         {
             textValue = textValue.Insert(0, " 0");
-            Debug.Log(textValue);
+            //Debug.Log(textValue);
         }
         if(marketString.Length == 4)
         {
             textValue = textValue.Insert(1, " ");
-            Debug.Log(textValue);
+            //Debug.Log(textValue);
         }
         else
         {
             textValue = textValue.Insert(0, "0 ");
-            Debug.Log(textValue);
+            //Debug.Log(textValue);
         }
         return textValue;
     }
