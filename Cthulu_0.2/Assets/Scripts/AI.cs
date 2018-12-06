@@ -28,7 +28,7 @@ public class AI : MonoBehaviour {
 		npcMenu = GameObject.FindGameObjectsWithTag("playerInteractMenu")[0].GetComponent<RawImage>();
 		npcMenu.enabled = false;
 		scream = GetComponent<AudioSource>();
-        //door = GameObject.FindGameObjectsWithTag("Door")[0];
+        door = GameObject.FindGameObjectsWithTag("Door")[0];
         StartCoroutine(RoomRecognition());
     }
 
@@ -108,16 +108,17 @@ public class AI : MonoBehaviour {
             scare = true;
             Screamer();
         }
-         
-		/*
-        if (scare || gameObject.GetComponent<Inspection>().finishInspection) {
+
+
+        if (scare)
+        {
             //transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
             //rb.AddForce((transform.forward) *  MoveSpeed);
             //move(new Vector3(door.transform.position.x, transform.position.y, door.transform.position.z));
             //print("im scared!!!!");
-            gameObject.GetComponent<Inspection>().setLocation(door.transform.position);
+            agent.SetDestination(door.transform.position);
+            agent.speed = 3.5f;
         }
-		*/
 		if(Input.GetKeyDown(KeyCode.Alpha1) && npcMenu.enabled && playerInCollider)
 			{
 				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,0);
