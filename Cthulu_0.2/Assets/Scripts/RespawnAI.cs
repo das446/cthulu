@@ -91,16 +91,24 @@ public class RespawnAI : MonoBehaviour {
 		//and they all disappear at a world time of 25 (so the player has to distract the NPCs for 15 seconds)
 		yield return new WaitForSeconds(5);
 		spawnPortal(0);
+        spawnNPC();
+        sendNPCtoLocation(0,1);
         //spawnPortal(1);
 		yield return new WaitForSeconds(5);
 		spawnNPC();
+        sendNPCtoLocation(0,5);
 		yield return new WaitForSeconds(5);
 		spawnTentacle(0);
-        //spawnTentacle(1);
-        yield return new WaitForSeconds(25);
+        spawnPortal(1);
+        yield return new WaitForSeconds(5);
 		spawnPortal(0);
 		spawnTentacle(0);
-		//endLevel
+        spawnTentacle(1);
+        yield return new WaitForSeconds(5);
+        spawnTentacle(1);
+        spawnPortal(1);
+        //endLevel
+        yield return new WaitForSeconds(20);
 		Time.timeScale = 0.0f;
 		if(winLoseCheck())
 		{
@@ -136,6 +144,7 @@ public class RespawnAI : MonoBehaviour {
 		spawnPortal(0);
 		spawnTentacle(3);
 		spawnTentacle(0);
+        yield return new WaitForSeconds(20);
 		//endLevel
 		Time.timeScale = 0.0f;
 		if(winLoseCheck())
@@ -154,7 +163,7 @@ public class RespawnAI : MonoBehaviour {
 		//Spawn a portal in every room at the first second. 
 		//Spawn 2 NPCs at 5 second. 
 		//In a clockwise fashion the tentacles spawn every 5 seconds after the NPCs spawn 
-		spawnPortal(0);//2,3,1,5,4,0 
+		spawnPortal(0);
 		spawnPortal(1);
 		spawnPortal(2);
 		spawnPortal(3);
@@ -189,6 +198,7 @@ public class RespawnAI : MonoBehaviour {
 		spawnTentacle(5);//off
 		spawnPortal(5);
 		//endLevel
+        yield return new WaitForSeconds(20);
 		Time.timeScale = 0.0f;
 		if(winLoseCheck())
 		{
@@ -219,6 +229,7 @@ public class RespawnAI : MonoBehaviour {
         }
 	}
 	
+    //make immediate
 	bool winLoseCheck()
 	{
 		List<bool> scaredNPCs = new List<bool>();
