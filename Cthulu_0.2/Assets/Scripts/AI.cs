@@ -17,6 +17,7 @@ public class AI : MonoBehaviour {
 	public NavMeshAgent agent;
 	public int NPCNumber;
 	private bool playerInCollider;
+    private bool sentAway = false;
 
     bool oneScream = false;
     //public GameObject mainPoint;
@@ -49,104 +50,65 @@ public class AI : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        /*
+        if (scare && !sentAway)
+        {
+            agent.speed = 3.5f;
+            agent.SetDestination(GameObject.FindGameObjectsWithTag("exitPoint")[0].transform.position);
+            Screamer();
+            sentAway = true;
+        }
         RaycastHit hit;
         if (Physics.Linecast(gameObject.transform.position, tentacles[0].transform.position, out hit) && tentacles[0].activeInHierarchy)
         {
-            if (hit.transform.tag == "Tentacle")
-            {
-                Debug.Log("hello tentacool1");
-            }
-
+            scare = true;
         }
         else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
-        {
-            if (hit.transform.tag == "Tentacle")
-            {
-                Debug.Log("hello tentacool2");
-            }
-        }
-        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
-        {
-            if (hit.transform.tag == "Tentacle")
-            {
-                Debug.Log("hello tentacool3");
-            }
-        }
-        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
-        {
-            if (hit.transform.tag == "Tentacle")
-            {
-                Debug.Log("hello tentacool4");
-            }
-        }
-        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
-        {
-            if (hit.transform.tag == "Tentacle")
-            {
-                Debug.Log("hello tentacool5");
-            }
-        }
-        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
-        {
-            if (hit.transform.tag == "Tentacle")
-            {
-                Debug.Log("hello tentacool6");
-            }
-        }
-        */
-        /*
-        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Tentacle").Length; i++) {
-            if (GameObject.FindGameObjectsWithTag("Tentacle")[i].GetComponent<Tentacle>().alive == true) {
-                scare = true;
-                break;
-            }
-        }
-        */
-        if (scare)
         {
             scare = true;
-            Screamer();
+        }
+        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
+        {
+            scare = true;
+        }
+        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
+        {
+            scare = true;
+        }
+        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
+        {
+            scare = true;
+        }
+        else if (Physics.Linecast(gameObject.transform.position, tentacles[1].transform.position, out hit) && tentacles[1].activeInHierarchy)
+        {
+            scare = true;
         }
 
-        /*
-        if (scare)
-        {
-            //transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
-            //rb.AddForce((transform.forward) *  MoveSpeed);
-            //move(new Vector3(door.transform.position.x, transform.position.y, door.transform.position.z));
-            //print("im scared!!!!");
-            GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation ;
-            agent.speed = 3.5f;
-        }
-        */
-		if(Input.GetKeyDown(KeyCode.Alpha1) && npcMenu.enabled && playerInCollider)
+		if(Input.GetKeyDown(KeyCode.Alpha1) && npcMenu.enabled && playerInCollider && !scare)
 			{
 				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,0);
-				//this.gameObject.transform.position = roomPoints[0].transform.position;
                 FindObjectOfType<AudioManagement>().Play("MoveKitchen");
         }
-		else if(Input.GetKeyDown(KeyCode.Alpha2) && npcMenu.enabled && playerInCollider)
+		else if(Input.GetKeyDown(KeyCode.Alpha2) && npcMenu.enabled && playerInCollider && !scare)
 			{
 				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,1);
                 FindObjectOfType<AudioManagement>().Play("MoveStudy");
         }
-		else if(Input.GetKeyDown(KeyCode.Alpha3) && npcMenu.enabled && playerInCollider)
+		else if(Input.GetKeyDown(KeyCode.Alpha3) && npcMenu.enabled && playerInCollider && !scare)
 			{
 				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,2);
                 FindObjectOfType<AudioManagement>().Play("MoveLibrary");
         }
-		else if(Input.GetKeyDown(KeyCode.Alpha4) && npcMenu.enabled && playerInCollider)
+		else if(Input.GetKeyDown(KeyCode.Alpha4) && npcMenu.enabled && playerInCollider && !scare)
 			{
 				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,3);
                 FindObjectOfType<AudioManagement>().Play("MovePantry");
         }
-		else if(Input.GetKeyDown(KeyCode.Alpha5) && npcMenu.enabled && playerInCollider)
+		else if(Input.GetKeyDown(KeyCode.Alpha5) && npcMenu.enabled && playerInCollider && !scare)
 			{
 				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,4);
                 FindObjectOfType<AudioManagement>().Play("MoveDining");
         }
-		else if(Input.GetKeyDown(KeyCode.Alpha6) && npcMenu.enabled && playerInCollider)
+		else if(Input.GetKeyDown(KeyCode.Alpha6) && npcMenu.enabled && playerInCollider && !scare)
 			{
 				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,5);
                 FindObjectOfType<AudioManagement>().Play("MoveFamily");
@@ -154,17 +116,7 @@ public class AI : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Door" && scare == true)
-        {
-            Destroy(gameObject);
-        }
-        //else if(other.tag == "Door" && scare == false && gameObject.GetComponent<Inspection>().finishInspection == true)
-        //{
-        //   GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<countDown>().numberOfFinish +=1;
-        //    Destroy(gameObject);
-
-        //}
-		else if (other.tag == "Player" )
+        if (other.tag == "Player" )
         {
             npcMenu.enabled = true;
 			playerInCollider = true;

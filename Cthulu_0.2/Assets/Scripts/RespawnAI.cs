@@ -61,12 +61,25 @@ public class RespawnAI : MonoBehaviour {
 	if(stageNumber == 0)
 	{
 		spawnNPC();
-		spawnNPC();
-		sendNPCtoLocation(0,1);
-		sendNPCtoLocation(1,5);
+        
+        spawnTentacle(0);
+
+           // spawnTentacle(1);
+
+            //spawnTentacle(2);
+
+            //spawnTentacle(3);
+
+           // spawnTentacle(4);
+
+            //spawnTentacle(5);
+
+        sendNPCtoLocation(0,1);
+
 		yield return new WaitForSeconds(5);
 		sendNPCtoLocation(0,5);
-		sendNPCtoLocation(1,1);
+
+        yield return new WaitForSeconds(60);
 		yield return null;
 	}
 	else if (stageNumber == 1)
@@ -200,7 +213,10 @@ public class RespawnAI : MonoBehaviour {
 	
 	public void sendNPCtoLocation(int NPCNumber, int locationNumber)
 	{
-		NPCs[NPCNumber].GetComponent<AI>().agent.SetDestination(roomPoints[locationNumber].transform.position);
+        if (!NPCs[NPCNumber].GetComponent<AI>().scare)
+        {
+            NPCs[NPCNumber].GetComponent<AI>().agent.SetDestination(roomPoints[locationNumber].transform.position);
+        }
 	}
 	
 	bool winLoseCheck()

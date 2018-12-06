@@ -43,7 +43,7 @@ public class PlayerMove : MonoBehaviour {
         yaw += speedh * Input.GetAxis("Mouse X");
         pitch -= speedV * Input.GetAxis("Mouse Y");
         //print(pitch);
-        if (Mathf.Abs(pitch) < 40 ) {
+        if (Mathf.Abs(pitch) < 80 ) {
             cam.transform.eulerAngles = new Vector3(pitch, cam.transform.eulerAngles.y, 0.0f);
         }
         transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, yaw,0.0f);
