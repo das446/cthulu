@@ -109,16 +109,17 @@ public class AI : MonoBehaviour {
             Screamer();
         }
 
-
+        /*
         if (scare)
         {
             //transform.LookAt(new Vector3(door.transform.position.x,transform.position.y, door.transform.position.z));
             //rb.AddForce((transform.forward) *  MoveSpeed);
             //move(new Vector3(door.transform.position.x, transform.position.y, door.transform.position.z));
             //print("im scared!!!!");
-            agent.SetDestination(door.transform.position);
+            GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation ;
             agent.speed = 3.5f;
         }
+        */
 		if(Input.GetKeyDown(KeyCode.Alpha1) && npcMenu.enabled && playerInCollider)
 			{
 				GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().sendNPCtoLocation(NPCNumber,0);
