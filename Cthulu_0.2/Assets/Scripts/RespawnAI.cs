@@ -96,19 +96,27 @@ public class RespawnAI : MonoBehaviour {
         //spawnPortal(1);
 		yield return new WaitForSeconds(5);
 		spawnNPC();
-        sendNPCtoLocation(0,5);
-		yield return new WaitForSeconds(5);
+        spawnNPC();
+        sendNPCtoLocation(1,5);
+        sendNPCtoLocation(2,3);
+		yield return new WaitForSeconds(7);
 		spawnTentacle(0);
         spawnPortal(1);
         yield return new WaitForSeconds(5);
 		spawnPortal(0);
 		spawnTentacle(0);
         spawnTentacle(1);
+        sendNPCtoLocation(1,5);
+        yield return new WaitForSeconds(5);
+        sendNPCtoLocation(2,3);
+        spawnPortal(5);
         yield return new WaitForSeconds(5);
         spawnTentacle(1);
+        spawnTentacle(5);
         spawnPortal(1);
         //endLevel
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(15);
+        spawnTentacle(5);
 		Time.timeScale = 0.0f;
 		if(winLoseCheck())
 		{
