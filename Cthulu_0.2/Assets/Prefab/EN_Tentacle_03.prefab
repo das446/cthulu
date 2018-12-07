@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 23739961644527584}
   - component: {fileID: 82380696892755014}
   - component: {fileID: 135365039097647584}
+  - component: {fileID: 114163189966803062}
   - component: {fileID: 114174884596344604}
   m_Layer: 0
   m_Name: EN_Tentacle_03
@@ -528,6 +529,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114163189966803062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1541964262730586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 2
+  outlineColor: {r: 0, g: 0.8584906, b: 0.015865164, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &114174884596344604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -539,7 +557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d118f1158be2cd546aa00f7defc79833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tentacleArray: []
 --- !u!135 &135365039097647584
 SphereCollider:
   m_ObjectHideFlags: 1
