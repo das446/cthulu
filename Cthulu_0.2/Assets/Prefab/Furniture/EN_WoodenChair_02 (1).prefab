@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 65602979054899442}
   - component: {fileID: 54032299003912646}
   - component: {fileID: 114327686844135782}
+  - component: {fileID: 208836645971308772}
   m_Layer: 0
   m_Name: EN_WoodenChair_02 (1)
   m_TagString: pickable
@@ -46,7 +47,7 @@ Transform:
   m_GameObject: {fileID: 1353188245915128}
   m_LocalRotation: {x: -0, y: -0.6750166, z: -0, w: -0.73780257}
   m_LocalPosition: {x: -2.156, y: 0.08107293, z: -1.044}
-  m_LocalScale: {x: 0.055420015, y: 0.05542, z: 0.055420015}
+  m_LocalScale: {x: 0.1505953, y: 0.1505953, z: 0.1505953}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -220,3 +221,18 @@ CapsuleCollider:
   m_Height: 5.171353
   m_Direction: 1
   m_Center: {x: -3.0855527, y: -4.9733357, z: -3.615731}
+--- !u!208 &208836645971308772
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1353188245915128}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 4.559, y: 7.4920006, z: 4.708}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: -0.022000002, z: 0}
+  m_TimeToStationary: 0.5

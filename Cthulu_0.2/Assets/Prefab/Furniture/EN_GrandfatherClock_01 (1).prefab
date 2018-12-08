@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65181117749745648}
   - component: {fileID: 54690901856566078}
   - component: {fileID: 114729477393657404}
+  - component: {fileID: 208759328673235322}
   m_Layer: 0
   m_Name: EN_GrandfatherClock_01 (1)
   m_TagString: moveable
@@ -39,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1834534812057042}
   m_LocalRotation: {x: -0, y: 0.96322656, z: -0, w: 0.26869062}
   m_LocalPosition: {x: -2.04, y: 0.62, z: 3.1900005}
-  m_LocalScale: {x: 0.04326443, y: 0.043264437, z: 0.04326443}
+  m_LocalScale: {x: 0.08899926, y: 0.08899926, z: 0.08899926}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -125,3 +126,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 5
+--- !u!208 &208759328673235322
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1834534812057042}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5.222, y: 20.390001, z: 4.978}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

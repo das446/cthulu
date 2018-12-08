@@ -10,7 +10,6 @@ public class AI : MonoBehaviour {
     public AudioSource scream;
     public AudioClip screamreal;
     public bool scare = false;
-    public GameObject door;
 	public RawImage npcMenu;
 	public List<GameObject> roomPoints = new List<GameObject>();
     public List<GameObject> tentacles = new List<GameObject>();
@@ -30,7 +29,6 @@ public class AI : MonoBehaviour {
 		npcMenu = GameObject.FindGameObjectsWithTag("playerInteractMenu")[0].GetComponent<RawImage>();
 		npcMenu.enabled = false;
 		scream = GetComponent<AudioSource>();
-        door = GameObject.FindGameObjectsWithTag("Door")[0];
         StartCoroutine(RoomRecognition());
     }
 
