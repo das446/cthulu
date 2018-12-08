@@ -140,7 +140,7 @@ public class RespawnAI : MonoBehaviour
             yield return new WaitForSeconds(20);
             //endLevel
             Time.timeScale = 0.0f;
-            if (winLoseCheck())
+            if (!NPCs[0].GetComponent<AI>().scare)
             {
                 winScreen.enabled = true;
             }
@@ -170,7 +170,7 @@ public class RespawnAI : MonoBehaviour
             //endLevel
             yield return new WaitForSeconds(20);
             Time.timeScale = 0.0f;
-            if (winLoseCheck())
+            if (!NPCs[0].GetComponent<AI>().scare || !NPCs[1].GetComponent<AI>().scare)
             {
                 winScreen.enabled = true;
             }

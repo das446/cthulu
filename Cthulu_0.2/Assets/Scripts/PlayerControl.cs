@@ -9,8 +9,9 @@ public class PlayerControl : MonoBehaviour {
     public int ImgH;
     public int Imgw;
     public float throwForce;
+    public List<GameObject> tentacles = new List<GameObject>();
     public float distence = 4;
-
+    private bool playedRecently = true;
     //private
     private Camera cam;
     private Texture2D currentImg;
@@ -18,10 +19,113 @@ public class PlayerControl : MonoBehaviour {
     void Start () {
         cam = Camera.main;
         currentImg = aimImg;
-	}
-
-    void Update()
+        tentacles = GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().tentacles;
+        StartCoroutine(resetSound()); 
+    }
+    IEnumerator resetSound()
     {
+        yield return new WaitForSeconds(5);
+        playedRecently = false;
+        StartCoroutine(resetSound());
+        yield return null;
+    }
+
+        void Update()
+    {
+        RaycastHit hit1;
+        if (Physics.Linecast(tentacles[0].transform.position, this.gameObject.transform.position, out hit1) && tentacles[0].activeInHierarchy)
+        {
+            Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
+            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
+            if (rangle <= 2)
+            {
+                if (!playedRecently)
+                {
+                    playedRecently = true;
+                    Debug.Log("playSound");
+                }
+                
+            }
+        }
+        else if (Physics.Linecast(tentacles[1].transform.position, transform.position, out hit1) && tentacles[1].activeInHierarchy)
+        {
+            Vector3 angle = (tentacles[1].transform.position - this.gameObject.transform.position).normalized;
+            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
+            if (rangle <= 2)
+            {
+                if (!playedRecently)
+                {
+                    playedRecently = true;
+                    Debug.Log("playSound");
+                }
+            }
+        }
+        else if (Physics.Linecast(tentacles[2].transform.position, this.gameObject.transform.position, out hit1) && tentacles[2].activeInHierarchy)
+        {
+            Vector3 angle = (tentacles[2].transform.position - this.gameObject.transform.position).normalized;
+            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
+            if (rangle <= 2)
+            {
+                if (!playedRecently)
+                {
+                    playedRecently = true;
+                    Debug.Log("playSound");
+                }
+            }
+        }
+        else if (Physics.Linecast(tentacles[3].transform.position, this.gameObject.transform.position, out hit1) && tentacles[3].activeInHierarchy)
+        {
+            Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
+            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
+            if (rangle <= 2)
+            {
+                if (!playedRecently)
+                {
+                    playedRecently = true;
+                    Debug.Log("playSound");
+                }
+            }
+        }
+        else if (Physics.Linecast(tentacles[4].transform.position, this.gameObject.transform.position, out hit1) && tentacles[4].activeInHierarchy)
+        {
+            Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
+            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
+            if (rangle <= 2)
+            {
+                if (!playedRecently)
+                {
+                    playedRecently = true;
+                    Debug.Log("playSound");
+                }
+            }
+        }
+        else if (Physics.Linecast(tentacles[5].transform.position, this.gameObject.transform.position, out hit1) && tentacles[5].activeInHierarchy)
+        {
+            Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
+            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
+            if (rangle <= 2)
+            {
+                if (!playedRecently)
+                {
+                    playedRecently = true;
+                    Debug.Log("playSound");
+                }
+            }
+        }
+        else if (Physics.Linecast(tentacles[6].transform.position, this.gameObject.transform.position, out hit1) && tentacles[6].activeInHierarchy)
+        {
+            Vector3 angle = (tentacles[6].transform.position - this.gameObject.transform.position).normalized;
+            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
+            if (rangle <= 2)
+            {
+                if (!playedRecently)
+                {
+                    playedRecently = true;
+                    Debug.Log("playSound");
+                }
+            }
+        }
+
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -68,14 +172,6 @@ public class PlayerControl : MonoBehaviour {
         }
 
     }
-    //show crossHair in center
-    private void OnGUI() {
-        if (currentImg != null)
-        {
-            GUI.DrawTexture(new Rect(Screen.width / 2, Screen.height / 2, Imgw, ImgH), currentImg);
-        }
-        else {
-            Debug.Log("AIM image is empty!!!!");
-        }
-    }
+
+
 }

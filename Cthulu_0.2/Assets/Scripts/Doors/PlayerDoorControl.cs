@@ -22,15 +22,12 @@ public class PlayerDoorControl : MonoBehaviour
                         
                         if(doorScript.checkLock() == false)
                         {
-                            Debug.Log(doorScript.checkOpen());
                             if(doorScript.checkOpen() == false)
                             {
-                                Debug.Log("open door");
                                 doorScript.open();
                             }
                             else
                             {
-                                Debug.Log("close door");
                                 doorScript.close();
                             }
                         }
