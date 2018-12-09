@@ -16,7 +16,10 @@ public class PlayerControl : MonoBehaviour {
     private Camera cam;
     private Texture2D currentImg;
     private bool hold;
+    public AudioClip portalViewed;
+    private AudioSource source;
     void Start () {
+        source = GetComponent<AudioSource>();
         cam = Camera.main;
         currentImg = aimImg;
         tentacles = GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().tentacles;
@@ -37,12 +40,12 @@ public class PlayerControl : MonoBehaviour {
         {
             Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
             float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 2)
+            if (rangle <= 5)
             {
                 if (!playedRecently)
                 {
                     playedRecently = true;
-                    Debug.Log("playSound");
+                    source.Play();
                 }
                 
             }
@@ -51,12 +54,12 @@ public class PlayerControl : MonoBehaviour {
         {
             Vector3 angle = (tentacles[1].transform.position - this.gameObject.transform.position).normalized;
             float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 2)
+            if (rangle <= 5)
             {
                 if (!playedRecently)
                 {
                     playedRecently = true;
-                    Debug.Log("playSound");
+                    source.Play();
                 }
             }
         }
@@ -64,12 +67,12 @@ public class PlayerControl : MonoBehaviour {
         {
             Vector3 angle = (tentacles[2].transform.position - this.gameObject.transform.position).normalized;
             float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 2)
+            if (rangle <= 5)
             {
                 if (!playedRecently)
                 {
                     playedRecently = true;
-                    Debug.Log("playSound");
+                    source.Play();
                 }
             }
         }
@@ -77,12 +80,12 @@ public class PlayerControl : MonoBehaviour {
         {
             Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
             float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 2)
+            if (rangle <= 5)
             {
                 if (!playedRecently)
                 {
                     playedRecently = true;
-                    Debug.Log("playSound");
+                    source.Play();
                 }
             }
         }
@@ -90,12 +93,12 @@ public class PlayerControl : MonoBehaviour {
         {
             Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
             float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 2)
+            if (rangle <= 5)
             {
                 if (!playedRecently)
                 {
                     playedRecently = true;
-                    Debug.Log("playSound");
+                    source.Play();
                 }
             }
         }
@@ -103,12 +106,12 @@ public class PlayerControl : MonoBehaviour {
         {
             Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
             float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 2)
+            if (rangle <= 5)
             {
                 if (!playedRecently)
                 {
                     playedRecently = true;
-                    Debug.Log("playSound");
+                    source.Play();
                 }
             }
         }
@@ -116,12 +119,12 @@ public class PlayerControl : MonoBehaviour {
         {
             Vector3 angle = (tentacles[6].transform.position - this.gameObject.transform.position).normalized;
             float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 2)
+            if (rangle <= 5)
             {
                 if (!playedRecently)
                 {
                     playedRecently = true;
-                    Debug.Log("playSound");
+                    source.Play();
                 }
             }
         }

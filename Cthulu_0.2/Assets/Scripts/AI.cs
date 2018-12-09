@@ -17,12 +17,24 @@ public class AI : MonoBehaviour {
 	public int NPCNumber;
 	private bool playerInCollider;
     private bool sentAway = false;
+    public AudioSource audioSource;
+    public AudioClip hurt0;
+    public AudioClip hurt1;
+    public AudioClip hurt2;
+    public AudioClip hurt3;
+    public AudioClip hurt4;
+    public AudioClip hurt5;
+    public AudioClip hurt6;
+    public AudioClip hurt7;
+    public AudioClip[] hurtSounds;
 
     bool oneScream = false;
     //public GameObject mainPoint;
     // Use this for initialization
     void Start ()
     {
+        audioSource = GetComponent<AudioSource>();
+        hurtSounds = new AudioClip[] { hurt0, hurt1, hurt2, hurt3, hurt4, hurt5, hurt6, hurt7 };
         agent.speed = 2f;
         tentacles = GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().tentacles;
 		roomPoints = GameObject.FindGameObjectsWithTag("director")[0].GetComponent<RespawnAI>().roomPoints;
@@ -145,10 +157,15 @@ public class AI : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" )
+        if (other.tag == "Player")
         {
             npcMenu.enabled = true;
-			playerInCollider = true;
+            playerInCollider = true;
+        }
+        else if (other.tag == "pickable")
+        {
+            int random = UnityEngine.Random.Range(0, 8);
+            audioSource.PlayOneShot(hurtSounds[random], 0.7F);
         }
     }
 	private void OnTriggerExit(Collider other)

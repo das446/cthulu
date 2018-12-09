@@ -19,8 +19,27 @@ public class RespawnAI : MonoBehaviour
     public RawImage winScreen;
     public RawImage loseScreen;
     public int stageSelect;
+    public AudioClip tutStep0;
+    public AudioClip tutStep1;
+    public AudioClip tutStep2;
+    public AudioClip tutStep3;
+    public AudioClip tutStep4;
+    public AudioClip tutStep5;
+    public AudioClip tutStep6;
+    public AudioClip tutStep7;
+    public AudioClip tutStep8;
+    public AudioClip tutStep9;
+    public AudioClip tutStep10;
+    public AudioClip tutStep11;
+    public AudioClip tutStep12;
+    public AudioClip tutStep13;
+    public AudioClip tutStep14;
+    public AudioClip tutStep15;
+    public AudioClip tutStep16;
+    private AudioSource source;
     void Start()
     {
+        source = GetComponent<AudioSource>();
         npcMenu = GameObject.FindGameObjectsWithTag("playerInteractMenu")[0].GetComponent<RawImage>();
         winScreen = GameObject.FindGameObjectsWithTag("winScreen")[0].GetComponent<RawImage>();
         loseScreen = GameObject.FindGameObjectsWithTag("loseScreen")[0].GetComponent<RawImage>();
@@ -64,26 +83,35 @@ public class RespawnAI : MonoBehaviour
     {
         if (stageNumber == 0)
         {
-            spawnNPC();
-
-            spawnTentacle(0);
-
-            // spawnTentacle(1);
-
-            //spawnTentacle(2);
-
-            //spawnTentacle(3);
-
-            // spawnTentacle(4);
-
-            //spawnTentacle(5);
-
-            sendNPCtoLocation(0, 1);
-
+            source.PlayOneShot(tutStep0);
             yield return new WaitForSeconds(5);
-            sendNPCtoLocation(0, 5);
-
-            yield return new WaitForSeconds(60);
+            source.PlayOneShot(tutStep1);
+            yield return new WaitForSeconds(10);
+            source.PlayOneShot(tutStep2);
+            yield return new WaitForSeconds(5);
+            spawnPortal(5);
+            source.PlayOneShot(tutStep3);
+            yield return new WaitForSeconds(2);
+            spawnTentacle(5);
+            yield return new WaitForSeconds(4);
+            source.PlayOneShot(tutStep4);
+            yield return new WaitForSeconds(15);
+            source.PlayOneShot(tutStep5);
+            yield return new WaitForSeconds(4);
+            source.PlayOneShot(tutStep6);
+            yield return new WaitForSeconds(4);
+            spawnNPC();
+            sendNPCtoLocation(0, 0);
+            yield return new WaitForSeconds(6);
+            source.PlayOneShot(tutStep12);
+            spawnPortal(2);
+            yield return new WaitForSeconds(5);
+            spawnTentacle(2);
+            yield return new WaitForSeconds(5);
+            sendNPCtoLocation(0, 2);
+            yield return new WaitForSeconds(15);
+            Time.timeScale = 0.0f;
+            winScreen.enabled = true;
             yield return null;
         }
         else if (stageNumber == 1)
@@ -226,13 +254,17 @@ public class RespawnAI : MonoBehaviour
     //toggles tentacle[n] on or off
     bool spawnTentacle(int tentacleNumber)
     {
-        tentacles[tentacleNumber].SetActive(!tentacles[tentacleNumber].activeSelf);
-        return tentacles[tentacleNumber].activeSelf;
+        if (portals[tentacleNumber].activeSelf)
+        {
+            tentacles[tentacleNumber].SetActive(true);
+            return tentacles[tentacleNumber].activeSelf;
+        }
+        else return false;
     }
     //toggles portal[n] on or off
     bool spawnPortal(int portalNumber)
     {
-        portals[portalNumber].SetActive(!portals[portalNumber].activeSelf);
+        portals[portalNumber].SetActive(true);
         return portals[portalNumber].activeSelf;
     }
 
