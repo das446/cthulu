@@ -98,12 +98,7 @@ public class AI : MonoBehaviour {
         }
         else if (Physics.Linecast(tentacles[3].transform.position, this.gameObject.transform.position, out hit) && tentacles[3].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[3].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 20 && hit.transform.tag == "AI")
-            {
-                this.scare = true;
-            }
+            this.scare = true;
         }
         else if (Physics.Linecast( tentacles[4].transform.position, this.gameObject.transform.position, out hit) && tentacles[4].activeInHierarchy)
         {

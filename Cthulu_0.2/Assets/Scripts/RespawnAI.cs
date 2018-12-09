@@ -76,7 +76,7 @@ public class RespawnAI : MonoBehaviour
         roomPoints.Add(GameObject.FindGameObjectsWithTag("roomPoint4")[0]);
         roomPoints.Add(GameObject.FindGameObjectsWithTag("roomPoint5")[0]);
 
-        StartCoroutine(driver(stageSelect));
+        StartCoroutine(driver(sceneSelector.level));
     }
     //Tentacle Number and locations: starts in lobby then goes clockwise around the house, starting with the immediate room to the left
     IEnumerator driver(int stageNumber)
