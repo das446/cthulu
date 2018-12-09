@@ -179,6 +179,16 @@ public class PlayerControl : MonoBehaviour {
         }
 
     }
-
+    private void OnGUI()
+    {
+        if (currentImg != null)
+        {
+            GUI.DrawTexture(new Rect(Screen.width / 2, Screen.height / 2, Imgw, ImgH), currentImg);
+        }
+        else
+        {
+            Debug.Log("AIM image is empty!!!!");
+        }
+    }
 
 }
