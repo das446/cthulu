@@ -140,7 +140,10 @@ public class PlayerControl : MonoBehaviour {
                     hold = true;
                     //hit.transform.GetComponent<ScoreObject>().hasMoved();
                     hit.transform.GetComponent<ScoreObject>().hasMoved();
-
+                    if (hit.transform.GetComponent<Combat>() != null) {
+                        hit.transform.GetComponent<Combat>().damage = 1;
+                    }
+                
                 }
                 else if (hold == true && Input.GetMouseButtonDown(0))
                 {
@@ -159,6 +162,10 @@ public class PlayerControl : MonoBehaviour {
                 else if (Input.GetMouseButton(0) && hit.transform.tag == "moveable")
                 {
                     //print("moving");
+                    if (hit.transform.GetComponent<Combat>() != null)
+                    {
+                        hit.transform.GetComponent<Combat>().damage = 1;
+                    }
                     if (hit.rigidbody != null)
                     {
                         hit.rigidbody.velocity = GetComponent<Rigidbody>().velocity;

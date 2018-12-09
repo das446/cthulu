@@ -16,8 +16,14 @@ public class Combat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (health <= 0) {
-            Destroy(transform.root.gameObject);
+        if (health <= 0 && transform.root.tag != "Player" && transform.tag != "moveable" && transform.tag != "pickable")
+        {
+            //print(transform.root.tag);
+            transform.root.gameObject.SetActive(false);
+        }
+        else if(health <=0 ){
+
+            transform.gameObject.SetActive(false);
         }
 
 
@@ -25,7 +31,7 @@ public class Combat : MonoBehaviour {
     public float attack()
     {
 
-        return 1;
+        return damage;
 
     }
     private void OnTriggerExit(Collider other)
