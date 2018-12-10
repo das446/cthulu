@@ -40,6 +40,7 @@ public class RespawnAI : MonoBehaviour
     private AudioSource source;
     void Start()
     {
+        Time.timeScale = 1.0f;
         source = GetComponent<AudioSource>();
         npcMenu = GameObject.FindGameObjectsWithTag("playerInteractMenu")[0].GetComponent<RawImage>();
         winScreen = GameObject.FindGameObjectsWithTag("winScreen")[0].GetComponent<RawImage>();
@@ -111,7 +112,7 @@ public class RespawnAI : MonoBehaviour
             yield return new WaitForSeconds(5);
             sendNPCtoLocation(0, 2);
             yield return new WaitForSeconds(15);
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
             winScreen.enabled = true;
             sceneSelector.level = 1;
             UnityEngine.SceneManagement.SceneManager.LoadScene("finalLevel");
@@ -133,7 +134,7 @@ public class RespawnAI : MonoBehaviour
             yield return new WaitForSeconds(15);
             sendNPCtoLocation(0, 1);
             yield return new WaitForSeconds(30);
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
             if (!NPCs[0].GetComponent<AI>().scare)
             {
                 sceneSelector.level = 2;
@@ -143,7 +144,7 @@ public class RespawnAI : MonoBehaviour
             {
                 loseScreen.enabled = true;
             }
-            yield return new WaitForSeconds(15);
+            yield return new WaitForSeconds(10);
             UnityEngine.SceneManagement.SceneManager.LoadScene("finalLevel");
             yield return null;
         }
@@ -172,7 +173,7 @@ public class RespawnAI : MonoBehaviour
             spawnTentacle(3);
             yield return new WaitForSeconds(20);
             //endLevel
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
             if (!NPCs[0].GetComponent<AI>().scare)
             {
                 sceneSelector.level = 3;
@@ -182,7 +183,7 @@ public class RespawnAI : MonoBehaviour
             {
                 loseScreen.enabled = true;
             }
-            yield return new WaitForSeconds(15);
+            yield return new WaitForSeconds(10);
             UnityEngine.SceneManagement.SceneManager.LoadScene("finalLevel");
             yield return null;
         }
@@ -208,6 +209,7 @@ public class RespawnAI : MonoBehaviour
             Time.timeScale = 0.0f;
             if (!NPCs[0].GetComponent<AI>().scare || !NPCs[1].GetComponent<AI>().scare)
             {
+                sceneSelector.level = 0;
                 winScreen.enabled = true;
             }
             else
