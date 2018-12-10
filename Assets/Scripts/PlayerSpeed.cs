@@ -14,6 +14,6 @@ public class PlayerSpeed : MonoBehaviour {
 		
 	}
     public void Speed(float newSpeed) {
-        transform.GetComponent<PlayerMove>().speed = newSpeed;
+       // transform.GetComponent<PlayerMove>().speed = newSpeed;
     }
 }

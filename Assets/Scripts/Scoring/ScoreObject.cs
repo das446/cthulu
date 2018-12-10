@@ -20,7 +20,7 @@ public class ScoreObject : MonoBehaviour
         // if (isMoved == false)
         // {
         //     isMoved = true;
-        ScoringController.Instance().updateMarketValue(value);
+        // ScoringController.Instance().updateMarketValue(value);
         // }
     }
 }

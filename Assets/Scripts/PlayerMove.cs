@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour {
 
-    public float speed;
+    private float speed = 20f;
     public float speedh;
     public float speedV = 4.0f;
     //public float speedv;
@@ -37,8 +37,28 @@ public class PlayerMove : MonoBehaviour {
         //transform.LookAt(Input.mousePosition);
         vertical = Input.GetAxis("Vertical");
         horizontal = Input.GetAxis("Horizontal");
-        rb.AddForce((transform.forward * vertical) * speed );
-        rb.AddForce((transform.right * horizontal) * speed);
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            rb.AddForce(transform.forward * speed);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(transform.forward * -speed);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(transform.right * -speed);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(transform.right * speed);
+        }
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+        {
+            rb.velocity = new Vector3(rb.velocity.x / 1.1f, rb.velocity.y, rb.velocity.z / 1.1f);
+        }
+
 
         yaw += speedh * Input.GetAxis("Mouse X");
         pitch -= speedV * Input.GetAxis("Mouse Y");

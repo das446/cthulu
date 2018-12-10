@@ -71,49 +71,57 @@ public class AI : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Linecast(tentacles[0].transform.position, this.gameObject.transform.position, out hit) && tentacles[0].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 20 && hit.transform.tag == "AI")
+            float rangle = Vector3.Angle(tentacles[0].transform.position - transform.position, transform.forward);
+            if (rangle <= 50 && hit.transform.tag == "AI")
             {
                 this.scare = true;
             }
         }
-        else if (Physics.Linecast(tentacles[1].transform.position, transform.position, out hit) && tentacles[1].activeInHierarchy)
+        if (Physics.Linecast(tentacles[1].transform.position, transform.position, out hit) && tentacles[1].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[1].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 20 && hit.transform.tag == "AI")
+            float rangle = Vector3.Angle(tentacles[1].transform.position - transform.position, transform.forward);
+            if (rangle <= 50 && hit.transform.tag == "AI")
             {
                 this.scare = true;
             }
         }
-        else if (Physics.Linecast(tentacles[2].transform.position, this.gameObject.transform.position, out hit) && tentacles[2].activeInHierarchy)
+        if (Physics.Linecast(tentacles[2].transform.position, this.gameObject.transform.position, out hit) && tentacles[2].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[2].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 20 && hit.transform.tag == "AI")
+            float rangle = Vector3.Angle(tentacles[2].transform.position - transform.position, transform.forward);
+            if (rangle <= 50 && hit.transform.tag == "AI")
             {
                 this.scare = true;
             }
         }
-        else if (Physics.Linecast(tentacles[3].transform.position, this.gameObject.transform.position, out hit) && tentacles[3].activeInHierarchy)
+        if (Physics.Linecast(tentacles[3].transform.position, this.gameObject.transform.position, out hit) && tentacles[3].activeInHierarchy)
         {
-            this.scare = true;
-        }
-        else if (Physics.Linecast( tentacles[4].transform.position, this.gameObject.transform.position, out hit) && tentacles[4].activeInHierarchy)
-        {
-            Vector3 angle = (tentacles[4].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 20 && hit.transform.tag == "AI")
+            
+            float rangle = Vector3.Angle(tentacles[3].transform.position - transform.position, transform.forward);
+            if (rangle <= 90 && hit.transform.tag == "AI")
             {
                 this.scare = true;
             }
         }
-        else if (Physics.Linecast( tentacles[5].transform.position, this.gameObject.transform.position, out hit) && tentacles[5].activeInHierarchy)
+        if (Physics.Linecast(tentacles[4].transform.position, this.gameObject.transform.position, out hit) && tentacles[4].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[5].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 20 && hit.transform.tag == "AI")
+            float rangle = Vector3.Angle(tentacles[4].transform.position - transform.position, transform.forward);
+            if (rangle <= 50 && hit.transform.tag == "AI")
+            {
+                this.scare = true;
+            }
+        }
+        if (Physics.Linecast(tentacles[5].transform.position, this.gameObject.transform.position, out hit) && tentacles[5].activeInHierarchy)
+        {
+            float rangle = Vector3.Angle(tentacles[5].transform.position - transform.position, transform.forward);
+            if (rangle <= 50 && hit.transform.tag == "AI")
+            {
+                this.scare = true;
+            }
+        }
+        if (Physics.Linecast(tentacles[6].transform.position, this.gameObject.transform.position, out hit) && tentacles[6].activeInHierarchy)
+        {
+            float rangle = Vector3.Angle(tentacles[6].transform.position - transform.position, transform.forward);
+            if (rangle <= 50 && hit.transform.tag == "AI")
             {
                 this.scare = true;
             }

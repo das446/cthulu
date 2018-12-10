@@ -38,9 +38,8 @@ public class PlayerControl : MonoBehaviour {
         RaycastHit hit1;
         if (Physics.Linecast(tentacles[0].transform.position, this.gameObject.transform.position, out hit1) && tentacles[0].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 5)
+            float rangle = Vector3.Angle(tentacles[0].transform.position - transform.position, transform.forward);
+            if (rangle <= 20)
             {
                 if (!playedRecently)
                 {
@@ -52,9 +51,8 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (Physics.Linecast(tentacles[1].transform.position, transform.position, out hit1) && tentacles[1].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[1].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 5)
+            float rangle = Vector3.Angle(tentacles[1].transform.position - transform.position, transform.forward);
+            if (rangle <= 20)
             {
                 if (!playedRecently)
                 {
@@ -65,9 +63,8 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (Physics.Linecast(tentacles[2].transform.position, this.gameObject.transform.position, out hit1) && tentacles[2].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[2].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 5)
+            float rangle = Vector3.Angle(tentacles[2].transform.position - transform.position, transform.forward);
+            if (rangle <= 20)
             {
                 if (!playedRecently)
                 {
@@ -78,9 +75,8 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (Physics.Linecast(tentacles[3].transform.position, this.gameObject.transform.position, out hit1) && tentacles[3].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 5)
+            float rangle = Vector3.Angle(tentacles[3].transform.position - transform.position, transform.forward);
+            if (rangle <= 20)
             {
                 if (!playedRecently)
                 {
@@ -91,9 +87,8 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (Physics.Linecast(tentacles[4].transform.position, this.gameObject.transform.position, out hit1) && tentacles[4].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 5)
+            float rangle = Vector3.Angle(tentacles[4].transform.position - transform.position, transform.forward);
+            if (rangle <= 20)
             {
                 if (!playedRecently)
                 {
@@ -104,9 +99,8 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (Physics.Linecast(tentacles[5].transform.position, this.gameObject.transform.position, out hit1) && tentacles[5].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[0].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 5)
+            float rangle = Vector3.Angle(tentacles[5].transform.position - transform.position, transform.forward);
+            if (rangle <= 20)
             {
                 if (!playedRecently)
                 {
@@ -117,9 +111,8 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (Physics.Linecast(tentacles[6].transform.position, this.gameObject.transform.position, out hit1) && tentacles[6].activeInHierarchy)
         {
-            Vector3 angle = (tentacles[6].transform.position - this.gameObject.transform.position).normalized;
-            float rangle = Mathf.Abs(Vector3.Angle(this.gameObject.transform.forward, angle) - 20);
-            if (rangle <= 5)
+            float rangle = Vector3.Angle(tentacles[6].transform.position - transform.position, transform.forward);
+            if (rangle <= 20)
             {
                 if (!playedRecently)
                 {
@@ -187,10 +180,6 @@ public class PlayerControl : MonoBehaviour {
         if (currentImg != null)
         {
             GUI.DrawTexture(new Rect(Screen.width / 2, Screen.height / 2, Imgw, ImgH), currentImg);
-        }
-        else
-        {
-            Debug.Log("AIM image is empty!!!!");
         }
     }
 
