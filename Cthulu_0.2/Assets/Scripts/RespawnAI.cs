@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RespawnAI : MonoBehaviour
 {
@@ -112,6 +113,8 @@ public class RespawnAI : MonoBehaviour
             yield return new WaitForSeconds(15);
             Time.timeScale = 0.0f;
             winScreen.enabled = true;
+            sceneSelector.level = 1;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("finalLevel");
             yield return null;
         }
         else if (stageNumber == 1)
@@ -131,19 +134,21 @@ public class RespawnAI : MonoBehaviour
             sendNPCtoLocation(0, 1);
             yield return new WaitForSeconds(30);
             Time.timeScale = 0.0f;
-            if (winLoseCheck())
+            if (!NPCs[0].GetComponent<AI>().scare)
             {
+                sceneSelector.level = 2;
                 winScreen.enabled = true;
             }
             else
             {
                 loseScreen.enabled = true;
             }
+            yield return new WaitForSeconds(15);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("finalLevel");
             yield return null;
         }
         else if (stageNumber == 2)
         {
-
             //Stage 2: 
             //Two portals appear at 5 seconds in. A portal in the lobby, and a portal in the kitchen. 
             //At 5 seconds after the tentacle in the lobby would spawn and two NPCs would spawn (so at 10 seconds in ). 
@@ -170,12 +175,15 @@ public class RespawnAI : MonoBehaviour
             Time.timeScale = 0.0f;
             if (!NPCs[0].GetComponent<AI>().scare)
             {
+                sceneSelector.level = 3;
                 winScreen.enabled = true;
             }
             else
             {
                 loseScreen.enabled = true;
             }
+            yield return new WaitForSeconds(15);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("finalLevel");
             yield return null;
         }
         else if (stageNumber == 3)
@@ -206,7 +214,8 @@ public class RespawnAI : MonoBehaviour
             {
                 loseScreen.enabled = true;
             }
-
+            yield return new WaitForSeconds(15);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("finalLevel");
             yield return null;
         }
         else
