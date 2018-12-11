@@ -99,7 +99,7 @@ public class RespawnAI : MonoBehaviour
             source.PlayOneShot(tutStep4);
             yield return new WaitForSeconds(15);
             source.PlayOneShot(tutStep5);
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(14);
             source.PlayOneShot(tutStep6);
             yield return new WaitForSeconds(4);
             spawnNPC();
