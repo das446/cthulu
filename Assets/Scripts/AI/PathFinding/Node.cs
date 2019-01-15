@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Node : MonoBehaviour {
 
-	private List<Node> neighbors;
+	private List<Node> neighbors= new List<Node>();
 	[SerializeField] Node prefab;
 	[SerializeField] bool draw = false;
 	public static List<Node> Nodes = new List<Node>();

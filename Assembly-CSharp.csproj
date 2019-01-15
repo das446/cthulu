@@ -53,6 +53,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Outline\OutlineEffect\Demo\MaterialSwitcher.cs" />
+     <Compile Include="Assets\Outline\OutlineEffect\Demo\OutlineAnimation.cs" />
+     <Compile Include="Assets\Outline\OutlineEffect\Demo\Rotate.cs" />
+     <Compile Include="Assets\Outline\OutlineEffect\Demo\Toggle.cs" />
+     <Compile Include="Assets\Outline\OutlineEffect\LinkedSet.cs" />
+     <Compile Include="Assets\Outline\OutlineEffect\Outline.cs" />
+     <Compile Include="Assets\Outline\OutlineEffect\OutlineEffect.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -98,7 +105,6 @@
      <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
      <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
-     <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
@@ -108,6 +114,8 @@
      <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
      <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
      <Compile Include="Assets\Scripts\AI\MonsterSpawnController.cs" />
+     <Compile Include="Assets\Scripts\AI\Npc.cs" />
+     <Compile Include="Assets\Scripts\AI\NpcStates\NpcState.cs" />
      <Compile Include="Assets\Scripts\AI\PathFinding\Node.cs" />
      <Compile Include="Assets\Scripts\AI\PathFinding\PathFinder.cs" />
      <Compile Include="Assets\Scripts\AI\PathFinding\PathFollower.cs" />
@@ -198,11 +206,13 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\LutGen.shader" />
      <None Include="Assets\QuickOutline\Resources\Shaders\OutlineFill.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
+     <None Include="Assets\Outline\OutlineEffect\Resources\OutlineShader.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
      <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ACES.cginc" />
      <None Include="Assets\QuickOutline\Readme.txt" />
+     <None Include="Assets\Outline\OutlineEffect\Resources\OutlineBufferShader.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Tonemapping.cginc" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
