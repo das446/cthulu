@@ -39,7 +39,7 @@ public class PathFinder {
 	}
 
 	public List<Node> ShortestPath() {
-		List<Node> open = start.neighbors;
+		List<Node> open = start.Neighbors;
 		HashSet<Node> closed = new HashSet<Node>();
 		List<Node> path = new List<Node>();
 		nodeData.Add(start, new NodeData(start, this));
@@ -53,7 +53,7 @@ public class PathFinder {
 				return CalculatePath();
 			}
 
-			foreach (Node neighbor in current.neighbors) {
+			foreach (Node neighbor in current.Neighbors) {
 				if (!nodeData.ContainsKey(neighbor)) {
 					nodeData.Add(neighbor, new NodeData(neighbor, this));
 				}
