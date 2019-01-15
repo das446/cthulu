@@ -19,4 +19,8 @@ public class Npc : MonoBehaviour, IInteractable, IHasOutline {
     public bool Valid(Player p) {
         return true;
     }
+
+    void Update(){
+        curState.Update(this);
+    }
 }

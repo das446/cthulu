@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NpcState : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public abstract class NpcState : ScriptableObject {
+    public abstract void Update(Npc npc);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void Enter();
+
+    public abstract void Exit();
 }
