@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUp : MonoBehaviour
+public class PlayerPickUp : MonoBehaviour
 {
     [SerializeField] Transform hand;
     public IPickUpable curItem;
@@ -16,6 +16,6 @@ public class PickUp : MonoBehaviour
     }
 
     void Throw(IThrowable t){
-        
+
     }
 }

@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 
     Outline curOutline;
     [SerializeField] float interactRange;
-    [SerializeField] PickUp pickUp;
+    [SerializeField] PlayerPickUp pickUp;
     // Start is called before the first frame update
     void Start() {
 
@@ -21,21 +21,21 @@ public class Player : MonoBehaviour {
     void CheckOutline() { //TODO: Make the logic less of a mess
         //0=close enough
         //1=too far
-        //2=close enough but can't 
+        //2=close enough but can't, not implemented yet, does someone want to?
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange * 10)) {
             IHasOutline ho = hit.collider.gameObject.GetComponent<IHasOutline>();
-            Outline o = ho?.GetOutline();
-            if (o == null) {
+            Outline outline = ho?.GetOutline();
+            if (outline == null) {
                 if (curOutline != null) {
                     curOutline.enabled = false;
                 }
                 curOutline = null;
-            } else if (o != curOutline) {
+            } else if (outline != curOutline) {
                 if (curOutline != null) {
                     curOutline.enabled = false;
                 }
-                curOutline = o;
+                curOutline = outline;
                 if (hit.distance <= interactRange) {
                     curOutline.color = 0;
                 } else {
