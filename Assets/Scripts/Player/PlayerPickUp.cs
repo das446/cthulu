@@ -8,7 +8,6 @@ public class PlayerPickUp : MonoBehaviour
     public IPickUpable curItem;
 
     void PickUp(IPickUpable p){
-        
     }
 
     void Drop(IDropable d){
