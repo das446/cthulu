@@ -6,7 +6,7 @@ public class MoveTowardsState : NpcState
 {
     public Vector3 target;
 
-	public override void Update(Npc npc) {
+	public override void FrameUpdate(Npc npc) {
 
     }
 

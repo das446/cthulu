@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using cakeslice;
 using UnityEngine;
@@ -7,7 +8,8 @@ public class Player : MonoBehaviour {
 
     Outline curOutline;
     [SerializeField] float interactRange;
-    [SerializeField] PlayerPickUp pickUp;
+    public Transform hand;
+    public IPickUpable curItem;
     // Start is called before the first frame update
     void Start() {
 
@@ -16,6 +18,34 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         CheckOutline();
+        CheckInteract();
+        CheckThrow();
+    }
+
+    void CheckThrow() {
+        if (Input.GetMouseButtonDown(0)) {
+            Release(curItem);
+        }
+    }
+
+    void Release(IPickUpable t) {
+        t.Release(this);
+        curItem = null;
+    }
+
+    private void CheckInteract() {
+        if (Input.GetMouseButtonDown(0)) {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange)) {
+                Interactable i = hit.collider.gameObject.GetComponent<Interactable>();
+                i?.Interact(this);
+            }
+        }
+    }
+
+    void PickUp(IPickUpable p) {
+        curItem = p;
+        p.GetPickedUp(this);
     }
 
     void CheckOutline() { //TODO: Make the logic less of a mess

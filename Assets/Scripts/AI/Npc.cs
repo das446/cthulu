@@ -3,24 +3,19 @@ using System.Collections.Generic;
 using cakeslice;
 using UnityEngine;
 
-public class Npc : MonoBehaviour, IInteractable, IHasOutline {
+public class Npc : Interactable {
 
-    public NpcState curState;
-    [SerializeField] Outline o;
+    [SerializeField] NpcState curState;
 
-    public void Interact(Player p) {
+    [Header("States")]
+    NpcState Wander;
 
-    }
 
-    public Outline GetOutline() {
-        return o;
-    }
+    public override void Interact(Player p) {
 
-    public bool Valid(Player p) {
-        return true;
-    }
+    }    
 
-    void Update(){
-        curState.Update(this);
+    void Update() {
+        curState?.FrameUpdate(this);
     }
 }

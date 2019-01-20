@@ -3,7 +3,19 @@ using System.Collections.Generic;
 using cakeslice;
 using UnityEngine;
 
-public interface IInteractable
-{
-   void Interact(Player p);
+public abstract class Interactable : MonoBehaviour, IHasOutline {
+   public abstract void Interact(Player p);
+
+   [SerializeField] Outline o;
+
+    public Outline GetOutline()
+    {
+        return o;
+    }
+
+    public bool Valid(Player p)
+    {
+        return true;
+    } 
+
 }

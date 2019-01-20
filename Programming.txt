@@ -1,0 +1,52 @@
+Programming tasks:
+
+Rooms
+	Contain
+		Doors
+		Monsters
+		NPCs
+		Furniture
+Doors
+	Lock
+		Remove nodes from neighboring
+		Can the player move through a door while it's locked or do they need to unlock it first
+Furniture
+	Variables
+		Weight
+		Health - goes down after throwing
+		Power
+	Light
+		Can throw
+		Doesn't slow you down
+	Heavy
+		Can Drag
+		Heavier ones make you slower
+	Swinging?
+NPCs
+	Stats
+		FOV
+		Speed
+		Tolerance
+		Current interest
+	Interacting
+		Go to room
+			Grey out rooms they've been to
+			(Explain pathfinding)
+		Calm down if scared
+		Accept offer - increase the player's money, if the player has enough money from offers they win the level 
+	Functions
+		Interest starts at (more than 0)
+		(When going into a room for the first time increase their interest based on how not broken the furniture is. 
+		 If their interest is over 100% then you can sell the house to them)
+		Spawning - Randomize stats a bit on spawn
+	States
+		Wander
+		Moving towards room
+		Scared
+		Ready to buy
+		
+Monsters
+	Tentacles
+		Throw small furniture
+		Push large furniture away
+		Spawning logic
