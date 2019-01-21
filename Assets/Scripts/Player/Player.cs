@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
     }
 
     void Release(IPickUpable t) {
-        t.Release(this);
+        t?.Release(this);
         curItem = null;
     }
 

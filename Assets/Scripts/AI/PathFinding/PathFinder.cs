@@ -39,7 +39,7 @@ public class PathFinder {
 	}
 
 	public List<Node> ShortestPath() {
-		List<Node> open = start.Neighbors;
+		List<Node> open = start.neighbors;
 		HashSet<Node> closed = new HashSet<Node>();
 		List<Node> path = new List<Node>();
 		nodeData.Add(start, new NodeData(start, this));
@@ -53,7 +53,7 @@ public class PathFinder {
 				return CalculatePath();
 			}
 
-			foreach (Node neighbor in current.Neighbors) {
+			foreach (Node neighbor in current.neighbors) {
 				if (!nodeData.ContainsKey(neighbor)) {
 					nodeData.Add(neighbor, new NodeData(neighbor, this));
 				}
@@ -76,7 +76,7 @@ public class PathFinder {
 			}
 		}
 		Debug.Log("No path");
-		return null;
+		return new List<Node>();
 
 	}
 
@@ -94,9 +94,6 @@ public class PathFinder {
 	}
 
 	float dist(Node a, Node b) {
-		if (a == null || b == null) {
-			return Mathf.Infinity;
-		}
 		return Vector3.Distance(a.transform.position, b.transform.position);
 	}
 
@@ -105,13 +102,7 @@ public class PathFinder {
 		List<Node> path = new List<Node>();
 		while (cur != start && cur != null) {
 			path.Add(cur);
-			try {
-				cur = nodeData[cur].parent;
-			}
-			catch{
-				Debug.Log(cur);
-				return null;
-			}
+			cur = nodeData[cur].parent;
 		}
 		path.Reverse();
 		return path;

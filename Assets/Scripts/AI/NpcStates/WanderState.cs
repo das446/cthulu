@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/Wander")]
 public class WanderState : NpcState {
-    public override void FrameUpdate(Npc npc) {
+
+    public override void FrameUpdate() {
 
     }
 
@@ -14,5 +16,10 @@ public class WanderState : NpcState {
 
     public override void Exit() {
 
+    }
+
+    public override void OnInteract(Player p)
+    {
+           
     }
 }

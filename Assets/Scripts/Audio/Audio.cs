@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sink.Audio {
+namespace Cthulu {
 	public static class Audio {
 		/// <summary>
 		/// Call with this.PlaySound("sfx",OnScreen: true, param2: false)

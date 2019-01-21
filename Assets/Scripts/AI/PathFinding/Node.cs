@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class Node : MonoBehaviour {
 
-	private List<Node> neighbors= new List<Node>();
+	public List<Node> neighbors;
 	[SerializeField] Node prefab;
 	[SerializeField] bool draw = false;
 	public static List<Node> Nodes = new List<Node>();
 	[SerializeField] float lineThickness;
 
-	public List<Node> Neighbors { get { return new List<Node>(neighbors); } }
 
 	// Use this for initialization
 	public void Init() {
 		Nodes.Add(this);
-		foreach (Node neighbor in Neighbors) {
-			if (!neighbor.Neighbors.Contains(this)) {
-				neighbor.Neighbors.Add(this);
+		foreach (Node neighbor in neighbors) {
+			if (!neighbor.neighbors.Contains(this)) {
+				neighbor.neighbors.Add(this);
 			}
 			GameObject g = new GameObject();
 			g.transform.parent = transform;
@@ -36,20 +35,20 @@ public class Node : MonoBehaviour {
 	}
 
 	public void AddNeighbor(Node n) {
-		if (!Neighbors.Contains(n)) {
-			Neighbors.Add(n);
+		if (!neighbors.Contains(n)) {
+			neighbors.Add(n);
 		}
-		if (!n.Neighbors.Contains(this)) {
-			n.Neighbors.Add(this);
+		if (!n.neighbors.Contains(this)) {
+			n.neighbors.Add(this);
 		}
 	}
 
 	public void RemoveNeighbor(Node n) {
-		if (Neighbors.Contains(n)) {
-			Neighbors.Remove(n);
+		if (neighbors.Contains(n)) {
+			neighbors.Remove(n);
 		}
-		if (n.Neighbors.Contains(this)) {
-			n.Neighbors.Remove(this);
+		if (n.neighbors.Contains(this)) {
+			n.neighbors.Remove(this);
 		}
 	}
 }

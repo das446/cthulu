@@ -21,6 +21,7 @@ Furniture
 	Heavy
 		Can Drag
 		Heavier ones make you slower
+		Can block doors
 	Swinging?
 NPCs
 	Stats
@@ -50,3 +51,14 @@ Monsters
 		Throw small furniture
 		Push large furniture away
 		Spawning logic
+		
+Managers
+
+
+Guan:RoomEval
+Victor:
+	Buy state
+		Go to lobby
+		after a minute interest goes back down and starts wandering again
+	Scared state
+		starts going towards the exit
