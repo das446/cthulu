@@ -15,13 +15,18 @@ public abstract class NpcState {
 
     public abstract void Exit();
 
+    public NpcState(Npc npc){
+        this.npc = npc;
+    }
+
     public virtual void OnInteract(Player p) {
         OnClick(npc);
     }
 
     protected PathFollower SetFollower(Node target) {
-        PathFollower follower = npc.GetComponent<PathFollower>();
+        PathFollower follower = npc.follower;
         Node start = follower.ClosestNode();
+        Debug.Log("Find path from " + start + " to " + target);
         follower.SetPath(start, target);
         return follower;
     }

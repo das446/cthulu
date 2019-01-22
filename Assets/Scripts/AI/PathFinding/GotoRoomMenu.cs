@@ -5,10 +5,10 @@ using UnityEngine;
 public class GotoRoomMenu : MonoBehaviour {
     public Room kitchen, bed;
 
-    Npc curNpc;
+    [SerializeField] Npc curNpc;
 
-    void Start(){
-        NpcState.OnClick+=Open;
+    void Start() {
+        NpcState.OnClick += Open;
     }
 
     public void Open(Npc npc) {

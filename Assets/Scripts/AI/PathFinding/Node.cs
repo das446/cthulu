@@ -1,21 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu;
 using UnityEngine;
 
 public class Node : MonoBehaviour {
 
-	public List<Node> neighbors;
+	[SerializeField] List<Node> neighbors;
 	[SerializeField] Node prefab;
 	[SerializeField] bool draw = false;
 	public static List<Node> Nodes = new List<Node>();
 	[SerializeField] float lineThickness;
+	public int id;
 
+	public List<Node> Neighbors { get { return new List<Node>(neighbors); } }
 
 	// Use this for initialization
 	public void Init() {
+		Debug.Log(name);
+		id = Nodes.Count;
 		Nodes.Add(this);
 		foreach (Node neighbor in neighbors) {
 			if (!neighbor.neighbors.Contains(this)) {
+				Debug.Log("Added neighbor");
 				neighbor.neighbors.Add(this);
 			}
 			GameObject g = new GameObject();
@@ -34,21 +40,25 @@ public class Node : MonoBehaviour {
 		Init();
 	}
 
-	public void AddNeighbor(Node n) {
-		if (!neighbors.Contains(n)) {
-			neighbors.Add(n);
-		}
-		if (!n.neighbors.Contains(this)) {
-			n.neighbors.Add(this);
-		}
-	}
+	// public void AddNeighbor(Node n) {
+	// 	if (!neighbors.Contains(n)) {
+	// 		neighbors.Add(n);
+	// 	}
+	// 	if (!n.neighbors.Contains(this)) {
+	// 		n.neighbors.Add(this);
+	// 	}
+	// }
 
-	public void RemoveNeighbor(Node n) {
-		if (neighbors.Contains(n)) {
-			neighbors.Remove(n);
-		}
-		if (n.neighbors.Contains(this)) {
-			n.neighbors.Remove(this);
-		}
+	// public void RemoveNeighbor(Node n) {
+	// 	if (neighbors.Contains(n)) {
+	// 		neighbors.Remove(n);
+	// 	}
+	// 	if (n.neighbors.Contains(this)) {
+	// 		n.neighbors.Remove(this);
+	// 	}
+	// }
+
+	public Node RandomNeighbor() {
+		return neighbors.RandomItem();
 	}
 }

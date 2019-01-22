@@ -17,8 +17,10 @@ public class PathFollower : MonoBehaviour {
 
 	// Update is called once per frame
 
-	void Start(){
-		SetPath(start,end);
+	void Start() {
+		if (start != null && end != null) {
+			SetPath(start, end);
+		}
 	}
 
 	void Update() {
@@ -45,6 +47,7 @@ public class PathFollower : MonoBehaviour {
 	public void SetPath(Node s, Node f) {
 		start = s;
 		end = f;
+		Debug.Log("Find path from "+start + " to "+end);
 		path = new PathFinder(start, end).ShortestPath();
 		if (path.Count > 0) {
 			moving = true;
