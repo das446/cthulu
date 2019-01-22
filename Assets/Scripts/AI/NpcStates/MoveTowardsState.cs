@@ -13,7 +13,9 @@ public class MoveTowardsState : NpcState {
     }
 
     public override void FrameUpdate() {
-
+        if (Vector3.Distance(npc.transform.position, target.transform.position) < 0.2f){
+            npc.SetState(new WanderState(npc));
+        }
     }
 
     public override void Enter() {
@@ -21,10 +23,6 @@ public class MoveTowardsState : NpcState {
     }
 
     public override void Exit() {
-
-    }
-
-    public override void OnInteract(Player p) {
 
     }
 }

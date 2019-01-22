@@ -26,6 +26,8 @@ public class Npc : Interactable {
 
     public static event Action<Npc, Room> OnEnterRoom;
 
+    public bool interacting;
+
     void Start() {
         curState = new WanderState(this,idleWaitTime);
         follower = GetComponent<PathFollower>();
@@ -41,6 +43,10 @@ public class Npc : Interactable {
 
     void Update() {
         curState?.FrameUpdate();
+    }
+
+    public void SetState(NpcState state){
+        curState = state;
     }
 
     public void EnterRoom(Room r) {

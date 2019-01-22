@@ -7,7 +7,7 @@ public abstract class NpcState {
 
     protected Npc npc;
 
-    public static event Action<Npc> OnClick;
+    public static event Action<Npc, Player> OnClick;
 
     public abstract void FrameUpdate();
 
@@ -20,7 +20,11 @@ public abstract class NpcState {
     }
 
     public virtual void OnInteract(Player p) {
-        OnClick(npc);
+        OnClick(npc,p);
+        Vector3 target = p.transform.position;
+        target.y = npc.transform.position.y;
+        npc.transform.LookAt(target);
+        npc.interacting = true;
     }
 
     protected PathFollower SetFollower(Node target) {

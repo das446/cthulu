@@ -16,12 +16,10 @@ public class Node : MonoBehaviour {
 
 	// Use this for initialization
 	public void Init() {
-		Debug.Log(name);
 		id = Nodes.Count;
 		Nodes.Add(this);
 		foreach (Node neighbor in neighbors) {
 			if (!neighbor.neighbors.Contains(this)) {
-				Debug.Log("Added neighbor");
 				neighbor.neighbors.Add(this);
 			}
 			GameObject g = new GameObject();

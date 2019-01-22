@@ -8,6 +8,7 @@ public class WanderState : NpcState {
 
     float timeUntilMove;
     float waitTime;
+    float defaultTime = 5;
 
     public WanderState(Npc npc, float waitTime) : base(npc) {
         this.npc = npc;
@@ -16,9 +17,15 @@ public class WanderState : NpcState {
         Enter();
     }
 
+    public WanderState(Npc npc) : base(npc) {
+        Debug.Log("Constructor");
+        this.waitTime = defaultTime;
+        timeUntilMove = waitTime;
+    }
+
     public override void FrameUpdate() {
         timeUntilMove -= Time.deltaTime;
-        if (timeUntilMove <= 0) {
+        if (timeUntilMove <= 0 && !npc.interacting) {
             MoveToRandomNeighbor();
             timeUntilMove = waitTime;
         }

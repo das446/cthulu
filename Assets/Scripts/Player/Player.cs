@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using cakeslice;
 using UnityEngine;
+using Cthulu;
 
 public class Player : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour {
     [SerializeField] float interactRange;
     public Transform hand;
     public IPickUpable curItem;
+    bool locked;
+    [SerializeField]PlayerMovement movement;
     // Start is called before the first frame update
     void Start() {
 
@@ -83,5 +86,19 @@ public class Player : MonoBehaviour {
             curOutline.enabled = false;
             curOutline = null;
         }
+    }
+
+    /// <summary>
+    /// While locked the camera and player wont move, and you can see the cursor
+    /// </summary>
+    public void Lock(){
+        movement.Lock();
+    }
+
+    /// <summary>
+    /// While unlocked the camera and player can move, and you can't see the cursor
+    /// </summary>
+    public void Unlock(){
+        movement.Unlock();
     }
 }

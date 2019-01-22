@@ -38,7 +38,6 @@ public class PathFollower : MonoBehaviour {
 			if (path.Count == 0) {
 				moving = false;
 				start = null;
-				end = null;
 			}
 		}
 
@@ -58,6 +57,10 @@ public class PathFollower : MonoBehaviour {
 		if (Node.Nodes.Count == 0) {
 			Debug.Log("Node list empty");
 			return null;
+		}
+		if(path.Count==0&&end!=null && !moving){
+			Debug.Log("return end instead");
+			return end;
 		}
 		float dis = Mathf.Infinity;
 		Node closest = Node.Nodes[0];
