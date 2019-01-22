@@ -14,9 +14,14 @@ public class Room : MonoBehaviour {
     }
 
     private void CheckEnter(Npc npc, Node node) {
-        return;
-        if (nodes.Contains(node) && npc.CurRoom!=this) {
+        if(nodes==null || npc==null){
+            Debug.Log(nodes);
+            Debug.Log(npc);
+            return;
+        }
+        if (nodes.Contains(node) & npc.CurRoom!=this) {
             npc.EnterRoom(this);
+            Debug.Log(npc+" entered room "+name);
         }
     }
 

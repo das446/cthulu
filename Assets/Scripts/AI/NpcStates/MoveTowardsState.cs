@@ -13,7 +13,7 @@ public class MoveTowardsState : NpcState {
     }
 
     public override void FrameUpdate() {
-        if (Vector3.Distance(npc.transform.position, target.transform.position) < 0.2f){
+        if (Vector3.Distance(npc.transform.position, target.transform.position) < 0.5f){
             npc.SetState(new WanderState(npc));
         }
     }

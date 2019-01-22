@@ -38,23 +38,23 @@ public class Node : MonoBehaviour {
 		Init();
 	}
 
-	// public void AddNeighbor(Node n) {
-	// 	if (!neighbors.Contains(n)) {
-	// 		neighbors.Add(n);
-	// 	}
-	// 	if (!n.neighbors.Contains(this)) {
-	// 		n.neighbors.Add(this);
-	// 	}
-	// }
+	public void AddNeighbor(Node n) {
+		if (!neighbors.Contains(n)) {
+			neighbors.Add(n);
+		}
+		if (!n.neighbors.Contains(this)) {
+			n.neighbors.Add(this);
+		}
+	}
 
-	// public void RemoveNeighbor(Node n) {
-	// 	if (neighbors.Contains(n)) {
-	// 		neighbors.Remove(n);
-	// 	}
-	// 	if (n.neighbors.Contains(this)) {
-	// 		n.neighbors.Remove(this);
-	// 	}
-	// }
+	public void RemoveNeighbor(Node n) {
+		if (neighbors.Contains(n)) {
+			neighbors.Remove(n);
+		}
+		if (n.neighbors.Contains(this)) {
+			n.neighbors.Remove(this);
+		}
+	}
 
 	public Node RandomNeighbor() {
 		return neighbors.RandomItem();

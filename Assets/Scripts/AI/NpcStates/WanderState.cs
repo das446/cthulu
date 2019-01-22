@@ -19,7 +19,7 @@ public class WanderState : NpcState {
 
     public WanderState(Npc npc) : base(npc) {
         Debug.Log("Constructor");
-        this.waitTime = defaultTime;
+        this.waitTime = 5;
         timeUntilMove = waitTime;
     }
 

@@ -21,6 +21,7 @@ public class PathFollower : MonoBehaviour {
 		if (start != null && end != null) {
 			SetPath(start, end);
 		}
+		npc = GetComponent<Npc>();
 	}
 
 	void Update() {
@@ -33,7 +34,10 @@ public class PathFollower : MonoBehaviour {
 		transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
 		transform.LookAt(target);
 		if (Vector3.Distance(transform.position, target) < minDist) {
-			if (ReachNode != null) { ReachNode(npc, path[0]); }
+			if (ReachNode != null) {
+				Debug.Log("Reach Node");
+				ReachNode(npc, path[0]);
+			}
 			path.RemoveAt(0);
 			if (path.Count == 0) {
 				moving = false;
@@ -46,7 +50,6 @@ public class PathFollower : MonoBehaviour {
 	public void SetPath(Node s, Node f) {
 		start = s;
 		end = f;
-		Debug.Log("Find path from "+start + " to "+end);
 		path = new PathFinder(start, end).ShortestPath();
 		if (path.Count > 0) {
 			moving = true;
@@ -58,8 +61,7 @@ public class PathFollower : MonoBehaviour {
 			Debug.Log("Node list empty");
 			return null;
 		}
-		if(path.Count==0&&end!=null && !moving){
-			Debug.Log("return end instead");
+		if (path.Count == 0 && end != null && !moving) {
 			return end;
 		}
 		float dis = Mathf.Infinity;

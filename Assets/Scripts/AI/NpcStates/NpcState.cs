@@ -30,7 +30,6 @@ public abstract class NpcState {
     protected PathFollower SetFollower(Node target) {
         PathFollower follower = npc.follower;
         Node start = follower.ClosestNode();
-        Debug.Log("Find path from " + start + " to " + target);
         follower.SetPath(start, target);
         return follower;
     }

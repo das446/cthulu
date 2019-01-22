@@ -15,7 +15,7 @@ public class Npc : Interactable {
 
     [SerializeField] float idleWaitTime = 10;
 
-    List<Room> visitedRooms;
+    List<Room> visitedRooms = new List<Room>();
 
     [SerializeField] Room curRoom;
 
@@ -29,7 +29,7 @@ public class Npc : Interactable {
     public bool interacting;
 
     void Start() {
-        curState = new WanderState(this,idleWaitTime);
+        curState = new WanderState(this, idleWaitTime);
         follower = GetComponent<PathFollower>();
     }
 
@@ -45,7 +45,7 @@ public class Npc : Interactable {
         curState?.FrameUpdate();
     }
 
-    public void SetState(NpcState state){
+    public void SetState(NpcState state) {
         curState = state;
     }
 
@@ -55,12 +55,12 @@ public class Npc : Interactable {
             float roomInterest = EvaluateRoom(r);
             interest += roomInterest;
         }
-        OnEnterRoom(this, r);
+        if (OnEnterRoom != null) { OnEnterRoom(this, r); }
     }
 
     public void GoToRoom(Room r) {
         curState.Exit();
-        curState = new MoveTowardsState(this,r.RandomNode());
+        curState = new MoveTowardsState(this, r.RandomNode());
     }
 
     float EvaluateRoom(Room r) {
