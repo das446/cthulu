@@ -35,7 +35,6 @@ public class PathFollower : MonoBehaviour {
 		transform.LookAt(target);
 		if (Vector3.Distance(transform.position, target) < minDist) {
 			if (ReachNode != null) {
-				Debug.Log("Reach Node");
 				ReachNode(npc, path[0]);
 			}
 			path.RemoveAt(0);
