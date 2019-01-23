@@ -5,15 +5,20 @@ using UnityEngine;
 public class GotoRoomMenu : MonoBehaviour {
     public Room kitchen, bed;
 
-    Npc curNpc;
+    [SerializeField] Npc curNpc;
+    [SerializeField] Player player;
 
-    void Start(){
-        NpcState.OnClick+=Open;
+    void Start() {
+        NpcState.OnClick += Open;
+        gameObject.SetActive(false);
     }
 
-    public void Open(Npc npc) {
+    public void Open(Npc npc, Player p) {
         gameObject.SetActive(true);
         curNpc = npc;
+        player = p;
+        player.Lock();
+
     }
 
     public void Close() {
@@ -22,6 +27,10 @@ public class GotoRoomMenu : MonoBehaviour {
 
     public void Click(Room r) {
         curNpc.GoToRoom(r);
+        curNpc.interacting = false;
         curNpc = null;
+        gameObject.SetActive(false);
+        player.Unlock();
+
     }
 }

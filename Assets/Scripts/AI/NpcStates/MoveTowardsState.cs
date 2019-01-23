@@ -7,13 +7,15 @@ public class MoveTowardsState : NpcState {
     PathFollower follower;
     PathFinder finder;
 
-    public MoveTowardsState(Node node) {
+    public MoveTowardsState(Npc npc, Node node) : base(npc) {
         target = node;
         Enter();
     }
 
     public override void FrameUpdate() {
-
+        if (Vector3.Distance(npc.transform.position, target.transform.position) < 0.5f){
+            npc.SetState(new WanderState(npc));
+        }
     }
 
     public override void Enter() {
@@ -22,9 +24,5 @@ public class MoveTowardsState : NpcState {
 
     public override void Exit() {
 
-    }
-
-    public override void OnInteract(Player p) {
-       
     }
 }

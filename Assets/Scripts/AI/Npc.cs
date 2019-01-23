@@ -6,23 +6,36 @@ using UnityEngine;
 
 public class Npc : Interactable {
 
-    [SerializeField] NpcState curState;
-
-    [Header("States")]
-    WanderState Wander;
-    MoveTowardsState moveTowards;
+    NpcState curState;
 
     [SerializeField] float vision;
     [SerializeField] float speed;
     [SerializeField] float tolerance;
     [SerializeField] float interest;
 
-    
+    [SerializeField] float idleWaitTime = 10;
 
-    List<Room> visitedRooms;
+    List<Room> visitedRooms = new List<Room>();
+
+    [SerializeField] Room curRoom;
+
+    public float Speed { get => speed; }
+    public Room CurRoom { get => curRoom; }
+
+    public PathFollower follower;
 
     public static event Action<Npc, Room> OnEnterRoom;
 
+    public bool interacting;
+
+    void Start() {
+        curState = new WanderState(this, idleWaitTime);
+        follower = GetComponent<PathFollower>();
+    }
+
+    /// <summary>
+    /// Interact based on the current state
+    /// </summary>
     public override void Interact(Player p) {
         Debug.Log("Interact");
         curState.OnInteract(p);
@@ -32,19 +45,22 @@ public class Npc : Interactable {
         curState?.FrameUpdate();
     }
 
-    void EnterRoom(Room r) {
+    public void SetState(NpcState state) {
+        curState = state;
+    }
+
+    public void EnterRoom(Room r) {
         if (!visitedRooms.Contains(r)) {
             visitedRooms.Add(r);
             float roomInterest = EvaluateRoom(r);
             interest += roomInterest;
         }
-        OnEnterRoom(this, r);
+        if (OnEnterRoom != null) { OnEnterRoom(this, r); }
     }
 
-    public void GoToRoom(Room r)
-    {
+    public void GoToRoom(Room r) {
         curState.Exit();
-        curState = new MoveTowardsState(r.RandomNode());
+        curState = new MoveTowardsState(this, r.RandomNode());
     }
 
     float EvaluateRoom(Room r) {

@@ -30,19 +30,21 @@ public class PathFinder {
 
 	}
 
-	Dictionary<Node, NodeData> nodeData;
+	Dictionary<int, NodeData> nodeData;
 
 	public PathFinder(Node s, Node e) {
 		start = s;
 		end = e;
-		nodeData = new Dictionary<Node, NodeData>();
+		nodeData = new Dictionary<int, NodeData>();
 	}
 
 	public List<Node> ShortestPath() {
-		List<Node> open = start.neighbors;
+		List<Node> open = start.Neighbors;
 		HashSet<Node> closed = new HashSet<Node>();
 		List<Node> path = new List<Node>();
-		nodeData.Add(start, new NodeData(start, this));
+		for (int i = 0; i < Node.Nodes.Count; i++) {
+			nodeData.Add(i, new NodeData(Node.Nodes[i], this));
+		}
 
 		while (open.Count > 0) {
 			Node current = LowestFCost(open);
@@ -53,21 +55,21 @@ public class PathFinder {
 				return CalculatePath();
 			}
 
-			foreach (Node neighbor in current.neighbors) {
-				if (!nodeData.ContainsKey(neighbor)) {
-					nodeData.Add(neighbor, new NodeData(neighbor, this));
+			foreach (Node neighbor in current.Neighbors) {
+				if (!nodeData.ContainsKey(neighbor.id)) {
+					nodeData.Add(neighbor.id, new NodeData(neighbor, this));
 				}
 				if (closed.Contains(neighbor)) {
 					continue;
 				}
 
-				float newCost = nodeData[neighbor].g + dist(current, neighbor);
-				if (newCost < nodeData[neighbor].g || !open.Contains(neighbor)) {
-					NodeData nd = nodeData[neighbor];
+				float newCost = nodeData[neighbor.id].g + dist(current, neighbor);
+				if (newCost < nodeData[neighbor.id].g || !open.Contains(neighbor)) {
+					NodeData nd = nodeData[neighbor.id];
 					nd.g = newCost;
 					nd.h = dist(neighbor, end);
 					nd.parent = current;
-					nodeData[neighbor] = nd;
+					nodeData[neighbor.id] = nd;
 
 					if (!open.Contains(neighbor)) {
 						open.Add(neighbor);
@@ -84,8 +86,8 @@ public class PathFinder {
 		Node n = nodes[0];
 
 		foreach (Node cur in nodes) {
-			if (nodeData.ContainsKey(cur) && nodeData.ContainsKey(n)) {
-				if (nodeData[cur].f < nodeData[n].f) {
+			if (nodeData.ContainsKey(cur.id) && nodeData.ContainsKey(n.id)) {
+				if (nodeData[cur.id].f < nodeData[n.id].f) {
 					n = cur;
 				}
 			}
@@ -102,7 +104,7 @@ public class PathFinder {
 		List<Node> path = new List<Node>();
 		while (cur != start && cur != null) {
 			path.Add(cur);
-			cur = nodeData[cur].parent;
+			cur = nodeData[cur.id].parent;
 		}
 		path.Reverse();
 		return path;

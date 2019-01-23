@@ -17,8 +17,11 @@ public class PathFollower : MonoBehaviour {
 
 	// Update is called once per frame
 
-	void Start(){
-		SetPath(start,end);
+	void Start() {
+		if (start != null && end != null) {
+			SetPath(start, end);
+		}
+		npc = GetComponent<Npc>();
 	}
 
 	void Update() {
@@ -31,12 +34,13 @@ public class PathFollower : MonoBehaviour {
 		transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
 		transform.LookAt(target);
 		if (Vector3.Distance(transform.position, target) < minDist) {
-			if (ReachNode != null) { ReachNode(npc, path[0]); }
+			if (ReachNode != null) {
+				ReachNode(npc, path[0]);
+			}
 			path.RemoveAt(0);
 			if (path.Count == 0) {
 				moving = false;
 				start = null;
-				end = null;
 			}
 		}
 
@@ -55,6 +59,9 @@ public class PathFollower : MonoBehaviour {
 		if (Node.Nodes.Count == 0) {
 			Debug.Log("Node list empty");
 			return null;
+		}
+		if (path.Count == 0 && end != null && !moving) {
+			return end;
 		}
 		float dis = Mathf.Infinity;
 		Node closest = Node.Nodes[0];

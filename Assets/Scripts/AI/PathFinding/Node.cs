@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu;
 using UnityEngine;
 
 public class Node : MonoBehaviour {
 
-	public List<Node> neighbors;
+	[SerializeField] List<Node> neighbors;
 	[SerializeField] Node prefab;
 	[SerializeField] bool draw = false;
 	public static List<Node> Nodes = new List<Node>();
 	[SerializeField] float lineThickness;
+	public int id;
 
+	public List<Node> Neighbors { get { return new List<Node>(neighbors); } }
 
 	// Use this for initialization
 	public void Init() {
+		id = Nodes.Count;
 		Nodes.Add(this);
 		foreach (Node neighbor in neighbors) {
 			if (!neighbor.neighbors.Contains(this)) {
@@ -50,5 +54,9 @@ public class Node : MonoBehaviour {
 		if (n.neighbors.Contains(this)) {
 			n.neighbors.Remove(this);
 		}
+	}
+
+	public Node RandomNeighbor() {
+		return neighbors.RandomItem();
 	}
 }
