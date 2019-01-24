@@ -26,11 +26,16 @@ public class Npc : Interactable {
 
     public static event Action<Npc, Room> OnEnterRoom;
 
-    public bool interacting;
+    public bool locked;
+
+    Rigidbody rb;
+    Collider col;
 
     void Start() {
         curState = new WanderState(this, idleWaitTime);
         follower = GetComponent<PathFollower>();
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
     }
 
     /// <summary>
@@ -56,6 +61,7 @@ public class Npc : Interactable {
             interest += roomInterest;
         }
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
+        CheckSeeMonster();
     }
 
     public void GoToRoom(Room r) {
@@ -63,9 +69,30 @@ public class Npc : Interactable {
         curState = new MoveTowardsState(this, r.RandomNode());
     }
 
+    public void Lock() {
+        rb.useGravity=false;
+        rb.isKinematic = false;
+        col.enabled = false;
+        locked=true;
+
+        //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",false);
+        
+    }
+
+    public void Unlock() {
+        rb.useGravity=true;
+        rb.isKinematic = true;
+        col.enabled = true;
+        locked = false;
+
+        //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",true);
+    }
+
+    public List<Monster> CheckSeeMonster(){
+        return new LineOfSightChecker(this,vision).CheckMonsters();
+    }
+
     float EvaluateRoom(Room r) {
-
         return 0;
-
     }
 }

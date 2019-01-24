@@ -21,7 +21,6 @@ public class Room : MonoBehaviour {
         }
         if (nodes.Contains(node) & npc.CurRoom!=this) {
             npc.EnterRoom(this);
-            Debug.Log(npc+" entered room "+name);
         }
     }
 
