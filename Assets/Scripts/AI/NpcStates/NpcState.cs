@@ -7,6 +7,8 @@ public abstract class NpcState {
 
     protected Npc npc;
 
+    public int priority;
+
     public static event Action<Npc, Player> OnClick;
 
     public abstract void FrameUpdate();
