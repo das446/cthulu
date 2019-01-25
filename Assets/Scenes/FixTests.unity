@@ -382,6 +382,11 @@ MonoBehaviour:
   curRoom: {fileID: 1907443021}
   follower: {fileID: 196202132}
   interacting: 0
+  exitNode: {fileID: 1555343906}
+  isScared: 0
+  isRunning: 0
+  lobbyNode: {fileID: 23344956}
+  isBuying: 0
 --- !u!136 &196202135
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -530,7 +535,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 616837849}
+  m_TargetTexture: {fileID: 497680839}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -715,6 +720,38 @@ PrefabInstance:
     - {fileID: 2000000, guid: d8532c6447c20ff40b869362c1883600, type: 3}
     - {fileID: 11400000, guid: d8532c6447c20ff40b869362c1883600, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d8532c6447c20ff40b869362c1883600, type: 3}
+--- !u!84 &497680839
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1001
+  m_Height: 563
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &541350240
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,6 +831,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541350240}
   m_CullTransparentMesh: 0
+--- !u!84 &549727121
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1001
+  m_Height: 563
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &580643843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,38 +1320,6 @@ Transform:
   m_Father: {fileID: 1257142257}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &616837849
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 849
-  m_Height: 405
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &626353919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,7 +1950,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 917815481}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &906244238
 MonoBehaviour:
@@ -2017,6 +2054,7 @@ Transform:
   - {fileID: 1895647616}
   - {fileID: 23344955}
   - {fileID: 846722082}
+  - {fileID: 1555343905}
   - {fileID: 935578530}
   - {fileID: 906244237}
   m_Father: {fileID: 1907443020}
@@ -2069,7 +2107,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 917815481}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &966224631
 GameObject:
@@ -2683,6 +2721,11 @@ MonoBehaviour:
   curRoom: {fileID: 1907443021}
   follower: {fileID: 1371209542}
   interacting: 0
+  exitNode: {fileID: 1555343906}
+  isScared: 0
+  isRunning: 0
+  lobbyNode: {fileID: 23344956}
+  isBuying: 0
 --- !u!114 &1371209541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2877,6 +2920,11 @@ MonoBehaviour:
   curRoom: {fileID: 1907443021}
   follower: {fileID: 1398046397}
   interacting: 0
+  exitNode: {fileID: 1555343906}
+  isScared: 0
+  isRunning: 0
+  lobbyNode: {fileID: 23344956}
+  isBuying: 0
 --- !u!1 &1435513119
 GameObject:
   m_ObjectHideFlags: 0
@@ -3363,6 +3411,56 @@ PrefabInstance:
     - {fileID: 114076692535189230, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
     - {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+--- !u!1 &1555343904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1555343905}
+  - component: {fileID: 1555343906}
+  m_Layer: 0
+  m_Name: Node (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1555343905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555343904}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.86, y: 0.00000035762787, z: 3.46}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 917815481}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1555343906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555343904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0693e508d69224a8a35b4ff493f194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbors:
+  - {fileID: 1895647617}
+  - {fileID: 23344956}
+  prefab: {fileID: 0}
+  draw: 1
+  lineThickness: 0.1
+  id: 0
 --- !u!1 &1614013159 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1992140110546362, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
@@ -3425,6 +3523,11 @@ MonoBehaviour:
   curRoom: {fileID: 1907443021}
   follower: {fileID: 1614013160}
   interacting: 0
+  exitNode: {fileID: 1555343906}
+  isScared: 0
+  isRunning: 0
+  lobbyNode: {fileID: 23344956}
+  isBuying: 0
 --- !u!136 &1614013163
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4464,38 +4567,6 @@ PrefabInstance:
     - {fileID: 82470865542839030, guid: d8beb7010e5440e47922dcca7fce4f51, type: 3}
     - {fileID: 82982032216499698, guid: d8beb7010e5440e47922dcca7fce4f51, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d8beb7010e5440e47922dcca7fce4f51, type: 3}
---- !u!84 &1839810201
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 849
-  m_Height: 405
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1878232485
 GameObject:
   m_ObjectHideFlags: 0
@@ -4599,8 +4670,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1878232487}
   outlineCamera: {fileID: 306698917}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 616837849}
-  extraRenderTexture: {fileID: 1839810201}
+  renderTexture: {fileID: 497680839}
+  extraRenderTexture: {fileID: 549727121}
 --- !u!1 &1895647615
 GameObject:
   m_ObjectHideFlags: 0
@@ -4676,6 +4747,11 @@ MonoBehaviour:
   curRoom: {fileID: 1907443021}
   follower: {fileID: 1905639243}
   interacting: 0
+  exitNode: {fileID: 1555343906}
+  isScared: 0
+  isRunning: 0
+  lobbyNode: {fileID: 23344956}
+  isBuying: 0
 --- !u!114 &1905639242
 MonoBehaviour:
   m_ObjectHideFlags: 0

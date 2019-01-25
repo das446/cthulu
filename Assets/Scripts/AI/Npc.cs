@@ -32,7 +32,11 @@ public class Npc : Interactable {
     /// Author: Victor Liu
     /// </summary>
     public Node exitNode;
+    //replace next two bools with scared state trigger
+    public bool isScared = false;
+    public bool isRunning = false;
     public Node lobbyNode;
+    public bool isBuying = false;
 
     void Start() {
         curState = new WanderState(this, idleWaitTime);
@@ -48,8 +52,18 @@ public class Npc : Interactable {
     }
 
     void Update() {
-        if(interest >= 100)
+        if(interest >= 100 && !isBuying)
+        {
+            Debug.Log("NPC ready to buy");
             ReadyToBuy();
+            isBuying = true;
+        }
+        if(isScared && !isRunning)
+        {
+            Debug.Log("NPC is scared");
+            RunToExit();
+            isRunning = true;
+        }
         curState?.FrameUpdate();
     }
 
@@ -76,6 +90,7 @@ public class Npc : Interactable {
     /// </summary>
     public void RunToExit()
     {
+        speed = speed*3;
         curState.Exit();
         curState = new ScaredState(this, exitNode);
     }
@@ -94,9 +109,11 @@ public class Npc : Interactable {
     /// </summary>
     public void LeaveBuyState()
     {
+        Debug.Log("NPC waited too long");
         interest -= 20;
         curState.Exit();
         curState = new WanderState(this, idleWaitTime);
+        isBuying = false;
     }
 
     float EvaluateRoom(Room r) {
