@@ -28,6 +28,8 @@ public class Npc : Interactable {
 
     public bool interacting;
 
+    public Node exitNode;
+
     void Start() {
         curState = new WanderState(this, idleWaitTime);
         follower = GetComponent<PathFollower>();
@@ -61,6 +63,15 @@ public class Npc : Interactable {
     public void GoToRoom(Room r) {
         curState.Exit();
         curState = new MoveTowardsState(this, r.RandomNode());
+    }
+
+    /// <summary>
+    /// Author: Victor Liu
+    /// </summary>
+    public void runToExit()
+    {
+        curState.Exit();
+        curState = new ScaredState(this, exitNode);
     }
 
     float EvaluateRoom(Room r) {
