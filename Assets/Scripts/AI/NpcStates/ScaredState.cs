@@ -22,7 +22,7 @@ public class ScaredState : NpcState
     {
         if (Vector3.Distance(npc.transform.position, exit.transform.position) < 0.5f)
         {
-            //score loss, Destroy(npc)?, game over?,
+            //score loss, Destroy(npc)?, game over?, Exit()?,
             //other actions related to buyer leaving building
         }
     }
@@ -35,5 +35,10 @@ public class ScaredState : NpcState
     public override void Exit() 
     {
 
+    }
+
+    public override void OnInteract(Player p)
+    {
+        
     }
 }

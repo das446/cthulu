@@ -28,7 +28,11 @@ public class Npc : Interactable {
 
     public bool interacting;
 
+    /// <summary>
+    /// Author: Victor Liu
+    /// </summary>
     public Node exitNode;
+    public Node lobbyNode;
 
     void Start() {
         curState = new WanderState(this, idleWaitTime);
@@ -44,6 +48,8 @@ public class Npc : Interactable {
     }
 
     void Update() {
+        if(interest >= 100)
+            readyToBuy();
         curState?.FrameUpdate();
     }
 
@@ -72,6 +78,25 @@ public class Npc : Interactable {
     {
         curState.Exit();
         curState = new ScaredState(this, exitNode);
+    }
+
+    /// <summary>
+    /// Author: Victor Liu
+    /// </summary>
+    public void readyToBuy()
+    {
+        curState.Exit();
+        curState = new BuyState(this, lobbyNode);
+    }
+
+    /// <summary>
+    /// Author: Victor Liu
+    /// </summary>
+    public void leaveBuyState()
+    {
+        interest -= 20;
+        curState.Exit();
+        curState = new WanderState(this, idleWaitTime);
     }
 
     float EvaluateRoom(Room r) {
