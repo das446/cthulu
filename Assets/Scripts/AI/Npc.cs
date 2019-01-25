@@ -49,7 +49,7 @@ public class Npc : Interactable {
 
     void Update() {
         if(interest >= 100)
-            readyToBuy();
+            ReadyToBuy();
         curState?.FrameUpdate();
     }
 
@@ -74,7 +74,7 @@ public class Npc : Interactable {
     /// <summary>
     /// Author: Victor Liu
     /// </summary>
-    public void runToExit()
+    public void RunToExit()
     {
         curState.Exit();
         curState = new ScaredState(this, exitNode);
@@ -83,7 +83,7 @@ public class Npc : Interactable {
     /// <summary>
     /// Author: Victor Liu
     /// </summary>
-    public void readyToBuy()
+    public void ReadyToBuy()
     {
         curState.Exit();
         curState = new BuyState(this, lobbyNode);
@@ -92,7 +92,7 @@ public class Npc : Interactable {
     /// <summary>
     /// Author: Victor Liu
     /// </summary>
-    public void leaveBuyState()
+    public void LeaveBuyState()
     {
         interest -= 20;
         curState.Exit();

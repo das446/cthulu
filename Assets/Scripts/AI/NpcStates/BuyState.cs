@@ -29,7 +29,7 @@ public class BuyState : NpcState
             waitTimer -= Time.deltaTime;
             if(waitTimer <= 0)
             {
-                npc.leaveBuyState();
+                npc.LeaveBuyState();
             }
         }
     }
@@ -47,6 +47,6 @@ public class BuyState : NpcState
 
     public override void OnInteract(Player p)
     {
-        
+
     }
 }
