@@ -8,7 +8,7 @@ public class Npc : Interactable {
 
     NpcState curState;
 
-    [SerializeField] float vision;
+    public float vision;
     [SerializeField] float speed;
     [SerializeField] float tolerance;
     [SerializeField] float interest;
@@ -50,7 +50,6 @@ public class Npc : Interactable {
         curState?.FrameUpdate();
     }
 
-    
     public void SetState(NpcState state) {
         curState = state;
     }
@@ -78,20 +77,20 @@ public class Npc : Interactable {
     /// Keeps npc from moving
     /// </summary>
     public void Lock() {
-        rb.useGravity=false;
+        rb.useGravity = false;
         rb.isKinematic = false;
         col.enabled = false;
-        locked=true;
+        locked = true;
 
         //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",false);
-        
+
     }
 
     /// <summary>
     /// Lets npc move again
     /// </summary>
     public void Unlock() {
-        rb.useGravity=true;
+        rb.useGravity = true;
         rb.isKinematic = true;
         col.enabled = true;
         locked = false;
@@ -99,12 +98,28 @@ public class Npc : Interactable {
         //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",true);
     }
 
-    public List<Monster> CheckSeeMonster(){
-        return new LineOfSightChecker(this,vision).CheckMonsters();
+    public List<Monster> CheckSeeMonster() {
+        return new LineOfSightChecker(this, vision).CheckMonsters();
     }
 
-    
-    float EvaluateRoom(Room r) {
-        return 0;
+    int EvaluateRoom(Room r) {
+        //interest starts at 20
+        int interest = 20;
+        int fDist = 1;
+        foreach (Furniture f in r.furniture) {
+            if (f.health < 10) {
+                interest--;
+            }
+        }
+
+        if (SeePortal(r)) {
+            interest -= 10;
+        }
+
+        return interest;
+    }
+
+    public bool SeePortal(Room r) {
+        return new LineOfSightChecker(this, vision).CheckPortals();
     }
 }

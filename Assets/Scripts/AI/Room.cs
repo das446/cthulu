@@ -4,10 +4,11 @@ using Cthulu;
 using UnityEngine;
 
 public class Room : MonoBehaviour {
-    List<Furniture> furniture;
+    public List<Furniture> furniture;
 
     [SerializeField] List<Node> nodes;
     [SerializeField] List<MonsterSpawnPoint> spawnPoints;
+    public List<Portal> portals;
 
     void Start() {
         PathFollower.ReachNode += CheckEnter;

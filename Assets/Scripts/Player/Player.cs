@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     Outline curOutline;
     [SerializeField] float interactRange;
     public Transform hand;
-    public IPickUpable curItem;
+    public Furniture curItem;
     [SerializeField]PlayerMovement movement;
     // Start is called before the first frame update
     void Start() {
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void Release(IPickUpable t) {
+    void Release(Furniture t) {
         t?.Release(this);
         curItem = null;
     }
@@ -45,9 +45,9 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void PickUp(IPickUpable p) {
-        curItem = p;
-        p.GetPickedUp(this);
+    void PickUp(Furniture f) {
+        curItem = f;
+        f.GetPickedUp(this);
     }
 
     void CheckOutline() { //TODO: Make the logic less of a mess
