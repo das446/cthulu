@@ -26,11 +26,16 @@ public class Npc : Interactable {
 
     public static event Action<Npc, Room> OnEnterRoom;
 
-    public bool interacting;
+    public bool locked;
+
+    Rigidbody rb;
+    Collider col;
 
     void Start() {
         curState = new WanderState(this, idleWaitTime);
         follower = GetComponent<PathFollower>();
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
     }
 
     /// <summary>
@@ -45,10 +50,15 @@ public class Npc : Interactable {
         curState?.FrameUpdate();
     }
 
+    
     public void SetState(NpcState state) {
         curState = state;
     }
 
+    /// <summary>
+    /// Called when the buyer enters a room
+    /// </summary>
+    /// <param name="r"></param>
     public void EnterRoom(Room r) {
         if (!visitedRooms.Contains(r)) {
             visitedRooms.Add(r);
@@ -56,6 +66,7 @@ public class Npc : Interactable {
             interest += roomInterest;
         }
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
+        CheckSeeMonster();
     }
 
     public void GoToRoom(Room r) {
@@ -63,9 +74,37 @@ public class Npc : Interactable {
         curState = new MoveTowardsState(this, r.RandomNode());
     }
 
+    /// <summary>
+    /// Keeps npc from moving
+    /// </summary>
+    public void Lock() {
+        rb.useGravity=false;
+        rb.isKinematic = false;
+        col.enabled = false;
+        locked=true;
+
+        //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",false);
+        
+    }
+
+    /// <summary>
+    /// Lets npc move again
+    /// </summary>
+    public void Unlock() {
+        rb.useGravity=true;
+        rb.isKinematic = true;
+        col.enabled = true;
+        locked = false;
+
+        //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",true);
+    }
+
+    public List<Monster> CheckSeeMonster(){
+        return new LineOfSightChecker(this,vision).CheckMonsters();
+    }
+
+    
     float EvaluateRoom(Room r) {
-
         return 0;
-
     }
 }

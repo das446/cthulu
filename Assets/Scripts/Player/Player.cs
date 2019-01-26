@@ -11,7 +11,6 @@ public class Player : MonoBehaviour {
     [SerializeField] float interactRange;
     public Transform hand;
     public IPickUpable curItem;
-    bool locked;
     [SerializeField]PlayerMovement movement;
     // Start is called before the first frame update
     void Start() {
@@ -37,7 +36,7 @@ public class Player : MonoBehaviour {
     }
 
     private void CheckInteract() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !movement.IsLocked()) {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange)) {
                 Interactable i = hit.collider.gameObject.GetComponent<Interactable>();
