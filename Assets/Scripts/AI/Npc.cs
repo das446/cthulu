@@ -50,10 +50,15 @@ public class Npc : Interactable {
         curState?.FrameUpdate();
     }
 
+    
     public void SetState(NpcState state) {
         curState = state;
     }
 
+    /// <summary>
+    /// Called when the buyer enters a room
+    /// </summary>
+    /// <param name="r"></param>
     public void EnterRoom(Room r) {
         if (!visitedRooms.Contains(r)) {
             visitedRooms.Add(r);
@@ -69,6 +74,9 @@ public class Npc : Interactable {
         curState = new MoveTowardsState(this, r.RandomNode());
     }
 
+    /// <summary>
+    /// Keeps npc from moving
+    /// </summary>
     public void Lock() {
         rb.useGravity=false;
         rb.isKinematic = false;
@@ -79,6 +87,9 @@ public class Npc : Interactable {
         
     }
 
+    /// <summary>
+    /// Lets npc move again
+    /// </summary>
     public void Unlock() {
         rb.useGravity=true;
         rb.isKinematic = true;
@@ -92,6 +103,7 @@ public class Npc : Interactable {
         return new LineOfSightChecker(this,vision).CheckMonsters();
     }
 
+    
     float EvaluateRoom(Room r) {
         return 0;
     }

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
 public class TwoIntEvent : UnityEvent<int,int>
 {
-
-    public int i1,i2;
 
 }

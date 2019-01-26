@@ -5,14 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GameEvent/MoveNpc")]
 public class MoveNpcToRoomEvent : ScriptableObject {
 
-    [SerializeField]
+    [System.Serializable]
     public struct Arguments {
         public Npc npc;
         public Room room;
     }
-    public Arguments a;
-    // Start is called before the first frame update
 
+    [SerializeField]
+    public Arguments a;
+
+    [SerializeField]
+    
     public void Move() {
 
     }
