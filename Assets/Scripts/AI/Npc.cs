@@ -81,6 +81,7 @@ public class Npc : Interactable {
         rb.isKinematic = false;
         col.enabled = false;
         locked = true;
+        follower.Stop();
 
         //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",false);
 

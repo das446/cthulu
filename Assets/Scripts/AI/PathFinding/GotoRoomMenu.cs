@@ -32,7 +32,6 @@ public class GotoRoomMenu : MonoBehaviour {
         Vector3 target = Vector3.zero;
         while (Mathf.Abs(cam.transform.localEulerAngles.x) < 350) {
             float x = cam.transform.localEulerAngles.x - Time.deltaTime * speed;
-            Debug.Log(x);
             cam.transform.localEulerAngles = new Vector3(x, 0, 0);
             yield return new WaitForEndOfFrame();
         }

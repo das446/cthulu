@@ -95,4 +95,9 @@ public class PathFollower : MonoBehaviour {
 		}
 		return farthest;
 	}
+
+    public void Stop()
+    {
+        path = new List<Node>();
+    }
 }

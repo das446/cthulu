@@ -50,6 +50,7 @@ public class LineOfSightChecker {
     }
 
     public bool CheckPortals() {
+        return false;
         foreach (Portal portal in room.portals) {
             RaycastHit r;
             Vector3 dir = Vector3.zero; //todo
