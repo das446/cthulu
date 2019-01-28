@@ -23,4 +23,21 @@ public class MonsterSpawnController : MonoBehaviour {
             //SpawnMonster(,);
         }
     }
+
+    public void SpawnMonster(Monster m, MonsterSpawnPoint p) {
+
+    }
+
+    public void SpawnTentacle(MonsterSpawnPoint p) {
+
+    }
+
+    public void SpawnGhost(MonsterSpawnPoint p) {
+
+    }
+
+    public void SpawnVampire(MonsterSpawnPoint p) {
+
+    }
+
 }
