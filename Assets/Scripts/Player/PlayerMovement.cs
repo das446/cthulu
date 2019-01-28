@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,6 +45,10 @@ namespace Cthulu {
 
         public void SetSpeed(float speed) {
             m_WalkSpeed = speed;
+        }
+
+        public void SetSpeed(Func<float,float> f){
+            m_WalkSpeed = f(m_WalkSpeed);
         }
 
         public void UpdateMouseLock() {

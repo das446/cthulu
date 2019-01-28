@@ -2,16 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using cakeslice;
-using UnityEngine;
 using Cthulu;
+using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour, ICanHold {
 
     Outline curOutline;
     [SerializeField] float interactRange;
     public Transform hand;
     public Furniture curItem;
-    [SerializeField]PlayerMovement movement;
+    [SerializeField] PlayerMovement movement;
+    [SerializeField] float power;
+    [SerializeField] Camera cam;
+
+    public GameObject pos;
+
+    public float Power => power;
+
+    public Transform Hand => hand;
+
     // Start is called before the first frame update
     void Start() {
 
@@ -20,19 +29,32 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         CheckOutline();
-        CheckInteract();
-        CheckThrow();
+        CheckInput();
+        pos.transform.position = transform.position;
     }
 
-    void CheckThrow() {
+    void CheckInput() {
+        CheckInteract();
+        CheckFurnitureInput();
+    }
+
+    void CheckFurnitureInput() {
         if (Input.GetMouseButtonDown(0)) {
-            Release(curItem);
+            curItem?.Use(this);
+        } else if (Input.GetMouseButtonDown(1)) {
+            curItem?.Release(this);
         }
     }
 
-    void Release(Furniture t) {
-        t?.Release(this);
+    void LoseItem() {
         curItem = null;
+        movement.SetSpeed(x => x * curItem.rb.mass);
+    }
+
+    public void Release(Furniture f) {
+        f?.Release(this);
+        curItem = null;
+        movement.SetSpeed(x => x * curItem.rb.mass);
     }
 
     private void CheckInteract() {
@@ -43,11 +65,6 @@ public class Player : MonoBehaviour {
                 i?.Interact(this);
             }
         }
-    }
-
-    void PickUp(Furniture f) {
-        curItem = f;
-        f.GetPickedUp(this);
     }
 
     void CheckOutline() { //TODO: Make the logic less of a mess
@@ -90,14 +107,23 @@ public class Player : MonoBehaviour {
     /// <summary>
     /// While locked the camera and player wont move, and you can see the cursor
     /// </summary>
-    public void Lock(){
+    public void Lock() {
         movement.Lock();
     }
 
     /// <summary>
     /// While unlocked the camera and player can move, and you can't see the cursor
     /// </summary>
-    public void Unlock(){
+    public void Unlock() {
         movement.Unlock();
+    }
+
+    public void PickUp(Furniture f) {
+        curItem = f;
+        movement.SetSpeed(x => x / curItem.rb.mass);
+    }
+
+    public Vector3 GetThrowDir() {
+        return cam.transform.forward;
     }
 }
