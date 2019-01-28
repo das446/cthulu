@@ -6,6 +6,10 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour, IHasOutline {
    public abstract void Interact(Player p);
 
+   public virtual void Interact(Player p, Vector3 pos){
+       Interact(p);
+   }
+
    [SerializeField] Outline o;
 
     public Outline GetOutline()

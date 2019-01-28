@@ -12,6 +12,8 @@ public class Node : MonoBehaviour {
 	[SerializeField] float lineThickness;
 	public int id;
 
+	public float interestMultiplier = 1;
+
 	public List<Node> Neighbors { get { return new List<Node>(neighbors); } }
 
 	// Use this for initialization

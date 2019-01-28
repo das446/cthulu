@@ -73,10 +73,6 @@ public class Npc : Interactable {
         }
         curState?.FrameUpdate();
 
-
-        if (curRoom != null) {
-            Debug.Log("I am in Room" + curRoom.name);
-        }
     }
 
     public void SetState(NpcState state) {
@@ -179,5 +175,9 @@ public class Npc : Interactable {
 
     public bool SeePortal(Room r) {
         return new LineOfSightChecker(this, vision).CheckPortals();
+    }
+
+    public void Die(){
+        SetState(new DeadState(this));
     }
 }

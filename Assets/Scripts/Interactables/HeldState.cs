@@ -5,4 +5,8 @@ internal class HeldState : FurnitureState {
         this.furniture = furniture;
         this.h = h;
     }
+
+    public override bool Held(){
+        return true;
+    }
 }

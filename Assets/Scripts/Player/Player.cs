@@ -42,19 +42,21 @@ public class Player : MonoBehaviour, ICanHold {
         if (Input.GetMouseButtonDown(0)) {
             curItem?.Use(this);
         } else if (Input.GetMouseButtonDown(1)) {
-            curItem?.Release(this);
+            Release(curItem);
         }
     }
 
     void LoseItem() {
+        movement.SetSpeed(x => x * curItem.weight);
         curItem = null;
-        movement.SetSpeed(x => x * curItem.rb.mass);
+        
     }
 
     public void Release(Furniture f) {
+        movement.SetSpeed(x => x * curItem.weight);
         f?.Release(this);
         curItem = null;
-        movement.SetSpeed(x => x * curItem.rb.mass);
+
     }
 
     private void CheckInteract() {
@@ -62,7 +64,7 @@ public class Player : MonoBehaviour, ICanHold {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange)) {
                 Interactable i = hit.collider.gameObject.GetComponent<Interactable>();
-                i?.Interact(this);
+                i?.Interact(this,hit.point);
             }
         }
     }
@@ -120,14 +122,14 @@ public class Player : MonoBehaviour, ICanHold {
 
     public void PickUp(Furniture f) {
         curItem = f;
-        movement.SetSpeed(x => x / curItem.rb.mass);
+        movement.SetSpeed(x => x / curItem.weight);
     }
 
     public Vector3 GetThrowDir() {
         return cam.transform.forward;
     }
 
-    public Furniture CurFurniture(){
+    public Furniture CurFurniture() {
         return curItem;
     }
 }

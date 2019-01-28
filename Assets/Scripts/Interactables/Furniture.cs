@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Furniture : Interactable {
-    public int weight;
+
+    /// <summary>
+    /// Player's speed gets divided by weight while holding it, so set it accordingly
+    /// </summary>
+    public float weight;
     public int health;
     [HideInInspector] public Vector3 startPos;
 

@@ -48,6 +48,7 @@ namespace Cthulu {
         }
 
         public void SetSpeed(Func<float,float> f){
+            Debug.Log("Set Speed");
             m_WalkSpeed = f(m_WalkSpeed);
         }
 

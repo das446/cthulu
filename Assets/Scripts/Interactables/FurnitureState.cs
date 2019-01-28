@@ -9,7 +9,7 @@ public abstract class FurnitureState {
         this.furniture = furniture;
     }
 
-    public bool Held() {
+    public virtual bool Held() {
        return false;
     }
 

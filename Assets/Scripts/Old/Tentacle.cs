@@ -2,38 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tentacle : MonoBehaviour {
+public class Tentacle : Monster, ICanHold {
+    public Transform Hand =>
+        throw new System.NotImplementedException();
 
+    public float Power =>
+        throw new System.NotImplementedException();
+
+    public Furniture CurFurniture() {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Die() {
+        throw new System.NotImplementedException();
+    }
+
+    public override void FurnitureContact(Furniture furniture) {
+        throw new System.NotImplementedException();
+    }
+
+    public override void GetHit() {
+        throw new System.NotImplementedException();
+    }
+
+    public Vector3 GetThrowDir() {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnSpawn() {
+        throw new System.NotImplementedException();
+    }
+
+    public void PickUp(Furniture f) {
+        throw new System.NotImplementedException();
+    }
+
+    public void Release(Furniture f) {
+        throw new System.NotImplementedException();
+    }
 
     // Use this for initialization
-    void Start () {
+    void Start() {
 
     }
-   
 
     // Update is called once per frame
-    void Update () {
-		
-	}
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        print(other.tag);
-        if (other.tag == "pickable" || other.tag == "hider") {
-            Destroy(gameObject);
-        }
+    void Update() {
+
     }
-    */
-    /*
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "pickable" || other.tag == "hider")
-        {
-            Destroy(gameObject);
-        }
-    }
-    */
 }
-
-
-
