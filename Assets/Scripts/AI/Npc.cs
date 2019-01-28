@@ -28,14 +28,13 @@ public class Npc : Interactable {
 
     public bool interacting;
 
-    /// <summary>
-    /// Author: Victor Liu
-    /// </summary>
     public Node exitNode;
     //replace next two bools with scared state trigger
     public bool isScared = false;
     public bool isRunning = false;
+
     public Node lobbyNode;
+    
     public bool isBuying = false;
 
     void Start() {
@@ -85,9 +84,6 @@ public class Npc : Interactable {
         curState = new MoveTowardsState(this, r.RandomNode());
     }
 
-    /// <summary>
-    /// Author: Victor Liu
-    /// </summary>
     public void RunToExit()
     {
         speed = speed*3;
@@ -95,18 +91,12 @@ public class Npc : Interactable {
         curState = new ScaredState(this, exitNode);
     }
 
-    /// <summary>
-    /// Author: Victor Liu
-    /// </summary>
     public void ReadyToBuy()
     {
         curState.Exit();
         curState = new BuyState(this, lobbyNode);
     }
 
-    /// <summary>
-    /// Author: Victor Liu
-    /// </summary>
     public void LeaveBuyState()
     {
         Debug.Log("NPC waited too long");

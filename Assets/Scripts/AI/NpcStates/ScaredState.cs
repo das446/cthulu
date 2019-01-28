@@ -1,8 +1,4 @@
-﻿/// <summary>
-/// Author: Victor Liu
-/// </summary>
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

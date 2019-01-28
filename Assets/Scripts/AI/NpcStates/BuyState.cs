@@ -1,8 +1,4 @@
-﻿/// <summary>
-/// Author: Victor Liu
-/// </summary>
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,8 +51,8 @@ public class BuyState : NpcState
 
     }
 
-    public override void OnInteract(Player p)
-    {
-
-    }
+    // public override void OnInteract(Player p)
+    // {
+    //     base.OnInteract(p);
+    // }
 }
