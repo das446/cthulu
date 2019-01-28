@@ -16,7 +16,9 @@ public class HeavyFurniture : Furniture {
     }
 
     public override void Interact(Player p) {
-        GetPickedUp(p);
+        if (p.CurFurniture() == null) {
+            GetPickedUp(p);
+        }
     }
 
     public void Drag(Vector3 dir) {
@@ -28,7 +30,8 @@ public class HeavyFurniture : Furniture {
         joint.connectedBody = null;
     }
 
-    public void GetPickedUp(ICanHold h) {
+    void GetPickedUp(ICanHold h) {
+        h.PickUp(this);
         joint.connectedBody = h.Hand.GetComponent<Rigidbody>();
     }
 }

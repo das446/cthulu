@@ -10,8 +10,6 @@ public class Furniture : Interactable {
     public Rigidbody rb;
     public Collider col;
 
-    public int grabDistance;
-
     protected FurnitureState curState;
 
     Transform phand;
@@ -34,13 +32,18 @@ public class Furniture : Interactable {
 
     }
 
+
     public virtual void Release(ICanHold h) {
         rb.useGravity = true;
         SetState(new InAirState(this, h));
     }
 
+    /// <summary>
+    /// override this in derived classes
+    /// </summary>
+    /// <param name="p"></param>
     public override void Interact(Player p) {
-
+        
     }
 
     // */

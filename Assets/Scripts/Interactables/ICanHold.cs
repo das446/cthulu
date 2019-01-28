@@ -12,5 +12,7 @@ public interface ICanHold {
         get;
     }
 
+    Furniture CurFurniture();
+
     Vector3 GetThrowDir();
 }

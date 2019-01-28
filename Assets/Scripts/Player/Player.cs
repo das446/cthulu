@@ -126,4 +126,8 @@ public class Player : MonoBehaviour, ICanHold {
     public Vector3 GetThrowDir() {
         return cam.transform.forward;
     }
+
+    public Furniture CurFurniture(){
+        return curItem;
+    }
 }

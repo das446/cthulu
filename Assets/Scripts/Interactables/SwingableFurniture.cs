@@ -10,6 +10,6 @@ public class SwingableFurniture : Furniture
     }
 
     void Swing(ICanHold holder){
-
+        
     }
 }
