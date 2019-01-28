@@ -31,6 +31,15 @@ public class Npc : Interactable {
     Rigidbody rb;
     Collider col;
 
+    public Node exitNode;
+    //replace next two bools with scared state trigger
+    public bool isScared = false;
+    public bool isRunning = false;
+
+    public Node lobbyNode;
+
+    public bool isBuying = false;
+
     void Start() {
         curState = new WanderState(this, idleWaitTime);
         follower = GetComponent<PathFollower>();
@@ -47,6 +56,21 @@ public class Npc : Interactable {
     }
 
     void Update() {
+
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            interest = 100;
+        }
+
+        if (interest >= 100 && !isBuying) {
+            Debug.Log("NPC ready to buy");
+            ReadyToBuy();
+            isBuying = true;
+        }
+        if (isScared && !isRunning) {
+            Debug.Log("NPC is scared");
+            RunToExit();
+            isRunning = true;
+        }
         curState?.FrameUpdate();
 
 
@@ -76,6 +100,26 @@ public class Npc : Interactable {
     public void GoToRoom(Room r) {
         curState.Exit();
         curState = new MoveTowardsState(this, r.RandomNode());
+    }
+
+    public void RunToExit() {
+        speed = speed * 3;
+        curState.Exit();
+        curState = new ScaredState(this, exitNode);
+    }
+
+    public void ReadyToBuy() {
+        curState.Exit();
+        curState = new BuyState(this, lobbyNode);
+        Debug.Log("Cur state = buy");
+    }
+
+    public void LeaveBuyState() {
+        Debug.Log("NPC waited too long");
+        interest -= 20;
+        curState.Exit();
+        curState = new WanderState(this, idleWaitTime);
+        isBuying = false;
     }
 
     /// <summary>
