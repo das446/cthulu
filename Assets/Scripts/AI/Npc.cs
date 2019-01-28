@@ -40,8 +40,10 @@ public class Npc : Interactable {
 
     public bool isBuying = false;
 
+    public List<Node> nodesToAvoid;
+
     void Start() {
-        curState = new WanderState(this, idleWaitTime);
+        Wandering();
         follower = GetComponent<PathFollower>();
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
@@ -79,6 +81,12 @@ public class Npc : Interactable {
         curState = state;
     }
 
+    public void Wandering()
+    {
+        curState.Exit();
+        curState = new WanderState(this, idleWaitTime, nodesToAvoid);
+    }
+
     /// <summary>
     /// Called when the buyer enters a room
     /// </summary>
@@ -113,8 +121,7 @@ public class Npc : Interactable {
     public void LeaveBuyState() {
         Debug.Log("NPC waited too long");
         interest -= 20;
-        curState.Exit();
-        curState = new WanderState(this, idleWaitTime);
+        Wandering();
         isBuying = false;
     }
 
