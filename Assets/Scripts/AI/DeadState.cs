@@ -7,7 +7,7 @@ public class DeadState : NpcState
 
     public override void FrameUpdate()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Enter()
