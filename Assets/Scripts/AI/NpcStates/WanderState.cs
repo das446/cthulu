@@ -24,8 +24,10 @@ public class WanderState : NpcState {
     }
 
     public override void FrameUpdate() {
-        timeUntilMove -= Time.deltaTime;
-        if (timeUntilMove <= 0 && !npc.interacting) {
+        if (!npc.follower.moving) {
+            timeUntilMove -= Time.deltaTime;
+        }
+        if (timeUntilMove <= 0 && !npc.locked) {
             MoveToRandomNeighbor();
             timeUntilMove = waitTime;
         }

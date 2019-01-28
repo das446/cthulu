@@ -8,7 +8,7 @@ public class Npc : Interactable {
 
     NpcState curState;
 
-    [SerializeField] float vision;
+    public float vision;
     [SerializeField] float speed;
     [SerializeField] float tolerance;
     [SerializeField] float interest;
@@ -26,7 +26,10 @@ public class Npc : Interactable {
 
     public static event Action<Npc, Room> OnEnterRoom;
 
-    public bool interacting;
+    public bool locked;
+
+    Rigidbody rb;
+    Collider col;
 
     public Node exitNode;
     //replace next two bools with scared state trigger
@@ -40,6 +43,8 @@ public class Npc : Interactable {
     void Start() {
         curState = new WanderState(this, idleWaitTime);
         follower = GetComponent<PathFollower>();
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
     }
 
     /// <summary>
@@ -70,6 +75,10 @@ public class Npc : Interactable {
         curState = state;
     }
 
+    /// <summary>
+    /// Called when the buyer enters a room
+    /// </summary>
+    /// <param name="r"></param>
     public void EnterRoom(Room r) {
         if (!visitedRooms.Contains(r)) {
             visitedRooms.Add(r);
@@ -77,6 +86,7 @@ public class Npc : Interactable {
             interest += roomInterest;
         }
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
+        CheckSeeMonster();
     }
 
     public void GoToRoom(Room r) {
@@ -106,9 +116,54 @@ public class Npc : Interactable {
         isBuying = false;
     }
 
-    float EvaluateRoom(Room r) {
+    /// <summary>
+    /// Keeps npc from moving
+    /// </summary>
+    public void Lock() {
+        rb.useGravity = false;
+        rb.isKinematic = false;
+        col.enabled = false;
+        locked = true;
+        follower.Stop();
 
-        return 0;
+        //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",false);
 
+    }
+
+    /// <summary>
+    /// Lets npc move again
+    /// </summary>
+    public void Unlock() {
+        rb.useGravity = true;
+        rb.isKinematic = true;
+        col.enabled = true;
+        locked = false;
+
+        //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",true);
+    }
+
+    public List<Monster> CheckSeeMonster() {
+        return new LineOfSightChecker(this, vision).CheckMonsters();
+    }
+
+    int EvaluateRoom(Room r) {
+        //interest starts at 20
+        int interest = 20;
+        int fDist = 1;
+        foreach (Furniture f in r.furniture) {
+            if (f.health < 10) {
+                interest--;
+            }
+        }
+
+        if (SeePortal(r)) {
+            interest -= 10;
+        }
+
+        return interest;
+    }
+
+    public bool SeePortal(Room r) {
+        return new LineOfSightChecker(this, vision).CheckPortals();
     }
 }

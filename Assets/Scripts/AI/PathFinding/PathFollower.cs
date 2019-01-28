@@ -45,6 +45,10 @@ public class PathFollower : MonoBehaviour {
 		}
 
 	}
+	
+	public void SetPath(Node f) {
+		SetPath(ClosestNode(),f);
+	}
 
 	public void SetPath(Node s, Node f) {
 		start = s;
@@ -91,4 +95,9 @@ public class PathFollower : MonoBehaviour {
 		}
 		return farthest;
 	}
+
+    public void Stop()
+    {
+        path = new List<Node>();
+    }
 }

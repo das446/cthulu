@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmallItem : Interactable, IPickUpable {
+public class SmallItem : Furniture {
     [SerializeField] float speed;
     [SerializeField] Rigidbody rb;
     [SerializeField] Collider col;
