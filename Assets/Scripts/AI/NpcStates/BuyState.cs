@@ -2,55 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuyState : NpcState 
-{
+public class BuyState : NpcState {
     Node lobby;
 
     //Node exit;
 
-    PathFollower follower;
-    PathFinder finder;
-
     private float waitTimer;
 
-    private float defaultWaitTime = 60;
+    private float defaultWaitTime = 10;
 
     private bool atLobby;
 
-    public BuyState(Npc npc, Node node) : base(npc) 
-    {
+    public BuyState(Npc npc, Node node) : base(npc) {
         lobby = node;
         Enter();
     }
 
-    public override void FrameUpdate() 
-    {
-        if (Vector3.Distance(npc.transform.position, lobby.transform.position) < 0.5f)
-        {
-            //other npc's would push this one away from the node, so quick fix to 
-            //make sure the timer kept going once it started and will trigger "pissed"  
-            //state even if pushed to other side of map
-            atLobby = true;
-        }
-        if(atLobby)
-        {
+    public override void FrameUpdate() {
+
+        if (atLobby) {
             waitTimer -= Time.deltaTime;
-            if(waitTimer <= 0)
-            {
+            Debug.Log(waitTimer);
+            if (waitTimer <= 0) {
                 atLobby = false;
                 npc.LeaveBuyState();
             }
         }
     }
 
-    public override void Enter() 
-    {
+    public override void Enter() {
         SetFollower(lobby);
         waitTimer = defaultWaitTime;
+        PathFollower.ReachNode += ReachLobby;
     }
 
-    public override void Exit() 
-    {
+    void ReachLobby(Npc n, Node node) {
+        if (n == npc && node == lobby) {
+            atLobby = true;
+            Debug.Log("ReachLobby");
+        }
+        PathFollower.ReachNode -= ReachLobby;
+    }
+
+    public override void Exit() {
 
     }
 
