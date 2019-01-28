@@ -5,6 +5,7 @@ public class PathFinder {
 
 	Node start, end;
 
+	public List<Node> avoid;
 	public struct NodeData {
 		PathFinder p;
 		public Node node;
@@ -38,10 +39,18 @@ public class PathFinder {
 		nodeData = new Dictionary<int, NodeData>();
 	}
 
+	public PathFinder(Node start, Node end, List<Node> avoid) : this(start, end) {
+		this.avoid = avoid;
+	}
+
 	public List<Node> ShortestPath() {
 
 		if (start.id == end.id) {
 			return new List<Node>() { start };
+		}
+
+		if (avoid.Contains(end)) {
+			return new List<Node>();
 		}
 
 		List<Node> open = start.Neighbors;
@@ -64,7 +73,7 @@ public class PathFinder {
 				if (!nodeData.ContainsKey(neighbor.id)) {
 					nodeData.Add(neighbor.id, new NodeData(neighbor, this));
 				}
-				if (closed.Contains(neighbor)) {
+				if (closed.Contains(neighbor) || avoid.Contains(neighbor)) {
 					continue;
 				}
 
