@@ -5,6 +5,9 @@ using UnityEngine;
 public class BuyState : NpcState 
 {
     Node lobby;
+
+    //Node exit;
+
     PathFollower follower;
     PathFinder finder;
 
@@ -51,8 +54,15 @@ public class BuyState : NpcState
 
     }
 
+    //when click on buyer:
+    //score increases, buyer leaves for exit,
+    //should not be able to be interacted with after, 
+    //should not switch states after?
+
     // public override void OnInteract(Player p)
     // {
-    //     base.OnInteract(p);
+    //     OnClick(npc, p);
+    //     //score increases
+    //     SetFollower(exit);
     // }
 }
