@@ -5,26 +5,59 @@ using UnityEngine;
 public class Furniture : Interactable {
     public int weight;
     public int health;
-    public Vector3 startPos;
+    [HideInInspector] public Vector3 startPos;
+
+    public Rigidbody rb;
+    public Collider col;
+
+    protected FurnitureState curState;
+
+    Transform phand;
+    Vector3 holdpos;
+    Quaternion holdrot;
+
+    Transform pPos;
+
+    protected ICanHold holder;
 
     void Start() {
         startPos = transform.position;
-    }
-
-    public void GetPickedUp(Player p) {
-
+        curState = new GroundedState(this);
     }
 
     /// <summary>
-    /// Throwing a light one or dropping a heavy one
+    /// Throwing, dropping, or swinging
     /// </summary>
-    /// <param name="p"></param>
-    public void Release(Player p) {
+    public virtual void Use(ICanHold h) {
 
     }
 
-    public override void Interact(Player p)
-    {
-        throw new System.NotImplementedException();
+
+    public virtual void Release(ICanHold h) {
+        rb.useGravity = true;
+        SetState(new InAirState(this, h));
+    }
+
+    /// <summary>
+    /// override this in derived classes
+    /// </summary>
+    /// <param name="p"></param>
+    public override void Interact(Player p) {
+        
+    }
+
+    // */
+    protected void DropObject(ICanHold h) {
+        curState = new InAirState(this, h);
+        rb.useGravity = true;
+    }
+
+    void GrabObject(ICanHold h) {
+        curState = new HeldState(this, h);
+        rb.useGravity = false;
+    }
+
+    public void SetState(FurnitureState s) {
+        curState = s;
     }
 }
