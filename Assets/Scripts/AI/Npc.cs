@@ -48,6 +48,11 @@ public class Npc : Interactable {
 
     void Update() {
         curState?.FrameUpdate();
+
+
+        if (curRoom != null) {
+            Debug.Log("I am in Room" + curRoom.name);
+        }
     }
 
     public void SetState(NpcState state) {
@@ -103,10 +108,10 @@ public class Npc : Interactable {
         return new LineOfSightChecker(this, vision).CheckMonsters();
     }
 
-    int EvaluateRoom(Room r) {
+    float EvaluateRoom(Room r) {
         //interest starts at 20
-        int interest = 20;
-        int fDist = 1;
+        //int interest = 20;
+        //int fDist = 1;
         foreach (Furniture f in r.furniture) {
             if (f.health < 10) {
                 interest--;
@@ -117,7 +122,15 @@ public class Npc : Interactable {
             interest -= 10;
         }
 
+        if (SeeMonster(r)) {
+            interest = 0;
+        }
+
         return interest;
+    }
+
+    public bool SeeMonster(Room r) {
+        return (CheckSeeMonster() == null) ? false : true;
     }
 
     public bool SeePortal(Room r) {
