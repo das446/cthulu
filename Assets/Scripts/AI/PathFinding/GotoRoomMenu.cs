@@ -23,7 +23,7 @@ public class GotoRoomMenu : MonoBehaviour {
 
         //Camera.main.transform.localEulerAngles = new Vector3(0, 0, 0);
 
-        //StartCoroutine(MoveCamera());
+        StartCoroutine(MoveCamera());
 
     }
 
