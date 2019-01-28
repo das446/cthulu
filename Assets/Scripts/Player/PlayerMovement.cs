@@ -7,6 +7,8 @@ namespace Cthulu {
 
         public Player player;
 
+        bool locked;
+
         protected override void GetInput(out float speed) {
 
             // Read input
@@ -23,6 +25,9 @@ namespace Cthulu {
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
             m_Input = new Vector2(horizontal, vertical);
+            if(locked){
+                m_Input = Vector3.zero;
+            }
 
             // normalize input if it exceeds 1 in combined length:
             if (m_Input.sqrMagnitude > 1) {
@@ -46,6 +51,7 @@ namespace Cthulu {
         }
 
         public void Lock() {
+            locked=true;
             m_MouseLook.UnlockCursor();
             UpdateMouseLock();
         }
@@ -54,8 +60,13 @@ namespace Cthulu {
         /// Locking a cusor means it's invisible and doesn't move
         /// </summary>
         public void Unlock() {
+            locked=false;
             m_MouseLook.LockCursor();
             UpdateMouseLock();
+        }
+
+        public bool IsLocked(){
+            return locked;
         }
 
     }

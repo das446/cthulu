@@ -7,6 +7,8 @@ public abstract class NpcState {
 
     protected Npc npc;
 
+    public int priority;
+
     public static event Action<Npc, Player> OnClick;
 
     public abstract void FrameUpdate();
@@ -24,13 +26,12 @@ public abstract class NpcState {
         Vector3 target = p.transform.position;
         target.y = npc.transform.position.y;
         npc.transform.LookAt(target);
-        npc.interacting = true;
+        npc.Lock();
     }
 
     protected PathFollower SetFollower(Node target) {
         PathFollower follower = npc.follower;
-        Node start = follower.ClosestNode();
-        follower.SetPath(start, target);
+        follower.SetPath(target);
         return follower;
     }
 }
