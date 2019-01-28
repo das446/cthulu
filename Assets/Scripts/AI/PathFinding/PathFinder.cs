@@ -39,6 +39,11 @@ public class PathFinder {
 	}
 
 	public List<Node> ShortestPath() {
+
+		if (start.id == end.id) {
+			return new List<Node>() { start };
+		}
+
 		List<Node> open = start.Neighbors;
 		HashSet<Node> closed = new HashSet<Node>();
 		List<Node> path = new List<Node>();

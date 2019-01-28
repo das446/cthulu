@@ -34,14 +34,16 @@ public class BuyState : NpcState {
         SetFollower(lobby);
         waitTimer = defaultWaitTime;
         PathFollower.ReachNode += ReachLobby;
+        Debug.Log("Registered");
     }
 
     void ReachLobby(Npc n, Node node) {
         if (n == npc && node == lobby) {
             atLobby = true;
             Debug.Log("ReachLobby");
+            PathFollower.ReachNode -= ReachLobby;
         }
-        PathFollower.ReachNode -= ReachLobby;
+        
     }
 
     public override void Exit() {
