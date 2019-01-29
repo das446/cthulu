@@ -46,6 +46,8 @@ public class Npc : Interactable {
 
     [SerializeField] Text message;
 
+    const string happy = "☻";
+
     void Start() {
         StartWandering();
         follower = GetComponent<PathFollower>();
@@ -56,6 +58,7 @@ public class Npc : Interactable {
     public void Buy(Player p)
     {
         p.ChangeMoney(money);
+        SetMessage(happy,Color.yellow);
         SetState(new LeaveState(this, exitNode));
     }
 
@@ -205,5 +208,10 @@ public class Npc : Interactable {
     public void SetMessage(string s){
         SetMessage(s,Color.black);// should it default to black or keep last color?
 
+    }
+
+    public void ExitHouse()
+    {
+        Destroy(gameObject);
     }
 }
