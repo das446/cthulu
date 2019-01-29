@@ -10,10 +10,20 @@ public class WanderState : NpcState {
     float waitTime;
     float defaultTime = 5;
 
+    List<Node> nodesToAvoid;
+
     public WanderState(Npc npc, float waitTime) : base(npc) {
         this.npc = npc;
         this.waitTime = waitTime;
         timeUntilMove = waitTime;
+        Enter();
+    }
+
+    public WanderState(Npc npc, float waitTime, List<Node> avoids) : base(npc) {
+        this.npc = npc;
+        this.waitTime = waitTime;
+        timeUntilMove = waitTime;
+        nodesToAvoid = avoids;
         Enter();
     }
 
@@ -34,7 +44,10 @@ public class WanderState : NpcState {
     }
 
     private void MoveToRandomNeighbor() {
-        SetFollower(npc.follower.ClosestNode().RandomNeighbor());
+        if(nodesToAvoid == null)
+            SetFollower(npc.follower.ClosestNode().RandomNeighbor());
+        else
+            SetFollower(npc.follower.ClosestNode().RandomNeighbor(), nodesToAvoid);
     }
 
     public override void Enter() {

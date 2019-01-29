@@ -34,4 +34,10 @@ public abstract class NpcState {
         follower.SetPath(target);
         return follower;
     }
+
+    protected PathFollower SetFollower(Node target, List<Node> avoid) {
+        PathFollower follower = npc.follower;
+        follower.SetPath(target,avoid);
+        return follower;
+    }
 }
