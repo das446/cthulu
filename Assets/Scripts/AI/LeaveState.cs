@@ -20,6 +20,10 @@ public class LeaveState : NpcState {
 
     }
 
+    public override void OnInteract(Player p){
+
+    }
+
     public override void Exit() {
         throw new System.NotImplementedException();
     }

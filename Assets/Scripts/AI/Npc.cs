@@ -44,9 +44,9 @@ public class Npc : Interactable {
 
     public List<Node> nodesToAvoid;
 
-    [SerializeField] Text message;
+    [SerializeField] TMPro.TMP_Text message;
 
-    const string happy = "☻";
+    const string happy = "O";
 
     void Start() {
         StartWandering();

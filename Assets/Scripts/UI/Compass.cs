@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +11,12 @@ public class Compass : MonoBehaviour {
     public float offset = 90;
     // Start is called before the first frame update
     void Start() {
+        Monster.Spawn+=UpdateTarget;
+    }
 
+    private void UpdateTarget(Monster monster, Vector3 pos)
+    {
+        target = monster.gameObject;
     }
 
     // Update is called once per frame

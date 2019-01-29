@@ -11,4 +11,11 @@ public abstract class Monster : MonoBehaviour {
 
     public abstract void FurnitureContact(Furniture furniture);
 
+    public static event Action<Monster, Vector3> Spawn;
+
+    void Start(){
+        Spawn(this,transform.position);
+        OnSpawn();
+    }
+
 }
