@@ -8,6 +8,8 @@ public class ScaredState : NpcState
     PathFollower follower;
     PathFinder finder;
 
+    
+
     public ScaredState(Npc npc, Node node) : base(npc) 
     {
         exit = node;

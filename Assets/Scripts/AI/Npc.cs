@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using cakeslice;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Npc : Interactable {
 
@@ -11,6 +12,7 @@ public class Npc : Interactable {
     public float vision;
     [SerializeField] float speed;
     [SerializeField] float tolerance;
+    [SerializeField] int money;
     public float interest;
 
     [SerializeField] float idleWaitTime = 10;
@@ -42,11 +44,19 @@ public class Npc : Interactable {
 
     public List<Node> nodesToAvoid;
 
+    [SerializeField] Text message;
+
     void Start() {
         StartWandering();
         follower = GetComponent<PathFollower>();
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+    }
+
+    public void Buy(Player p)
+    {
+        p.ChangeMoney(money);
+        SetState(new LeaveState(this, exitNode));
     }
 
     /// <summary>
@@ -64,7 +74,6 @@ public class Npc : Interactable {
         }
 
         if (interest >= 100 && !isBuying) {
-            Debug.Log("NPC ready to buy");
             ReadyToBuy();
             isBuying = true;
         }
@@ -83,7 +92,7 @@ public class Npc : Interactable {
 
     public void StartWandering()
     {
-        curState.Exit();
+        curState?.Exit();
         curState = new WanderState(this, idleWaitTime, nodesToAvoid);
     }
 
@@ -186,5 +195,15 @@ public class Npc : Interactable {
 
     public void Die(){
         SetState(new DeadState(this));
+    }
+
+    public void SetMessage(string s, Color c){
+        message.text = s;
+        message.color = c;
+    }
+
+    public void SetMessage(string s){
+        SetMessage(s,Color.black);// should it default to black or keep last color?
+
     }
 }

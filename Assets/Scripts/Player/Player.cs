@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, ICanHold {
     [SerializeField] PlayerMovement movement;
     [SerializeField] float power;
     [SerializeField] Camera cam;
+    int money;
 
     public GameObject pos;
 
@@ -131,5 +132,9 @@ public class Player : MonoBehaviour, ICanHold {
 
     public Furniture CurFurniture() {
         return curItem;
+    }
+
+    public void ChangeMoney(int amnt){
+        money+=amnt;
     }
 }

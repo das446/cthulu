@@ -1,18 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GotoRoomMenu : MonoBehaviour {
-    public Room kitchen, bed;
+public class ReadyToBuyMenu : MonoBehaviour {
 
     [SerializeField] Npc curNpc;
     [SerializeField] Player player;
-    [SerializeField] float speed = 0.1f;
-    public Image interest;
+    [SerializeField] float speed = 150;
 
     void Start() {
-        NpcState.OnClick += Open;
+        BuyState.OnClick += Open;
+        BuyState.ExitState += Close;
+        gameObject.SetActive(false);
+    }
+
+    private void Close(Npc npc) {
+        curNpc = null;
         gameObject.SetActive(false);
     }
 
@@ -21,7 +25,6 @@ public class GotoRoomMenu : MonoBehaviour {
         curNpc = npc;
         player = p;
         player.Lock();
-        interest.fillAmount = curNpc.interest;
 
         //Camera.main.transform.localEulerAngles = new Vector3(0, 0, 0);
 
@@ -39,13 +42,12 @@ public class GotoRoomMenu : MonoBehaviour {
         }
     }
 
-    public void Click(Room r) {
-        curNpc.GoToRoom(r);
+    public void Click() {
         curNpc.locked = false;
         curNpc.Unlock();
+        curNpc.Buy(player);
         curNpc = null;
         gameObject.SetActive(false);
         player.Unlock();
-
     }
 }

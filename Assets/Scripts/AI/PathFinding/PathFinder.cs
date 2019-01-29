@@ -49,10 +49,6 @@ public class PathFinder {
 			return new List<Node>() { start };
 		}
 
-		if (avoid.Contains(end)) {
-			return new List<Node>();
-		}
-
 		List<Node> open = start.Neighbors;
 		HashSet<Node> closed = new HashSet<Node>();
 		List<Node> path = new List<Node>();
@@ -73,7 +69,7 @@ public class PathFinder {
 				if (!nodeData.ContainsKey(neighbor.id)) {
 					nodeData.Add(neighbor.id, new NodeData(neighbor, this));
 				}
-				if (closed.Contains(neighbor) || avoid.Contains(neighbor)) {
+				if (closed.Contains(neighbor)) {
 					continue;
 				}
 
@@ -110,6 +106,9 @@ public class PathFinder {
 	}
 
 	float dist(Node a, Node b) {
+		if(avoid.Contains(b)){
+			return Mathf.Infinity;
+		}
 		return Vector3.Distance(a.transform.position, b.transform.position);
 	}
 
