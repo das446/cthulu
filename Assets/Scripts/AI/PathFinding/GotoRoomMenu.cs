@@ -9,6 +9,7 @@ public class GotoRoomMenu : MonoBehaviour {
     [SerializeField] Npc curNpc;
     [SerializeField] Player player;
     [SerializeField] float speed = 0.1f;
+    public Image interest;
 
     void Start() {
         NpcState.OnClick += Open;
@@ -20,6 +21,7 @@ public class GotoRoomMenu : MonoBehaviour {
         curNpc = npc;
         player = p;
         player.Lock();
+        interest.fillAmount = curNpc.interest;
 
         //Camera.main.transform.localEulerAngles = new Vector3(0, 0, 0);
 

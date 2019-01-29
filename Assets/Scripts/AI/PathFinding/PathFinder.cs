@@ -5,7 +5,7 @@ public class PathFinder {
 
 	Node start, end;
 
-	public List<Node> avoid;
+	public List<Node> avoid = new List<Node>();
 	public struct NodeData {
 		PathFinder p;
 		public Node node;

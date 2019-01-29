@@ -11,7 +11,7 @@ public class Npc : Interactable {
     public float vision;
     [SerializeField] float speed;
     [SerializeField] float tolerance;
-    [SerializeField] float interest;
+    public float interest;
 
     [SerializeField] float idleWaitTime = 10;
 
