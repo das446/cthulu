@@ -40,4 +40,5 @@ public abstract class NpcState {
         follower.SetPath(target,avoid);
         return follower;
     }
+    
 }

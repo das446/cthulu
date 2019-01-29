@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,18 +14,23 @@ public class BuyState : NpcState {
 
     private bool atLobby;
 
+    public new static event Action<Npc, Player> OnClick;
+    public static event Action<Npc> ExitState;
+
     public BuyState(Npc npc, Node node) : base(npc) {
         lobby = node;
         Enter();
+    }
+
+    public override void OnInteract(Player p) {
+        OnClick(npc,p);
     }
 
     public override void FrameUpdate() {
 
         if (atLobby) {
             waitTimer -= Time.deltaTime;
-            Debug.Log(waitTimer);
             if (waitTimer <= 0) {
-                atLobby = false;
                 npc.LeaveBuyState();
             }
         }
@@ -34,20 +40,19 @@ public class BuyState : NpcState {
         SetFollower(lobby);
         waitTimer = defaultWaitTime;
         PathFollower.ReachNode += ReachLobby;
-        Debug.Log("Registered");
+        npc.SetMessage("$",Color.green);
     }
 
     void ReachLobby(Npc n, Node node) {
         if (n == npc && node == lobby) {
             atLobby = true;
-            Debug.Log("ReachLobby");
             PathFollower.ReachNode -= ReachLobby;
         }
         
     }
 
     public override void Exit() {
-
+        npc.SetMessage("$",Color.green);
     }
 
     //when click on buyer:
