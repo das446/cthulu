@@ -75,4 +75,11 @@ public class Furniture : Interactable, IEvaluated {
     {
         throw new System.NotImplementedException();
     }
+
+    public void TakeDamage(int dmg){
+        health-=dmg;
+        if(health<=0){
+            Break();
+        }
+    }
 }

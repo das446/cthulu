@@ -19,6 +19,9 @@ public class InAirState : FurnitureState {
             m.FurnitureContact(furniture);
         } else {
             furniture.SetState(new GroundedState(furniture));
+            furniture.TakeDamage(1);
         }
+
+        
     }
 }
