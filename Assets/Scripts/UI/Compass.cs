@@ -11,17 +11,18 @@ public class Compass : MonoBehaviour {
     public float offset = 90;
     // Start is called before the first frame update
     void Start() {
-        Monster.Spawn+=UpdateTarget;
+        Monster.Spawn += UpdateTarget;
     }
 
-    private void UpdateTarget(Monster monster, Vector3 pos)
-    {
+    private void UpdateTarget(Monster monster, Vector3 pos) {
         target = monster.gameObject;
     }
 
     // Update is called once per frame
     void Update() {
-        UpdateCompass(player.transform, target.transform.position);
+        if (target != null) {
+            UpdateCompass(player.transform, target.transform.position);
+        }
     }
 
     void UpdateCompass(Transform player, Vector3 target) {

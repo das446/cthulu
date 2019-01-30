@@ -73,7 +73,7 @@ public class Furniture : Interactable, IEvaluated {
 
     public float Evaluate(Npc npc, Room r)
     {
-        throw new System.NotImplementedException();
+        return health;
     }
 
     public void TakeDamage(int dmg){

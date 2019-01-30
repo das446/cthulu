@@ -134,6 +134,7 @@ public class Npc : Interactable {
         interest -= 20;
         StartWandering();
         isBuying = false;
+        SetMessage("");
     }
 
     /// <summary>
@@ -176,7 +177,6 @@ public class Npc : Interactable {
         List<IEvaluated> items = GetEvaluatedObjects();
 
         for (int i = 0; i < items.Count; i++) {
-            Debug.Log(items[i]);
             interest += items[i].Evaluate(this, r);
         }
         return interest;

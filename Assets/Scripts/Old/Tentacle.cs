@@ -41,13 +41,4 @@ public class Tentacle : Monster, ICanHold {
         throw new System.NotImplementedException();
     }
 
-    // Use this for initialization
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
 }

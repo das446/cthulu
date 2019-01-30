@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using cakeslice;
 using Cthulu;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, ICanHold {
 
-    Outline curOutline;
+    cakeslice.Outline curOutline;
     [SerializeField] float interactRange;
     public Transform hand;
     public Furniture curItem;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour, ICanHold {
     [SerializeField] float power;
     [SerializeField] Camera cam;
     int money;
+    [SerializeField] Text moneyText;
 
     public GameObject pos;
 
@@ -77,7 +79,7 @@ public class Player : MonoBehaviour, ICanHold {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange * 10)) {
             IHasOutline ho = hit.collider.gameObject.GetComponent<IHasOutline>();
-            Outline outline = ho?.GetOutline();
+            cakeslice.Outline outline = ho?.GetOutline();
             if (outline == null) {
                 if (curOutline != null) {
                     curOutline.enabled = false;
@@ -136,5 +138,6 @@ public class Player : MonoBehaviour, ICanHold {
 
     public void ChangeMoney(int amnt){
         money+=amnt;
+        moneyText.text = money.ToString("#,##0")+"$";
     }
 }
