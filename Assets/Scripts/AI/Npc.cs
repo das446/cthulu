@@ -47,6 +47,7 @@ public class Npc : Interactable {
     [SerializeField] TMPro.TMP_Text message;
 
     const string happy = "O";
+    const int wallLayer = 1 << 12; //might need to invert
 
     void Start() {
         StartWandering();
@@ -55,10 +56,9 @@ public class Npc : Interactable {
         col = GetComponent<Collider>();
     }
 
-    public void Buy(Player p)
-    {
+    public void Buy(Player p) {
         p.ChangeMoney(money);
-        SetMessage(happy,Color.yellow);
+        SetMessage(happy, Color.yellow);
         SetState(new LeaveState(this, exitNode));
     }
 
@@ -72,7 +72,7 @@ public class Npc : Interactable {
 
     void Update() {
 
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
             interest = 100;
         }
 
@@ -93,8 +93,7 @@ public class Npc : Interactable {
         curState = state;
     }
 
-    public void StartWandering()
-    {
+    public void StartWandering() {
         curState?.Exit();
         curState = new WanderState(this, idleWaitTime, nodesToAvoid);
     }
@@ -171,21 +170,31 @@ public class Npc : Interactable {
         //interest starts at 20
         //int interest = 20;
         //int fDist = 1;
-        foreach (Furniture f in r.furniture) {
-            if (f.health < 10) {
-                interest--;
-            }
-        }
 
-        if (SeePortal(r)) {
-            interest -= 10;
-        }
+        float interest = 20;
 
-        if (SeeMonster(r)) {
-            interest = 0;
-        }
+        List<IEvaluated> items = GetEvaluatedObjects();
 
+        for (int i = 0; i < items.Count; i++) {
+            Debug.Log(items[i]);
+            interest += items[i].Evaluate(this, r);
+        }
         return interest;
+
+    }
+
+    private List<IEvaluated> GetEvaluatedObjects() {
+        Collider[] cols = Physics.OverlapBox(transform.position, new Vector3(vision, 1, vision), Quaternion.identity, wallLayer);
+        List<IEvaluated> items = new List<IEvaluated>();
+        for (int i = 0; i < cols.Length; i++) {
+            IEvaluated ev = cols[i].GetComponent<IEvaluated>();
+            if (ev != null) {
+                items.Add(ev);
+            }
+
+        }
+
+        return items;
     }
 
     public bool SeeMonster(Room r) {
@@ -196,22 +205,21 @@ public class Npc : Interactable {
         return new LineOfSightChecker(this, vision).CheckPortals();
     }
 
-    public void Die(){
+    public void Die() {
         SetState(new DeadState(this));
     }
 
-    public void SetMessage(string s, Color c){
+    public void SetMessage(string s, Color c) {
         message.text = s;
         message.color = c;
     }
 
-    public void SetMessage(string s){
-        SetMessage(s,Color.black);// should it default to black or keep last color?
+    public void SetMessage(string s) {
+        SetMessage(s, Color.black); // should it default to black or keep last color?
 
     }
 
-    public void ExitHouse()
-    {
+    public void ExitHouse() {
         Destroy(gameObject);
     }
 }

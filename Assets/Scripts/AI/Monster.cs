@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class Monster : MonoBehaviour {
+public abstract class Monster : MonoBehaviour, IEvaluated {
 
     protected int hp;
 
@@ -17,5 +17,12 @@ public abstract class Monster : MonoBehaviour {
         Spawn(this,transform.position);
         OnSpawn();
     }
+
+    public float Evaluate(Npc npc, Room r)
+    {
+        throw new NotImplementedException();
+    }
+
+
 
 }

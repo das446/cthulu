@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Furniture : Interactable {
+public class Furniture : Interactable, IEvaluated {
 
     /// <summary>
     /// Player's speed gets divided by weight while holding it, so set it accordingly
@@ -63,5 +63,16 @@ public class Furniture : Interactable {
 
     public void SetState(FurnitureState s) {
         curState = s;
+    }
+
+    public void Break(){
+        //Particle Effect
+        //MakeDebris
+        Destroy(gameObject);
+    }
+
+    public float Evaluate(Npc npc, Room r)
+    {
+        throw new System.NotImplementedException();
     }
 }
