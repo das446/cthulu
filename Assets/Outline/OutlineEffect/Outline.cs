@@ -67,6 +67,7 @@ namespace cakeslice {
     }
 
     public interface IHasOutline {
+        //TODO: allow multiple outlines
         Outline GetOutline();
         bool Valid(Player p);
     }
