@@ -14,6 +14,7 @@ public class Npc : Interactable {
     [SerializeField] float tolerance;
     [SerializeField] int money;
     public float interest;
+    [SerializeField] float baseInterest;
 
     [SerializeField] float idleWaitTime = 10;
 
@@ -109,7 +110,6 @@ public class Npc : Interactable {
             interest += roomInterest;
         }
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
-        CheckSeeMonster();
     }
 
     public void GoToRoom(Room r) {
@@ -163,16 +163,12 @@ public class Npc : Interactable {
         //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",true);
     }
 
-    public List<Monster> CheckSeeMonster() {
-        return new LineOfSightChecker(this, vision).CheckMonsters();
-    }
-
     float EvaluateRoom(Room r) {
         //interest starts at 20
         //int interest = 20;
         //int fDist = 1;
 
-        float interest = 20;
+        float interest = baseInterest;
 
         List<IEvaluated> items = GetEvaluatedObjects();
 
@@ -198,14 +194,6 @@ public class Npc : Interactable {
         return items;
     }
 
-    public bool SeeMonster(Room r) {
-        return (CheckSeeMonster() == null) ? false : true;
-    }
-
-    public bool SeePortal(Room r) {
-        return new LineOfSightChecker(this, vision).CheckPortals();
-    }
-
     public void Die() {
         SetState(new DeadState(this));
     }
@@ -228,5 +216,10 @@ public class Npc : Interactable {
         Npc npc = Instantiate(this, n.transform.position + Vector3.up, Quaternion.identity);
         npc.exitNode = n;
         npc.SetState(new WanderState(npc, 10));
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position,vision);
     }
 }

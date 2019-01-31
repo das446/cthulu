@@ -61,4 +61,8 @@ public class Node : MonoBehaviour {
 	public Node RandomNeighbor() {
 		return neighbors.RandomItem();
 	}
+
+	public Node RandomNeighbor(Node exclude) {
+		return neighbors.RandomItem(x => x != exclude);
+	}
 }

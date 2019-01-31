@@ -24,6 +24,8 @@ public class Player : MonoBehaviour, ICanHold {
 
     public Transform Hand => hand;
 
+    [SerializeField] int goalMoney;
+
     // Start is called before the first frame update
     void Start() {
 
@@ -139,5 +141,14 @@ public class Player : MonoBehaviour, ICanHold {
     public void ChangeMoney(int amnt){
         money+=amnt;
         moneyText.text = money.ToString("#,##0")+"$";
+
+        if(money>=goalMoney){
+            WinLevel();
+        }
+    }
+
+    private void WinLevel()
+    {
+        throw new NotImplementedException();
     }
 }
