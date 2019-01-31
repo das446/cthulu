@@ -8,7 +8,7 @@ public class Furniture : Interactable, IEvaluated {
     /// Player's speed gets divided by weight while holding it, so set it accordingly
     /// </summary>
     public float weight;
-    public int health;
+    public float health;
     [HideInInspector] public Vector3 startPos;
 
     public Rigidbody rb;
@@ -69,7 +69,7 @@ public class Furniture : Interactable, IEvaluated {
 
     public void Break(){
         //Particle Effect
-        Instantiate(debris);
+        Instantiate(debris,transform.position,Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -78,7 +78,7 @@ public class Furniture : Interactable, IEvaluated {
         return health;
     }
 
-    public void TakeDamage(int dmg){
+    public void TakeDamage(float dmg){
         health-=dmg;
         if(health<=0){
             Break();

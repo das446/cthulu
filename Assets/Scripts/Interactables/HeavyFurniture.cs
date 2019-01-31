@@ -5,6 +5,7 @@ using UnityEngine;
 public class HeavyFurniture : Furniture {
     // Start is called before the first frame update
     [SerializeField] SpringJoint joint;
+    Vector3 prevPos;
 
     public override void Interact(Player p, Vector3 pos) {
         if (p.CurFurniture() == null) {
@@ -16,12 +17,19 @@ public class HeavyFurniture : Furniture {
 
     }
 
-    // public void FixedUpdate() {
-    //     if (curState.Held()) {
-    //         Vector3 dir =  ;
-    //         Drag(dir);
-    //     }
-    // }
+    void Start() {
+        startPos = transform.position;
+        curState = new GroundedState(this);
+        prevPos = transform.position;
+    }
+
+    void Update() {
+        float d = Vector3.Distance(transform.position, prevPos);
+        if (d > 0.01f) {
+            TakeDamage(d);
+        }
+        prevPos = transform.position;
+    }
 
     public override void Release(ICanHold h) {
         base.Release(h);

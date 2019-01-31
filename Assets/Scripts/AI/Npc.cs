@@ -185,7 +185,7 @@ public class Npc : Interactable {
     }
 
     private List<IEvaluated> GetEvaluatedObjects() {
-        Collider[] cols = Physics.OverlapBox(transform.position, new Vector3(vision, 1, vision), Quaternion.identity, wallLayer);
+        Collider[] cols = Physics.OverlapSphere(transform.position, vision, wallLayer);
         List<IEvaluated> items = new List<IEvaluated>();
         for (int i = 0; i < cols.Length; i++) {
             IEvaluated ev = cols[i].GetComponent<IEvaluated>();
@@ -222,5 +222,11 @@ public class Npc : Interactable {
 
     public void ExitHouse() {
         Destroy(gameObject);
+    }
+
+    public void Spawn(Node n) {
+        Npc npc = Instantiate(this, n.transform.position + Vector3.up, Quaternion.identity);
+        npc.exitNode = n;
+        npc.SetState(new WanderState(npc, 10));
     }
 }
