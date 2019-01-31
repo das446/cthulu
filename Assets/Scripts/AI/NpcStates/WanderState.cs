@@ -15,20 +15,19 @@ public class WanderState : NpcState {
     public WanderState(Npc npc, float waitTime) : base(npc) {
         this.npc = npc;
         this.waitTime = waitTime;
-        timeUntilMove = waitTime;
+        timeUntilMove = 0;
         Enter();
     }
 
     public WanderState(Npc npc, float waitTime, List<Node> avoids) : base(npc) {
         this.npc = npc;
         this.waitTime = waitTime;
-        timeUntilMove = waitTime;
+        timeUntilMove = 1;
         nodesToAvoid = avoids;
         Enter();
     }
 
     public WanderState(Npc npc) : base(npc) {
-        Debug.Log("Constructor");
         this.waitTime = 5;
         timeUntilMove = waitTime;
     }

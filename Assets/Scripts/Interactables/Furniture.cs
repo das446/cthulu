@@ -24,6 +24,8 @@ public class Furniture : Interactable, IEvaluated {
 
     protected ICanHold holder;
 
+    [SerializeField] FurnitureDebris debris;
+
     void Start() {
         startPos = transform.position;
         curState = new GroundedState(this);
@@ -67,7 +69,7 @@ public class Furniture : Interactable, IEvaluated {
 
     public void Break(){
         //Particle Effect
-        //MakeDebris
+        Instantiate(debris);
         Destroy(gameObject);
     }
 

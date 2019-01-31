@@ -9,6 +9,8 @@ public class MonsterSpawnController : MonoBehaviour {
     [SerializeField] int difficulty;
     [SerializeField] float spawnRate;
 
+    
+
     float nextSpawn;
 
     // Start is called before the first frame update
