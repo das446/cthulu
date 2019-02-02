@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightFurniture : Furniture {
+public class LightFurniture : Furniture, IPickUpable {
 
     public override void Interact(Player p) {
         if (p.CurFurniture() == null) {
@@ -35,4 +35,8 @@ public class LightFurniture : Furniture {
         rb.AddRelativeForce(dir * holder.Power, ForceMode.Impulse);
     }
 
+    public bool CanBePickedUp(ICanHold h)
+    {
+        throw new System.NotImplementedException();
+    }
 }

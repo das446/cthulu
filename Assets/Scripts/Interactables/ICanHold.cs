@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface ICanHold {
-    void PickUp(Furniture f);
-    void Release(Furniture f);
+    void PickUp( IPickUpable i);
+    void Release(IPickUpable i);
     Transform Hand{
         get;
     }
@@ -12,7 +12,7 @@ public interface ICanHold {
         get;
     }
 
-    Furniture CurFurniture();
+    IPickUpable CurHeld();
 
     Vector3 GetThrowDir();
 }

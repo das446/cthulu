@@ -12,7 +12,7 @@ public class DeadState : NpcState
 
     public override void Enter()
     {
-        throw new System.NotImplementedException();
+        //SetRagdoll
     }
 
     public override void Exit()

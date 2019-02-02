@@ -5,7 +5,7 @@ using cakeslice;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Npc : Interactable {
+public class Npc : Interactable, IPickUpable {
 
     NpcState curState;
 
@@ -221,5 +221,17 @@ public class Npc : Interactable {
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position,vision);
+    }
+
+    public bool CanBePickedUp(ICanHold h)
+    {
+        return true;
+        //return is Monster
+    }
+
+    public void GetPickedUp(ICanHold h)
+    {
+        SetState(new DeadState(this));
+        Die();
     }
 }

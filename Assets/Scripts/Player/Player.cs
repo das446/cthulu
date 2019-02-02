@@ -151,4 +151,19 @@ public class Player : MonoBehaviour, ICanHold {
     {
         throw new NotImplementedException();
     }
+
+    public void PickUp(IPickUpable i)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Release(IPickUpable i)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IPickUpable CurHeld()
+    {
+        throw new NotImplementedException();
+    }
 }

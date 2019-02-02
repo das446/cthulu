@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeavyFurniture : Furniture {
+public class HeavyFurniture : Furniture,IPickUpable {
     // Start is called before the first frame update
     [SerializeField] SpringJoint joint;
     Vector3 prevPos;
@@ -50,5 +50,15 @@ public class HeavyFurniture : Furniture {
         joint.connectedBody = h.Hand.GetComponent<Rigidbody>();
         joint.spring = 50;
         joint.anchor = pos;
+    }
+
+    public bool CanBePickedUp(ICanHold h)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void GetPickedUp(ICanHold h)
+    {
+        throw new System.NotImplementedException();
     }
 }
