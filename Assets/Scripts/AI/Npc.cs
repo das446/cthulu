@@ -45,6 +45,10 @@ public class Npc : Interactable {
 
     public List<Node> nodesToAvoid;
 
+    public GameObject ragdollVersion;
+
+    public bool isDead;
+
     [SerializeField] TMPro.TMP_Text message;
 
     const string happy = "O";
@@ -85,6 +89,10 @@ public class Npc : Interactable {
             Debug.Log("NPC is scared");
             RunToExit();
             isRunning = true;
+        }
+        if(isDead)
+        {
+            Die();
         }
         curState?.FrameUpdate();
 
@@ -195,7 +203,7 @@ public class Npc : Interactable {
     }
 
     public void Die() {
-        SetState(new DeadState(this));
+        SetState(new DeadState(this, ragdollVersion));
     }
 
     public void SetMessage(string s, Color c) {
