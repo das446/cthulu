@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using cakeslice;
 using Cthulu;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour, ICanHold {
@@ -149,6 +150,6 @@ public class Player : MonoBehaviour, ICanHold {
 
     private void WinLevel()
     {
-        throw new NotImplementedException();
+        SceneManager.LoadScene("WinScreen");
     }
 }
