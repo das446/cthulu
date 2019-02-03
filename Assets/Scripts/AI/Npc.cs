@@ -54,6 +54,7 @@ public class Npc : Interactable
 
     void Start()
     {
+        gameObject.PlaySound("PoshManEnters");
         StartWandering();
         follower = GetComponent<PathFollower>();
         rb = GetComponent<Rigidbody>();
@@ -96,11 +97,12 @@ public class Npc : Interactable
             isRunning = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+       /*  if (Input.GetKeyDown(KeyCode.A))
         {
             gameObject.PlaySound("Test");
             Debug.Log("!");
         }
+        */
 
         curState?.FrameUpdate();
 
