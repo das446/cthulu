@@ -52,5 +52,22 @@ namespace Cthulu {
             }
         }
 
+        public void PlaySound(string Sound,AudioSource source, float volume) {
+            Debug.Log("test");
+            if (soundEffects == null) {
+                soundEffects = new List<sfx>();
+            }
+            if (soundEffects.Where(x=>x.name==Sound).Count()>0) {
+                
+                AudioClip s = soundEffects.Where(x=>x.name==Sound).First().sound;
+                Music.PlaySound(s, source , volume);
+                Music.Source.pitch = 1;
+            } else if (this != DefaultSounds) {
+                DefaultSounds.PlaySound(Sound, source, volume);
+            } else {
+                Debug.LogWarning("No sound effect named " + Sound);
+            }
+        }
+
     }
 }
