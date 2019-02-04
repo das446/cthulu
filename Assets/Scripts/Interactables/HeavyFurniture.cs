@@ -6,6 +6,10 @@ public class HeavyFurniture : Furniture {
     // Start is called before the first frame update
     [SerializeField] Joint joint;
 
+    public  Rigidbody restReference;
+
+    public Player p;
+
     void Start() {
 
     }
@@ -26,8 +30,10 @@ public class HeavyFurniture : Furniture {
     }
 
     public override void Release(ICanHold h) {
+       
         base.Release(h);
-        joint.connectedBody = null;
+        joint.connectedBody = restReference;
+         p.curItem = null;
     }
 
     void GetPickedUp(ICanHold h) {
