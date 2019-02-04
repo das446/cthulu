@@ -10,12 +10,46 @@ public class HeavyFurniture : Furniture {
 
     public Player p;
 
-    void Start() {
+    public float rateOfRotate;
+    
+    bool pickedup;
+    private Vector3 rot;
+    private Vector3 antiRot;
+    void  Start()
+    {
+        GetComponent<Rigidbody>().useGravity = true;
+        pickedup = false;
+        rot = new Vector3 (0,rateOfRotate,0);
+        
+        antiRot = new Vector3 (0,-rateOfRotate,0);
 
     }
+   
+    void FixedUpdate() {
+        
+        
+        /// Force heavy objects to stick to the ground
+       // if (Physics.Raycast(transform.position, -Vector3.up, GetComponent<Collider>().bounds.extents.y + 0.1f)) 
+       // {
+       //  GetComponent<Rigidbody>().MovePosition(new Vector3 (transform.position.x,transform.position.y-.1f,transform.position.z));
+         
+       // }
 
-    // Update is called once per frame
-    void Update() {
+    if (pickedup)
+    {
+        
+        
+        if ( Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            
+            GetComponent<Rigidbody>().AddTorque(rot,ForceMode.VelocityChange);
+        }
+        else if ( Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+           
+            GetComponent<Rigidbody>().AddTorque(antiRot,ForceMode.VelocityChange);
+        }
+    }
 
     }
 
@@ -34,10 +68,16 @@ public class HeavyFurniture : Furniture {
         base.Release(h);
         joint.connectedBody = restReference;
          p.curItem = null;
+         pickedup = false;
+         
     }
 
     void GetPickedUp(ICanHold h) {
         h.PickUp(this);
         joint.connectedBody = h.Hand.GetComponent<Rigidbody>();
+        pickedup = true;
     }
+
+    
+
 }

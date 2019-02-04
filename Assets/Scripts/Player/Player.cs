@@ -21,9 +21,11 @@ public class Player : MonoBehaviour, ICanHold {
 
     public Transform Hand => hand;
 
+    private float walkSpeedRef;
+
     // Start is called before the first frame update
     void Start() {
-
+        walkSpeedRef = 3;
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class Player : MonoBehaviour, ICanHold {
     public void Release(Furniture f) {
         f?.Release(this);
         curItem = null;
-        movement.SetSpeed(x => x * curItem.rb.mass);
+        movement.SetSpeed(x => x * curItem.rb.mass); // Doesnt seem to reset speed regardless of where it gets moved in the function
     }
 
     private void CheckInteract() {
