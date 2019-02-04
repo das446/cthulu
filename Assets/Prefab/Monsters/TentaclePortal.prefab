@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 65681164026366128}
   - component: {fileID: 6159313683868300820}
   m_Layer: 0
-  m_Name: Portal
+  m_Name: TentaclePortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,5 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2fb65bc880eea4ca57310bc1e8c0b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterBase: {fileID: 0}
+  hp: 10
+  scareFactor: 0
+  damage: 0
+  monsterBase: {fileID: 4342329492730129385, guid: d8beb7010e5440e47922dcca7fce4f51,
+    type: 3}
   delay: 0
