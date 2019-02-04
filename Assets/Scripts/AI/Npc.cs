@@ -56,8 +56,10 @@ public class Npc : Interactable, IPickUpable {
     const int wallLayer = 1 << 12; //might need to invert
 
     // [SerializeField] GameObject deadNpc;
-
-    void Start() {
+    
+    void Start()
+    {
+        gameObject.PlaySound("PoshManEnters");
         StartWandering();
         follower = GetComponent<PathFollower>();
         rb = GetComponent<Rigidbody>();
@@ -104,11 +106,12 @@ public class Npc : Interactable, IPickUpable {
             Die();
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+       /*  if (Input.GetKeyDown(KeyCode.A))
         {
             gameObject.PlaySound("Test");
             Debug.Log("!");
         }
+        */
 
         curState?.FrameUpdate();
 
