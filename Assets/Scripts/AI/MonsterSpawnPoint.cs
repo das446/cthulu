@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterSpawnPoint : MonoBehaviour {
 
-    Monster curMonster;
+    [SerializeField] Monster curMonster;
     // Start is called before the first frame update
     void Start() {
 
