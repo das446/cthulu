@@ -1,38 +1,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.Linq;
 
 //using System.Diagnostics;
 
-namespace Cthulu {
+namespace Cthulu
+{
     [RequireComponent(typeof(AudioSource))]
-    public class Music : MonoBehaviour {
+    public class Music : MonoBehaviour
+    {
+
+        [Serializable]
+        public struct Song
+        {
+            public string name;
+            public AudioClip sound;
+        }
+
+        [SerializeField]
+        public List<Song> songs;
 
         public AudioClip CurrentSong;
         private static AudioSource _source1;
-        public List<AudioClip> Songs;
         string currentSongName;
 
         private static Music instance = null;
 
-        public Dictionary<string, AudioClip> SongsDict;
-        public List<string> names, prevNames;
-        public bool Updated;
         public float DefaultVolume;
 
-        public static AudioSource Source {
-            get {
+        public static AudioSource Source
+        {
+            get
+            {
                 if (_source1 == null) { Source = instance.GetComponent<AudioSource>(); }
                 return _source1;
             }
 
-            set {
+            set
+            {
                 _source1 = value;
             }
         }
 
-        void Awake() {
-            if (instance != null && instance != this) {
+        void Awake()
+        {
+            if (instance != null && instance != this)
+            {
                 Destroy(gameObject);
                 return;
             }
@@ -41,28 +56,24 @@ namespace Cthulu {
             // SceneManager.activeSceneChanged += SceneManager_activeSceneChanged1; ;
         }
 
-        void OnEnable() {
+        void OnEnable()
+        {
 
             //SceneManager.sceneLoaded += OnLevelFinishedLoading;
         }
 
-        void OnDisable() {
+        void OnDisable()
+        {
             //SceneManager.sceneLoaded -= OnLevelFinishedLoading;
         }
 
-        void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
-            if (CurrentSong != Songs[SceneManager.GetActiveScene().buildIndex]) {
-                Source.Stop();
-                CurrentSong = Songs[SceneManager.GetActiveScene().buildIndex];
-                Source.loop = true;
-                Source.clip = CurrentSong;
-                if (PlayerPrefs.GetInt("Music") == 1) {
-                    Source.Play();
-                }
-            }
+        void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+        {
+            ChangeSong(scene.buildIndex);
         }
 
-        void Start() {
+        void Start()
+        {
             Source.Stop();
             Source = GetComponent<AudioSource>();
             //CurrentSong = Songs[SceneManager.GetActiveScene().buildIndex];
@@ -73,35 +84,50 @@ namespace Cthulu {
 
         // Update is called once per frame
 
-        public static void PlaySound(AudioClip sound, float volume = 1) {
+        public static void PlaySound(AudioClip sound, float volume = 1)
+        {
             Source.PlayOneShot(sound, volume);
         }
 
-        public static void Stop() {
+        public static void PlaySound(AudioClip sound, AudioSource source, float volume = 1)
+        {
+            Debug.Log("Sound");
+            source.PlayOneShot(sound, volume);
+        }
+
+        public static void Stop()
+        {
             Source.Stop();
         }
 
-        public static void Play() {
+        public static void Play()
+        {
             Source.Play();
         }
 
-        public static void ChangeSong(string SongName) {
+        public static void ChangeSong(string SongName)
+        {
 
-            if (instance.SongsDict == null) {
-                instance.SongsDict = new Dictionary<string, AudioClip>();
-                instance.SongsDict.FromLists(instance.names, instance.Songs);
-            }
-            if (!instance.SongsDict.ContainsKey(SongName)) { return; }
             Source.Stop();
-            instance.CurrentSong = instance.SongsDict[SongName];
+            instance.CurrentSong = instance.songs.Where(x=>x.name == SongName).First().sound;
             Source.loop = true;
             Source.clip = instance.CurrentSong;
             Source.Play();
-
             instance.currentSongName = SongName;
         }
 
-        public static string currentSong() {
+        public static void ChangeSong(int SongIndex)
+        {
+
+            Source.Stop();
+            instance.CurrentSong = instance.songs[SongIndex].sound;
+            Source.loop = true;
+            Source.clip = instance.CurrentSong;
+            Source.Play();
+        }
+
+        public static string currentSong()
+        {
             return instance.currentSongName;
         }
 
