@@ -37,6 +37,17 @@ public class LightFurniture : Furniture, IPickUpable {
 
     public bool CanBePickedUp(ICanHold h)
     {
-        throw new System.NotImplementedException();
+        return curState.Grounded();
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Monster m = other.collider.GetComponent<Monster>();
+        if(m!=null){
+            m.FurnitureContact(this);
+        }
+        else{
+            SetState(new GroundedState(this));
+        }
+    } 
 }

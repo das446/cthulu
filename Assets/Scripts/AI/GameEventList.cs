@@ -10,10 +10,10 @@ public class GameEventList : MonoBehaviour {
     float time;
     bool started = false;
 
-    [SerializeField] bool master = false;
+    [SerializeField] bool autoStart = false;
 
     void Start(){
-        if(master){
+        if(autoStart){
             Init();
         }
     }

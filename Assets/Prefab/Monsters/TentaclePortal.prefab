@@ -180,7 +180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4980156998694530}
   - component: {fileID: 82355498351274458}
-  - component: {fileID: 114904796177520232}
   m_Layer: 0
   m_Name: OB_SmallPortal_01
   m_TagString: Untagged
@@ -300,20 +299,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114904796177520232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1332574576935390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bb856a8c65f49048937b00d2f22fa9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axis: 2
-  speed: 1
 --- !u!1 &1549264274319882
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,9 +369,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4904949117957356}
-  - component: {fileID: 114196731767914446}
   - component: {fileID: 65681164026366128}
-  - component: {fileID: 114914968403380592}
+  - component: {fileID: 6159313683868300820}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -409,22 +393,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114196731767914446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884699085697894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b748c4af870a7349a37184985c6937f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0, z: 0}
-  monster: {fileID: 1184961877425042, guid: d8beb7010e5440e47922dcca7fce4f51, type: 3}
-  spawn: 1
-  rnd: 0
 --- !u!65 &65681164026366128
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -438,7 +406,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14012074, y: 1.713984, z: 1.2701273}
   m_Center: {x: -0.05107844, y: 0.03809476, z: 0.0646739}
---- !u!114 &114914968403380592
+--- !u!114 &6159313683868300820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -447,8 +415,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1884699085697894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bb856a8c65f49048937b00d2f22fa9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b2fb65bc880eea4ca57310bc1e8c0b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axis: 2
-  speed: 1
+  monsterBase: {fileID: 0}
+  delay: 0

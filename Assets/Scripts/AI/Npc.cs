@@ -50,6 +50,8 @@ public class Npc : Interactable, IPickUpable {
     const string happy = "O";
     const int wallLayer = 1 << 12; //might need to invert
 
+    [SerializeField] GameObject deadNpc;
+
     void Start() {
         StartWandering();
         follower = GetComponent<PathFollower>();
@@ -196,6 +198,12 @@ public class Npc : Interactable, IPickUpable {
 
     public void Die() {
         SetState(new DeadState(this));
+        GameObject d = Instantiate(deadNpc,transform.position,transform.rotation);
+        Destroy(gameObject);
+    }
+
+    public void Die(ICanHold h) {
+        SetState(new DeadState(this));
     }
 
     public void SetMessage(string s, Color c) {
@@ -218,20 +226,23 @@ public class Npc : Interactable, IPickUpable {
         npc.SetState(new WanderState(npc, 10));
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position,vision);
+    void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, vision);
     }
 
-    public bool CanBePickedUp(ICanHold h)
-    {
+    public bool CanBePickedUp(ICanHold h) {
         return true;
         //return is Monster
     }
 
-    public void GetPickedUp(ICanHold h)
+    public void GetPickedUp(ICanHold h) {
+        if (CanBePickedUp(h)) {
+            Die(h);
+        }
+    }
+
+    public void Release(ICanHold h)
     {
-        SetState(new DeadState(this));
-        Die();
+        rb.AddForce(h.GetThrowDir());
     }
 }

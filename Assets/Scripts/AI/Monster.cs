@@ -48,7 +48,10 @@ public abstract class Monster : MonoBehaviour, IEvaluated {
             }
         }
         return 0;
+    }
 
+    public void SpawnMonster(MonsterSpawnPoint s){
+        s.Spawn(this);
     }
 
 }
