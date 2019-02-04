@@ -152,4 +152,19 @@ public class Player : MonoBehaviour, ICanHold {
     {
         SceneManager.LoadScene("WinScreen");
     }
+
+    public void PickUp(IPickUpable i)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Release(IPickUpable i)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IPickUpable CurHeld()
+    {
+        throw new NotImplementedException();
+    }
 }
