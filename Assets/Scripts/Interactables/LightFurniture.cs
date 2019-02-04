@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightFurniture : Furniture {
+public class LightFurniture : Furniture, IPickUpable {
 
     public override void Interact(Player p) {
         if (p.CurFurniture() == null) {
@@ -35,4 +35,19 @@ public class LightFurniture : Furniture {
         rb.AddRelativeForce(dir * holder.Power, ForceMode.Impulse);
     }
 
+    public bool CanBePickedUp(ICanHold h)
+    {
+        return curState.Grounded();
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Monster m = other.collider.GetComponent<Monster>();
+        if(m!=null){
+            m.FurnitureContact(this);
+        }
+        else{
+            SetState(new GroundedState(this));
+        }
+    } 
 }

@@ -6,7 +6,7 @@ using Cthulu;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Npc : Interactable {
+public class Npc : Interactable, IPickUpable {
 
     NpcState curState;
 
@@ -50,6 +50,8 @@ public class Npc : Interactable {
 
     const string happy = "O";
     const int wallLayer = 1 << 12; //might need to invert
+
+    [SerializeField] GameObject deadNpc;
 
     void Start() {
         StartWandering();
@@ -197,6 +199,12 @@ public class Npc : Interactable {
 
     public void Die() {
         SetState(new DeadState(this));
+        GameObject d = Instantiate(deadNpc,transform.position,transform.rotation);
+        Destroy(gameObject);
+    }
+
+    public void Die(ICanHold h) {
+        SetState(new DeadState(this));
     }
 
     public void SetMessage(string s, Color c) {
@@ -219,8 +227,23 @@ public class Npc : Interactable {
         npc.SetState(new WanderState(npc, 10));
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, vision);
+    }
+
+    public bool CanBePickedUp(ICanHold h) {
+        return true;
+        //return is Monster
+    }
+
+    public void GetPickedUp(ICanHold h) {
+        if (CanBePickedUp(h)) {
+            Die(h);
+        }
+    }
+
+    public void Release(ICanHold h)
     {
-        Gizmos.DrawWireSphere(transform.position,vision);
+        rb.AddForce(h.GetThrowDir());
     }
 }
