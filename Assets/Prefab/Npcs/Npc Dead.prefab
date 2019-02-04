@@ -2658,8 +2658,6 @@ GameObject:
   - component: {fileID: 1745727036}
   - component: {fileID: 1745727034}
   - component: {fileID: 1745727033}
-  - component: {fileID: 1745727030}
-  - component: {fileID: 1745727028}
   m_Layer: 10
   m_Name: Npc Dead
   m_TagString: AI
@@ -2795,56 +2793,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1745727030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745727027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b7243ef109ed14f892ae7e78928e77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: []
-  start: {fileID: 0}
-  end: {fileID: 0}
-  speed: 2
-  minDist: 0.1
-  moving: 0
-  npc: {fileID: 0}
---- !u!114 &1745727028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745727027}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5acfc8f1f063c1a43ae30d67c2a3548a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  o: {fileID: 2100734147, guid: d5bd5a9a426efaa40a8c67920f1715b0, type: 3}
-  vision: 3
-  speed: 2
-  tolerance: 0
-  money: 1000000
-  interest: 0
-  baseInterest: 40
-  idleWaitTime: 6
-  curRoom: {fileID: 0}
-  follower: {fileID: 1745727030}
-  locked: 0
-  exitNode: {fileID: 0}
-  isScared: 0
-  isRunning: 0
-  lobbyNode: {fileID: 0}
-  isBuying: 0
-  nodesToAvoid: []
-  message: {fileID: 169527630}
-  deadNpc: {fileID: 0}
 --- !u!1 &1775222214
 GameObject:
   m_ObjectHideFlags: 0
