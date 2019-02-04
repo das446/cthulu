@@ -160,38 +160,7 @@ MonoBehaviour:
   draw: 1
   lineThickness: 0.1
   id: 0
---- !u!84 &106957692
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1001
-  m_Height: 563
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
+  interestMultiplier: 1
 --- !u!1 &141796278
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +211,7 @@ MonoBehaviour:
   draw: 1
   lineThickness: 0.1
   id: 0
+  interestMultiplier: 1
 --- !u!1 &192252976
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +300,9 @@ MonoBehaviour:
   vision: 0
   speed: 2
   tolerance: 0
+  money: 0
   interest: 0
+  baseInterest: 0
   idleWaitTime: 6
   curRoom: {fileID: 1907443021}
   follower: {fileID: 196202132}
@@ -340,6 +312,10 @@ MonoBehaviour:
   isRunning: 0
   lobbyNode: {fileID: 23344956}
   isBuying: 0
+  nodesToAvoid: []
+  ragdollVersion: {fileID: 0}
+  isDead: 0
+  message: {fileID: 0}
 --- !u!136 &196202135
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -383,35 +359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4e5e187b0550844b6ea9ce7cdea435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  events:
-  - time: 10
-    gameEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11400000, guid: f23f90adaf73a4c47ab7263d75902dd6, type: 2}
-          m_MethodName: SpawnMonster
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1398046410}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1398046398}
-          m_MethodName: GoToRoom
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 2080479325}
-            m_ObjectArgumentAssemblyTypeName: Room, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
 --- !u!4 &303009484
 Transform:
   m_ObjectHideFlags: 0
@@ -584,7 +531,7 @@ PrefabInstance:
     - target: {fileID: 306698917, guid: ce75e0a4a45b3c242b939c85fd600c03, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 2006219749}
+      objectReference: {fileID: 797461644}
     - target: {fileID: 1878232488, guid: ce75e0a4a45b3c242b939c85fd600c03, type: 3}
       propertyPath: outlineShaderMaterial
       value: 
@@ -715,10 +662,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4243687829892282, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.23
@@ -775,10 +718,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: lobbyNode
+      value: 
+      objectReference: {fileID: 23344956}
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: exitNode
+      value: 
+      objectReference: {fileID: 2122785841}
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: ragdollVersion
+      value: 
+      objectReference: {fileID: 1745727027, guid: d5bd5a9a426efaa40a8c67920f1715b0,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 1634703038717726, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728479441557446, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114945034332372716, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
         type: 3}
@@ -795,11 +754,11 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1635323259807440, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+    - target: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1634703038717726, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+    - target: {fileID: 1635323259807440, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -828,10 +787,6 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1803049511693482, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728479441557446, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -1051,14 +1006,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: lobbyNode
-      value: 
-      objectReference: {fileID: 23344956}
-    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: exitNode
-      value: 
-      objectReference: {fileID: 2122785841}
+    - target: {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 208905125489736942, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
     - {fileID: 195427778307570382, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
@@ -1211,6 +1163,39 @@ MonoBehaviour:
   draw: 1
   lineThickness: 0.1
   id: 0
+  interestMultiplier: 1
+--- !u!84 &797461644
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1001
+  m_Height: 563
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &836557022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1223,10 +1208,6 @@ PrefabInstance:
       value: AI 5
       objectReference: {fileID: 0}
     - target: {fileID: 1992140110546362, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -1286,10 +1267,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: lobbyNode
+      value: 
+      objectReference: {fileID: 23344956}
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: exitNode
+      value: 
+      objectReference: {fileID: 2122785841}
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: ragdollVersion
+      value: 
+      objectReference: {fileID: 1745727027, guid: d5bd5a9a426efaa40a8c67920f1715b0,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 1634703038717726, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728479441557446, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114945034332372716, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
         type: 3}
@@ -1306,11 +1303,11 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1635323259807440, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+    - target: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1634703038717726, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+    - target: {fileID: 1635323259807440, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -1339,10 +1336,6 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1803049511693482, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728479441557446, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -1562,14 +1555,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: lobbyNode
-      value: 
-      objectReference: {fileID: 23344956}
-    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: exitNode
-      value: 
-      objectReference: {fileID: 2122785841}
+    - target: {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 208905125489736942, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
     - {fileID: 195427778307570382, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
@@ -1612,6 +1602,7 @@ MonoBehaviour:
   draw: 1
   lineThickness: 0.1
   id: 0
+  interestMultiplier: 1
 --- !u!4 &846722082
 Transform:
   m_ObjectHideFlags: 0
@@ -1675,6 +1666,7 @@ MonoBehaviour:
   draw: 1
   lineThickness: 0.1
   id: 0
+  interestMultiplier: 1
 --- !u!1 &912120009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
@@ -1800,6 +1792,7 @@ MonoBehaviour:
   draw: 1
   lineThickness: 0.1
   id: 0
+  interestMultiplier: 1
 --- !u!4 &935578530
 Transform:
   m_ObjectHideFlags: 0
@@ -1962,6 +1955,7 @@ MonoBehaviour:
   draw: 1
   lineThickness: 0.1
   id: 0
+  interestMultiplier: 1
 --- !u!1 &1257142254 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 7d76b68e78d7b4241a66232383110519,
@@ -2106,7 +2100,9 @@ MonoBehaviour:
   vision: 0
   speed: 2
   tolerance: 0
+  money: 0
   interest: 0
+  baseInterest: 0
   idleWaitTime: 6
   curRoom: {fileID: 1907443021}
   follower: {fileID: 1371209542}
@@ -2116,6 +2112,10 @@ MonoBehaviour:
   isRunning: 0
   lobbyNode: {fileID: 23344956}
   isBuying: 0
+  nodesToAvoid: []
+  ragdollVersion: {fileID: 0}
+  isDead: 0
+  message: {fileID: 0}
 --- !u!114 &1371209541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2261,18 +2261,6 @@ MonoBehaviour:
   minDist: 0.1
   moving: 0
   npc: {fileID: 0}
---- !u!114 &1398046398 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
-    type: 3}
-  m_PrefabInstance: {fileID: 1675051529}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398046396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5acfc8f1f063c1a43ae30d67c2a3548a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &1398046401
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2319,7 +2307,9 @@ MonoBehaviour:
   vision: 0
   speed: 2
   tolerance: 0
+  money: 0
   interest: 0
+  baseInterest: 0
   idleWaitTime: 5
   curRoom: {fileID: 1907443021}
   follower: {fileID: 1398046397}
@@ -2329,12 +2319,10 @@ MonoBehaviour:
   isRunning: 0
   lobbyNode: {fileID: 23344956}
   isBuying: 0
---- !u!4 &1398046410 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4243687829892282, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
-    type: 3}
-  m_PrefabInstance: {fileID: 1675051529}
-  m_PrefabAsset: {fileID: 0}
+  nodesToAvoid: []
+  ragdollVersion: {fileID: 0}
+  isDead: 0
+  message: {fileID: 0}
 --- !u!1001 &1546238938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2347,10 +2335,6 @@ PrefabInstance:
       value: AI 4
       objectReference: {fileID: 0}
     - target: {fileID: 1992140110546362, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -2410,10 +2394,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: lobbyNode
+      value: 
+      objectReference: {fileID: 23344956}
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: exitNode
+      value: 
+      objectReference: {fileID: 2122785841}
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: ragdollVersion
+      value: 
+      objectReference: {fileID: 1745727027, guid: d5bd5a9a426efaa40a8c67920f1715b0,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 1634703038717726, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728479441557446, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114945034332372716, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
         type: 3}
@@ -2430,11 +2430,11 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1635323259807440, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+    - target: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1634703038717726, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+    - target: {fileID: 1635323259807440, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -2463,10 +2463,6 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1803049511693482, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728479441557446, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -2686,14 +2682,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: lobbyNode
-      value: 
-      objectReference: {fileID: 23344956}
-    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: exitNode
-      value: 
-      objectReference: {fileID: 2122785841}
+    - target: {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 208905125489736942, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
     - {fileID: 195427778307570382, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
@@ -2757,7 +2750,9 @@ MonoBehaviour:
   vision: 0
   speed: 2
   tolerance: 0
+  money: 0
   interest: 0
+  baseInterest: 0
   idleWaitTime: 6
   curRoom: {fileID: 1907443021}
   follower: {fileID: 1614013160}
@@ -2767,6 +2762,10 @@ MonoBehaviour:
   isRunning: 0
   lobbyNode: {fileID: 23344956}
   isBuying: 0
+  nodesToAvoid: []
+  ragdollVersion: {fileID: 0}
+  isDead: 0
+  message: {fileID: 0}
 --- !u!136 &1614013163
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2793,10 +2792,6 @@ PrefabInstance:
       value: AI 1
       objectReference: {fileID: 0}
     - target: {fileID: 1992140110546362, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -2856,10 +2851,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: lobbyNode
+      value: 
+      objectReference: {fileID: 23344956}
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: exitNode
+      value: 
+      objectReference: {fileID: 2122785841}
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: ragdollVersion
+      value: 
+      objectReference: {fileID: 1745727027, guid: d5bd5a9a426efaa40a8c67920f1715b0,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 1634703038717726, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728479441557446, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114945034332372716, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
         type: 3}
@@ -2876,11 +2887,11 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1635323259807440, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+    - target: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1634703038717726, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+    - target: {fileID: 1635323259807440, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -2909,10 +2920,6 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1803049511693482, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728479441557446, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -3132,20 +3139,49 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: lobbyNode
-      value: 
-      objectReference: {fileID: 23344956}
-    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: exitNode
-      value: 
-      objectReference: {fileID: 2122785841}
+    - target: {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 208905125489736942, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
     - {fileID: 195427778307570382, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
     - {fileID: 114076692535189230, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
     - {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+--- !u!84 &1731295400
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1001
+  m_Height: 563
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1774837619 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
@@ -3180,10 +3216,6 @@ PrefabInstance:
       value: AI 2
       objectReference: {fileID: 0}
     - target: {fileID: 1992140110546362, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -3243,10 +3275,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: lobbyNode
+      value: 
+      objectReference: {fileID: 23344956}
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: exitNode
+      value: 
+      objectReference: {fileID: 2122785841}
+    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: ragdollVersion
+      value: 
+      objectReference: {fileID: 1745727027, guid: d5bd5a9a426efaa40a8c67920f1715b0,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 1634703038717726, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728479441557446, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114945034332372716, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
         type: 3}
@@ -3263,11 +3311,11 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1635323259807440, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+    - target: {fileID: 1556014317016278, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1634703038717726, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
+    - target: {fileID: 1635323259807440, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -3296,10 +3344,6 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1803049511693482, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728479441557446, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -3519,14 +3563,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: lobbyNode
-      value: 
-      objectReference: {fileID: 23344956}
-    - target: {fileID: 1398046406, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
-      propertyPath: exitNode
-      value: 
-      objectReference: {fileID: 2122785841}
+    - target: {fileID: 136468375647167590, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 208905125489736942, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
     - {fileID: 195427778307570382, guid: d51ec0f5bed96a84a8a7e15fc366cf58, type: 3}
@@ -3672,6 +3713,7 @@ MonoBehaviour:
   draw: 1
   lineThickness: 0.1
   id: 0
+  interestMultiplier: 1
 --- !u!1 &1905639240 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1992140110546362, guid: d51ec0f5bed96a84a8a7e15fc366cf58,
@@ -3694,7 +3736,9 @@ MonoBehaviour:
   vision: 0
   speed: 2
   tolerance: 0
+  money: 0
   interest: 0
+  baseInterest: 0
   idleWaitTime: 7
   curRoom: {fileID: 1907443021}
   follower: {fileID: 1905639243}
@@ -3704,6 +3748,10 @@ MonoBehaviour:
   isRunning: 0
   lobbyNode: {fileID: 23344956}
   isBuying: 0
+  nodesToAvoid: []
+  ragdollVersion: {fileID: 0}
+  isDead: 0
+  message: {fileID: 0}
 --- !u!114 &1905639242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3826,38 +3874,6 @@ MonoBehaviour:
   eraseRenderer: 0
   originalLayer: 0
   originalMaterials: []
---- !u!84 &2006219749
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1001
-  m_Height: 563
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &2080479324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3956,6 +3972,7 @@ MonoBehaviour:
   draw: 1
   lineThickness: 0.1
   id: 0
+  interestMultiplier: 1
 --- !u!1001 &5868761536835344026
 PrefabInstance:
   m_ObjectHideFlags: 0

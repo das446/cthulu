@@ -46,12 +46,16 @@ public class Npc : Interactable, IPickUpable {
 
     public List<Node> nodesToAvoid;
 
+    public GameObject ragdollVersion;
+
+    public bool isDead;
+
     [SerializeField] TMPro.TMP_Text message;
 
     const string happy = "O";
     const int wallLayer = 1 << 12; //might need to invert
 
-    [SerializeField] GameObject deadNpc;
+    // [SerializeField] GameObject deadNpc;
     
     void Start()
     {
@@ -96,6 +100,10 @@ public class Npc : Interactable, IPickUpable {
             Debug.Log("NPC is scared");
             RunToExit();
             isRunning = true;
+        }
+        if(isDead)
+        {
+            Die();
         }
 
        /*  if (Input.GetKeyDown(KeyCode.A))
@@ -228,15 +236,18 @@ public class Npc : Interactable, IPickUpable {
         return items;
     }
 
-    public void Die()
-    {
-        SetState(new DeadState(this));
-        GameObject d = Instantiate(deadNpc,transform.position,transform.rotation);
-        Destroy(gameObject);
+    public void Die() {
+        SetState(new DeadState(this, ragdollVersion));
     }
+    // public void Die()
+    // {
+    //     SetState(new DeadState(this, ragdollVersion));
+    //     GameObject d = Instantiate(deadNpc,transform.position,transform.rotation);
+    //     Destroy(gameObject);
+    // }
 
     public void Die(ICanHold h) {
-        SetState(new DeadState(this));
+        SetState(new DeadState(this, ragdollVersion));
     }
 
     public void SetMessage(string s, Color c)
