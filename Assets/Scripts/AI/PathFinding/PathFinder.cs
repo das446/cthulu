@@ -45,7 +45,7 @@ public class PathFinder {
 
 	public List<Node> ShortestPath() {
 
-		if (start.id == end.id) {
+		if (start==null | end==null | start.id == end.id) {
 			return new List<Node>() { start };
 		}
 

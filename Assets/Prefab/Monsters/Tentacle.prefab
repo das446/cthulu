@@ -435,8 +435,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5519555, y: 0.68114036, z: 0.6024885}
-  m_Center: {x: 0.77597773, y: 0.15942982, z: -0.19875574}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4342329492730129385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +452,8 @@ MonoBehaviour:
   hp: 10
   scareFactor: 1
   damage: 1
+  range: 5
+  hitbox: {fileID: 65465982820966068}
 --- !u!1 &1352456171360278
 GameObject:
   m_ObjectHideFlags: 0
