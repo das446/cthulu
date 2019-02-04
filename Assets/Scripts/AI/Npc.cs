@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using cakeslice;
+using Cthulu;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Npc : Interactable {
+public class Npc : Interactable
+{
 
     NpcState curState;
 
@@ -54,14 +56,16 @@ public class Npc : Interactable {
     const string happy = "O";
     const int wallLayer = 1 << 12; //might need to invert
 
-    void Start() {
+    void Start()
+    {
         StartWandering();
         follower = GetComponent<PathFollower>();
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
     }
 
-    public void Buy(Player p) {
+    public void Buy(Player p)
+    {
         p.ChangeMoney(money);
         SetMessage(happy, Color.yellow);
         SetState(new LeaveState(this, exitNode));
@@ -70,22 +74,27 @@ public class Npc : Interactable {
     /// <summary>
     /// Interact based on the current state
     /// </summary>
-    public override void Interact(Player p) {
+    public override void Interact(Player p)
+    {
         Debug.Log("Interact");
         curState.OnInteract(p);
     }
 
-    void Update() {
+    void Update()
+    {
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             interest = 100;
         }
 
-        if (interest >= 100 && !isBuying) {
+        if (interest >= 100 && !isBuying)
+        {
             ReadyToBuy();
             isBuying = true;
         }
-        if (isScared && !isRunning) {
+        if (isScared && !isRunning)
+        {
             Debug.Log("NPC is scared");
             RunToExit();
             isRunning = true;
@@ -94,15 +103,24 @@ public class Npc : Interactable {
         {
             Die();
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            gameObject.PlaySound("Test");
+            Debug.Log("!");
+        }
+
         curState?.FrameUpdate();
 
     }
 
-    public void SetState(NpcState state) {
+    public void SetState(NpcState state)
+    {
         curState = state;
     }
 
-    public void StartWandering() {
+    public void StartWandering()
+    {
         curState?.Exit();
         curState = new WanderState(this, idleWaitTime, nodesToAvoid);
     }
@@ -111,8 +129,10 @@ public class Npc : Interactable {
     /// Called when the buyer enters a room
     /// </summary>
     /// <param name="r"></param>
-    public void EnterRoom(Room r) {
-        if (!visitedRooms.Contains(r)) {
+    public void EnterRoom(Room r)
+    {
+        if (!visitedRooms.Contains(r))
+        {
             visitedRooms.Add(r);
             float roomInterest = EvaluateRoom(r);
             interest += roomInterest;
@@ -120,24 +140,28 @@ public class Npc : Interactable {
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
     }
 
-    public void GoToRoom(Room r) {
+    public void GoToRoom(Room r)
+    {
         curState.Exit();
         curState = new MoveTowardsState(this, r.RandomNode());
     }
 
-    public void RunToExit() {
+    public void RunToExit()
+    {
         speed = speed * 3;
         curState.Exit();
         curState = new ScaredState(this, exitNode);
     }
 
-    public void ReadyToBuy() {
+    public void ReadyToBuy()
+    {
         curState.Exit();
         curState = new BuyState(this, lobbyNode);
         Debug.Log("Cur state = buy");
     }
 
-    public void LeaveBuyState() {
+    public void LeaveBuyState()
+    {
         Debug.Log("NPC waited too long");
         interest -= 20;
         StartWandering();
@@ -148,7 +172,8 @@ public class Npc : Interactable {
     /// <summary>
     /// Keeps npc from moving
     /// </summary>
-    public void Lock() {
+    public void Lock()
+    {
         rb.useGravity = false;
         rb.isKinematic = false;
         col.enabled = false;
@@ -162,7 +187,8 @@ public class Npc : Interactable {
     /// <summary>
     /// Lets npc move again
     /// </summary>
-    public void Unlock() {
+    public void Unlock()
+    {
         rb.useGravity = true;
         rb.isKinematic = true;
         col.enabled = true;
@@ -171,7 +197,8 @@ public class Npc : Interactable {
         //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",true);
     }
 
-    float EvaluateRoom(Room r) {
+    float EvaluateRoom(Room r)
+    {
         //interest starts at 20
         //int interest = 20;
         //int fDist = 1;
@@ -180,7 +207,8 @@ public class Npc : Interactable {
 
         List<IEvaluated> items = GetEvaluatedObjects();
 
-        for (int i = 0; i < items.Count; i++) {
+        for (int i = 0; i < items.Count; i++)
+        {
             interest += items[i].Evaluate(this, r);
         }
         Debug.Log(name + " interest increased by " + interest);
@@ -188,12 +216,15 @@ public class Npc : Interactable {
 
     }
 
-    private List<IEvaluated> GetEvaluatedObjects() {
+    private List<IEvaluated> GetEvaluatedObjects()
+    {
         Collider[] cols = Physics.OverlapSphere(transform.position, vision, wallLayer);
         List<IEvaluated> items = new List<IEvaluated>();
-        for (int i = 0; i < cols.Length; i++) {
+        for (int i = 0; i < cols.Length; i++)
+        {
             IEvaluated ev = cols[i].GetComponent<IEvaluated>();
-            if (ev != null) {
+            if (ev != null)
+            {
                 items.Add(ev);
             }
 
@@ -206,21 +237,25 @@ public class Npc : Interactable {
         SetState(new DeadState(this, ragdollVersion));
     }
 
-    public void SetMessage(string s, Color c) {
+    public void SetMessage(string s, Color c)
+    {
         message.text = s;
         message.color = c;
     }
 
-    public void SetMessage(string s) {
+    public void SetMessage(string s)
+    {
         SetMessage(s, Color.black); // should it default to black or keep last color?
 
     }
 
-    public void ExitHouse() {
+    public void ExitHouse()
+    {
         Destroy(gameObject);
     }
 
-    public void Spawn(Node n) {
+    public void Spawn(Node n)
+    {
         Npc npc = Instantiate(this, n.transform.position + Vector3.up, Quaternion.identity);
         npc.exitNode = n;
         npc.SetState(new WanderState(npc, 10));
@@ -228,6 +263,6 @@ public class Npc : Interactable {
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position,vision);
+        Gizmos.DrawWireSphere(transform.position, vision);
     }
 }
