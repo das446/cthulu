@@ -7,12 +7,12 @@ public class Tentacle : Monster, ICanHold {
     [SerializeField] IPickUpable held;
     [SerializeField] float range;
     [SerializeField] BoxCollider hitbox;
+    [SerializeField] Transform hand;
+    [SerializeField] float power;
 
-    public Transform Hand =>
-        throw new System.NotImplementedException();
+    public Transform Hand => hand;
 
-    public float Power =>
-        throw new System.NotImplementedException();
+    public float Power => power;
 
     public IPickUpable CurHeld() {
         return held;
@@ -25,7 +25,7 @@ public class Tentacle : Monster, ICanHold {
 
     public Vector3 GetThrowDir() {
         //throw at NPC or player
-        throw new System.NotImplementedException();
+        return transform.forward * power;
     }
 
     public override void OnSpawn() {
@@ -57,8 +57,13 @@ public class Tentacle : Monster, ICanHold {
         Debug.Log(other.gameObject);
         Npc npc = other.GetComponent<Npc>();
         if (npc != null) {
-            npc.GetPickedUp(this);
+            PickUp(npc);
+            StartCoroutine(DelayThrow(10));
         }
     }
 
+    IEnumerator DelayThrow(float delay) {
+        yield return new WaitForSeconds(delay);
+        Release(held);
+    }
 }

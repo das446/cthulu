@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class DeadState : NpcState
 {
-    private GameObject ragdoll;
+    private DeadNpc ragdoll;
+    private ICanHold holder;
 
-    public DeadState(Npc npc, GameObject ragdollNpc) : base(npc)
+    public DeadState(Npc npc, DeadNpc ragdollNpc) : base(npc)
     {
         ragdoll = ragdollNpc;
+        Enter();
+    }
+
+    public DeadState(Npc npc, DeadNpc ragdollNpc, ICanHold holder) : base(npc)
+    {
+        ragdoll = ragdollNpc;
+        this.holder = holder;
         Enter();
     }
 
@@ -21,7 +29,10 @@ public class DeadState : NpcState
     {
         Vector3 buyerPos = npc.gameObject.transform.position;
         Quaternion buyerRot = npc.gameObject.transform.rotation;
-        GameObject.Instantiate(ragdoll, buyerPos, buyerRot);
+        DeadNpc d = GameObject.Instantiate(ragdoll, buyerPos, buyerRot);
+        if(holder!=null){
+            holder.PickUp(d);
+        }
         GameObject.Destroy(npc.gameObject);
         // throw new System.NotImplementedException();
     }
