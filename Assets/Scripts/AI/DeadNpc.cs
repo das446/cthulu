@@ -35,7 +35,6 @@ public class DeadNpc : MonoBehaviour, IPickUpable, IEvaluated {
         Destroy(joint);
         Vector3 dir = h.GetThrowDir();
         rb.AddForce(dir);
-
     }
 
     // void FixedUpdate() {

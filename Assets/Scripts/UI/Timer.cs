@@ -11,8 +11,11 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour {
 
     public float timeLeft = 360;
+    float startTime;
 
     public Text timerText;
+
+    public GameObject clockHand;
 
     public bool paused = false;
 
@@ -29,7 +32,9 @@ public class Timer : MonoBehaviour {
     int prevMin;
     int prevSec;
 
-    public void Start() { }
+    public void Start() {
+        startTime=timeLeft;
+     }
 
     public void PlayWarning() { }
 
@@ -46,7 +51,7 @@ public class Timer : MonoBehaviour {
         int seconds = (int) time % 60;
         int minutes = (int) time / 60;
 
-        UpdateDisplay(minutes, seconds);
+        UpdateDisplay(time);
 
         if (prevMin == minutes && prevSec == seconds) {
             //because time is a float that's updated every frame it needs to store the previous int val
@@ -61,10 +66,9 @@ public class Timer : MonoBehaviour {
 
     }
 
-    private void UpdateDisplay(int minutes, int seconds) {
-        string s = seconds >= 10 ? seconds + "" : "0" + seconds;
-        string m = minutes >= 10 ? minutes + "" : "0" + minutes;
-
-        timerText.text = minutes + ":" + s;
+    void UpdateDisplay(float t) {
+        float elapsed = 360f * startTime/t;
+        Debug.Log(elapsed);  
+        clockHand.transform.eulerAngles = new Vector3(0,0,-elapsed);
     }
 }
