@@ -26,12 +26,15 @@ namespace Cthulu.Events {
         }
 
         void ReadFiles() {
-            string[] files = new string[] { "START.txt", "WHEN.txt", "SET.txt" };
+            string[] files = new string[] { "START.txt" };
             string path = Application.dataPath + "/StreamingAssets/Events/" + SceneManager.GetActiveScene().name + "/";
             for (int i = 0; i < files.Length; i++) {
                 string f = path + files[i];
                 string[] lines = System.IO.File.ReadAllLines(f);
                 for (int j = 0; i < lines.Length; i++) {
+                    if (lines[i].StartsWith("//")) {
+                        continue;
+                    }
                     GameEvent e = MakeEvent(lines[i].Split());
                     if (files[i] == "START.txt") {
                         onStart.Add(e);
