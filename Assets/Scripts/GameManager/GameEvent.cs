@@ -12,7 +12,5 @@ namespace Cthulu.Events {
         public string name;
         public string[] args;
 
-        public abstract void Execute();
-
     }
 }

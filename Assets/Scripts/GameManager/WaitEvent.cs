@@ -14,8 +14,5 @@ namespace Cthulu.Events {
             this.time = Int32.Parse(time);
         }
 
-        public override void Execute() {
-            throw new System.NotImplementedException();
-        }
     }
 }

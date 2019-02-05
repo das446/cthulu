@@ -107,7 +107,11 @@ namespace Cthulu {
                 }
 
             }
-            GameManager.Objects.Add(g.name, i);
+            
+        }
+
+        public static void AddToManager(this IManageable i){
+            GameManager.Objects.Add(i.obj.name, i);
         }
 
         public static T[] Slice<T>(this T[] source, int start, int end) {

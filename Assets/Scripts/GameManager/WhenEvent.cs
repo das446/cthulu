@@ -13,9 +13,6 @@ namespace Cthulu.Events {
             this.call = call;
         }
 
-        public override void Execute()
-        {
-            throw new System.NotImplementedException();
-        }
+       
     }
 }
