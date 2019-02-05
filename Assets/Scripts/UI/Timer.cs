@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cthulu;
+using Cthulu.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +41,6 @@ public class Timer : MonoBehaviour {
 
     void Update() {
         if (paused) { return; }
-        Debug.Log("Tick");
         timeLeft = timeLeft - Time.deltaTime;
 
         UpdateTimer(timeLeft);
@@ -57,6 +57,7 @@ public class Timer : MonoBehaviour {
             //because time is a float that's updated every frame it needs to store the previous int val
             //to prevent the event from being called multiple times per second
         } else {
+            GameManager.When("timer",((int)time).ToString());
             if (TimeLeftAlert != null) {
                 TimeLeftAlert(minutes, seconds);
             }
@@ -68,7 +69,8 @@ public class Timer : MonoBehaviour {
 
     void UpdateDisplay(float t) {
         float elapsed = 360f * startTime/t;
-        Debug.Log(elapsed);  
         clockHand.transform.eulerAngles = new Vector3(0,0,-elapsed);
     }
+
+    
 }

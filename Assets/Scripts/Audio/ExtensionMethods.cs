@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cthulu.Events;
 using UnityEngine;
 
 namespace Cthulu {
@@ -92,6 +93,36 @@ namespace Cthulu {
                 d.Add(l1[i], l2[i]);
             }
             return true;
+        }
+
+        public static void SetName(this IManageable i) {
+            GameObject g = i.obj;
+            Debug.Log(g.GetInstanceID());
+            g.name = g.name + g.GetInstanceID();
+            Transform t = g.transform;
+            while (t != null) {
+                t = t.parent;
+                if (t != null) {
+                    g.name = t.gameObject.name + "." + g.gameObject.name;
+                }
+
+            }
+            GameManager.Objects.Add(g.name, i);
+        }
+
+        public static T[] Slice<T>(this T[] source, int start, int end) {
+            // Handles negative ends.
+            if (end < 0) {
+                end = source.Length + end;
+            }
+            int len = end - start;
+
+            // Return new array.
+            T[] res = new T[len];
+            for (int i = 0; i < len; i++) {
+                res[i] = source[i + start];
+            }
+            return res;
         }
     }
 }

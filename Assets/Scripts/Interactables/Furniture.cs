@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu;
+using Cthulu.Events;
 using UnityEngine;
 
-public class Furniture : Interactable, IEvaluated {
+public class Furniture : Interactable, IEvaluated, IManageable {
 
     /// <summary>
     /// Player's speed gets divided by weight while holding it, so set it accordingly
@@ -26,9 +28,12 @@ public class Furniture : Interactable, IEvaluated {
 
     [SerializeField] FurnitureDebris debris;
 
+    public GameObject obj => throw new System.NotImplementedException();
+
     void Start() {
         startPos = transform.position;
         curState = new GroundedState(this);
+        //this.SetName();
     }
 
     /// <summary>
@@ -84,4 +89,10 @@ public class Furniture : Interactable, IEvaluated {
             Break();
         }
     }
+
+    public void Set(GameEvent ge)
+    {
+        throw new System.NotImplementedException();
+    }
+
 }
