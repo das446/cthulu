@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
+using Cthulu;
 using UnityEngine;
 
-public class Door : MonoBehaviour 
-{
+public class Door : Interactable, IManageable {
 	[SerializeField]
 	private GameObject[] doorsInSet;
 
@@ -11,50 +12,64 @@ public class Door : MonoBehaviour
 
 	[SerializeField]
 	private bool isOpen;
-    private AudioSource source;
+	private AudioSource source;
 
-    // Use this for initialization
-    void Start () 
-	{
-        source = GetComponent<AudioSource>();
+	public GameObject obj => gameObject;
+
+	// Use this for initialization
+	void Start() {
+		this.SetName();
+	}
+
+	public void Open() {
+		TriggerWhen("open");
+	}
+
+	public void Close() { }
+
+	public void Lock() {
+		isLocked = true;
+	}
+
+	public void Unlock() {
 		isLocked = false;
-		isOpen = true;
-        doorsInSet[0].transform.Rotate(Vector3.up, 90, Space.World);
-        doorsInSet[1].transform.Rotate(Vector3.up, -90, Space.World);
-    }
-
-	public void open()
-	{
-        source.Play();
-		// doorsInSet[0].transform.rotation = Quaternion.Euler(0, 90, 0);
-		// doorsInSet[1].transform.rotation = Quaternion.Euler(0, -90, 0);
-		doorsInSet[0].transform.Rotate(Vector3.up, 90, Space.World);
-		doorsInSet[1].transform.Rotate(Vector3.up, -90, Space.World);
-		isOpen = true;
 	}
 
-	public void close()
-	{
-        source.Play();
-        // doorsInSet[0].transform.rotation = Quaternion.Euler(0, 0, 0);
-        // doorsInSet[1].transform.rotation = Quaternion.Euler(0, 0, 0);
-        doorsInSet[0].transform.Rotate(Vector3.up, -90, Space.World);
-		doorsInSet[1].transform.Rotate(Vector3.up, 90, Space.World);
-		isOpen = false;
-	}
-
-	public void lockDoor()
-	{
-		isLocked = !isLocked;
-	}
-
-	public bool checkLock()
-	{
+	public bool IsLocked() {
 		return isLocked;
 	}
 
-	public bool checkOpen()
-	{
+	public bool IsOpen() {
 		return isOpen;
 	}
+
+	public override void Interact(Player p) {
+		throw new System.NotImplementedException();
+	}
+
+	public void Set() {
+		throw new System.NotImplementedException();
+	}
+
+	public string[] ValidArgs() {
+		throw new System.NotImplementedException();
+	}
+
+	public void Set(GameEvent ge) {
+		string param = ge.args[0];
+		if (param == "open") {
+			Open();
+		} else if (param == "close") {
+			Close();
+		} else if (param == "lock") {
+			Lock();
+		} else if (param == "unlock") {
+			Unlock();
+		}
+	}
+
+	public void TriggerWhen(string function) {
+		GameManager.When(name, function);
+	}
+
 }
