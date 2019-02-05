@@ -21,13 +21,17 @@ public class Door : Interactable, IManageable {
 		this.SetName();
 	}
 
-	public void Open() {
+	public void Open() {//TODO: Make Coroutine
 		TriggerWhen("open");
+		transform.Rotate(0,90,0);
 	}
 
-	public void Close() { }
+	public void Close() {//TODO: Make Coroutine
+		transform.Rotate(0,-90,0);
+	 }
 
 	public void Lock() {
+		
 		isLocked = true;
 	}
 
