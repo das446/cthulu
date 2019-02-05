@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Cthulu.Events;
 using Cthulu;
+using Cthulu.Events;
 using UnityEngine;
 
 public class Door : Interactable, IManageable {
@@ -15,23 +15,25 @@ public class Door : Interactable, IManageable {
 	private AudioSource source;
 
 	public GameObject obj => gameObject;
+	Vector3 pos;
 
 	// Use this for initialization
 	void Start() {
 		this.SetName();
+		pos = transform.position;
 	}
 
-	public void Open() {//TODO: Make Coroutine
+	public void Open() { //TODO: Make Coroutine
 		TriggerWhen("open");
-		transform.Rotate(0,90,0);
+		transform.Rotate(0, 90, 0);
 	}
 
-	public void Close() {//TODO: Make Coroutine
-		transform.Rotate(0,-90,0);
-	 }
+	public void Close() { //TODO: Make Coroutine
+		transform.Rotate(0, -90, 0);
+	}
 
 	public void Lock() {
-		
+
 		isLocked = true;
 	}
 
@@ -76,4 +78,21 @@ public class Door : Interactable, IManageable {
 		GameManager.When(name, function);
 	}
 
+	void FixedUpdate() {
+		transform.position = pos;
+		//ClampRotation();
+
+	}
+
+	private void ClampRotation() {
+		Vector3 e = transform.eulerAngles;
+		float angleY = e.y;
+		if (angleY > 90) {
+			angleY = 90;
+		} else if (angleY < 0) {
+			angleY = 0;
+		}
+		e.y = angleY;
+		transform.eulerAngles = e;
+	}
 }

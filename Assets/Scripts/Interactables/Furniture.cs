@@ -33,7 +33,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     void Start() {
         startPos = transform.position;
         curState = new GroundedState(this);
-        this.SetName();
+        //this.SetName();
     }
 
     /// <summary>

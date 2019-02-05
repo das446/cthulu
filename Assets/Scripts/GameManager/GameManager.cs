@@ -16,17 +16,14 @@ namespace Cthulu.Events {
         static GameManager singleton;
         static string seperator = ":";
 
-        public static void TriggerEvent() {
-
-        }
 
         void Start() {
             singleton = this;
             string[][] eventStrings = new string[][] {
                 new string[] { "1", "SET", "room.living.door.1", "open" },
                 new string[] { "wait5", "WAIT", "5" },
-                new string[] { "2", "SET", "npc.normal.Bob", "nodes.entrance" },
-                new string[] { "BobDies", "WHEN", "npc.normal.Bob:Die", "2" },
+                new string[] { "BobEnter", "SET", "npc.normal.Bob", "nodes.entrance" },
+                new string[] { "BobDies", "WHEN", "npc.normal.Bob:Die", "TimEnter" },
             };
 
             for (int i = 0; i < eventStrings.Length; i++) {
