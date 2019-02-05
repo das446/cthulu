@@ -16,11 +16,13 @@ public class Door : Interactable, IManageable {
 
 	public GameObject obj => gameObject;
 	Vector3 pos;
+	Vector3 rot;
 
 	// Use this for initialization
 	void Start() {
 		this.SetName();
 		pos = transform.position;
+		rot = transform.eulerAngles;
 	}
 
 	public void Open() { //TODO: Make Coroutine
@@ -29,11 +31,11 @@ public class Door : Interactable, IManageable {
 	}
 
 	public void Close() { //TODO: Make Coroutine
-		transform.Rotate(0, -90, 0);
+		transform.eulerAngles = rot;
 	}
 
 	public void Lock() {
-
+		Close();
 		isLocked = true;
 	}
 
