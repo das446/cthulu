@@ -95,8 +95,4 @@ public class Furniture : Interactable, IEvaluated, IManageable {
         throw new System.NotImplementedException();
     }
 
-    public void TriggerWhen(string function)
-    {
-        throw new System.NotImplementedException();
-    }
 }

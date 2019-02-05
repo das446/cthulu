@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Cthulu.Events {
     public class GameManager : MonoBehaviour {
-        Dictionary<string, GameEvent> events;
+        Dictionary<string, GameEvent> events;//uses id name as key
         List<GameEvent> eventList;
-        Dictionary<string, WhenEvent> whens;
+        Dictionary<string, WhenEvent> whens; //uses event name as key
 
         public static Dictionary<string, IManageable> Objects = new Dictionary<string, IManageable>();
 
@@ -23,7 +23,8 @@ namespace Cthulu.Events {
                 new string[] { "1", "SET", "room.living.door.1", "open" },
                 new string[] { "wait5", "WAIT", "5" },
                 new string[] { "BobEnter", "SET", "npc.normal.Bob", "nodes.entrance" },
-                new string[] { "BobDies", "WHEN", "npc.normal.Bob:Die", "TimEnter" },
+                new string[] { "WHEN", "npc.normal.Bob:Die", "TimEnter" },
+                new string[] { "TimEnter", "SET", "npc.normal.Tim", "nodes.entrance" },
             };
 
             for (int i = 0; i < eventStrings.Length; i++) {
@@ -59,19 +60,19 @@ namespace Cthulu.Events {
         }
 
         public GameEvent MakeEvent(params string[] args) {
-            string type = args[1];
-            if (type == "SET") {
+
+            if (args[1] == "SET") {
                 SetEvent se = new SetEvent(args[0], args[2], args.Slice(3, -1));
-                events.Add(se.name, se);
+                events.Add(se.id, se);
                 eventList.Add(se);
                 return se;
-            } else if (type == "WAIT") {
+            } else if (args[1] == "WAIT") {
                 WaitEvent we = new WaitEvent(args[0], args[2]);
-                events.Add(we.name, we);
+                events.Add(we.id, we);
                 eventList.Add(we);
                 return we;
-            } else if (type == "WHEN") {
-                WhenEvent we = new WhenEvent(args[0], args[2], args[3]);
+            } else if (args[0] == "WHEN") {
+                WhenEvent we = new WhenEvent(args[1], args[2]);
                 whens.Add(we.name, we);
                 return we;
             } else {

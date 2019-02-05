@@ -26,7 +26,7 @@ public class Door : Interactable, IManageable {
 	}
 
 	public void Open() { //TODO: Make Coroutine
-		TriggerWhen("open");
+		GameManager.When(name,"open");
 		transform.Rotate(0, 90, 0);
 	}
 
@@ -76,9 +76,7 @@ public class Door : Interactable, IManageable {
 		}
 	}
 
-	public void TriggerWhen(string function) {
-		GameManager.When(name, function);
-	}
+	
 
 	void FixedUpdate() {
 		transform.position = pos;
