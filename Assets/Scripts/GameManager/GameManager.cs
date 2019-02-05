@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Cthulu;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Cthulu.Events {
     public class GameManager : MonoBehaviour {
-        Dictionary<string, GameEvent> events;//uses id name as key
-        List<GameEvent> eventList;
+        Dictionary<string, GameEvent> events; //uses id name as key
+        [SerializeField] List<GameEvent> onStart;
         Dictionary<string, WhenEvent> whens; //uses event name as key
 
         public static Dictionary<string, IManageable> Objects = new Dictionary<string, IManageable>();
@@ -16,29 +17,32 @@ namespace Cthulu.Events {
         static GameManager singleton;
         static string seperator = ":";
 
-
         void Start() {
             singleton = this;
-            string[][] eventStrings = new string[][] {
-                new string[] { "1", "SET", "room.living.door.1", "open" },
-                new string[] { "wait5", "WAIT", "5" },
-                new string[] { "BobEnter", "SET", "npc.normal.Bob", "nodes.entrance" },
-                new string[] { "WHEN", "npc.normal.Bob:Die", "TimEnter" },
-                new string[] { "TimEnter", "SET", "npc.normal.Tim", "nodes.entrance" },
-            };
 
-            for (int i = 0; i < eventStrings.Length; i++) {
-                string[] line = eventStrings[i];
-                MakeEvent(line);
-
-            }
+            ReadFiles();
 
             StartCoroutine(Execute());
         }
 
+        void ReadFiles() {
+            string[] files = new string[] { "START.txt", "WHEN.txt", "SET.txt" };
+            string path = Application.dataPath + "/StreamingAssets/Events/" + SceneManager.GetActiveScene().name + "/";
+            for (int i = 0; i < files.Length; i++) {
+                string f = path + files[i];
+                string[] lines = System.IO.File.ReadAllLines(f);
+                for (int j = 0; i < lines.Length; i++) {
+                    GameEvent e = MakeEvent(lines[i].Split());
+                    if (files[i] == "START.txt") {
+                        onStart.Add(e);
+                    }
+                }
+            }
+        }
+
         IEnumerator Execute() {
             for (int i = 0; i < events.Count; i++) {
-                GameEvent cur = eventList[i];
+                GameEvent cur = onStart[i];
                 if (cur.type == "WAIT") {
                     yield return new WaitForSeconds(Int32.Parse(cur.args[0]));
                 } else if (cur.type == "SET") {
@@ -64,12 +68,12 @@ namespace Cthulu.Events {
             if (args[1] == "SET") {
                 SetEvent se = new SetEvent(args[0], args[2], args.Slice(3, -1));
                 events.Add(se.id, se);
-                eventList.Add(se);
+                onStart.Add(se);
                 return se;
             } else if (args[1] == "WAIT") {
                 WaitEvent we = new WaitEvent(args[0], args[2]);
                 events.Add(we.id, we);
-                eventList.Add(we);
+                onStart.Add(we);
                 return we;
             } else if (args[0] == "WHEN") {
                 WhenEvent we = new WhenEvent(args[1], args[2]);
