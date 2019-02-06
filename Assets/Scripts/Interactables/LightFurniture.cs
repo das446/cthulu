@@ -5,7 +5,7 @@ using UnityEngine;
 public class LightFurniture : Furniture, IPickUpable {
 
     public override void Interact(Player p) {
-        if (p.CurFurniture() == null) {
+        if (p.CurItem() == null) {
             GetPickedUp(p);
         }
     }

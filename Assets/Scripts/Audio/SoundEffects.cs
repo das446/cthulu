@@ -27,7 +27,7 @@ namespace Cthulu {
             PlaySound(Sound, DefaultVolume);
         }
 
-        public void Start() {
+        public void Awake() {
             if (DefaultSounds == null) {
                 DefaultSounds = this;
             }
@@ -53,7 +53,6 @@ namespace Cthulu {
         }
 
         public void PlaySound(string Sound,AudioSource source, float volume) {
-            Debug.Log("test");
             if (soundEffects == null) {
                 soundEffects = new List<sfx>();
             }

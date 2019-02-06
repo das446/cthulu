@@ -97,7 +97,6 @@ namespace Cthulu {
 
         public static void SetName(this IManageable i) {
             GameObject g = i.obj;
-            Debug.Log(g.GetInstanceID());
             g.name = g.name + g.GetInstanceID();
             Transform t = g.transform;
             while (t != null) {
