@@ -106,10 +106,10 @@ namespace Cthulu {
                 }
 
             }
-            
+
         }
 
-        public static void AddToManager(this IManageable i){
+        public static void AddToManager(this IManageable i) {
             GameManager.Objects.Add(i.obj.name, i);
         }
 
@@ -126,6 +126,15 @@ namespace Cthulu {
                 res[i] = source[i + start];
             }
             return res;
+        }
+
+        public static string Print(this string[] a) {
+            string s = "{";
+            for (int i = 0; i < a.Length; i++) {
+                s = s + a[i]+",";
+            }
+            s = s + "}";
+            return s;
         }
     }
 }

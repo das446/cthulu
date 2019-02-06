@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 
 namespace Cthulu.Events {
     public class GameManager : MonoBehaviour {
-        Dictionary<string, GameEvent> events; //uses id name as key
-        [SerializeField] List<GameEvent> onStart;
-        Dictionary<string, WhenEvent> whens; //uses event name as key
+        Dictionary<string, GameEvent> events = new Dictionary<string, GameEvent>(); //uses id name as key
+        [SerializeField] List<GameEvent> onStart = new List<GameEvent>();
+        Dictionary<string, WhenEvent> whens = new Dictionary<string, WhenEvent>(); //uses event name as key
 
         public static Dictionary<string, IManageable> Objects = new Dictionary<string, IManageable>();
 
@@ -31,11 +31,11 @@ namespace Cthulu.Events {
             for (int i = 0; i < files.Length; i++) {
                 string f = path + files[i];
                 string[] lines = System.IO.File.ReadAllLines(f);
-                for (int j = 0; i < lines.Length; i++) {
-                    if (lines[i].StartsWith("//")) {
+                for (int j = 0; j < lines.Length; j++) {
+                    if (lines[j].StartsWith("//") || String.IsNullOrWhiteSpace(lines[j])) {
                         continue;
                     }
-                    GameEvent e = MakeEvent(lines[i].Split());
+                    GameEvent e = MakeEvent(lines[j].Split());
                     if (files[i] == "START.txt") {
                         onStart.Add(e);
                     }
@@ -69,7 +69,11 @@ namespace Cthulu.Events {
         }
 
         public GameEvent MakeEvent(params string[] args) {
-
+            if (args.Length < 2) {
+                Debug.LogError("Tried to make an event with too few arguments: " + args.Print());
+                return null;
+            }
+            Debug.Log(args.Print());
             if (args[1] == "SET") {
                 SetEvent se = new SetEvent(args[0], args[2], args.Slice(3, -1));
                 events.Add(se.id, se);
