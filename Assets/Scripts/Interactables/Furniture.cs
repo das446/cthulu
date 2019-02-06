@@ -9,7 +9,9 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     /// <summary>
     /// Player's speed gets divided by weight while holding it, so set it accordingly
     /// </summary>
-    public float weight;
+    [SerializeField] protected float Weight = 1;
+    public float weight => Weight;
+
     public float health;
     [HideInInspector] public Vector3 startPos;
 
@@ -28,7 +30,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
 
     [SerializeField] FurnitureDebris debris;
 
-    public GameObject obj => throw new System.NotImplementedException();
+    public GameObject obj => gameObject;
 
     void Start() {
         startPos = transform.position;
@@ -43,7 +45,6 @@ public class Furniture : Interactable, IEvaluated, IManageable {
 
     }
 
-
     public virtual void Release(ICanHold h) {
         rb.useGravity = true;
         SetState(new InAirState(this, h));
@@ -54,7 +55,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     /// </summary>
     /// <param name="p"></param>
     public override void Interact(Player p) {
-        
+
     }
 
     // */
@@ -72,26 +73,24 @@ public class Furniture : Interactable, IEvaluated, IManageable {
         curState = s;
     }
 
-    public void Break(){
+    public void Break() {
         //Particle Effect
-        Instantiate(debris,transform.position,Quaternion.identity);
+        Instantiate(debris, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
-    public float Evaluate(Npc npc, Room r)
-    {
+    public float Evaluate(Npc npc, Room r) {
         return health;
     }
 
-    public void TakeDamage(float dmg){
-        health-=dmg;
-        if(health<=0){
+    public void TakeDamage(float dmg) {
+        health -= dmg;
+        if (health <= 0) {
             Break();
         }
     }
 
-    public void Set(GameEvent ge)
-    {
+    public void Set(GameEvent ge) {
         throw new System.NotImplementedException();
     }
 

@@ -55,6 +55,8 @@ public class Npc : Interactable, IPickUpable {
     const string happy = "O";
     const int wallLayer = 1 << 12; //might need to invert
 
+    public float weight => 1;
+
     // [SerializeField] GameObject deadNpc;
 
     void Start() {
@@ -143,7 +145,7 @@ public class Npc : Interactable, IPickUpable {
     }
 
     public void ReadyToBuy() {
-        curState.Exit();
+        curState?.Exit();
         curState = new BuyState(this, lobbyNode);
         Debug.Log("Cur state = buy");
     }

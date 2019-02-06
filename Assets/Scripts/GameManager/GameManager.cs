@@ -56,6 +56,8 @@ namespace Cthulu.Events {
         }
 
         public static void When(string caller, string function) {
+            if (singleton == null) { return; }
+            if (!singleton.enabled) { return; }
             string name = caller + seperator + function;
             if (singleton.whens.ContainsKey(name)) {
                 WhenEvent whenEvent = singleton.whens[name];

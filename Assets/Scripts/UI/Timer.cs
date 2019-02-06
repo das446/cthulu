@@ -57,12 +57,13 @@ public class Timer : MonoBehaviour {
             //because time is a float that's updated every frame it needs to store the previous int val
             //to prevent the event from being called multiple times per second
         } else {
-            GameManager.When("timer",((int)time).ToString());
+            
             if (TimeLeftAlert != null) {
                 TimeLeftAlert(minutes, seconds);
             }
             prevMin = minutes;
             prevSec = seconds;
+            GameManager.When("timer",((int)time).ToString());
         }
 
     }

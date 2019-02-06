@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmallItem : Furniture {
+public class SmallItem : Furniture, IPickUpable {
     [SerializeField] float speed;
     [SerializeField] Rigidbody rb;
     [SerializeField] Collider col;
     
-    public void Release(Player p){
-        Debug.Log("Release");
-        Vector3 dir = Camera.main.transform.forward*speed;
+    public void Release(ICanHold p){
+        Vector3 dir = p.GetThrowDir();
         rb.isKinematic = true;
         transform.parent = null;
         col.enabled = true;
@@ -18,18 +17,20 @@ public class SmallItem : Furniture {
         
     }
 
-    public void GetPickedUp(Player p){
-        transform.parent = p.hand;
+    public void GetPickedUp(ICanHold p){
+        transform.parent = p.Hand;
         transform.localPosition = Vector3.zero;
         rb.isKinematic = true;
         rb.useGravity = false;
         col.enabled = false;
-        p.curItem = this;
     }
 
     public override void Interact(Player p){
         GetPickedUp(p);
     }
 
-
+    public bool CanBePickedUp(ICanHold h)
+    {
+        return curState.Grounded();
+    }
 }
