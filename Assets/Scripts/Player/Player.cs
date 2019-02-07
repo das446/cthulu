@@ -36,7 +36,7 @@ public class Player : MonoBehaviour, ICanHold {
     void Update() {
         CheckOutline();
         CheckInput();
-        pos.transform.position = transform.position;
+        pos.transform.position = transform.position + Vector3.up;
     }
 
     void CheckInput() {
