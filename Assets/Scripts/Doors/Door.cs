@@ -17,6 +17,7 @@ public class Door : Interactable, IManageable {
 	public GameObject obj => gameObject;
 	Vector3 pos;
 	Vector3 rot;
+	[SerializeField] Rigidbody rb;
 
 	// Use this for initialization
 	void Start() {
@@ -26,7 +27,7 @@ public class Door : Interactable, IManageable {
 	}
 
 	public void Open() { //TODO: Make Coroutine
-		GameManager.When(name,"open");
+		GameManager.When(name, "open");
 		transform.Rotate(0, 90, 0);
 	}
 
@@ -76,22 +77,23 @@ public class Door : Interactable, IManageable {
 		}
 	}
 
-	
-
 	void FixedUpdate() {
 		transform.position = pos;
-		//ClampRotation();
+		ClampRotation();
 
 	}
 
 	private void ClampRotation() {
 		Vector3 e = transform.eulerAngles;
 		float angleY = e.y;
-		if (angleY > 90) {
-			angleY = 90;
-		} else if (angleY < 0) {
-			angleY = 0;
+		if (angleY > 350) {
+			angleY = 350;
+			rb.angularVelocity = Vector3.zero;
 		}
+		else if (angleY > 135) {
+			angleY = 135;
+			rb.angularVelocity = Vector3.zero;
+		} 
 		e.y = angleY;
 		transform.eulerAngles = e;
 	}
