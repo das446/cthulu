@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Cthulu.Events {
     public class WhenEvent : GameEvent
     {
-        public string call;
+        public string[] sets;
 
-        public WhenEvent(string name, string call)
+        public WhenEvent(string name, params string[] sets)
         {
             this.name = name;
-            this.call = call;
+            this.sets = sets;
         }
 
        

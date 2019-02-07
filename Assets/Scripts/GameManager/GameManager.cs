@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Cthulu.Events {
     public class GameManager : MonoBehaviour {
-        Dictionary<string, GameEvent> events = new Dictionary<string, GameEvent>(); //uses id name as key
+        Dictionary<string, SetEvent> events = new Dictionary<string, SetEvent>(); //uses id name as key
         [SerializeField] List<GameEvent> onStart = new List<GameEvent>();
         Dictionary<string, WhenEvent> whens = new Dictionary<string, WhenEvent>(); //uses event name as key
 
@@ -21,8 +21,6 @@ namespace Cthulu.Events {
             singleton = this;
 
             ReadFiles();
-
-            StartCoroutine(Execute());
         }
 
         void ReadFiles() {
@@ -43,14 +41,17 @@ namespace Cthulu.Events {
             }
         }
 
-        IEnumerator Execute() {
-            for (int i = 0; i < events.Count; i++) {
-                GameEvent cur = onStart[i];
-                if (cur.type == "WAIT") {
-                    yield return new WaitForSeconds(Int32.Parse(cur.args[0]));
-                } else if (cur.type == "SET") {
-                    IManageable m = Objects[cur.name];
-                    m.Set(cur);
+        IEnumerator ExecuteWhen(WhenEvent w) {
+
+            for (int i = 0; i < w.sets.Length; i++) {
+                string cur = w.sets[i];
+                if (cur.StartsWith("wait:")) {
+                    int time = Int32.Parse(cur.Split(':') [1]);
+                    yield return new WaitForSeconds(time);
+                } else {
+                    SetEvent s = events[cur];
+                    IManageable m = Objects[s.name];
+                    m.Set(s);
                 }
             }
         }
@@ -61,9 +62,7 @@ namespace Cthulu.Events {
             string name = caller + seperator + function;
             if (singleton.whens.ContainsKey(name)) {
                 WhenEvent whenEvent = singleton.whens[name];
-                GameEvent setEvent = singleton.events[whenEvent.call];
-                IManageable m = Objects[setEvent.name];
-                m.Set(setEvent);
+                singleton.StartCoroutine(singleton.ExecuteWhen(whenEvent));
             }
 
         }
@@ -79,13 +78,8 @@ namespace Cthulu.Events {
                 events.Add(se.id, se);
                 onStart.Add(se);
                 return se;
-            } else if (args[1] == "WAIT") {
-                WaitEvent we = new WaitEvent(args[0], args[2]);
-                events.Add(we.id, we);
-                onStart.Add(we);
-                return we;
             } else if (args[0] == "WHEN") {
-                WhenEvent we = new WhenEvent(args[1], args[2]);
+                WhenEvent we = new WhenEvent(args[1], args.Slice(2, -1));
                 whens.Add(we.name, we);
                 return we;
             } else {
