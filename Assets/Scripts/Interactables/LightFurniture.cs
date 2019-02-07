@@ -7,47 +7,53 @@ public class LightFurniture : Furniture, IPickUpable {
     public override void Interact(Player p) {
         if (p.CurItem() == null) {
             GetPickedUp(p);
+            p.PickUp(this);
         }
     }
 
     public override void Use(ICanHold h) {
-        ThrowObject(h);
+        Release(h);
+        h.Release(this);
     }
 
     public void GetPickedUp(ICanHold h) {
         curState = new HeldState(this, h);
         transform.parent = h.Hand;
         transform.localPosition = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+        rb.angularVelocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
         rb.useGravity = false;
         rb.isKinematic = false;
         col.enabled = false;
         holder = h;
+        gameObject.layer = heldLayer;
+
     }
 
-    void ThrowObject(ICanHold h) {
+    public void Release(ICanHold h) {
         curState = new InAirState(this, h);
-        rb.isKinematic = true;
         transform.parent = null;
         rb.useGravity = true;
         col.enabled = true;
-        holder = null;
         Vector3 dir = holder.GetThrowDir();
-        rb.AddRelativeForce(dir * holder.Power, ForceMode.Impulse);
+        rb.AddForce(dir * holder.Power, ForceMode.Impulse);
+        gameObject.layer = 0;
+        holder = null;
+        Debug.Log("Release");
     }
 
-    public bool CanBePickedUp(ICanHold h)
-    {
+    public bool CanBePickedUp(ICanHold h) {
         return curState.Grounded();
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
+    private void OnCollisionEnter(Collision other) {
         Monster m = other.collider.GetComponent<Monster>();
-        if(m!=null){
+        if (m != null) {
             m.FurnitureContact(this);
-        }
-        else{
+        } else {
             SetState(new GroundedState(this));
         }
-    } 
+    }
+
 }

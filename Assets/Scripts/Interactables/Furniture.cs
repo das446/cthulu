@@ -28,6 +28,8 @@ public class Furniture : Interactable, IEvaluated, IManageable {
 
     protected ICanHold holder;
 
+    protected int heldLayer = 11;
+
     [SerializeField] FurnitureDebris debris;
 
     public GameObject obj => gameObject;
@@ -43,11 +45,6 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     /// </summary>
     public virtual void Use(ICanHold h) {
 
-    }
-
-    public virtual void Release(ICanHold h) {
-        rb.useGravity = true;
-        SetState(new InAirState(this, h));
     }
 
     /// <summary>

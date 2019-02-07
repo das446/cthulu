@@ -1,0 +1,4 @@
+﻿WHEN room.dining.door.1:lock BobLeaveRoom
+BobLeaveRoom SET npc.Bob rooms.except.current
+TimQuestion.dining.door.1 SET npc.Tim room.dining.door.1
+QuestionDoor THEN BobLeaveRoom wait5 TimQuestion.dining.door.1

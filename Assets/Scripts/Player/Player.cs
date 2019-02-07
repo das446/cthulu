@@ -50,7 +50,8 @@ public class Player : MonoBehaviour, ICanHold {
 
     bool CheckFurnitureInput() {
         if (Input.GetMouseButtonDown(0) && curItem != null) {
-            curItem.Release(this);
+            Debug.Log("Use");
+            curItem.Use(this);
             return true;
         }
         return false;
@@ -62,10 +63,10 @@ public class Player : MonoBehaviour, ICanHold {
 
     }
 
-    public void Release(Furniture f) {
+    public void Release(IPickUpable f) {
         movement.SetSpeed(x => x * curItem.weight);
-        f?.Release(this);
         curItem = null;
+        Debug.Log("Release p");
 
     }
 
@@ -132,6 +133,7 @@ public class Player : MonoBehaviour, ICanHold {
 
     public void PickUp(IPickUpable f) {
         curItem = f;
+        Debug.Log(f);
         movement.SetSpeed(x => x / curItem.weight);
     }
 
@@ -157,11 +159,7 @@ public class Player : MonoBehaviour, ICanHold {
         SceneManager.LoadScene("WinScreen");
     }
 
-    public void Release(IPickUpable i) {
-        throw new NotImplementedException();
-    }
-
     public IPickUpable CurHeld() {
-        throw new NotImplementedException();
+        return curItem;
     }
 }
