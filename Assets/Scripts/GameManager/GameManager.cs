@@ -42,10 +42,27 @@ namespace Cthulu.Events {
         }
 
         IEnumerator ExecuteWhen(WhenEvent w) {
-
+            bool anonyomous = false;
+            string[] aEvent = new string[] { };
             for (int i = 0; i < w.sets.Length; i++) {
                 string cur = w.sets[i];
-                if (cur.StartsWith("wait:")) {
+                if (cur == "(" & w.sets[i + 1] == "SET") {
+                    anonyomous = true;
+                    aEvent = new string[] { };
+                } else if (anonyomous) {
+                    if (cur == ")") {
+                        SetEvent s = new SetEvent("a", aEvent[0], aEvent.Slice(1, -1));
+                        IManageable m = Objects[s.name];
+                        m.Set(s);
+                        anonyomous = false;
+                        i++;
+
+                    } else {
+                        List<string> temp = aEvent.ToList();
+                        temp.Add(cur);
+                        aEvent = temp.ToArray();
+                    }
+                } else if (cur.StartsWith("wait:")) {
                     int time = Int32.Parse(cur.Split(':') [1]);
                     yield return new WaitForSeconds(time);
                 } else {
