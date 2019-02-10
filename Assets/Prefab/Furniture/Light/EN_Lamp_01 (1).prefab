@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 136398460085461184}
   - component: {fileID: 54208805802893544}
   - component: {fileID: 5398974054422926928}
+  - component: {fileID: 184601890372342724}
   m_Layer: 0
   m_Name: EN_Lamp_01 (1)
   m_TagString: pickable
@@ -122,10 +123,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e90d37264200cb4e94afe330a8f155b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  o: {fileID: 0}
+  o: {fileID: 184601890372342724}
   Weight: 1
-  health: 0
+  health: 10
   startPos: {x: 0, y: 0, z: 0}
-  rb: {fileID: 0}
-  col: {fileID: 0}
+  rb: {fileID: 54208805802893544}
+  col: {fileID: 136398460085461184}
   debris: {fileID: 0}
+--- !u!114 &184601890372342724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531752438098048}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
