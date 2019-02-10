@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class LightFurniture : Furniture, IPickUpable {
 
+
+    // new void Start(){
+    //     base.Start();
+    //     rb.centerOfMass = transform.position + Vector3.down;
+    // }
+
     public override void Interact(Player p) {
         if (p.CurItem() == null) {
             GetPickedUp(p);
             p.PickUp(this);
         }
-    }
-
-    public override void Use(ICanHold h) {
-        Release(h);
-        h.Release(this);
     }
 
     public void GetPickedUp(ICanHold h) {
@@ -40,7 +41,7 @@ public class LightFurniture : Furniture, IPickUpable {
         rb.AddForce(dir * holder.Power, ForceMode.Impulse);
         gameObject.layer = 0;
         holder = null;
-        Debug.Log("Release");
+        TakeDamage(1);
     }
 
     public bool CanBePickedUp(ICanHold h) {

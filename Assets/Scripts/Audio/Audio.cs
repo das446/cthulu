@@ -28,6 +28,8 @@ namespace Cthulu {
             SoundEffects sfx = g.GetComponent<SoundEffects>();
             if (sfx == null) {
                 sfx = SoundEffects.DefaultSounds;
+            } else if (!sfx.HasSound(soundName)) {
+                sfx = SoundEffects.DefaultSounds;
             }
 
             if (a == null) {
