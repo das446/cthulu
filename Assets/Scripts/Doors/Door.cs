@@ -64,7 +64,7 @@ public class Door : Interactable, IManageable {
 		throw new System.NotImplementedException();
 	}
 
-	public void Set(GameEvent ge) {
+	public void Do(DoEvent ge) {
 		string param = ge.args[0];
 		if (param == "open") {
 			Open();

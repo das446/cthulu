@@ -49,7 +49,7 @@ namespace Cthulu.Events {
                     if (cur == ")") {
                         DoEvent s = new DoEvent("a", aEvent[0],aEvent[1], aEvent.Slice(1, -1));
                         IManageable m = Objects[s.name];
-                        m.Set(s);
+                        m.Do(s);
                         anonyomous = false;
 
                     } else {
@@ -63,7 +63,7 @@ namespace Cthulu.Events {
                 } else {
                     DoEvent s = events[cur];
                     IManageable m = Objects[s.name];
-                    m.Set(s);
+                    m.Do(s);
                 }
             }
         }
