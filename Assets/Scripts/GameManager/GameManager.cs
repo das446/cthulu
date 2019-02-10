@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Cthulu.Events {
     public class GameManager : MonoBehaviour {
-        Dictionary<string, SetEvent> events = new Dictionary<string, SetEvent>(); //uses id name as key
+        Dictionary<string, DoEvent> events = new Dictionary<string, DoEvent>(); //uses id name as key
         [SerializeField] List<GameEvent> onStart = new List<GameEvent>();
         Dictionary<string, WhenEvent> whens = new Dictionary<string, WhenEvent>(); //uses event name as key
 
@@ -42,12 +42,12 @@ namespace Cthulu.Events {
             string[] aEvent = new string[] { };
             for (int i = 0; i < w.sets.Length; i++) {
                 string cur = w.sets[i];
-                if (cur == "(set") {
+                if (cur == "(do") {
                     anonyomous = true;
                     aEvent = new string[] { };
                 } else if (anonyomous) {
                     if (cur == ")") {
-                        SetEvent s = new SetEvent("a", aEvent[0], aEvent.Slice(1, -1));
+                        DoEvent s = new DoEvent("a", aEvent[0],, aEvent.Slice(1, -1));
                         IManageable m = Objects[s.name];
                         m.Set(s);
                         anonyomous = false;
@@ -61,7 +61,7 @@ namespace Cthulu.Events {
                     int time = Int32.Parse(cur.Split(':') [1]);
                     yield return new WaitForSeconds(time);
                 } else {
-                    SetEvent s = events[cur];
+                    DoEvent s = events[cur];
                     IManageable m = Objects[s.name];
                     m.Set(s);
                 }
@@ -80,8 +80,8 @@ namespace Cthulu.Events {
         }
 
         public GameEvent MakeAndAddEvent(params string[] args) {
-            if (args[1] == "set") {
-                SetEvent se = new SetEvent(args[0], args[2], args.Slice(3, -1));
+            if (args[1] == "do") {
+                DoEvent se = new DoEvent(args[0], args[2], args[3],args.Slice(4, -1));
                 events.Add(se.id, se);
                 onStart.Add(se);
                 return se;
