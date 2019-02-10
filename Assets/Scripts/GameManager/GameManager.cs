@@ -47,7 +47,7 @@ namespace Cthulu.Events {
                     aEvent = new string[] { };
                 } else if (anonyomous) {
                     if (cur == ")") {
-                        DoEvent s = new DoEvent("a", aEvent[0],, aEvent.Slice(1, -1));
+                        DoEvent s = new DoEvent("a", aEvent[0],aEvent[1], aEvent.Slice(1, -1));
                         IManageable m = Objects[s.name];
                         m.Set(s);
                         anonyomous = false;
