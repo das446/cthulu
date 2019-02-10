@@ -2,30 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetEventBuyer : MonoBehaviour
+public class SetEventBuyer : IManageable
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.AddToManager();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Do(DoEvent buyerDo)
     {
-        
+        string buyerAction = buyerDo.action;
+        switch(buyerAction)
+        {
+            case "spawn":
+                string name = buyerDo.args[0];
+                int startInterest = int.TryParse(buyerDo.args[1]);
+                spawn(name, startInterest);
+                break;
+            case "goTo":
+                string name = buyerDo.args[0];
+                string room = buyerDo.args[1];
+                goToRoom(name, room);
+                break;
+            case "fakeOut":
+                string name = buyerDo.args[0];
+                string fakeLoc = buyerDo.args[1];
+                string realLoc = buyerDo.args[2];
+                fakeOut(name, fakeLoc, realLoc);
+                break;
+        }
     }
 
     /// <summary>
-    /// instantiate a new buyer
+    /// "spawns" a new buyer
     /// </summary>
     /// <param name="name">identifier for buyer</param>
     /// <param name="type">type of buyer</param>
     /// <param name="location">starting location</param>
     /// <param name="interest">starting interest level</param>
-    public void spawn(string name, string type, Node location, int interest)
+    public void Spawn(string name, int startInterest)
     {
-
+        //pseudocode
+        // GameObject buyer = findBuyer(name);
+        // buyer.GetComponent<Npc>().interest = startInterest;
+        // buyer.SetActive(true);
+        // buyer.GoToRoom(lobby);
     }
 
     /// <summary>
@@ -33,9 +55,11 @@ public class SetEventBuyer : MonoBehaviour
     /// </summary>
     /// <param name="name">name of buyer to move</param>
     /// <param name="room">room buyer should go to</param>
-    public void goToRoom(string name, Room room)
+    public void GoToRoom(string name, string room)
     {
-
+        //pseudocode
+        // GameObject buyer = findBuyer(name);
+        // buyer.GetComponent<Npc>().GoToRoom(room);
     }
 
     /// <summary>
@@ -44,8 +68,10 @@ public class SetEventBuyer : MonoBehaviour
     /// <param name="name">name of buyer to move</param>
     /// <param name="fakeNode">location buyer appears to go to</param>
     /// <param name="realNode">location buyer actually goes to</param>
-    public void fakeOut(string name, Node fakeNode, Node realNode)
+    public void FakeOut(string name, string fakeNode, string realNode)
     {
-
+        //pseudocode
+        // GameObject buyer = findBuyer(name);
+        // buyer.GetComponent<Npc>().fakeOut(fakeNode, realNode);
     }
 }
