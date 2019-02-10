@@ -36,7 +36,7 @@ public class Player : MonoBehaviour, ICanHold {
     void Update() {
         CheckOutline();
         CheckInput();
-        pos.transform.position = transform.position;
+        pos.transform.position = transform.position + Vector3.up;
     }
 
     void CheckInput() {
@@ -93,6 +93,12 @@ public class Player : MonoBehaviour, ICanHold {
                     curOutline.enabled = false;
                 }
                 curOutline = null;
+            } else if (curItem != null) {
+                if (curOutline != null) {
+                    curOutline.enabled = false;
+                }
+                curOutline = null;
+
             } else if (outline != curOutline) {
                 if (curOutline != null) {
                     curOutline.enabled = false;

@@ -34,17 +34,10 @@ public class Furniture : Interactable, IEvaluated, IManageable {
 
     public GameObject obj => gameObject;
 
-    void Start() {
+    protected void Start() {
         startPos = transform.position;
         curState = new GroundedState(this);
         //this.SetName();
-    }
-
-    /// <summary>
-    /// Throwing, dropping, or swinging
-    /// </summary>
-    public virtual void Use(ICanHold h) {
-
     }
 
     /// <summary>
