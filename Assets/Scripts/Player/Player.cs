@@ -153,7 +153,7 @@ public class Player : MonoBehaviour, ICanHold {
 
     public void ChangeMoney(int amnt) {
         money += amnt;
-        moneyText.text = money.ToString("#,##0") + "$";
+        moneyText.text = "$" + money.ToString("#,##0");
 
         if (money >= goalMoney) {
             WinLevel();
