@@ -28,26 +28,16 @@ public class Furniture : Interactable, IEvaluated, IManageable {
 
     protected ICanHold holder;
 
+    protected int heldLayer = 11;
+
     [SerializeField] FurnitureDebris debris;
 
     public GameObject obj => gameObject;
 
-    void Start() {
+    protected void Start() {
         startPos = transform.position;
         curState = new GroundedState(this);
         //this.SetName();
-    }
-
-    /// <summary>
-    /// Throwing, dropping, or swinging
-    /// </summary>
-    public virtual void Use(ICanHold h) {
-
-    }
-
-    public virtual void Release(ICanHold h) {
-        rb.useGravity = true;
-        SetState(new InAirState(this, h));
     }
 
     /// <summary>

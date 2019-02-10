@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 namespace Cthulu {
 
@@ -10,7 +10,7 @@ namespace Cthulu {
     public class SoundEffects : MonoBehaviour {
 
         [Serializable]
-        public struct sfx{
+        public struct sfx {
             public string name;
             public AudioClip sound;
         }
@@ -40,9 +40,9 @@ namespace Cthulu {
             if (soundEffects == null) {
                 soundEffects = new List<sfx>();
             }
-            if (soundEffects.Where(x=>x.name==Sound).Count()>0) {
-                
-                AudioClip s = soundEffects.Where(x=>x.name==Sound).First().sound;
+            if (HasSound(Sound)) {
+
+                AudioClip s = soundEffects.Where(x => x.name == Sound).First().sound;
                 Music.PlaySound(s, volume);
                 Music.Source.pitch = 1;
             } else if (this != DefaultSounds) {
@@ -52,20 +52,24 @@ namespace Cthulu {
             }
         }
 
-        public void PlaySound(string Sound,AudioSource source, float volume) {
+        public void PlaySound(string Sound, AudioSource source, float volume) {
             if (soundEffects == null) {
                 soundEffects = new List<sfx>();
             }
-            if (soundEffects.Where(x=>x.name==Sound).Count()>0) {
-                
-                AudioClip s = soundEffects.Where(x=>x.name==Sound).First().sound;
-                Music.PlaySound(s, source , volume);
+            if (HasSound(Sound)) {
+
+                AudioClip s = soundEffects.Where(x => x.name == Sound).First().sound;
+                Music.PlaySound(s, source, volume);
                 Music.Source.pitch = 1;
             } else if (this != DefaultSounds) {
                 DefaultSounds.PlaySound(Sound, source, volume);
             } else {
                 Debug.LogWarning("No sound effect named " + Sound);
             }
+        }
+
+        public bool HasSound(string Sound) {
+            return soundEffects.Where(x => x.name == Sound).Count() > 0;
         }
 
     }

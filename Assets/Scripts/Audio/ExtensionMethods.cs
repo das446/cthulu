@@ -136,5 +136,11 @@ namespace Cthulu {
             s = s + "}";
             return s;
         }
+
+        public static void Use(this IPickUpable p, ICanHold holder){
+            p.Release(holder);
+            holder.Release(p);
+
+        }
     }
 }

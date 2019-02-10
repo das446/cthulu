@@ -33,8 +33,8 @@ public class HeavyFurniture : Furniture,IPickUpable {
         prevPos = transform.position;
     }
 
-    public override void Release(ICanHold h) {
-        base.Release(h);
+    public void Release(ICanHold h) {
+        rb.useGravity = true;
         DisableJoint();
     }
 

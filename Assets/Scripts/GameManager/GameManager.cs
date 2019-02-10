@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Cthulu.Events {
     public class GameManager : MonoBehaviour {
-        Dictionary<string, SetEvent> events = new Dictionary<string, SetEvent>(); //uses id name as key
+        Dictionary<string, DoEvent> events = new Dictionary<string, DoEvent>(); //uses id name as key
         [SerializeField] List<GameEvent> onStart = new List<GameEvent>();
         Dictionary<string, WhenEvent> whens = new Dictionary<string, WhenEvent>(); //uses event name as key
 
@@ -16,40 +16,52 @@ namespace Cthulu.Events {
 
         static GameManager singleton;
         static string seperator = ":";
+        string fileName = "EVENTS.txt";
 
         void Start() {
             singleton = this;
 
-            ReadFiles();
+            ReadFile();
         }
 
-        void ReadFiles() {
-            string[] files = new string[] { "START.txt" };
-            string path = Application.dataPath + "/StreamingAssets/Events/" + SceneManager.GetActiveScene().name + "/";
-            for (int i = 0; i < files.Length; i++) {
-                string f = path + files[i];
-                string[] lines = System.IO.File.ReadAllLines(f);
-                for (int j = 0; j < lines.Length; j++) {
-                    if (lines[j].StartsWith("//") || String.IsNullOrWhiteSpace(lines[j])) {
-                        continue;
-                    }
-                    GameEvent e = MakeEvent(lines[j].Split());
-                    if (files[i] == "START.txt") {
-                        onStart.Add(e);
-                    }
+        void ReadFile() {
+            string path = Application.streamingAssetsPath + "/Events/" + SceneManager.GetActiveScene().name + "/";
+            string f = path + fileName;
+            string[] lines = System.IO.File.ReadAllLines(f);
+            for (int i = 0; i < lines.Length; i++) {
+                if (lines[i].StartsWith("//") || String.IsNullOrWhiteSpace(lines[i])) {
+                    continue;
                 }
+                MakeAndAddEvent(lines[i].ToLower().Split());
+
             }
         }
 
         IEnumerator ExecuteWhen(WhenEvent w) {
-
+            bool anonyomous = false;
+            string[] aEvent = new string[] { };
             for (int i = 0; i < w.sets.Length; i++) {
                 string cur = w.sets[i];
-                if (cur.StartsWith("wait:")) {
+                if (cur == "(do") {
+                    anonyomous = true;
+                    aEvent = new string[] { };
+                } else if (anonyomous) {
+                    if (cur == ")") {
+                        DoEvent s = new DoEvent("a", aEvent[0],aEvent[1], aEvent.Slice(1, -1));
+                        IManageable m = Objects[s.name];
+                        m.Set(s);
+                        anonyomous = false;
+
+                    } else {
+                        List<string> temp = aEvent.ToList();
+                        temp.Add(cur);
+                        aEvent = temp.ToArray();
+                    }
+                } else if (cur.StartsWith("wait:")) {
                     int time = Int32.Parse(cur.Split(':') [1]);
                     yield return new WaitForSeconds(time);
                 } else {
-                    SetEvent s = events[cur];
+                    DoEvent s = events[cur];
                     IManageable m = Objects[s.name];
                     m.Set(s);
                 }
@@ -67,18 +79,13 @@ namespace Cthulu.Events {
 
         }
 
-        public GameEvent MakeEvent(params string[] args) {
-            if (args.Length < 2) {
-                Debug.LogError("Tried to make an event with too few arguments: " + args.Print());
-                return null;
-            }
-            Debug.Log(args.Print());
-            if (args[1] == "SET") {
-                SetEvent se = new SetEvent(args[0], args[2], args.Slice(3, -1));
+        public GameEvent MakeAndAddEvent(params string[] args) {
+            if (args[1] == "do") {
+                DoEvent se = new DoEvent(args[0], args[2], args[3],args.Slice(4, -1));
                 events.Add(se.id, se);
                 onStart.Add(se);
                 return se;
-            } else if (args[0] == "WHEN") {
+            } else if (args[0] == "when") {
                 WhenEvent we = new WhenEvent(args[1], args.Slice(2, -1));
                 whens.Add(we.name, we);
                 return we;

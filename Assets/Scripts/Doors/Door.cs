@@ -79,7 +79,7 @@ public class Door : Interactable, IManageable {
 
 	void FixedUpdate() {
 		transform.position = pos;
-		ClampRotation();
+		//ClampRotation();
 
 	}
 
