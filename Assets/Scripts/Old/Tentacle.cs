@@ -2,44 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tentacle : Monster, ICanHold {
+public class Tentacle : Monster, ICanHold
+{
     [SerializeField] IPickUpable held;
 
-    public Transform Hand =>
-        throw new System.NotImplementedException();
+    [SerializeField] Transform tip;
+    [SerializeField] int power;
 
-    public float Power =>
-        throw new System.NotImplementedException();
+    public Transform Hand => tip;
 
-    public IPickUpable CurHeld() {
+    public float Power => power;
+
+    public IPickUpable CurHeld()
+    {
         return held;
     }
 
 
 
-    public override void FurnitureContact(Furniture furniture) {
+    public override void FurnitureContact(Furniture furniture)
+    {
         GetHit((int)furniture.weight);
         //Randomly grab it
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
-    
 
-    public Vector3 GetThrowDir() {
+
+    public Vector3 GetThrowDir()
+    {
         //throw at NPC
-        throw new System.NotImplementedException();
+        return new Vector3(0, 0, 0);
     }
 
-    public override void OnSpawn() {
-        throw new System.NotImplementedException();
+    public override void OnSpawn()
+    {
+        Debug.Log("No behaivor Made when respaw!");
     }
 
-    public void PickUp(IPickUpable pickUpable) {
+    public void PickUp(IPickUpable pickUpable)
+    {
         held = pickUpable;
         held.GetPickedUp(this);
     }
 
-    public void Release(IPickUpable pickUpable) {
+    public void Release(IPickUpable pickUpable)
+    {
         held = null;
     }
 
