@@ -41,7 +41,7 @@ public class LightFurniture : Furniture, IPickUpable {
         rb.AddForce(dir * holder.Power, ForceMode.Impulse);
         gameObject.layer = 0;
         holder = null;
-        TakeDamage(1);
+        TakeDamage(10);
     }
 
     public bool CanBePickedUp(ICanHold h) {
