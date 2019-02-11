@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour {
 
     public float timeLeft = 360;
-    float startTime;
+    public float startTime;
 
     public Text timerText;
 
@@ -34,8 +34,8 @@ public class Timer : MonoBehaviour {
     int prevSec;
 
     public void Start() {
-        startTime=timeLeft;
-     }
+        startTime = timeLeft;
+    }
 
     public void PlayWarning() { }
 
@@ -57,21 +57,25 @@ public class Timer : MonoBehaviour {
             //because time is a float that's updated every frame it needs to store the previous int val
             //to prevent the event from being called multiple times per second
         } else {
-            
+
             if (TimeLeftAlert != null) {
                 TimeLeftAlert(minutes, seconds);
             }
             prevMin = minutes;
             prevSec = seconds;
-            GameManager.When("timer",((int)time).ToString());
+            int t = (int) TimeElapsed();
+            GameManager.When("time", t.ToString());
         }
 
     }
 
     void UpdateDisplay(float t) {
-        float elapsed = 360f * startTime/t;
-        clockHand.transform.eulerAngles = new Vector3(0,0,-elapsed);
+        float elapsed = 360f * startTime / t;
+        clockHand.transform.eulerAngles = new Vector3(0, 0, -elapsed);
     }
 
-    
+    float TimeElapsed() {
+        return startTime - timeLeft;
+    }
+
 }

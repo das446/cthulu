@@ -5,12 +5,16 @@ using UnityEngine;
 namespace Cthulu.Events {
     public class WhenEvent : GameEvent
     {
-        public string[] sets;
+        public string[] dos;
 
-        public WhenEvent(string name, params string[] sets)
+        public WhenEvent(string name, params string[] dos)
         {
             this.name = name;
-            this.sets = sets;
+            this.dos = dos;
+        }
+
+        public string Print(){
+            return name + dos.Print();
         }
 
        

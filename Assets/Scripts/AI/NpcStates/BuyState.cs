@@ -10,7 +10,7 @@ public class BuyState : NpcState {
 
     private float waitTimer;
 
-    private float defaultWaitTime = 10;
+    private float defaultWaitTime = 15;
 
     private bool atLobby;
 
@@ -24,6 +24,7 @@ public class BuyState : NpcState {
 
     public override void OnInteract(Player p) {
         OnClick(npc,p);
+        Debug.Log("Buy");
     }
 
     public override void StateUpdate() {

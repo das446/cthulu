@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 
 public class Ghost : Monster {
@@ -12,6 +13,7 @@ public class Ghost : Monster {
     public static List<IPossesable> possesables = new List<IPossesable>();
 
     [SerializeField] float speed = 1;
+
 
     public override void FurnitureContact(Furniture furniture) {
         IPossesable p = furniture.GetComponent<IPossesable>();
@@ -62,9 +64,17 @@ public class Ghost : Monster {
     }
 
     public void UnPossess() {
-        Destroy(gameObject);
+        possedObject = null;
+        Die();
     }
 
+    public override void Do(DoEvent de)
+    {
+        if(de.action == "spawn"){
+            gameObject.SetActive(true);
+            transform.position = Room.GetRoom(de.args[0]).transform.position;
+        }
+    }
 }
 
 public interface IPossesable {

@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using cakeslice;
 using Cthulu;
+using Cthulu.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Npc : Interactable, IPickUpable {
+public class Npc : Interactable, IPickUpable, IManageable {
 
     NpcState curState;
 
@@ -56,19 +57,34 @@ public class Npc : Interactable, IPickUpable {
     const int wallLayer = 1 << 12; //might need to invert
 
     public float weight => 1;
+
+    public GameObject obj => gameObject;
+
     public int soundType;
     public bool playSound;
     public string deathSound, screamSound;
     public bool randomSound;
 
+    public static List<Npc> Active = new List<Npc>();
+
     // [SerializeField] GameObject deadNpc;
 
-    void Start() {
-        gameObject.PlaySound("PoshManEnters");
-        StartWandering();
+    void Awake() {
         follower = GetComponent<PathFollower>();
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+        this.AddToManager();
+        gameObject.SetActive(false);
+    }
+
+    public void Spawn() {
+        gameObject.PlaySound("PoshManEnters");
+        StartWandering();
+        Active.Add(this);
+    }
+
+    public void GoToRoom(string room) {
+        GoToRoom(Room.GetRoom(room));
     }
 
     public void Buy(Player p) {
@@ -81,7 +97,6 @@ public class Npc : Interactable, IPickUpable {
     /// Interact based on the current state
     /// </summary>
     public override void Interact(Player p) {
-        Debug.Log("Interact");
         curState.OnInteract(p);
     }
 
@@ -144,13 +159,13 @@ public class Npc : Interactable, IPickUpable {
     }
 
     public void GoToRoom(Room r) {
-        curState.Exit();
+        curState?.Exit();
         curState = new MoveTowardsState(this, r.RandomNode());
     }
 
     public void RunToExit() {
         speed = speed * 3;
-        curState.Exit();
+        curState?.Exit();
         curState = new ScaredState(this, exitNode);
     }
 
@@ -250,7 +265,8 @@ public class Npc : Interactable, IPickUpable {
     }
 
     public void ExitHouse() {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        Active.Remove(this);
     }
 
     public void Spawn(Node n) {
@@ -278,34 +294,31 @@ public class Npc : Interactable, IPickUpable {
         rb.AddForce(h.GetThrowDir());
     }
 
-    public void PlaySoundHere()
-    {
-        if(playSound && soundType == 0)
-        {
-            if (randomSound)
-            {
+    public void PlaySoundHere() {
+        if (playSound && soundType == 0) {
+            if (randomSound) {
                 string[] screams = new string[] { "PoshScream", "OffensiveScream" };
                 string scream = screams.RandomItem();
                 gameObject.PlaySound(scream);
                 playSound = false;
-            }else
-            {
+            } else {
                 gameObject.PlaySound(screamSound);
                 playSound = false;
             }
-        } else if(playSound && soundType == 1)
-        {
-            if (randomSound)
-            {
+        } else if (playSound && soundType == 1) {
+            if (randomSound) {
                 string[] screams = new string[] { "Death1", "Death2", "Death3" };
                 string scream = screams.RandomItem();
                 gameObject.PlaySound(scream);
                 playSound = false;
-            } else
-            {
+            } else {
                 gameObject.PlaySound(deathSound);
                 playSound = false;
             }
         }
+    }
+
+    public void Do(DoEvent de) {
+        new DoEventBuyer(this).Do(de);
     }
 }

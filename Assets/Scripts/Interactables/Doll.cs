@@ -10,11 +10,17 @@ public class Doll : Furniture, IPossesable, IPickUpable {
     [SerializeField] float turn = 10;
     [SerializeField] Animator anim;
 
-    Vector3 target;
+    Vector3 targetPos;
+    GameObject target;
     [SerializeField] float speed;
 
     public bool CanBePickedUp(ICanHold h) {
         return curState.Grounded();
+    }
+
+    new void Start() {
+        base.Start();
+        Ghost.possesables.Add(this);
     }
 
     public override void Interact(Player p) {
@@ -68,10 +74,18 @@ public class Doll : Furniture, IPossesable, IPickUpable {
     }
 
     private void UpdateTarget() {
+
+        Collider[] cols = Physics.OverlapSphere(transform.position, 30);
+        foreach (Collider col in cols) {
+            if (col.gameObject.GetComponent<Npc>()) {
+                target = col.gameObject;
+                return;
+            }
+        }
         float x = Random.Range(-15f, 15f);
         float z = Random.Range(-15f, 15f);
-        target = new Vector3(x, transform.position.y, z);
-        transform.LookAt(target);
+        targetPos = new Vector3(x, transform.position.y, z);
+
     }
 
     public void UnPossess() {
@@ -88,8 +102,15 @@ public class Doll : Furniture, IPossesable, IPickUpable {
     }
 
     public void GhostUpdate() {
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, target) <= 0.1f) {
+        if (target != null) {
+            targetPos = target.transform.position;
+        }
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        transform.LookAt(targetPos);
+
+        // if near npc scare it
+        
+        if (Vector3.Distance(transform.position, targetPos) <= 0.1f) {
             UpdateTarget();
         }
     }
@@ -102,8 +123,8 @@ public class Doll : Furniture, IPossesable, IPickUpable {
         }
     }
 
-    new void Start() {
-        base.Start();
-        Ghost.possesables.Add(this);
+    public void TargetBuyer(Npc npc) {
+        target = npc.gameObject;
     }
+
 }

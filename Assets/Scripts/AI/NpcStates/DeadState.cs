@@ -33,7 +33,8 @@ public class DeadState : NpcState
         if(holder!=null){
             holder.PickUp(d);
         }
-        GameObject.Destroy(npc.gameObject);
+        npc.gameObject.SetActive(false);
+        Npc.Active.Remove(npc);
         // throw new System.NotImplementedException();
     }
 

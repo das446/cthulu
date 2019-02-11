@@ -20,15 +20,15 @@ public class Door : Interactable, IManageable {
 	[SerializeField] Rigidbody rb;
 
 	// Use this for initialization
-	void Start() {
-		this.SetName();
+	void Awake() {
+		this.AddToManager();
 		pos = transform.position;
 		rot = transform.eulerAngles;
 	}
 
 	public void Open() { //TODO: Make Coroutine
-		GameManager.When(name, "open");
-		transform.Rotate(0, 90, 0);
+		Debug.Log("Open");
+		transform.eulerAngles=new Vector3(0, 90, 0) + rot;
 	}
 
 	public void Close() { //TODO: Make Coroutine
@@ -37,11 +37,13 @@ public class Door : Interactable, IManageable {
 
 	public void Lock() {
 		Close();
+		rb.isKinematic=false;
 		isLocked = true;
 	}
 
 	public void Unlock() {
 		isLocked = false;
+		rb.isKinematic = true;
 	}
 
 	public bool IsLocked() {
@@ -64,8 +66,8 @@ public class Door : Interactable, IManageable {
 		throw new System.NotImplementedException();
 	}
 
-	public void Do(DoEvent ge) {
-		string param = ge.args[0];
+	public void Do(DoEvent de) {
+		string param = de.action;
 		if (param == "open") {
 			Open();
 		} else if (param == "close") {

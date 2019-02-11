@@ -12,7 +12,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     [SerializeField] protected float Weight = 1;
     public float weight => Weight;
 
-    public float health;
+    public float health = 10;
     [HideInInspector] public Vector3 startPos;
 
     public Rigidbody rb;
@@ -82,8 +82,8 @@ public class Furniture : Interactable, IEvaluated, IManageable {
         }
     }
 
-    public void Do(DoEvent ge) {
-        throw new System.NotImplementedException();
+    public virtual void Do(DoEvent ge) {
+        
     }
 
 }

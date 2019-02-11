@@ -4,6 +4,6 @@ namespace Cthulu.Events {
 
     public interface IManageable {
         GameObject obj { get; }
-        void Do(DoEvent ge);
+        void Do(DoEvent de);
     }
 }

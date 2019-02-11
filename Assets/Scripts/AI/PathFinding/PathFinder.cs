@@ -45,7 +45,11 @@ public class PathFinder {
 
 	public List<Node> ShortestPath() {
 
-		if (start==null | end==null | start.id == end.id) {
+		if (start == null | end == null) {
+			return new List<Node>() { start };
+		}
+
+		if (start.id == end.id) {
 			return new List<Node>() { start };
 		}
 
@@ -106,7 +110,7 @@ public class PathFinder {
 	}
 
 	float dist(Node a, Node b) {
-		if(avoid.Contains(b)){
+		if (avoid.Contains(b)) {
 			return Mathf.Infinity;
 		}
 		return Vector3.Distance(a.transform.position, b.transform.position);

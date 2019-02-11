@@ -16,9 +16,9 @@ namespace Cthulu.Events {
 
         static GameManager singleton;
         static string seperator = ":";
-        string fileName = "EVENTS.txt";
+        public string fileName = "EVENTS.txt";
 
-        void Start() {
+        void Awake() {
             singleton = this;
 
             ReadFile();
@@ -40,16 +40,26 @@ namespace Cthulu.Events {
         IEnumerator ExecuteWhen(WhenEvent w) {
             bool anonyomous = false;
             string[] aEvent = new string[] { };
-            for (int i = 0; i < w.sets.Length; i++) {
-                string cur = w.sets[i];
+            for (int i = 0; i < w.dos.Length; i++) {
+                string cur = w.dos[i];
                 if (cur == "(do") {
                     anonyomous = true;
                     aEvent = new string[] { };
                 } else if (anonyomous) {
                     if (cur == ")") {
-                        DoEvent s = new DoEvent("a", aEvent[0],aEvent[1], aEvent.Slice(1, -1));
-                        IManageable m = Objects[s.name];
-                        m.Do(s);
+                        DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
+                        IManageable m = Objects[d.name];
+                        m.Do(d);
+                        anonyomous = false;
+
+                    } else if (cur.EndsWith(")")) {
+                        List<string> temp = aEvent.ToList();
+                        temp.Add(cur.TrimEnd(')'));
+                        aEvent = temp.ToArray();
+                        Debug.Log(aEvent.Print());
+                        DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
+                        IManageable m = Objects[d.name];
+                        m.Do(d);
                         anonyomous = false;
 
                     } else {
@@ -69,9 +79,9 @@ namespace Cthulu.Events {
         }
 
         public static void When(string caller, string function) {
+            string name = caller + seperator + function;
             if (singleton == null) { return; }
             if (!singleton.enabled) { return; }
-            string name = caller + seperator + function;
             if (singleton.whens.ContainsKey(name)) {
                 WhenEvent whenEvent = singleton.whens[name];
                 singleton.StartCoroutine(singleton.ExecuteWhen(whenEvent));
@@ -81,7 +91,7 @@ namespace Cthulu.Events {
 
         public GameEvent MakeAndAddEvent(params string[] args) {
             if (args[1] == "do") {
-                DoEvent se = new DoEvent(args[0], args[2], args[3],args.Slice(4, -1));
+                DoEvent se = new DoEvent(args[0], args[2], args[3], args.Slice(4, -1));
                 events.Add(se.id, se);
                 onStart.Add(se);
                 return se;

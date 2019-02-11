@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cthulu.Events;
 
-public class DoEventBuyer : IManageable
+public class DoEventBuyer
 {
     Npc npc;
 
@@ -12,28 +12,16 @@ public class DoEventBuyer : IManageable
         this.npc = npc;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    public GameObject obj
-    {
-        get{ return npc.gameObject; }
-    }
-
     public void Do(DoEvent buyerDo)
     {
+        Debug.Log(buyerDo.Print());
         string buyerAction = buyerDo.action;
         switch (buyerAction)
         {
             case "spawn":
-                int startInterest;
-                int.TryParse(buyerDo.args[0], out startInterest);
-                Spawn(startInterest);
+                Spawn();
                 break;
-            case "goTo":
+            case "goto":
                 string room = buyerDo.args[0];
                 GoToRoom(room);
                 break;
@@ -49,13 +37,11 @@ public class DoEventBuyer : IManageable
     /// "spawns" a new buyer
     /// </summary>
     /// <param name="name">identifier for buyer</param>
-    /// <param name="type">type of buyer</param>
-    /// <param name="location">starting location</param>
-    /// <param name="interest">starting interest level</param>
-    public void Spawn(int startInterest)
+    void Spawn()
     {
         npc.gameObject.SetActive(true);
-        npc.interest = startInterest;
+        npc.interest = 0;
+        npc.GoToRoom("LivingRoom");
         //tell npc to enter building
         // npc.GoToRoom(npc.lobbyNode);
     }
@@ -63,12 +49,11 @@ public class DoEventBuyer : IManageable
     /// <summary>
     /// tells buyer to go to a room
     /// </summary>
-    /// <param name="name">name of buyer to move</param>
     /// <param name="room">room buyer should go to</param>
-    public void GoToRoom(string room)
+    void GoToRoom(string room)
     {
-        // turn string room into Room.cs room
-        // npc.GoToRoom(room);
+        
+        npc.GoToRoom(room);
     }
 
     // /// <summary>

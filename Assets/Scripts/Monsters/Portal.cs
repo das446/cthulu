@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 
 public class Portal : Monster {
@@ -24,5 +25,10 @@ public class Portal : Monster {
     public override void OnSpawn()
     {
         StartCoroutine(SpawnMonster(delay));
+    }
+
+    public override void Do(DoEvent de)
+    {
+        throw new System.NotImplementedException();
     }
 }

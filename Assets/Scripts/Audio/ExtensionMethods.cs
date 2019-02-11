@@ -110,13 +110,18 @@ namespace Cthulu {
         }
 
         public static void AddToManager(this IManageable i) {
-            GameManager.Objects.Add(i.obj.name, i);
+            if (GameManager.Objects.ContainsKey(i.obj.name.ToLower())) {
+                Debug.LogWarning(i.obj.name + " has the same name as another object in the scene");
+
+            } else {
+                GameManager.Objects.Add(i.obj.name.ToLower(), i);
+            }
         }
 
         public static T[] Slice<T>(this T[] source, int start, int end) {
             // Handles negative ends.
             if (end < 0) {
-                end = source.Length + end;
+                end = source.Length + end + 1;
             }
             int len = end - start;
 
@@ -129,11 +134,10 @@ namespace Cthulu {
         }
 
         public static string Print(this string[] a) {
-            string s = "{";
+            string s = "";
             for (int i = 0; i < a.Length; i++) {
-                s = s + a[i] + ",";
+                s = s + a[i] + " ";
             }
-            s = s + "}";
             return s;
         }
 

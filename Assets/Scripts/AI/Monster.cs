@@ -1,12 +1,16 @@
 using System;
+using Cthulu;
+using Cthulu.Events;
 using UnityEngine;
 
-public abstract class Monster : MonoBehaviour, IEvaluated {
+public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
 
     [SerializeField] protected int hp;
     [SerializeField] protected float scareFactor;
 
     [SerializeField] protected int damage;
+
+    public GameObject obj => gameObject;
 
     public static event Action<Monster, Vector3> Spawn;
     public abstract void FurnitureContact(Furniture furniture);
@@ -23,8 +27,14 @@ public abstract class Monster : MonoBehaviour, IEvaluated {
         return damage;
     }
     public virtual void Die() {
+        GameManager.When(name,"die");
+        gameObject.SetActive(false);
+    }
 
-        Destroy(this);
+    void Awake()
+    {
+     this.AddToManager();   
+     gameObject.SetActive(false);
     }
 
     void Start() {
@@ -47,4 +57,5 @@ public abstract class Monster : MonoBehaviour, IEvaluated {
         s.Spawn(this);
     }
 
+    public abstract void Do(DoEvent de);
 }
