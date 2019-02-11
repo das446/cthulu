@@ -70,6 +70,9 @@ public class Tentacle : Monster, ICanHold {
 
     public override void Do(DoEvent de)
     {
-        throw new NotImplementedException();
+        if(de.action == "spawn"){
+            gameObject.SetActive(true);
+            transform.position = Room.GetRoom(de.args[0]).transform.position;
+        }
     }
 }

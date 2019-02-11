@@ -29,6 +29,9 @@ public class Portal : Monster {
 
     public override void Do(DoEvent de)
     {
-        throw new System.NotImplementedException();
+            if(de.action == "spawn"){
+            gameObject.SetActive(true);
+            transform.position = Room.GetRoom(de.args[0]).transform.position;
+        }
     }
 }
