@@ -82,7 +82,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
         }
     }
 
-    public void Set(GameEvent ge) {
+    public void Do(DoEvent ge) {
         throw new System.NotImplementedException();
     }
 
