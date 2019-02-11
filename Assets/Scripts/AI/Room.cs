@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Cthulu;
+using Cthulu.Events;
 using UnityEngine;
 
-public class Room : MonoBehaviour {
+public class Room : MonoBehaviour, IManageable {
     public List<Furniture> furniture;
 
     [SerializeField] List<Node> nodes;
@@ -12,9 +13,12 @@ public class Room : MonoBehaviour {
 
     public static Dictionary<string, Room> rooms = new Dictionary<string, Room>();
 
+    public GameObject obj => throw new NotImplementedException();
+
     void Start() {
         PathFollower.ReachNode += CheckEnter;
         rooms.Add(name.ToLower(), this);
+        this.AddToManager();
     }
 
     private void CheckEnter(Npc npc, Node node) {
@@ -43,5 +47,10 @@ public class Room : MonoBehaviour {
     public static Room GetRoom(string s) {
         Debug.Log(s);
         return rooms[s.ToLower()];
+    }
+
+    public void Do(DoEvent de)
+    {
+        
     }
 }
