@@ -11,6 +11,7 @@ public class Tentacle : Monster, ICanHold {
     [SerializeField] Transform hand;
     [SerializeField] float power;
 
+
     public Transform Hand => hand;
 
     public float Power => power;
@@ -22,6 +23,8 @@ public class Tentacle : Monster, ICanHold {
     public override void FurnitureContact(Furniture furniture) {
         GetHit((int) furniture.weight);
         //Randomly grab it
+        furniture.gameObject.transform.SetParent(hand);
+        
     }
 
     public Vector3 GetThrowDir() {
@@ -55,6 +58,15 @@ public class Tentacle : Monster, ICanHold {
     }
 
     void OnTriggerEnter(Collider other) {
+        Debug.Log(other.gameObject);
+        Npc npc = other.GetComponent<Npc>();
+        if (npc != null) {
+            PickUp(npc);
+            StartCoroutine(DelayThrow(10));
+        }
+    }
+
+    void OnCollisionEnter(Collider other) {
         Debug.Log(other.gameObject);
         Npc npc = other.GetComponent<Npc>();
         if (npc != null) {
