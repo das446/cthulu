@@ -27,14 +27,13 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
         return damage;
     }
     public virtual void Die() {
-        GameManager.When(name,"die");
+        GameManager.When(name, "die");
         gameObject.SetActive(false);
     }
 
-    void Awake()
-    {
-     this.AddToManager();   
-     gameObject.SetActive(false);
+    void Awake() {
+        this.AddToManager();
+        gameObject.SetActive(false);
     }
 
     void Start() {

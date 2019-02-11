@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Portal : Monster {
 
-    [SerializeField] Monster monsterBase;
+    public Monster monsterBase;
     Monster monster;
     [SerializeField] float delay;
 
