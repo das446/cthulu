@@ -28,7 +28,7 @@ public class LeaveState : NpcState {
         throw new System.NotImplementedException();
     }
 
-    public override void FrameUpdate() {
+    public override void StateUpdate() {
 
     }
 }

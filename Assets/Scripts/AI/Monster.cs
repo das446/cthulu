@@ -5,39 +5,32 @@ public abstract class Monster : MonoBehaviour, IEvaluated {
 
     [SerializeField] protected int hp;
     [SerializeField] protected float scareFactor;
-    
+
     [SerializeField] protected int damage;
 
     public static event Action<Monster, Vector3> Spawn;
     public abstract void FurnitureContact(Furniture furniture);
 
-
-
-
-
     public abstract void OnSpawn();
-    
-    public virtual void GetHit(int damageAmount){
-        this.hp -= damageAmount; 
-        if(hp<=0){
+
+    public virtual void GetHit(int damageAmount) {
+        this.hp -= damageAmount;
+        if (hp <= 0) {
             Die();
-        }  
+        }
     }
-    public virtual int HitBuyer(Npc npc){
+    public virtual int HitBuyer(Npc npc) {
         return damage;
     }
-    public virtual void Die(){
+    public virtual void Die() {
 
         Destroy(this);
     }
 
-
     void Start() {
-        Spawn(this, transform.position);
+        if (Spawn != null) { Spawn(this, transform.position); }
         OnSpawn();
     }
-
-
 
     public float Evaluate(Npc npc, Room r) {
         RaycastHit hit;
@@ -50,7 +43,7 @@ public abstract class Monster : MonoBehaviour, IEvaluated {
         return 0;
     }
 
-    public void SpawnMonster(MonsterSpawnPoint s){
+    public void SpawnMonster(MonsterSpawnPoint s) {
         s.Spawn(this);
     }
 

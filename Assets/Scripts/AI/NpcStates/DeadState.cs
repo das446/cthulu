@@ -20,7 +20,7 @@ public class DeadState : NpcState
         Enter();
     }
 
-    public override void FrameUpdate()
+    public override void StateUpdate()
     {
         
     }

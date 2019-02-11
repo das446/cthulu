@@ -16,7 +16,7 @@ public class ScaredState : NpcState
         Enter();
     }
 
-    public override void FrameUpdate() 
+    public override void StateUpdate() 
     {
         if (Vector3.Distance(npc.transform.position, exit.transform.position) < 0.5f)
         {

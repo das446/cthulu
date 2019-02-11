@@ -107,7 +107,7 @@ public class Npc : Interactable, IPickUpable {
          }
          */
 
-        curState?.FrameUpdate();
+        curState?.StateUpdate();
 
     }
 
