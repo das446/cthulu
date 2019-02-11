@@ -65,11 +65,13 @@ public class Furniture : Interactable, IEvaluated, IManageable {
 
     public void Break() {
         //Particle Effect
-        Instantiate(debris, transform.position, Quaternion.identity);
+        if (debris != null) {
+            Instantiate(debris, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 
-    public float Evaluate(Npc npc, Room r) {
+    public virtual float Evaluate(Npc npc, Room r) {
         return health;
     }
 

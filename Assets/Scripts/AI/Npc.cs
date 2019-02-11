@@ -56,6 +56,10 @@ public class Npc : Interactable, IPickUpable {
     const int wallLayer = 1 << 12; //might need to invert
 
     public float weight => 1;
+    public int soundType;
+    public bool playSound;
+    public string deathSound, screamSound;
+    public bool randomSound;
 
     // [SerializeField] GameObject deadNpc;
 
@@ -93,10 +97,16 @@ public class Npc : Interactable, IPickUpable {
         }
         if (isScared && !isRunning) {
             Debug.Log("NPC is scared");
+            playSound = true;
+            soundType = 1;
+            PlaySoundHere();
             RunToExit();
             isRunning = true;
         }
         if (isDead) {
+            playSound = true;
+            soundType = 0;
+            PlaySoundHere();
             Die();
         }
 
@@ -107,7 +117,7 @@ public class Npc : Interactable, IPickUpable {
          }
          */
 
-        curState?.FrameUpdate();
+        curState?.StateUpdate();
 
     }
 
@@ -266,5 +276,36 @@ public class Npc : Interactable, IPickUpable {
 
     public void Release(ICanHold h) {
         rb.AddForce(h.GetThrowDir());
+    }
+
+    public void PlaySoundHere()
+    {
+        if(playSound && soundType == 0)
+        {
+            if (randomSound)
+            {
+                string[] screams = new string[] { "PoshScream", "OffensiveScream" };
+                string scream = screams.RandomItem();
+                gameObject.PlaySound(scream);
+                playSound = false;
+            }else
+            {
+                gameObject.PlaySound(screamSound);
+                playSound = false;
+            }
+        } else if(playSound && soundType == 1)
+        {
+            if (randomSound)
+            {
+                string[] screams = new string[] { "Death1", "Death2", "Death3" };
+                string scream = screams.RandomItem();
+                gameObject.PlaySound(scream);
+                playSound = false;
+            } else
+            {
+                gameObject.PlaySound(deathSound);
+                playSound = false;
+            }
+        }
     }
 }

@@ -26,7 +26,7 @@ public class BuyState : NpcState {
         OnClick(npc,p);
     }
 
-    public override void FrameUpdate() {
+    public override void StateUpdate() {
 
         if (atLobby) {
             waitTimer -= Time.deltaTime;

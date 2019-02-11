@@ -131,16 +131,31 @@ namespace Cthulu {
         public static string Print(this string[] a) {
             string s = "{";
             for (int i = 0; i < a.Length; i++) {
-                s = s + a[i]+",";
+                s = s + a[i] + ",";
             }
             s = s + "}";
             return s;
         }
 
-        public static void Use(this IPickUpable p, ICanHold holder){
+        public static void Use(this IPickUpable p, ICanHold holder) {
             p.Release(holder);
             holder.Release(p);
 
+        }
+
+        public static void SetLayerRecursively(this GameObject obj, int newLayer) {
+            if (null == obj) {
+                return;
+            }
+
+            obj.layer = newLayer;
+
+            foreach (Transform child in obj.transform) {
+                if (null == child) {
+                    continue;
+                }
+                SetLayerRecursively(child.gameObject, newLayer);
+            }
         }
     }
 }
