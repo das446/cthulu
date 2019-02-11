@@ -27,11 +27,13 @@ public class Door : Interactable, IManageable {
 	}
 
 	public void Open() { //TODO: Make Coroutine
-		Debug.Log("Open");
-		transform.eulerAngles=new Vector3(0, 90, 0) + rot;
+		GameManager.When(name, "open");
+        gameObject.PlaySound("DoorOpening");
+		transform.Rotate(0, 90, 0);
 	}
 
 	public void Close() { //TODO: Make Coroutine
+        gameObject.PlaySound("DoorClosing");
 		transform.eulerAngles = rot;
 	}
 
