@@ -47,8 +47,7 @@ namespace Cthulu.Events {
                 } else if (anonyomous) {
                     if (cur == ")") {
                         DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
-                        IManageable m = Objects[d.GetName()];
-                        m.Do(d);
+                        Do(d);
                         anonyomous = false;
 
                     } else if (cur.EndsWith(")")) {
@@ -57,8 +56,7 @@ namespace Cthulu.Events {
                         aEvent = temp.ToArray();
                         Debug.Log(aEvent.Print());
                         DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
-                        IManageable m = Objects[d.GetName()];
-                        m.Do(d);
+                        Do(d);
                         anonyomous = false;
 
                     } else {
@@ -70,9 +68,8 @@ namespace Cthulu.Events {
                     int time = Int32.Parse(cur.Split(':') [1]);
                     yield return new WaitForSeconds(time);
                 } else {
-                    DoEvent s = events[cur];
-                    IManageable m = Objects[s.GetName()];
-                    m.Do(s);
+                    DoEvent d = events[cur];
+                    Do(d);
                 }
             }
         }
@@ -95,6 +92,15 @@ namespace Cthulu.Events {
             } else if (args[0] == "when") {
                 WhenEvent we = new WhenEvent(args[1], args.Slice(2, -1));
                 whens.Add(we.name, we);
+            }
+        }
+
+        void Do(DoEvent d){
+            string[] names = d.GetNames();
+            foreach (string n in names)
+            {
+                IManageable m = Objects[n];
+                m.Do(d);
             }
         }
 

@@ -19,12 +19,23 @@ namespace Cthulu.Events {
             this.args = args;
         }
 
-        public string GetName() {
-            string[] options = name.Split('|');
-            if (options.Length == 1) {
-                return name;
+        public string[] GetNames() {
+            if (name.Contains("|")) {
+
+                string[] options = name.Split('|');
+                string s = options[0] + "." + (options.Slice(1, -1).RandomItem());
+                return new string[] { s };
+
+            } else if (name.Contains("&")) {
+                
+                string[] options = name.Split('&');
+                List<string> names = new List<string>();
+                for (int i = 1; i < options.Length; i++) {
+                    names.Add(options[0] + "." + options[i]);
+                }
+                return names.ToArray();
             } else {
-                return options[0] + "." + (options.Slice(1, -1).RandomItem());
+                return new string[] { name };
             }
         }
 
