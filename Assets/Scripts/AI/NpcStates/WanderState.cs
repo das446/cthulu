@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Wander")]
 public class WanderState : NpcState {
 
     float timeUntilMove;
@@ -32,7 +31,7 @@ public class WanderState : NpcState {
         timeUntilMove = waitTime;
     }
 
-    public override void FrameUpdate() {
+    public override void StateUpdate() {
         if (!npc.follower.moving) {
             timeUntilMove -= Time.deltaTime;
         }

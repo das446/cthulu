@@ -10,17 +10,25 @@ public class Room : MonoBehaviour {
     [SerializeField] List<MonsterSpawnPoint> spawnPoints;
     public List<Portal> portals;
 
+    public static Dictionary<string, Room> rooms = new Dictionary<string, Room>();
+
     void Start() {
         PathFollower.ReachNode += CheckEnter;
+        string n = name.ToLower();
+        if (rooms.ContainsKey(n)) {
+            Debug.LogWarning("Room with name " + n +" already exists" );
+        } else {
+            rooms.Add(n, this);
+        }
     }
 
     private void CheckEnter(Npc npc, Node node) {
-        if(nodes==null || npc==null){
+        if (nodes == null || npc == null) {
             Debug.Log(nodes);
             Debug.Log(npc);
             return;
         }
-        if (nodes.Contains(node) & npc.CurRoom!=this) {
+        if (nodes.Contains(node) & npc.CurRoom != this) {
             npc.EnterRoom(this);
         }
     }
@@ -29,11 +37,16 @@ public class Room : MonoBehaviour {
         return nodes.RandomItem();
     }
 
-    public void SpawnAtRandom(Monster m) {
-        MonsterSpawnPoint s = spawnPoints.RandomItem(x=>x.CanSpawn());
+    public Monster SpawnAtRandom(Monster m) {
+        MonsterSpawnPoint s = spawnPoints.RandomItem(x => x.CanSpawn());
+        return SpawnMonster(m, s);
     }
 
-    public void SpanwMonster(Monster m, MonsterSpawnPoint spawn) {
-        spawn.Spawn(m);
+    public Monster SpawnMonster(Monster m, MonsterSpawnPoint spawn) {
+        return spawn.Spawn(m);
+    }
+
+    public static Room GetRoom(string s) {
+        return rooms[s.ToLower()];
     }
 }

@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 
 public class Portal : Monster {
 
-    [SerializeField] Monster monsterBase;
-    Monster monster;
+    public Tentacle monsterBase;
+    Tentacle monster;
     [SerializeField] float delay;
 
-    void Start() {
-        OnSpawn();
-    }
 
-    IEnumerator SpawnMonster(float delay){
+    IEnumerator SpawnTentacle(float delay){
         yield return new WaitForSeconds(delay);
         monster = Instantiate(monsterBase,transform.position,transform.rotation);
+        monster.name = monsterBase.name;
+        monster.gameObject.SetActive(true);
+        monster.OnSpawn();
     }
 
     public override void FurnitureContact(Furniture furniture) {
@@ -23,6 +24,12 @@ public class Portal : Monster {
 
     public override void OnSpawn()
     {
-        StartCoroutine(SpawnMonster(delay));
+        base.OnSpawn();
+        StartCoroutine(SpawnTentacle(delay));
+    }
+
+    public override void Do(DoEvent de)
+    {
+        throw new System.NotImplementedException();
     }
 }

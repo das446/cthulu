@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 
 public class Tentacle : Monster, ICanHold {
+    [SerializeField] Portal portal;
     [SerializeField] IPickUpable held;
     [SerializeField] float range;
     [SerializeField] BoxCollider hitbox;
@@ -65,5 +67,18 @@ public class Tentacle : Monster, ICanHold {
     IEnumerator DelayThrow(float delay) {
         yield return new WaitForSeconds(delay);
         Release(held);
+    }
+
+    public override void Do(DoEvent de) {
+        if (de.action == "spawn") {
+            Room r = Room.GetRoom(de.args[0]);
+            SpawnPortal(r);
+        }
+    }
+
+    Portal SpawnPortal(Room r) {
+        Portal p = (Portal)r.SpawnAtRandom(portal);
+        p.monsterBase = this;
+        return p;
     }
 }

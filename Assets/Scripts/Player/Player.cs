@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, ICanHold {
     cakeslice.Outline curOutline;
     [SerializeField] float interactRange;
     public Transform hand;
-    public Furniture curItem;
+    IPickUpable curItem;
     [SerializeField] PlayerMovement movement;
     [SerializeField] float power;
     [SerializeField] Camera cam;
@@ -36,32 +36,37 @@ public class Player : MonoBehaviour, ICanHold {
     void Update() {
         CheckOutline();
         CheckInput();
-        pos.transform.position = transform.position;
+        pos.transform.position = transform.position + Vector3.up;
     }
 
     void CheckInput() {
-        CheckInteract();
-        CheckFurnitureInput();
+        //weird things were happening when interact and using furniture were bound to the same butoon but this should fix it
+        //so they don't happen on the same frame
+        bool f = CheckFurnitureInput();
+        if (!f) {
+            CheckInteract();
+        }
     }
 
-    void CheckFurnitureInput() {
-        if (Input.GetMouseButtonDown(0)) {
-            curItem?.Use(this);
-        } else if (Input.GetMouseButtonDown(1)) {
-            Release(curItem);
+    bool CheckFurnitureInput() {
+        if (Input.GetMouseButtonDown(0) && curItem != null) {
+            Debug.Log("Use");
+            curItem.Use(this);
+            return true;
         }
+        return false;
     }
 
     void LoseItem() {
         movement.SetSpeed(x => x * curItem.weight);
         curItem = null;
-        
+
     }
 
-    public void Release(Furniture f) {
+    public void Release(IPickUpable f) {
         movement.SetSpeed(x => x * curItem.weight);
-        f?.Release(this);
         curItem = null;
+        Debug.Log("Release p");
 
     }
 
@@ -70,7 +75,7 @@ public class Player : MonoBehaviour, ICanHold {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange)) {
                 Interactable i = hit.collider.gameObject.GetComponent<Interactable>();
-                i?.Interact(this,hit.point);
+                i?.Interact(this, hit.point);
             }
         }
     }
@@ -88,6 +93,12 @@ public class Player : MonoBehaviour, ICanHold {
                     curOutline.enabled = false;
                 }
                 curOutline = null;
+            } else if (curItem != null) {
+                if (curOutline != null) {
+                    curOutline.enabled = false;
+                }
+                curOutline = null;
+
             } else if (outline != curOutline) {
                 if (curOutline != null) {
                     curOutline.enabled = false;
@@ -126,8 +137,9 @@ public class Player : MonoBehaviour, ICanHold {
         movement.Unlock();
     }
 
-    public void PickUp(Furniture f) {
+    public void PickUp(IPickUpable f) {
         curItem = f;
+        Debug.Log(f);
         movement.SetSpeed(x => x / curItem.weight);
     }
 
@@ -135,36 +147,25 @@ public class Player : MonoBehaviour, ICanHold {
         return cam.transform.forward;
     }
 
-    public Furniture CurFurniture() {
+    public IPickUpable CurItem() {
         return curItem;
     }
 
-    public void ChangeMoney(int amnt){
-        money+=amnt;
-        moneyText.text = money.ToString("#,##0")+"$";
+    public void ChangeMoney(int amnt) {
+        money += amnt;
+        moneyText.text = "$" + money.ToString("#,##0");
 
-        if(money>=goalMoney){
+        if (money >= goalMoney) {
             WinLevel();
         }
     }
 
-    private void WinLevel()
-    {
+    private void WinLevel() {
+        Lock();
         SceneManager.LoadScene("WinScreen");
     }
 
-    public void PickUp(IPickUpable i)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Release(IPickUpable i)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IPickUpable CurHeld()
-    {
-        throw new NotImplementedException();
+    public IPickUpable CurHeld() {
+        return curItem;
     }
 }

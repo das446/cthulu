@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cthulu.Events;
 using UnityEngine;
 
 namespace Cthulu {
@@ -93,5 +94,114 @@ namespace Cthulu {
             }
             return true;
         }
+
+        public static void SetName(this IManageable i) {
+            GameObject g = i.obj;
+            g.name = g.name + g.GetInstanceID();
+            Transform t = g.transform;
+            while (t != null) {
+                t = t.parent;
+                if (t != null) {
+                    g.name = t.gameObject.name + "." + g.gameObject.name;
+                }
+
+            }
+
+        }
+
+        public static void AddToManager(this IManageable i) {
+            if (GameManager.Objects.ContainsKey(i.obj.name.ToLower())) {
+                Debug.LogWarning(i.obj.name + " has the same name as another object in the scene");
+
+            } else {
+                GameManager.Objects.Add(i.obj.name.ToLower(), i);
+            }
+        }
+
+        public static T[] Slice<T>(this T[] source, int start, int end) {
+            // Handles negative ends.
+            if (end < 0) {
+                end = source.Length + end + 1;
+            }
+            int len = end - start;
+
+            // Return new array.
+            T[] res = new T[len];
+            for (int i = 0; i < len; i++) {
+                res[i] = source[i + start];
+            }
+            return res;
+        }
+
+        public static string Print(this string[] a) {
+            string s = "";
+            for (int i = 0; i < a.Length; i++) {
+                s = s + a[i] + " ";
+            }
+            return s;
+        }
+
+        public static void Use(this IPickUpable p, ICanHold holder) {
+            p.Release(holder);
+            holder.Release(p);
+
+        }
+
+        public static void SetLayerRecursively(this GameObject obj, int newLayer) {
+            if (null == obj) {
+                return;
+            }
+
+            obj.layer = newLayer;
+
+            foreach (Transform child in obj.transform) {
+                if (null == child) {
+                    continue;
+                }
+                SetLayerRecursively(child.gameObject, newLayer);
+            }
+        }
+
+        public static void DoAfterTime(this MonoBehaviour control, Action coroutine, float time) {
+
+            control.StartCoroutine(MakeInvokedCoroutine(coroutine, time));
+        }
+
+        public static void DoAfterTimeIf(this MonoBehaviour control, Action coroutine, float time, Func<bool> cond) {
+
+            control.StartCoroutine(MakeInvokedCoroutine(coroutine, time, cond));
+        }
+
+        public static void InvokeRepeatingWhile(this MonoBehaviour control, Action coroutine, float time, Func<bool> cond) {
+
+            control.StartCoroutine(MakeInvokedCoroutineRepeating(coroutine, time, cond));
+        }
+
+        public static void DoXTimes(this MonoBehaviour m, Action f, int amnt) {
+            for (int i = 0; i < amnt; i++) {
+                f();
+            }
+        }
+
+        static IEnumerator MakeInvokedCoroutine(Action coroutine, float time) {
+            yield return new WaitForSeconds(time);
+            coroutine();
+        }
+
+        static IEnumerator MakeInvokedCoroutine(Action coroutine, float time, Func<bool> cond) {
+            yield return new WaitForSeconds(time);
+            if (cond()) {
+                coroutine();
+            }
+        }
+
+        static IEnumerator MakeInvokedCoroutineRepeating(Action coroutine, float time, Func<bool> cond) {
+            while (cond()) {
+                yield return new WaitForSeconds(time);
+                coroutine();
+
+            }
+        }
+
     }
 }
