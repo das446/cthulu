@@ -35,6 +35,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     Rigidbody rb;
     Collider col;
+    Vector3 startPos;
 
     public Node exitNode;
     //replace next two bools with scared state trigger
@@ -74,11 +75,13 @@ public class Npc : Interactable, IPickUpable, IManageable {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         this.AddToManager();
+        startPos = transform.position;
         gameObject.SetActive(false);
     }
 
     public void Spawn() {
         gameObject.PlaySound("PoshManEnters");
+        transform.position = startPos;
         StartWandering();
         Active.Add(this);
     }

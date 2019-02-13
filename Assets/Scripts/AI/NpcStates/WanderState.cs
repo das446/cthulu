@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Wander")]
 public class WanderState : NpcState {
 
     float timeUntilMove;

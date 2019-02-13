@@ -14,7 +14,12 @@ public class Room : MonoBehaviour {
 
     void Start() {
         PathFollower.ReachNode += CheckEnter;
-        rooms.Add(name.ToLower(), this);
+        string n = name.ToLower();
+        if (rooms.ContainsKey(n)) {
+            Debug.LogWarning("Room with name " + n +" already exists" );
+        } else {
+            rooms.Add(n, this);
+        }
     }
 
     private void CheckEnter(Npc npc, Node node) {
@@ -32,16 +37,16 @@ public class Room : MonoBehaviour {
         return nodes.RandomItem();
     }
 
-    public void SpawnAtRandom(Monster m) {
+    public Monster SpawnAtRandom(Monster m) {
         MonsterSpawnPoint s = spawnPoints.RandomItem(x => x.CanSpawn());
+        return SpawnMonster(m, s);
     }
 
-    public void SpanwMonster(Monster m, MonsterSpawnPoint spawn) {
-        spawn.Spawn(m);
+    public Monster SpawnMonster(Monster m, MonsterSpawnPoint spawn) {
+        return spawn.Spawn(m);
     }
 
     public static Room GetRoom(string s) {
-        Debug.Log(s);
         return rooms[s.ToLower()];
     }
 }

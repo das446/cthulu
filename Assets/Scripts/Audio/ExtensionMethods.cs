@@ -161,5 +161,47 @@ namespace Cthulu {
                 SetLayerRecursively(child.gameObject, newLayer);
             }
         }
+
+        public static void DoAfterTime(this MonoBehaviour control, Action coroutine, float time) {
+
+            control.StartCoroutine(MakeInvokedCoroutine(coroutine, time));
+        }
+
+        public static void DoAfterTimeIf(this MonoBehaviour control, Action coroutine, float time, Func<bool> cond) {
+
+            control.StartCoroutine(MakeInvokedCoroutine(coroutine, time, cond));
+        }
+
+        public static void InvokeRepeatingWhile(this MonoBehaviour control, Action coroutine, float time, Func<bool> cond) {
+
+            control.StartCoroutine(MakeInvokedCoroutineRepeating(coroutine, time, cond));
+        }
+
+        public static void DoXTimes(this MonoBehaviour m, Action f, int amnt) {
+            for (int i = 0; i < amnt; i++) {
+                f();
+            }
+        }
+
+        static IEnumerator MakeInvokedCoroutine(Action coroutine, float time) {
+            yield return new WaitForSeconds(time);
+            coroutine();
+        }
+
+        static IEnumerator MakeInvokedCoroutine(Action coroutine, float time, Func<bool> cond) {
+            yield return new WaitForSeconds(time);
+            if (cond()) {
+                coroutine();
+            }
+        }
+
+        static IEnumerator MakeInvokedCoroutineRepeating(Action coroutine, float time, Func<bool> cond) {
+            while (cond()) {
+                yield return new WaitForSeconds(time);
+                coroutine();
+
+            }
+        }
+
     }
 }
