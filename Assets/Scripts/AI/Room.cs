@@ -47,7 +47,6 @@ public class Room : MonoBehaviour {
     }
 
     public static Room GetRoom(string s) {
-        Debug.Log(s);
         return rooms[s.ToLower()];
     }
 }

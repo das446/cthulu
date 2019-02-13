@@ -3,8 +3,8 @@
 WHEN time:1 (DO door.living&1&2 open)
 WHEN time:5 (DO npc.normal.bob spawn)
 WHEN time:10 (DO tentacle.1 spawn DinningRoom)
-WHEN time:20 (DO npc.normal.bob goto DinningRoom)
-WHEN time:30 (DO npc.normal.bob goto LivingRoom)
+WHEN time:15 (DO npc.normal.bob goto DinningRoom)
+WHEN time:25 (DO npc.normal.bob goto LivingRoom)
 
 WHEN monster.ghost.1:die wait:10 (DO npc.normal.tim spawn) wait:10 (DO npc.normal.tim goto smokeroom)
 
