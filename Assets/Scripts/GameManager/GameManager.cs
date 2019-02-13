@@ -95,13 +95,21 @@ namespace Cthulu.Events {
             }
         }
 
-        void Do(DoEvent d){
+        void Do(DoEvent d) {
             string[] names = d.GetNames();
-            foreach (string n in names)
-            {
-                IManageable m = Objects[n];
-                m.Do(d);
+            foreach (string n in names) {
+                IManageable m;
+                Objects.TryGetValue(n, out m);
+                if (m == null) {
+                    Debug.LogWarning("No object named " + n + " in scene");
+                } else {
+                    m?.Do(d);
+                }
             }
+        }
+
+        public static bool HasObject(string n){
+            return Objects.ContainsKey(n);
         }
 
     }

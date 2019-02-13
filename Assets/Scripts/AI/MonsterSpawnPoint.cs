@@ -14,7 +14,8 @@ public class MonsterSpawnPoint : MonoBehaviour {
 
     public Monster Spawn(Monster m) {
         Monster monster = Instantiate(m, transform.position, transform.rotation);
-        curMonster = m;
+        curMonster = monster;
+        monster.OnSpawn();
         return monster;
     }
 }

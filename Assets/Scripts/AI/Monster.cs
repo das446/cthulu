@@ -15,7 +15,10 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
     public static event Action<Monster, Vector3> Spawn;
     public abstract void FurnitureContact(Furniture furniture);
 
-    public abstract void OnSpawn();
+    public virtual void OnSpawn() {
+        gameObject.SetActive(true);
+        if (Spawn != null) { Spawn(this, transform.position); }
+    }
 
     public virtual void GetHit(int damageAmount) {
         this.hp -= damageAmount;
@@ -32,13 +35,10 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
     }
 
     void Awake() {
-        this.AddToManager();
-        gameObject.SetActive(false);
-    }
-
-    void Start() {
-        if (Spawn != null) { Spawn(this, transform.position); }
-        OnSpawn();
+        if (!GameManager.HasObject(name)) {
+            this.AddToManager();
+            gameObject.SetActive(false);
+        }
     }
 
     public float Evaluate(Npc npc, Room r) {
