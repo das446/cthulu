@@ -244,6 +244,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void Die() {
+        GameManager.When(name,"die");
         SetState(new DeadState(this, ragdollVersion));
     }
     // public void Die()
@@ -254,6 +255,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     // }
 
     public void Die(ICanHold h) {
+        GameManager.When(name,"die");
         SetState(new DeadState(this, ragdollVersion, h));
     }
 
