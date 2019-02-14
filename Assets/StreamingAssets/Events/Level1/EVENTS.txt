@@ -7,5 +7,6 @@ WHEN time:15 (DO npc.normal.bob goto DinningRoom)
 WHEN time:25 (DO npc.normal.bob goto LivingRoom)
 
 WHEN monster.ghost.1:die wait:10 (DO npc.normal.tim spawn) wait:10 (DO npc.normal.tim goto smokeroom)
+WHEN tentacle.1:die wait:5 (DO tentacle.1 spawn Foyer)
 
 //DO

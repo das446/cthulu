@@ -13,6 +13,7 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
     public GameObject obj => gameObject;
 
     public static event Action<Monster, Vector3> Spawn;
+    public static event Action<Monster> OnDie;
     public abstract void FurnitureContact(Furniture furniture);
 
     public virtual void OnSpawn() {
@@ -30,6 +31,7 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
         return damage;
     }
     public virtual void Die() {
+        if (OnDie != null) { OnDie(this); }
         GameManager.When(name, "die");
         gameObject.SetActive(false);
     }
