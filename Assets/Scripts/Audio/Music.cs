@@ -22,10 +22,11 @@ namespace Cthulu {
         public AudioClip CurrentSong;
         private static AudioSource _source1;
         string currentSongName;
+        
 
         private static Music instance = null;
 
-        public float DefaultVolume;
+        public float DefaultVolume = 0;
 
         public static AudioSource Source {
             get {
@@ -68,17 +69,18 @@ namespace Cthulu {
             Source.loop = true;
             Source.clip = CurrentSong;
             Source.Play();
+            
         }
 
         // Update is called once per frame
 
-        public static void PlaySound(AudioClip sound, float volume = 1) {
-            Source.PlayOneShot(sound, volume);
+        public static void PlaySound(AudioClip sound, float defaultVolume) {
+            Source.PlayOneShot(sound, defaultVolume);
         }
 
-        public static void PlaySound(AudioClip sound, AudioSource source, float volume = 1) {
+        public static void PlaySound(AudioClip sound, AudioSource music, float defaultVolume) {
             Debug.Log("Sound");
-            source.PlayOneShot(sound, volume);
+            music.PlayOneShot(sound, defaultVolume);
         }
 
         public static void Stop() {
