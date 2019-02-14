@@ -16,6 +16,14 @@ public class Portal : Monster {
         monster.name = monsterBase.name;
         monster.gameObject.SetActive(true);
         monster.OnSpawn();
+        OnDie+=DestroyThis;
+    }
+
+    void DestroyThis(Monster m){
+        if(m==monster){
+            OnDie-=DestroyThis;
+            Die();
+        }
     }
 
     public override void FurnitureContact(Furniture furniture) {
