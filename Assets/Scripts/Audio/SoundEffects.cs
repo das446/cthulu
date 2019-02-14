@@ -22,6 +22,7 @@ namespace Cthulu {
         [HideInInspector] public bool Updated;
         public float DefaultVolume;
         public static SoundEffects DefaultSounds;
+        
 
         public void PlaySound(string Sound) {
             PlaySound(Sound, DefaultVolume);
@@ -52,17 +53,17 @@ namespace Cthulu {
             }
         }
 
-        public void PlaySound(string Sound, AudioSource source, float volume) {
+        public void PlaySound(string Sound, AudioSource sounds, float volume) {
             if (soundEffects == null) {
                 soundEffects = new List<sfx>();
             }
             if (HasSound(Sound)) {
 
                 AudioClip s = soundEffects.Where(x => x.name == Sound).First().sound;
-                Music.PlaySound(s, source, volume);
+                Music.PlaySound(s, sounds, volume);
                 Music.Source.pitch = 1;
             } else if (this != DefaultSounds) {
-                DefaultSounds.PlaySound(Sound, source, volume);
+                DefaultSounds.PlaySound(Sound, sounds, volume);
             } else {
                 Debug.LogWarning("No sound effect named " + Sound);
             }
