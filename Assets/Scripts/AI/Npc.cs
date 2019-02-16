@@ -9,6 +9,11 @@ using UnityEngine.UI;
 
 public class Npc : Interactable, IPickUpable, IManageable {
 
+    /* 
+    LineOfSightChecker eyes;
+    bool seenPortal;
+    List<Monster> seenMonster;
+    */
     NpcState curState;
 
     public float vision;
@@ -71,6 +76,9 @@ public class Npc : Interactable, IPickUpable, IManageable {
     // [SerializeField] GameObject deadNpc;
 
     void Awake() {
+
+
+
         follower = GetComponent<PathFollower>();
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
@@ -104,6 +112,16 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     void Update() {
+
+
+       // seenPortal =  eyes.CheckPortals();
+       // seenMonster = eyes.CheckMonsters();
+/* 
+        if ( seenMonster.Count != 0 )
+        {
+            isScared = true;
+        }
+*/
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             interest = 100;
