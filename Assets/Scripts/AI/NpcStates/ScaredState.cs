@@ -21,11 +21,14 @@ public class ScaredState : NpcState
     public override void StateUpdate() 
     {
        // if (Vector3.Distance(npc.transform.position, exit.transform.position) < 0.5f)
+        /* 
         if(atExit)
         {
           Exit();
         }
+        */
     }
+    /* 
     void ReachExit(Npc n, Node node) {
         if (n == npc && node == exit) {
             atExit = true;
@@ -33,17 +36,21 @@ public class ScaredState : NpcState
         }
         
     }
+    */
 
     public override void Enter() 
     {
         npc.SetMessage("!",Color.red);
+        npc.SetState(new LeaveState(npc, exit));
+        /* 
         SetFollower(exit);
         PathFollower.ReachNode += ReachExit;
+        */
     }
 
     public override void Exit() 
     {
-       GameObject.Destroy(npc.gameObject);
+       //GameObject.Destroy(npc.gameObject);
     }
 
     public override void OnInteract(Player p)
