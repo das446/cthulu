@@ -8,6 +8,8 @@ public class ScaredState : NpcState
     PathFollower follower;
     PathFinder finder;
 
+    private bool atExit;
+
     
 
     public ScaredState(Npc npc, Node node) : base(npc) 
@@ -18,21 +20,30 @@ public class ScaredState : NpcState
 
     public override void StateUpdate() 
     {
-        if (Vector3.Distance(npc.transform.position, exit.transform.position) < 0.5f)
+       // if (Vector3.Distance(npc.transform.position, exit.transform.position) < 0.5f)
+        if(atExit)
         {
-            //score loss, Destroy(npc)?, game over?, Exit()?,
-            //other actions related to buyer leaving building
+          Exit();
         }
+    }
+    void ReachExit(Npc n, Node node) {
+        if (n == npc && node == exit) {
+            atExit = true;
+            PathFollower.ReachNode -= ReachExit;
+        }
+        
     }
 
     public override void Enter() 
     {
+        npc.SetMessage("!",Color.red);
         SetFollower(exit);
+        PathFollower.ReachNode += ReachExit;
     }
 
     public override void Exit() 
     {
-
+       GameObject.Destroy(npc.gameObject);
     }
 
     public override void OnInteract(Player p)

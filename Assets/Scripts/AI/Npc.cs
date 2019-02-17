@@ -13,7 +13,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
     LineOfSightChecker eyes;
     bool seenPortal;
     List<Monster> seenMonster;
-
+    float temp;
+    string stemp;
     //*/
     NpcState curState;
 
@@ -79,7 +80,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     void Awake() {
         //
         eyes = new LineOfSightChecker(this,vision);
-        
+        temp = message.fontSize ;
         //
 
         follower = GetComponent<PathFollower>();
@@ -117,15 +118,22 @@ public class Npc : Interactable, IPickUpable, IManageable {
     void Update() {
 
 //* 
-
-        if(Input.GetKeyDown(KeyCode.Tab) && !isBuying)
+        if(Input.GetKey(KeyCode.Tab) && !isBuying)
         {
             Debug.Log("NPC_Info_Updated:" + name);
+            stemp = message.text;
             string npcInfo;
-            npcInfo = name +"\n " + "Seen portal : "+seenPortal +"\n isScared?:" + isScared + "\n Dest. :" + follower.end.name;
+            npcInfo = name +"\n " + "Seen portal : "+seenPortal +"\n isScared?:" + isScared + "\n Dest. :" + follower.end.name + "\n Interest:" + interest.ToString() ; 
             message.fontSize = .1f;
             SetMessage(npcInfo,Color.blue);
+            //message.fontSize = temp;
         }
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            message.fontSize = temp;
+            SetMessage(stemp);
+        }
+        
 
         seenPortal =  eyes.CheckPortals();
         seenMonster = eyes.CheckMonsters();
