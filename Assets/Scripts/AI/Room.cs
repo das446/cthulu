@@ -10,17 +10,20 @@ public class Room : MonoBehaviour {
     [SerializeField] List<MonsterSpawnPoint> spawnPoints;
     public List<Portal> portals;
 
+    public static Dictionary<string, Room> rooms = new Dictionary<string, Room>();
+
     void Start() {
         PathFollower.ReachNode += CheckEnter;
+        rooms.Add(name.ToLower(), this);
     }
 
     private void CheckEnter(Npc npc, Node node) {
-        if(nodes==null || npc==null){
+        if (nodes == null || npc == null) {
             Debug.Log(nodes);
             Debug.Log(npc);
             return;
         }
-        if (nodes.Contains(node) & npc.CurRoom!=this) {
+        if (nodes.Contains(node) & npc.CurRoom != this) {
             npc.EnterRoom(this);
         }
     }
@@ -30,10 +33,15 @@ public class Room : MonoBehaviour {
     }
 
     public void SpawnAtRandom(Monster m) {
-        MonsterSpawnPoint s = spawnPoints.RandomItem(x=>x.CanSpawn());
+        MonsterSpawnPoint s = spawnPoints.RandomItem(x => x.CanSpawn());
     }
 
     public void SpanwMonster(Monster m, MonsterSpawnPoint spawn) {
         spawn.Spawn(m);
+    }
+
+    public static Room GetRoom(string s) {
+        Debug.Log(s);
+        return rooms[s.ToLower()];
     }
 }

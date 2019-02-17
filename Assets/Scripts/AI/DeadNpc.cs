@@ -7,6 +7,9 @@ public class DeadNpc : MonoBehaviour, IPickUpable, IEvaluated {
     [SerializeField] Rigidbody rb;
     [SerializeField] FixedJoint joint;
     ICanHold holder;
+    [SerializeField] float Weight = 1;
+
+    public float weight => weight;
 
     public bool CanBePickedUp(ICanHold h) {
         return true;

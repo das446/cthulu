@@ -32,7 +32,7 @@ public class WanderState : NpcState {
         timeUntilMove = waitTime;
     }
 
-    public override void FrameUpdate() {
+    public override void StateUpdate() {
         if (!npc.follower.moving) {
             timeUntilMove -= Time.deltaTime;
         }

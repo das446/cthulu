@@ -11,7 +11,7 @@ public abstract class NpcState {
 
     public static event Action<Npc, Player> OnClick;
 
-    public abstract void FrameUpdate();
+    public abstract void StateUpdate();
 
     public abstract void Enter();
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 
 public class Tentacle : Monster, ICanHold {
@@ -65,5 +66,10 @@ public class Tentacle : Monster, ICanHold {
     IEnumerator DelayThrow(float delay) {
         yield return new WaitForSeconds(delay);
         Release(held);
+    }
+
+    public override void Do(DoEvent de)
+    {
+        throw new NotImplementedException();
     }
 }

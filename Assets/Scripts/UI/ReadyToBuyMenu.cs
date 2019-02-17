@@ -23,6 +23,7 @@ public class ReadyToBuyMenu : MonoBehaviour {
     public void Open(Npc npc, Player p) {
         gameObject.SetActive(true);
         curNpc = npc;
+        npc.Lock();
         player = p;
         player.Lock();
 

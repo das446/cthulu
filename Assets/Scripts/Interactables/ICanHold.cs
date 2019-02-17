@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface ICanHold {
-    void PickUp( IPickUpable i);
+    void PickUp(IPickUpable i);
     void Release(IPickUpable i);
-    Transform Hand{
+    Transform Hand {
         get;
     }
     float Power {
