@@ -9,11 +9,11 @@ using UnityEngine.UI;
 
 public class Npc : Interactable, IPickUpable, IManageable {
 
-    /* 
+    //* 
     LineOfSightChecker eyes;
     bool seenPortal;
     List<Monster> seenMonster;
-    */
+    //*/
     NpcState curState;
 
     public float vision;
@@ -77,7 +77,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     void Awake() {
 
-
+        eyes = new LineOfSightChecker(this,vision);
 
         follower = GetComponent<PathFollower>();
         rb = GetComponent<Rigidbody>();
@@ -113,15 +113,15 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     void Update() {
 
+//* 
+        seenPortal =  eyes.CheckPortals();
+        seenMonster = eyes.CheckMonsters();
 
-       // seenPortal =  eyes.CheckPortals();
-       // seenMonster = eyes.CheckMonsters();
-/* 
         if ( seenMonster.Count != 0 )
         {
             isScared = true;
         }
-*/
+//*/
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             interest = 100;
@@ -299,6 +299,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     void OnDrawGizmos() {
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, vision);
     }
 
