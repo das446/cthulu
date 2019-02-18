@@ -8,6 +8,5 @@ WHEN time:25 (DO npc.normal.bob goto DinningRoom)
 WHEN ghost.1:die wait:5 (DO tentacle.1 spawn DinningRoom)
 WHEN tentacle.1:die wait:5 (DO ghost.1 spawn DinningRoom)
 WHEN npc.normal.bob:exit wait:5 (DO npc.normal.tim spawn)
-WHEN npc.normal.tim:exit wait:5 (DO npc.normal.bob spawn)
 
 //DO
