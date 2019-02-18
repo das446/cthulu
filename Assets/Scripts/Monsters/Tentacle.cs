@@ -56,7 +56,6 @@ public class Tentacle : Monster, ICanHold {
     }
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log(other.gameObject);
         Npc npc = other.GetComponent<Npc>();
         if (npc != null) {
             PickUp(npc);
