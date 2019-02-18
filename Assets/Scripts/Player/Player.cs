@@ -169,6 +169,11 @@ public class Player : MonoBehaviour, ICanHold {
         SceneManager.LoadScene("WinScreen");
     }
 
+    public void LoseLevel() {
+        Lock();
+        SceneManager.LoadScene("LoseScreen");
+    }
+
     public IPickUpable CurHeld() {
         return curItem;
     }

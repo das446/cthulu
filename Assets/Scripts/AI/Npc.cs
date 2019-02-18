@@ -11,8 +11,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     //* 
     LineOfSightChecker eyes;
-    bool seenPortal;
-    List<Monster> seenMonster;
+    List<GameObject> seenMonsters;
     float temp;
     string stemp;
     //*/
@@ -81,8 +80,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     void Awake() {
         //
-        eyes = new LineOfSightChecker(this,vision);
-        temp = message.fontSize ;
+        eyes = new LineOfSightChecker(this, vision);
+        temp = message.fontSize;
         //
 
         follower = GetComponent<PathFollower>();
@@ -119,33 +118,27 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     void Update() {
 
-//* 
-        if(Input.GetKey(KeyCode.Tab) && !isBuying)
-        {
+        //* 
+        if (Input.GetKey(KeyCode.Tab) && !isBuying) {
             Debug.Log("NPC_Info_Updated:" + name);
             stemp = message.text;
             string npcInfo;
-            npcInfo = name +"\n " + "Seen portal : "+seenPortal +"\n isScared?:" + isScared + "\n Dest. :" + follower.end.name + "\n Interest:" + interest.ToString() ; 
+            npcInfo = name + "\n isScared?:" + isScared + "\n Dest. :" + follower.end.name + "\n Interest:" + interest.ToString();
             message.fontSize = .1f;
-            SetMessage(npcInfo,Color.blue);
+            SetMessage(npcInfo, Color.blue);
             //message.fontSize = temp;
-        }
-        else if (Input.GetKeyUp(KeyCode.Tab))
-        {
+        } else if (Input.GetKeyUp(KeyCode.Tab)) {
             message.fontSize = temp;
             SetMessage(stemp);
         }
-        
 
-        seenPortal =  eyes.CheckPortals();
-        seenMonster = eyes.CheckMonsters();
+        seenMonsters = eyes.CheckMonsters();
 
-        if ( seenMonster.Count != 0 )
-        {
+        if (seenMonsters.Count != 0) {
             Debug.Log("Seen Monster");
             isScared = true;
         }
-//*/
+        //*/
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             interest = 100;
@@ -286,7 +279,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void Die() {
-        GameManager.When(name,"die");
+        GameManager.When(name, "die");
         SetState(new DeadState(this, ragdollVersion));
     }
     // public void Die()
@@ -297,7 +290,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     // }
 
     public void Die(ICanHold h) {
-        GameManager.When(name,"die");
+        GameManager.When(name, "die");
         SetState(new DeadState(this, ragdollVersion, h));
     }
 
@@ -314,6 +307,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
     public void ExitHouse() {
         gameObject.SetActive(false);
         Active.Remove(this);
+        GameManager.When(name,"exit");
+        ResetStats();
     }
 
     public void Spawn(Node n) {
@@ -382,5 +377,9 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public void Do(DoEvent de) {
         new DoEventBuyer(this).Do(de);
+    }
+
+    void ResetStats(){
+        
     }
 }
