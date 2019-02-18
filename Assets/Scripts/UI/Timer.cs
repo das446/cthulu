@@ -44,6 +44,10 @@ public class Timer : MonoBehaviour {
         timeLeft = timeLeft - Time.deltaTime;
 
         UpdateTimer(timeLeft);
+
+        if(timeLeft<=0){
+            Player.singleton.LoseLevel();
+        }
     }
 
     void UpdateTimer(float time) {

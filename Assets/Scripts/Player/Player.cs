@@ -27,6 +27,14 @@ public class Player : MonoBehaviour, ICanHold {
 
     [SerializeField] int goalMoney;
 
+    public static Player singleton;
+
+    void Awake()
+    {   
+        if(singleton == null)
+            singleton = this;
+    }
+
     // Start is called before the first frame update
     void Start() {
 
@@ -147,10 +155,6 @@ public class Player : MonoBehaviour, ICanHold {
         return cam.transform.forward;
     }
 
-    public IPickUpable CurItem() {
-        return curItem;
-    }
-
     public void ChangeMoney(int amnt) {
         money += amnt;
         moneyText.text = "$" + money.ToString("#,##0");
@@ -163,6 +167,11 @@ public class Player : MonoBehaviour, ICanHold {
     private void WinLevel() {
         Lock();
         SceneManager.LoadScene("WinScreen");
+    }
+
+    public void LoseLevel() {
+        Lock();
+        SceneManager.LoadScene("LoseScreen");
     }
 
     public IPickUpable CurHeld() {

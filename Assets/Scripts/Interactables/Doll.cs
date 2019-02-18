@@ -24,7 +24,7 @@ public class Doll : Furniture, IPossesable, IPickUpable {
     }
 
     public override void Interact(Player p) {
-        if (p.CurItem() == null) {
+        if (p.CurHeld() == null) {
             GetPickedUp(p);
             p.PickUp(this);
         }
@@ -70,6 +70,7 @@ public class Doll : Furniture, IPossesable, IPickUpable {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         col.isTrigger = true;
+        gameObject.SetLayerRecursively(13);
         UpdateTarget();
     }
 
@@ -78,7 +79,7 @@ public class Doll : Furniture, IPossesable, IPickUpable {
         Collider[] cols = Physics.OverlapSphere(transform.position, 30);
         foreach (Collider col in cols) {
             if (col.gameObject.GetComponent<Npc>()) {
-                target = col.gameObject;
+                targetPos = col.gameObject.transform.position;
                 return;
             }
         }

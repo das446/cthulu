@@ -9,6 +9,12 @@ using UnityEngine.UI;
 
 public class Npc : Interactable, IPickUpable, IManageable {
 
+    //* 
+    LineOfSightChecker eyes;
+    List<GameObject> seenMonsters;
+    float temp;
+    string stemp;
+    //*/
     NpcState curState;
 
     public float vision;
@@ -35,6 +41,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     Rigidbody rb;
     Collider col;
+    Vector3 startPos;
 
     public Node exitNode;
     //replace next two bools with scared state trigger
@@ -65,20 +72,29 @@ public class Npc : Interactable, IPickUpable, IManageable {
     public string deathSound, screamSound;
     public bool randomSound;
 
+    public Animator animControl;
+
     public static List<Npc> Active = new List<Npc>();
 
     // [SerializeField] GameObject deadNpc;
 
     void Awake() {
+        //
+        eyes = new LineOfSightChecker(this, vision);
+        temp = message.fontSize;
+        //
+
         follower = GetComponent<PathFollower>();
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         this.AddToManager();
+        startPos = transform.position;
         gameObject.SetActive(false);
     }
 
     public void Spawn() {
         gameObject.PlaySound("PoshManEnters");
+        transform.position = startPos;
         StartWandering();
         Active.Add(this);
     }
@@ -101,6 +117,28 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     void Update() {
+
+        //* 
+        if (Input.GetKey(KeyCode.Tab) && !isBuying) {
+            Debug.Log("NPC_Info_Updated:" + name);
+            stemp = message.text;
+            string npcInfo;
+            npcInfo = name + "\n isScared?:" + isScared + "\n Dest. :" + follower.end.name + "\n Interest:" + interest.ToString();
+            message.fontSize = .1f;
+            SetMessage(npcInfo, Color.blue);
+            //message.fontSize = temp;
+        } else if (Input.GetKeyUp(KeyCode.Tab)) {
+            message.fontSize = temp;
+            SetMessage(stemp);
+        }
+
+        seenMonsters = eyes.CheckMonsters();
+
+        if (seenMonsters.Count != 0) {
+            Debug.Log("Seen Monster");
+            isScared = true;
+        }
+        //*/
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             interest = 100;
@@ -241,6 +279,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void Die() {
+        GameManager.When(name, "die");
         SetState(new DeadState(this, ragdollVersion));
     }
     // public void Die()
@@ -251,6 +290,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     // }
 
     public void Die(ICanHold h) {
+        GameManager.When(name, "die");
         SetState(new DeadState(this, ragdollVersion, h));
     }
 
@@ -267,6 +307,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
     public void ExitHouse() {
         gameObject.SetActive(false);
         Active.Remove(this);
+        GameManager.When(name,"exit");
+        ResetStats();
     }
 
     public void Spawn(Node n) {
@@ -276,6 +318,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     void OnDrawGizmos() {
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, vision);
     }
 
@@ -318,7 +361,25 @@ public class Npc : Interactable, IPickUpable, IManageable {
         }
     }
 
+    public void resetAnimParams()
+    {
+        animControl.SetBool("isWalking", false);
+        animControl.SetBool("isTalking", false);
+        animControl.ResetTrigger("isSitting");
+        animControl.SetBool("isCurious", false);
+        animControl.SetBool("isInspecting", false);
+        animControl.ResetTrigger("isScared");
+        animControl.SetBool("isPossessed", false);
+        animControl.ResetTrigger("isBitten");
+        animControl.ResetTrigger("isSacrificed");
+        animControl.ResetTrigger("gotPossessed");
+    }
+
     public void Do(DoEvent de) {
         new DoEventBuyer(this).Do(de);
+    }
+
+    void ResetStats(){
+        
     }
 }

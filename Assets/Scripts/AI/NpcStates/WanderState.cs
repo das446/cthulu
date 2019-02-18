@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Wander")]
 public class WanderState : NpcState {
 
     float timeUntilMove;
@@ -17,6 +16,8 @@ public class WanderState : NpcState {
         this.waitTime = waitTime;
         timeUntilMove = 0;
         Enter();
+        
+        npc.resetAnimParams();
     }
 
     public WanderState(Npc npc, float waitTime, List<Node> avoids) : base(npc) {
@@ -25,20 +26,28 @@ public class WanderState : NpcState {
         timeUntilMove = 1;
         nodesToAvoid = avoids;
         Enter();
+
+        npc.resetAnimParams();
     }
 
     public WanderState(Npc npc) : base(npc) {
         this.waitTime = 5;
         timeUntilMove = waitTime;
+
+        npc.resetAnimParams();
     }
 
     public override void StateUpdate() {
         if (!npc.follower.moving) {
+            npc.resetAnimParams();
             timeUntilMove -= Time.deltaTime;
         }
         if (timeUntilMove <= 0 && !npc.locked) {
             MoveToRandomNeighbor();
             timeUntilMove = waitTime;
+
+            npc.resetAnimParams();
+            npc.animControl.SetBool("isWalking", true);
         }
     }
 

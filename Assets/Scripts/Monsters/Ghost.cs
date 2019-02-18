@@ -25,12 +25,11 @@ public class Ghost : Monster {
 
     private void Possess(IPossesable p) {
         possedObject = p;
+        transform.eulerAngles = new Vector3(-90, 0, 0);
         transform.parent = p.gameObject.transform;
         transform.localPosition = Vector3.zero;
-        transform.eulerAngles = new Vector3(-90, 0, 0);
+        
     }
-
-    public override void OnSpawn() { }
 
     void Update() {
 
@@ -73,6 +72,7 @@ public class Ghost : Monster {
         if(de.action == "spawn"){
             gameObject.SetActive(true);
             transform.position = Room.GetRoom(de.args[0]).transform.position;
+            OnSpawn();
         }
     }
 }

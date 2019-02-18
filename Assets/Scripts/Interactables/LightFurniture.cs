@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu;
 using UnityEngine;
 
 public class LightFurniture : Furniture, IPickUpable {
-
 
     // new void Start(){
     //     base.Start();
@@ -11,7 +11,7 @@ public class LightFurniture : Furniture, IPickUpable {
     // }
 
     public override void Interact(Player p) {
-        if (p.CurItem() == null) {
+        if (p.CurHeld() == null) {
             GetPickedUp(p);
             p.PickUp(this);
         }
@@ -41,7 +41,7 @@ public class LightFurniture : Furniture, IPickUpable {
         rb.AddForce(dir * holder.Power, ForceMode.Impulse);
         gameObject.layer = 0;
         holder = null;
-        TakeDamage(1);
+        this.DoAfterTime(() => TakeDamage(10),1);
     }
 
     public bool CanBePickedUp(ICanHold h) {

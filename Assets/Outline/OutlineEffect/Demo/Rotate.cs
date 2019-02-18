@@ -8,6 +8,7 @@ namespace cakeslice
     {
         float timer;
         const float time = 1;
+        [SerializeField] float speed = 20;
 
         // Use this for initialization
         void Start()
@@ -18,14 +19,8 @@ namespace cakeslice
         // Update is called once per frame
         void Update()
         {
-            transform.Rotate(Vector3.up, Time.deltaTime * 20);
+            transform.Rotate(Vector3.forward, Time.deltaTime * speed);
 
-            timer -= Time.deltaTime;
-            if(timer < 0)
-            {
-                timer = time;
-                //GetComponent<Outline>().enabled = !GetComponent<Outline>().enabled;
-            }
         }
     }
 }

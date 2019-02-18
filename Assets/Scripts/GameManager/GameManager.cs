@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 namespace Cthulu.Events {
     public class GameManager : MonoBehaviour {
         Dictionary<string, DoEvent> events = new Dictionary<string, DoEvent>(); //uses id name as key
-        [SerializeField] List<GameEvent> onStart = new List<GameEvent>();
         Dictionary<string, WhenEvent> whens = new Dictionary<string, WhenEvent>(); //uses event name as key
 
         public static Dictionary<string, IManageable> Objects = new Dictionary<string, IManageable>();
@@ -48,8 +47,7 @@ namespace Cthulu.Events {
                 } else if (anonyomous) {
                     if (cur == ")") {
                         DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
-                        IManageable m = Objects[d.name];
-                        m.Do(d);
+                        Do(d);
                         anonyomous = false;
 
                     } else if (cur.EndsWith(")")) {
@@ -58,8 +56,7 @@ namespace Cthulu.Events {
                         aEvent = temp.ToArray();
                         Debug.Log(aEvent.Print());
                         DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
-                        IManageable m = Objects[d.name];
-                        m.Do(d);
+                        Do(d);
                         anonyomous = false;
 
                     } else {
@@ -71,9 +68,8 @@ namespace Cthulu.Events {
                     int time = Int32.Parse(cur.Split(':') [1]);
                     yield return new WaitForSeconds(time);
                 } else {
-                    DoEvent s = events[cur];
-                    IManageable m = Objects[s.name];
-                    m.Do(s);
+                    DoEvent d = events[cur];
+                    Do(d);
                 }
             }
         }
@@ -89,19 +85,31 @@ namespace Cthulu.Events {
 
         }
 
-        public GameEvent MakeAndAddEvent(params string[] args) {
+        public void MakeAndAddEvent(params string[] args) {
             if (args[1] == "do") {
                 DoEvent se = new DoEvent(args[0], args[2], args[3], args.Slice(4, -1));
                 events.Add(se.id, se);
-                onStart.Add(se);
-                return se;
             } else if (args[0] == "when") {
                 WhenEvent we = new WhenEvent(args[1], args.Slice(2, -1));
                 whens.Add(we.name, we);
-                return we;
-            } else {
-                return null;
             }
+        }
+
+        void Do(DoEvent d) {
+            string[] names = d.GetNames();
+            foreach (string n in names) {
+                IManageable m;
+                Objects.TryGetValue(n, out m);
+                if (m == null) {
+                    Debug.LogWarning("No object named " + n + " in scene");
+                } else {
+                    m?.Do(d);
+                }
+            }
+        }
+
+        public static bool HasObject(string n){
+            return Objects.ContainsKey(n);
         }
 
     }
