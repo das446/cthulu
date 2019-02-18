@@ -73,6 +73,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
     public string deathSound, screamSound;
     public bool randomSound;
 
+    public Animator animControl;
+
     public static List<Npc> Active = new List<Npc>();
 
     // [SerializeField] GameObject deadNpc;
