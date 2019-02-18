@@ -5,12 +5,14 @@ using UnityEngine;
 public class Circle : MonoBehaviour
 {
     [SerializeField] private int _radius;
-    
+
+ /*   
     public int Radius
     {
         set {_radius = value; }
         get { return _radius; }
     }
+*/
 
     public Circle(int radius)
     {

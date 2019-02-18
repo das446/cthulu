@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using Random = System.Random;
 
-public class MonsterSpawnController : MonoBehaviour {
+public class MonsterSpawnController : MonoBehaviour 
+{
 
     [SerializeField] List<Room> rooms;
     [SerializeField] List<Monster> monsters;
@@ -26,7 +27,8 @@ public class MonsterSpawnController : MonoBehaviour {
         _enemyPrefab = enemyPrefab;
         _spawnRate = spawnRate;
         //_radius = radius;
-        _circle.Radius = radius;
+        //_circle.Radius = radius;
+        _circle = new Circle(radius);
     }
 
     
@@ -107,19 +109,23 @@ public class MonsterSpawnController : MonoBehaviour {
         return y;
     }
 
-    public void SpawnMonster(Monster m, MonsterSpawnPoint p) {
+    public void SpawnMonster(Monster m, MonsterSpawnPoint p) 
+    {
 
     }
 
-    public void SpawnTentacle(MonsterSpawnPoint p) {
+    public void SpawnTentacle(MonsterSpawnPoint p) 
+    {
 
     }
 
-    public void SpawnGhost(MonsterSpawnPoint p) {
+    public void SpawnGhost(MonsterSpawnPoint p)
+     {
 
     }
 
-    public void SpawnVampire(MonsterSpawnPoint p) {
+    public void SpawnVampire(MonsterSpawnPoint p)
+     {
 
     }
 

@@ -5,12 +5,13 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEditor;
 using UnityEditor.SceneManagement;
-//simple shape = box collider. complex shape = mesh collider
 
 namespace Tests
 {
-    public class NewTestScript
+    public class NewTestScript : MonoBehaviour
     {
+
+        public GameObject monsterSpawnController = GameObject.Find("MonsterSpawnController");
         // A Test behaves as an ordinary method
         [Test]
         public void NewTestScriptSimplePasses()
@@ -64,7 +65,10 @@ namespace Tests
             yield return null;
 
             var spawnedPortal = GameObject.Find("Portal");
-            var prefabOfSpawnedPortal = PrefabUtility.GetPrefabParent(spawnedPortal);
+            var prefabOfSpawnedPortal = PrefabUtility.GetCorrespondingObjectFromSource(spawnedPortal);            
+            //The GetPrefabParent is obsolete
+            //var prefabOfSpawnedPortal = PrefabUtility.GetPrefabParent(spawnedPortal);
+
             Assert.AreEqual(portalPrefab, prefabOfSpawnedPortal);
         }
 
