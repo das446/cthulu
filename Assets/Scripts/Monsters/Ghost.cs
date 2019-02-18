@@ -72,6 +72,7 @@ public class Ghost : Monster {
         if(de.action == "spawn"){
             gameObject.SetActive(true);
             transform.position = Room.GetRoom(de.args[0]).transform.position;
+            OnSpawn();
         }
     }
 }

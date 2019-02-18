@@ -306,6 +306,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
         gameObject.SetActive(false);
         Active.Remove(this);
         GameManager.When(name,"exit");
+        ResetStats();
     }
 
     public void Spawn(Node n) {
@@ -360,5 +361,9 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public void Do(DoEvent de) {
         new DoEventBuyer(this).Do(de);
+    }
+
+    void ResetStats(){
+        
     }
 }

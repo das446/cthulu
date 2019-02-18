@@ -25,7 +25,6 @@ public class LeaveState : NpcState {
     }
 
     public override void Exit() {
-        throw new System.NotImplementedException();
     }
 
     public override void StateUpdate() {
