@@ -31,6 +31,8 @@ public class ReadyToBuyMenu : MonoBehaviour {
 
         StartCoroutine(MoveCamera());
 
+        npc.resetAnimParams();
+        npc.animControl.SetBool("isTalking", true);
     }
 
     IEnumerator MoveCamera() {

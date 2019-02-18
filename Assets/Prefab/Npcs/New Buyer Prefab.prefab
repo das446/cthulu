@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 1992140110546362}
   m_LocalRotation: {x: 0, y: 0.30624363, z: 0, w: 0.95195323}
   m_LocalPosition: {x: 3.48, y: -1.22, z: -1.16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224351302533853454}
   - {fileID: 5574609598760278812}
@@ -308,9 +308,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3.1688852
+  m_Height: 1.2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.4, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!114 &196202133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,6 +400,7 @@ MonoBehaviour:
   deathSound: 
   screamSound: 
   randomSound: 0
+  animControl: {fileID: 5574609598750405866}
 --- !u!1 &4332908807836675205
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +645,12 @@ PrefabInstance:
 --- !u!4 &5574609598760278812 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400022, guid: ed2077cc6d3766a419219cf5ac0ee493,
+    type: 3}
+  m_PrefabInstance: {fileID: 5574609598759879050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5574609598750405866 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: ed2077cc6d3766a419219cf5ac0ee493,
     type: 3}
   m_PrefabInstance: {fileID: 5574609598759879050}
   m_PrefabAsset: {fileID: 0}

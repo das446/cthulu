@@ -72,6 +72,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
     public string deathSound, screamSound;
     public bool randomSound;
 
+    public Animator animControl;
+
     public static List<Npc> Active = new List<Npc>();
 
     // [SerializeField] GameObject deadNpc;
@@ -357,6 +359,20 @@ public class Npc : Interactable, IPickUpable, IManageable {
                 playSound = false;
             }
         }
+    }
+
+    public void resetAnimParams()
+    {
+        animControl.SetBool("isWalking", false);
+        animControl.SetBool("isTalking", false);
+        animControl.ResetTrigger("isSitting");
+        animControl.SetBool("isCurious", false);
+        animControl.SetBool("isInspecting", false);
+        animControl.ResetTrigger("isScared");
+        animControl.SetBool("isPossessed", false);
+        animControl.ResetTrigger("isBitten");
+        animControl.ResetTrigger("isSacrificed");
+        animControl.ResetTrigger("gotPossessed");
     }
 
     public void Do(DoEvent de) {
