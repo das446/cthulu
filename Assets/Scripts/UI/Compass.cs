@@ -9,14 +9,15 @@ public class Compass : MonoBehaviour {
     public GameObject player;
     public RectTransform t;
     public float offset = 90;
+    static Compass singleton;
 
     // Start is called before the first frame update
     void Start() {
-        Monster.Spawn += UpdateTarget;
+        singleton = this;
     }
 
-    private void UpdateTarget(Monster monster, Vector3 pos) {
-        target = monster.gameObject;
+    public static void UpdateTarget(GameObject g) {
+        singleton.target = g;
     }
 
     // Update is called once per frame
