@@ -264,7 +264,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
         for (int i = 0; i < items.Count; i++) {
             interest += items[i].Evaluate(this, r);
         }
-        Debug.Log(name + " interest increased by " + interest);
+//        Debug.Log(name + " interest increased by " + interest);
         return interest;
 
     }
