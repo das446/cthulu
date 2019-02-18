@@ -366,22 +366,7 @@ MonoBehaviour:
   deathSound: 
   screamSound: 
   randomSound: 0
---- !u!114 &1474850403312082906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210883821054131970}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: 0
-  eraseRenderer: 0
-  originalLayer: 0
-  originalMaterials: []
+  animControl: {fileID: 210883821046828250}
 --- !u!1 &4332908807836675205
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,9 +639,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 210883821054163386}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &210883821054131970 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100024, guid: ed2077cc6d3766a419219cf5ac0ee493,
+--- !u!95 &210883821046828250 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: ed2077cc6d3766a419219cf5ac0ee493,
     type: 3}
   m_PrefabInstance: {fileID: 210883821054163386}
   m_PrefabAsset: {fileID: 0}
