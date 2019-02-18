@@ -76,6 +76,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public static List<Npc> Active = new List<Npc>();
 
+    public float alertTimer = 6;
+
     // [SerializeField] GameObject deadNpc;
 
     void Awake() {
@@ -137,6 +139,10 @@ public class Npc : Interactable, IPickUpable, IManageable {
         if (seenMonsters.Count != 0) {
             Debug.Log("Seen Monster");
             isScared = true;
+            // Debug.Log("NPC is scared");
+            playSound = true;
+            soundType = 1;
+            PlaySoundHere();
         }
         //*/
 
@@ -149,12 +155,14 @@ public class Npc : Interactable, IPickUpable, IManageable {
             isBuying = true;
         }
         if (isScared && !isRunning) {
-            Debug.Log("NPC is scared");
-            playSound = true;
-            soundType = 1;
-            PlaySoundHere();
-            RunToExit();
-            isRunning = true;
+            Alerted();
+            alertTimer -= Time.deltaTime;
+            if(alertTimer <= 0)
+            {
+                RunToExit();
+                isRunning = true;
+            }
+            
         }
         if (isDead) {
             playSound = true;
@@ -201,10 +209,18 @@ public class Npc : Interactable, IPickUpable, IManageable {
         curState = new MoveTowardsState(this, r.RandomNode());
     }
 
+    public void Alerted()
+    {
+        Lock();
+        curState?.Exit();
+        curState = new ScaredState(this);
+    }
+
     public void RunToExit() {
         speed = speed * 3;
         curState?.Exit();
-        curState = new ScaredState(this, exitNode);
+        // curState = new ScaredState(this, exitNode);
+        curState = new FleeState(this, exitNode);
     }
 
     public void ReadyToBuy() {

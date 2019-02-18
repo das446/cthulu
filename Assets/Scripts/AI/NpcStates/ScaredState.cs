@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class ScaredState : NpcState 
 {
-    Node exit;
-    PathFollower follower;
-    PathFinder finder;
+    // Node exit;
+    // PathFollower follower;
+    // PathFinder finder;
 
-    private bool atExit;
+    // private bool atExit;
 
     
 
-    public ScaredState(Npc npc, Node node) : base(npc) 
+    // public ScaredState(Npc npc, Node node) : base(npc) 
+    // {
+    //     exit = node;
+    //     Enter();
+    // }
+
+    public ScaredState(Npc npc) : base(npc) 
     {
-        exit = node;
         Enter();
     }
 
@@ -41,11 +46,11 @@ public class ScaredState : NpcState
     public override void Enter() 
     {
         npc.SetMessage("!",Color.red);
-        npc.SetState(new LeaveState(npc, exit));
+        // npc.SetState(new LeaveState(npc, exit));
         
         npc.resetAnimParams();
-        npc.animControl.SetTrigger("gotScared");
-        npc.animControl.SetBool("isScared", true);
+        npc.animControl.SetBool("gotScared", true);
+        // npc.animControl.SetBool("isScared", true);
         /* 
         SetFollower(exit);
         PathFollower.ReachNode += ReachExit;
