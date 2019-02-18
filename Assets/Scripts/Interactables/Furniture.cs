@@ -64,6 +64,9 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     }
 
     public void Break() {
+
+        if(Player.singleton.CurHeld() == this)
+            Player.singleton.Release(Player.singleton.CurHeld());
         //Particle Effect
         if (debris != null) {
             Instantiate(debris, transform.position, Quaternion.identity);

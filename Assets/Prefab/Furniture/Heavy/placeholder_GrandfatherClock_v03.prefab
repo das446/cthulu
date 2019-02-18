@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   o: {fileID: 504451384561576508}
   Weight: 1
-  health: 0
+  health: 100
   startPos: {x: 0, y: 0, z: 0}
   rb: {fileID: 1981649415065491553}
   col: {fileID: 5093386301398429292}
@@ -147,7 +147,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!145 &2183801337123691941
 SpringJoint:
@@ -159,7 +159,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 0}
   m_Anchor: {x: 0, y: 212.63947, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 13.411953, y: -0.18805599, z: 7.3110113}
+  m_ConnectedAnchor: {x: 0, y: 1.8975439, z: -0.2670325}
   serializedVersion: 2
   m_Spring: 10
   m_Damper: 0.2
@@ -183,7 +183,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 212.63947, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 13.411953, y: -0.18805599, z: 7.3110113}
+  m_ConnectedAnchor: {x: 0, y: 1.8975439, z: -0.2670325}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2

@@ -11,7 +11,7 @@ public class LightFurniture : Furniture, IPickUpable {
     // }
 
     public override void Interact(Player p) {
-        if (p.CurItem() == null) {
+        if (p.CurHeld() == null) {
             GetPickedUp(p);
             p.PickUp(this);
         }

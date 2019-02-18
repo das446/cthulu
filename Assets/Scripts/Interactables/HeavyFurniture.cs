@@ -8,7 +8,7 @@ public class HeavyFurniture : Furniture,IPickUpable {
     Vector3 prevPos;
 
     public override void Interact(Player p, Vector3 pos) {
-        if (p.CurItem() == null) {
+        if (p.CurHeld() == null) {
             Debug.Log("Interact");
             GetPickedUp(p, pos);
             p.PickUp(this);
