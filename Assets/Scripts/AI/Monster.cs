@@ -12,7 +12,7 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
 
     public GameObject obj => gameObject;
 
-    public static const int layer = 1<<13;
+    public const int layer = 1<<13;
 
     public static event Action<Monster, Vector3> Spawn;
     public static event Action<Monster> OnDie;
