@@ -42,6 +42,10 @@ public class ScaredState : NpcState
     {
         npc.SetMessage("!",Color.red);
         npc.SetState(new LeaveState(npc, exit));
+        
+        npc.resetAnimParams();
+        npc.animControl.setTrigger("gotScared");
+        npc.animControl.SetBool("isScared", true);
         /* 
         SetFollower(exit);
         PathFollower.ReachNode += ReachExit;
