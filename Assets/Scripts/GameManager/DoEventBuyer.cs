@@ -1,35 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Cthulu;
 using Cthulu.Events;
+using UnityEngine;
 
-public class DoEventBuyer
-{
+public class DoEventBuyer {
     Npc npc;
 
-    public DoEventBuyer(Npc npc)
-    {
+    public DoEventBuyer(Npc npc) {
         this.npc = npc;
     }
 
-    public void Do(DoEvent buyerDo)
-    {
+    public void Do(DoEvent buyerDo) {
         Debug.Log(buyerDo.Print());
         string buyerAction = buyerDo.action;
-        switch (buyerAction)
-        {
+        switch (buyerAction) {
             case "spawn":
                 Spawn();
                 break;
             case "goto":
-                string room = buyerDo.args[0];
-                GoToRoom(room);
+                string arg = buyerDo.args[0];
+                if (arg.StartsWith("room")) {
+                    string room = arg;
+                    if (arg.Contains("|")) {
+                        room = arg.Split('|').Slice(1, -1).RandomItem();
+                    }
+                    npc.GoToRoom(room);
+                } else if (arg.StartsWith("node")) {
+                    string node = arg;
+                    if (arg.Contains("|")) {
+                        node = arg.Split('|').Slice(1, -1).RandomItem();
+                    }
+                    npc.GoToNode(node);
+                }
+
                 break;
-            // case "fakeOut":
-            //     string fakeLoc = buyerDo.args[0];
-            //     string realLoc = buyerDo.args[1];
-            //     FakeOut(fakeLoc, realLoc);
-            //     break;
+                // case "fakeOut":
+                //     string fakeLoc = buyerDo.args[0];
+                //     string realLoc = buyerDo.args[1];
+                //     FakeOut(fakeLoc, realLoc);
+                //     break;
         }
     }
 
@@ -37,11 +47,10 @@ public class DoEventBuyer
     /// "spawns" a new buyer
     /// </summary>
     /// <param name="name">identifier for buyer</param>
-    void Spawn()
-    {
+    void Spawn() {
         npc.gameObject.SetActive(true);
         npc.interest = 0;
-        npc.GoToRoom("LivingRoom");
+        npc.GoToRoom("room.livingroom");
         //tell npc to enter building
         // npc.GoToRoom(npc.lobbyNode);
     }
@@ -50,9 +59,8 @@ public class DoEventBuyer
     /// tells buyer to go to a room
     /// </summary>
     /// <param name="room">room buyer should go to</param>
-    void GoToRoom(string room)
-    {
-        
+    void GoToRoom(string room) {
+
         npc.GoToRoom(room);
     }
 

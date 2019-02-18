@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using cakeslice;
 using Cthulu;
 using Cthulu.Events;
@@ -44,7 +45,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
     Vector3 startPos;
 
     public Node exitNode;
-    //replace next two bools with scared state trigger
+
+    //TODO: replace next two bools with scared state trigger
     public bool isScared = false;
     public bool isRunning = false;
 
@@ -101,6 +103,20 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public void GoToRoom(string room) {
         GoToRoom(Room.GetRoom(room));
+    }
+
+    public void GoToRoom(Room r) {
+        curState?.Exit();
+        curState = new MoveTowardsState(this, r.RandomNode());
+    }
+
+    public void GoToNode(string node) {
+        GoToNode(Node.Nodes.First(x => x.name == node));
+    }
+
+    public void GoToNode(Node node) {
+        curState?.Exit();
+        curState = new MoveTowardsState(this, node);
     }
 
     public void Buy(Player p) {
@@ -194,11 +210,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
             interest += roomInterest;
         }
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
-    }
-
-    public void GoToRoom(Room r) {
-        curState?.Exit();
-        curState = new MoveTowardsState(this, r.RandomNode());
     }
 
     public void RunToExit() {
@@ -307,7 +318,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     public void ExitHouse() {
         gameObject.SetActive(false);
         Active.Remove(this);
-        GameManager.When(name,"exit");
+        GameManager.When(name, "exit");
         ResetStats();
     }
 
@@ -361,8 +372,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
         }
     }
 
-    public void resetAnimParams()
-    {
+    public void resetAnimParams() {
         animControl.SetBool("isWalking", false);
         animControl.SetBool("isTalking", false);
         animControl.ResetTrigger("isSitting");
@@ -379,7 +389,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
         new DoEventBuyer(this).Do(de);
     }
 
-    void ResetStats(){
-        
+    void ResetStats() {
+
     }
 }
