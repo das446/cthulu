@@ -140,6 +140,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
         if ( seenMonster.Count != 0 )
         {
+            Debug.Log("Seen Monster");
             isScared = true;
         }
 //*/

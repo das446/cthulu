@@ -39,9 +39,10 @@ public class LineOfSightChecker {
         for (int i = 0; i < dirs.Count; i++) {
             Vector3 dir = dirs[i];
             if (Physics.SphereCast(t.position, 1, dir, out hit, vision)) {
-                Debug.DrawRay(t.position, dir * hit.distance, Color.yellow, 10, true);
+                Debug.DrawRay(t.position, dir * hit.distance, Color.yellow, Time.deltaTime, true);
                 Monster m = hit.collider.GetComponent<Monster>();
                 if (m != null) {
+                    Debug.Log("Monster");
                     monsters.Add(m);
                 }
             }
