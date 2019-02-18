@@ -30,8 +30,19 @@ public class Compass : MonoBehaviour {
     void UpdateCompass(Transform player, Vector3 target) {
         Vector3 forward = player.forward;
         Vector3 targetDir = target - player.position;
-        float angle = Vector3.SignedAngle(forward, targetDir, Vector3.down);
+        float angle = AngleBetweenVectors(forward, targetDir, Vector3.up);
         t.eulerAngles = new Vector3(0, 0, angle);
+    }
+
+    // taken from reddit.com/r/Unity3D/comments/aruqz9/if_vector3angle_is_too_imprecise_or_jittery_at
+    float AngleBetweenVectors(Vector3 v1, Vector3 v2, Vector3 up) {
+        // provides a cleaner result at low angles than Vector3.Angle()
+        var cross = Vector3.Cross(v1, v2);
+        var dot = Vector3.Dot(v1, v2);
+        var angle = Mathf.Atan2(cross.magnitude, dot);
+        var test = Vector3.Dot(up, cross);
+        if (test < 0.0) angle = -angle;
+        return angle; // radians
     }
 
 }
