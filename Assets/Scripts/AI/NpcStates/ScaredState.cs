@@ -44,7 +44,7 @@ public class ScaredState : NpcState
         npc.SetState(new LeaveState(npc, exit));
         
         npc.resetAnimParams();
-        npc.animControl.setTrigger("gotScared");
+        npc.animControl.SetTrigger("gotScared");
         npc.animControl.SetBool("isScared", true);
         /* 
         SetFollower(exit);
