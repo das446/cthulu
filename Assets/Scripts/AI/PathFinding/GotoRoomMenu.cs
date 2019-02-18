@@ -27,6 +27,8 @@ public class GotoRoomMenu : MonoBehaviour {
 
         StartCoroutine(MoveCamera());
 
+        npc.resetAnimParams();
+        npc.animControl.SetBool("isTalking", true);
     }
 
     IEnumerator MoveCamera() {
