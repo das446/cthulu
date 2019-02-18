@@ -27,6 +27,14 @@ public class Player : MonoBehaviour, ICanHold {
 
     [SerializeField] int goalMoney;
 
+    public static Player singleton;
+
+    void Awake()
+    {   
+        if(singleton == null)
+            singleton = this;
+    }
+
     // Start is called before the first frame update
     void Start() {
 
@@ -145,10 +153,6 @@ public class Player : MonoBehaviour, ICanHold {
 
     public Vector3 GetThrowDir() {
         return cam.transform.forward;
-    }
-
-    public IPickUpable CurItem() {
-        return curItem;
     }
 
     public void ChangeMoney(int amnt) {
