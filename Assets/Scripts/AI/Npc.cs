@@ -220,7 +220,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
     }
 
-<<<<<<< HEAD
     public void GoToRoom(Room r) {
         curState?.Exit();
         curState = new MoveTowardsState(this, r.RandomNode());
@@ -233,8 +232,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
         curState = new ScaredState(this);
     }
 
-=======
->>>>>>> 51a8bc49c77f5284df98b83d23bf1a390462bbda
     public void RunToExit() {
         speed = speed * 3;
         curState?.Exit();
