@@ -394,7 +394,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
         animControl.ResetTrigger("isSitting");
         animControl.SetBool("isCurious", false);
         animControl.SetBool("isInspecting", false);
-        animControl.ResetTrigger("isScared");
+        animControl.SetBool("isScared", false);
+        animControl.SetBool("gotScared", false);
         animControl.SetBool("isPossessed", false);
         animControl.ResetTrigger("isBitten");
         animControl.ResetTrigger("isSacrificed");
