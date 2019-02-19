@@ -220,11 +220,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
     }
 
-    public void GoToRoom(Room r) {
-        curState?.Exit();
-        curState = new MoveTowardsState(this, r.RandomNode());
-    }
-
     public void Alerted()
     {
         Lock();
