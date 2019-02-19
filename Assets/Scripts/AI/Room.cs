@@ -16,7 +16,7 @@ public class Room : MonoBehaviour {
         PathFollower.ReachNode += CheckEnter;
         string n = name.ToLower();
         if (rooms.ContainsKey(n)) {
-            Debug.LogWarning("Room with name " + n +" already exists" );
+            Debug.LogWarning("Room with name " + n + " already exists");
         } else {
             rooms.Add(n, this);
         }
@@ -47,6 +47,13 @@ public class Room : MonoBehaviour {
     }
 
     public static Room GetRoom(string s) {
-        return rooms[s.ToLower()];
+        if (!s.StartsWith("room.")) {
+            s = "room." + s;
+        }
+        try {
+            return rooms[s.ToLower()];
+        } catch {
+            throw new NullReferenceException("No room named " + s);
+        }
     }
 }
