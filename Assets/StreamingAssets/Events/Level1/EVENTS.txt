@@ -2,11 +2,11 @@
 
 WHEN time:1 (DO door.living&1&2 open)
 WHEN time:5 (DO npc.normal.bob spawn)
-WHEN time:6 (DO ghost.1 spawn Bathroom)
-WHEN time:25 (DO npc.normal.bob goto DinningRoom)
+WHEN time:6 (DO ghost.1 spawn room.Bathroom)
+WHEN time:25 (DO npc.normal.bob goto room.DinningRoom)
 
-WHEN ghost.1:die wait:5 (DO tentacle.1 spawn DinningRoom)
-WHEN tentacle.1:die wait:5 (DO ghost.1 spawn DinningRoom)
+WHEN ghost.1:die wait:5 (DO tentacle.1 spawn room.DinningRoom)
+WHEN tentacle.1:die wait:5 (DO ghost.1 spawn room.DinningRoom)
 WHEN npc.normal.bob:exit wait:5 (DO npc.normal.tim spawn)
 
 //DO

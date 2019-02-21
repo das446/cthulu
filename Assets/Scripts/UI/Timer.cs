@@ -74,7 +74,7 @@ public class Timer : MonoBehaviour {
     }
 
     void UpdateDisplay(float t) {
-        float elapsed = 360f * startTime / t;
+        float elapsed = 360f * startTime / timeLeft;
         clockHand.transform.eulerAngles = new Vector3(0, 0, -elapsed);
     }
 
