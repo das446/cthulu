@@ -233,6 +233,16 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: 092377d322ce5534bbebacd1461725fa, type: 3}
   - name: DoorOpening
     sound: {fileID: 8300000, guid: 00cbdb6c0bff3084cae2c8b5377ecfb2, type: 3}
+  - name: Doorbell
+    sound: {fileID: 8300000, guid: ad8fd693f6bc03a41ad8924b39ef2944, type: 3}
+  - name: PortalSpawn
+    sound: {fileID: 8300000, guid: dd65912840d693f4fbad9bd94b549d16, type: 3}
+  - name: PortalStill
+    sound: {fileID: 8300000, guid: e0db73dc3f99df84790ff8a31173f365, type: 3}
+  - name: GhostSpawn
+    sound: {fileID: 8300000, guid: fe56c7fccb669634e90db6ac339d59c3, type: 3}
+  - name: SaleMade
+    sound: {fileID: 8300000, guid: d7076bec2b47c854cb22c6181994af63, type: 3}
   prevNames: []
   prevSounds: []
   Updated: 0
@@ -354,11 +364,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 578844140709870382}
     m_Modifications:
-    - target: {fileID: 3990420294377132794, guid: 7dd984b25c3f8ca459e0797d203e85a2,
-        type: 3}
-      propertyPath: m_Name
-      value: VoiceLines
-      objectReference: {fileID: 0}
     - target: {fileID: 7669436913483111643, guid: 7dd984b25c3f8ca459e0797d203e85a2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -414,6 +419,76 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3990420294377132794, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: m_Name
+      value: VoiceLines
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[0].name
+      value: ThankYou
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[0].sound
+      value: 
+      objectReference: {fileID: 8300000, guid: c1f4482428843144099657ee60e8155b, type: 3}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[1].name
+      value: PoshScream
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[1].sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0cb3e6fbb5ae30d4db7998829a330ee8, type: 3}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[2].name
+      value: Death1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[2].sound
+      value: 
+      objectReference: {fileID: 8300000, guid: eb8fd5acfe341824f8e5b53923443ac1, type: 3}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[3].name
+      value: Death2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[3].sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d447cfef792420409b026b5e977bf82, type: 3}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[4].name
+      value: Death3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[4].sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 96be5e474d6b95a428cbc1b9070b53ee, type: 3}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[5].name
+      value: NerdScream
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903519243557686828, guid: 7dd984b25c3f8ca459e0797d203e85a2,
+        type: 3}
+      propertyPath: soundEffects.Array.data[5].sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8494b0b8913f25e47a0a31685b86a955, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dd984b25c3f8ca459e0797d203e85a2, type: 3}
 --- !u!4 &192205297799512814 stripped
