@@ -6,6 +6,7 @@ using Cthulu;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Player : MonoBehaviour, ICanHold {
 
@@ -156,6 +157,7 @@ public class Player : MonoBehaviour, ICanHold {
     }
 
     public void ChangeMoney(int amnt) {
+        Audio.PlaySound("SaleMade");
         money += amnt;
         moneyText.text = "$" + money.ToString("#,##0");
 
