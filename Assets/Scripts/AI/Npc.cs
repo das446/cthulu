@@ -80,6 +80,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public float alertTimer = 6;
 
+    public int buyerID;
+
     // [SerializeField] GameObject deadNpc;
 
     void Awake() {
@@ -97,7 +99,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void Spawn() {
-        gameObject.PlaySound("PoshManEnters");
         transform.position = startPos;
         StartWandering();
         Active.Add(this);
@@ -186,6 +187,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
             PlaySoundHere();
             Die();
         }
+
+
 
         /*  if (Input.GetKeyDown(KeyCode.A))
          {
@@ -387,6 +390,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
             }
         }
     }
+
 
     public void resetAnimParams() {
         animControl.SetBool("isWalking", false);

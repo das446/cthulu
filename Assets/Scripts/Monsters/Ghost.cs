@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Cthulu.Events;
 using UnityEngine;
+using cakeslice;
+using Cthulu;
+using System.Linq;
 
 public class Ghost : Monster {
 
@@ -70,6 +73,7 @@ public class Ghost : Monster {
     public override void Do(DoEvent de)
     {
         if(de.action == "spawn"){
+            gameObject.PlaySound("GhostSpawn");
             gameObject.SetActive(true);
             transform.position = Room.GetRoom(de.args[0]).transform.position;
             OnSpawn();
