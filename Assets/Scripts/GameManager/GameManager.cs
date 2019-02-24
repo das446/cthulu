@@ -12,6 +12,13 @@ namespace Cthulu.Events {
         Dictionary<string, WhenEvent> whens = new Dictionary<string, WhenEvent>(); //uses event name as key
 
         public static Dictionary<string, IManageable> Objects = new Dictionary<string, IManageable>();
+        /// <summary>
+        /// maps object names to variable name
+        /// </summary>
+        /// <typeparam name="string">object</typeparam>
+        /// <typeparam name="string">variable</typeparam>
+        /// <returns></returns>
+        public static Dictionary<string,string> Variables = new Dictionary<string,string>();
 
         static GameManager singleton;
         static string seperator = ":";
@@ -38,39 +45,66 @@ namespace Cthulu.Events {
 
         IEnumerator ExecuteWhen(WhenEvent w) {
             bool anonyomous = false;
-            string[] aEvent = new string[] { };
+            List<string> aEvent = new List<string>();
             for (int i = 0; i < w.dos.Length; i++) {
-                string cur = w.dos[i];
-                if (cur == "(do") {
-                    anonyomous = true;
-                    aEvent = new string[] { };
-                } else if (anonyomous) {
-                    if (cur == ")") {
-                        DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
-                        Do(d);
-                        anonyomous = false;
-
-                    } else if (cur.EndsWith(")")) {
-                        List<string> temp = aEvent.ToList();
-                        temp.Add(cur.TrimEnd(')'));
-                        aEvent = temp.ToArray();
-                        Debug.Log(aEvent.Print());
-                        DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
-                        Do(d);
-                        anonyomous = false;
-
-                    } else {
-                        List<string> temp = aEvent.ToList();
-                        temp.Add(cur);
-                        aEvent = temp.ToArray();
-                    }
-                } else if (cur.StartsWith("wait:")) {
-                    int time = Int32.Parse(cur.Split(':') [1]);
-                    yield return new WaitForSeconds(time);
-                } else {
-                    DoEvent d = events[cur];
+                if (!anonyomous && w.dos[i] != "(do") {
+                    DoEvent d = events[w.dos[0]];
                     Do(d);
+
+                } else if (!anonyomous && w.dos[i] == "(do") {
+                    anonyomous = true;
+                    aEvent.Add("a");
+                    aEvent.Add("do");
+                    i++;
+                    aEvent.Add(w.dos[i]);
+                    i++;
+                    aEvent.Add(w.dos[i]);
+                    i++;
+                    while (w.dos[i] != ")") {
+                        aEvent.Add(w.dos[i]);
+                        i++;
+                    }
+                    DoEvent d = new DoEvent("a", aEvent[2], aEvent[3], aEvent.ToArray().Slice(4, -1));
+                    Do(d);
+
+                } else if (w.dos[i].StartsWith("wait:")) {
+                    int time = Int32.Parse(w.dos[i].Split(':') [1]);
+                    yield return new WaitForSeconds(time);
                 }
+                //TODO: DELETE
+                // for (int i = 0; i < w.dos.Length; i++) {
+                //     string cur = w.dos[i];
+                //     if (cur == "(do") {
+                //         anonyomous = true;
+                //         aEvent = new string[] { };
+                //     } else if (anonyomous) {
+                //         if (cur == ")") {
+                //             DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
+                //             Do(d);
+                //             anonyomous = false;
+
+                //         } else if (cur.EndsWith(")")) {
+                //             List<string> temp = aEvent.ToList();
+                //             temp.Add(cur.TrimEnd(')'));
+                //             aEvent = temp.ToArray();
+                //             Debug.Log(aEvent.Print());
+                //             DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
+                //             Do(d);
+                //             anonyomous = false;
+
+                //         } else {
+                //             List<string> temp = aEvent.ToList();
+                //             temp.Add(cur);
+                //             aEvent = temp.ToArray();
+                //         }
+                //     } else if (cur.StartsWith("wait:")) {
+                //         int time = Int32.Parse(cur.Split(':') [1]);
+                //         yield return new WaitForSeconds(time);
+                //     } else {
+                //         DoEvent d = events[cur];
+                //         Do(d);
+                //     }
+                // }
             }
         }
 
@@ -108,7 +142,7 @@ namespace Cthulu.Events {
             }
         }
 
-        public static bool HasObject(string n){
+        public static bool HasObject(string n) {
             return Objects.ContainsKey(n);
         }
 
