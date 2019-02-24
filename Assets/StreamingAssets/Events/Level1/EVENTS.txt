@@ -2,7 +2,7 @@
 
 WHEN time:1 (DO door.living&1&2 open )
 WHEN time:5 (DO npc.normal|bob|tim=npc1 spawn )
-WHEN time:6 (DO tentacle.1 spawn room.DinningRoom )
+WHEN time:6 (DO monster.ghost.1 spawn room.DinningRoom )
 WHEN time:10 (DO npc1 goto room.DinningRoom )
 
 WHEN ghost.1:die wait:5 (DO tentacle.1 spawn room.DinningRoom )
