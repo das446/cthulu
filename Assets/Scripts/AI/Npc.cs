@@ -443,9 +443,15 @@ public class Npc : Interactable, IPickUpable, IManageable
         }
         else if(soundType == SoundType.Talk)
         {
-            if(nameof.StartsWith("npc.nerd"))
+            if(name.StartsWith("npc.nerd"))
             {
                 talkSound = "NerdTalk";
+                gameObject.PlaySound(talkSound);
+            }
+            else
+            {
+                talkSound = "PoshTalk";
+                gameObject.PlaySound(talkSound);
             }
         }
     }
