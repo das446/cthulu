@@ -2429,7 +2429,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2699,10 +2699,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 45
   DopplerLevel: 1
-  MinDistance: 5
-  MaxDistance: 100
+  MinDistance: 1
+  MaxDistance: 60
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2844,6 +2844,7 @@ MonoBehaviour:
   soundType: 0
   deathSound: 
   screamSound: 
+  talkSound: 
   randomSound: 0
   animControl: {fileID: 650865244}
   alertTimer: 6
