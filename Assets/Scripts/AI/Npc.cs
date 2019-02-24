@@ -73,7 +73,7 @@ public class Npc : Interactable, IPickUpable, IManageable
     public enum SoundType { Death, Scream, Talk };
     public SoundType soundType;
 
-    public string deathSound, screamSound;
+    public string deathSound, screamSound, talkSound;
     public bool randomSound;
 
     public Animator animControl;
@@ -440,6 +440,13 @@ public class Npc : Interactable, IPickUpable, IManageable
 
             }
 
+        }
+        else if(soundType == SoundType.Talk)
+        {
+            if(nameof.StartsWith("npc.nerd"))
+            {
+                talkSound = "NerdTalk";
+            }
         }
     }
 
