@@ -13,6 +13,14 @@ namespace Cthulu.Events {
 
         public static Dictionary<string, IManageable> Objects = new Dictionary<string, IManageable>();
 
+        /// <summary>
+        /// maps a objectName to a variable, unfortunately it can only hold one at a time
+        /// </summary>
+        /// <typeparam name="string">objectName</typeparam>
+        /// <typeparam name="string">variableName</typeparam>
+        /// <returns></returns>
+        public static Dictionary<string, string> Variables = new Dictionary<string, string>();
+
         static GameManager singleton;
         static string seperator = ":";
         public string fileName = "EVENTS.txt";
@@ -37,50 +45,51 @@ namespace Cthulu.Events {
         }
 
         IEnumerator ExecuteWhen(WhenEvent w) {
-            bool anonyomous = false;
-            string[] aEvent = new string[] { };
+            List<string> aEvent = new List<string>();
             for (int i = 0; i < w.dos.Length; i++) {
-                string cur = w.dos[i];
-                if (cur == "(do") {
-                    anonyomous = true;
-                    aEvent = new string[] { };
-                } else if (anonyomous) {
-                    if (cur == ")") {
-                        DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
-                        Do(d);
-                        anonyomous = false;
+                if (w.dos[i] != "(do") {
 
-                    } else if (cur.EndsWith(")")) {
-                        List<string> temp = aEvent.ToList();
-                        temp.Add(cur.TrimEnd(')'));
-                        aEvent = temp.ToArray();
-                        Debug.Log(aEvent.Print());
-                        DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
-                        Do(d);
-                        anonyomous = false;
-
-                    } else {
-                        List<string> temp = aEvent.ToList();
-                        temp.Add(cur);
-                        aEvent = temp.ToArray();
+                } else if (w.dos[i] == "(do") {
+                    aEvent.Add("a");
+                    aEvent.Add("do");
+                    i++;
+                    aEvent.Add(w.dos[i]);
+                    i++;
+                    aEvent.Add(w.dos[i]);
+                    i++;
+                    while (w.dos[i] != ")") {
+                        aEvent.Add(w.dos[i]);
+                        i++;
                     }
-                } else if (cur.StartsWith("wait:")) {
-                    int time = Int32.Parse(cur.Split(':') [1]);
+                    DoEvent d = new DoEvent("a", aEvent[2], aEvent[3], aEvent.ToArray().Slice(4, -1));
+                    Do(d);
+
+                } else if (w.dos[i].StartsWith("wait:")) {
+                    int time = Int32.Parse(w.dos[i].Split(':') [1]);
                     yield return new WaitForSeconds(time);
                 } else {
-                    DoEvent d = events[cur];
+                    DoEvent d = events[w.dos[0]];
                     Do(d);
                 }
             }
         }
 
         public static void When(string caller, string function) {
-            string name = caller + seperator + function;
-            if (singleton == null) { return; }
+            if (singleton == null) { Debug.LogWarning("No instance of GameMAnager"); return; }
             if (!singleton.enabled) { return; }
+
+            string name = caller + seperator + function;
             if (singleton.whens.ContainsKey(name)) {
                 WhenEvent whenEvent = singleton.whens[name];
                 singleton.StartCoroutine(singleton.ExecuteWhen(whenEvent));
+            }
+
+            if (Variables.ContainsKey(caller)) {
+                name = Variables[caller] + seperator + function;
+                if (singleton.whens.ContainsKey(name)) {
+                    WhenEvent whenEvent = singleton.whens[name];
+                    singleton.StartCoroutine(singleton.ExecuteWhen(whenEvent));
+                }
             }
 
         }
@@ -108,7 +117,7 @@ namespace Cthulu.Events {
             }
         }
 
-        public static bool HasObject(string n){
+        public static bool HasObject(string n) {
             return Objects.ContainsKey(n);
         }
 
