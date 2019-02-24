@@ -41,7 +41,7 @@ namespace Cthulu.Events {
 
                 string[] options = name.Split('|');
                 string objectName = options[0] + "." + (options.Slice(1, -1).RandomItem());
-                if (var != "") {
+                if (var != "" && GameManager.Objects.ContainsKey(objectName)) {
 
                     GameManager.Variables.Set(objectName, var);
 

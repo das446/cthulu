@@ -12,13 +12,14 @@ namespace Cthulu.Events {
         Dictionary<string, WhenEvent> whens = new Dictionary<string, WhenEvent>(); //uses event name as key
 
         public static Dictionary<string, IManageable> Objects = new Dictionary<string, IManageable>();
+
         /// <summary>
-        /// maps object names to variable name
+        /// maps a objectName to a variable, unfortunately it can only hold one at a time
         /// </summary>
-        /// <typeparam name="string">object</typeparam>
-        /// <typeparam name="string">variable</typeparam>
+        /// <typeparam name="string">objectName</typeparam>
+        /// <typeparam name="string">variableName</typeparam>
         /// <returns></returns>
-        public static Dictionary<string,string> Variables = new Dictionary<string,string>();
+        public static Dictionary<string, string> Variables = new Dictionary<string, string>();
 
         static GameManager singleton;
         static string seperator = ":";
@@ -44,15 +45,11 @@ namespace Cthulu.Events {
         }
 
         IEnumerator ExecuteWhen(WhenEvent w) {
-            bool anonyomous = false;
             List<string> aEvent = new List<string>();
             for (int i = 0; i < w.dos.Length; i++) {
-                if (!anonyomous && w.dos[i] != "(do") {
-                    DoEvent d = events[w.dos[0]];
-                    Do(d);
+                if (w.dos[i] != "(do") {
 
-                } else if (!anonyomous && w.dos[i] == "(do") {
-                    anonyomous = true;
+                } else if (w.dos[i] == "(do") {
                     aEvent.Add("a");
                     aEvent.Add("do");
                     i++;
@@ -70,51 +67,29 @@ namespace Cthulu.Events {
                 } else if (w.dos[i].StartsWith("wait:")) {
                     int time = Int32.Parse(w.dos[i].Split(':') [1]);
                     yield return new WaitForSeconds(time);
+                } else {
+                    DoEvent d = events[w.dos[0]];
+                    Do(d);
                 }
-                //TODO: DELETE
-                // for (int i = 0; i < w.dos.Length; i++) {
-                //     string cur = w.dos[i];
-                //     if (cur == "(do") {
-                //         anonyomous = true;
-                //         aEvent = new string[] { };
-                //     } else if (anonyomous) {
-                //         if (cur == ")") {
-                //             DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
-                //             Do(d);
-                //             anonyomous = false;
-
-                //         } else if (cur.EndsWith(")")) {
-                //             List<string> temp = aEvent.ToList();
-                //             temp.Add(cur.TrimEnd(')'));
-                //             aEvent = temp.ToArray();
-                //             Debug.Log(aEvent.Print());
-                //             DoEvent d = new DoEvent("a", aEvent[0], aEvent[1], aEvent.Slice(2, -1));
-                //             Do(d);
-                //             anonyomous = false;
-
-                //         } else {
-                //             List<string> temp = aEvent.ToList();
-                //             temp.Add(cur);
-                //             aEvent = temp.ToArray();
-                //         }
-                //     } else if (cur.StartsWith("wait:")) {
-                //         int time = Int32.Parse(cur.Split(':') [1]);
-                //         yield return new WaitForSeconds(time);
-                //     } else {
-                //         DoEvent d = events[cur];
-                //         Do(d);
-                //     }
-                // }
             }
         }
 
         public static void When(string caller, string function) {
-            string name = caller + seperator + function;
-            if (singleton == null) { return; }
+            if (singleton == null) { Debug.LogWarning("No instance of GameMAnager"); return; }
             if (!singleton.enabled) { return; }
+
+            string name = caller + seperator + function;
             if (singleton.whens.ContainsKey(name)) {
                 WhenEvent whenEvent = singleton.whens[name];
                 singleton.StartCoroutine(singleton.ExecuteWhen(whenEvent));
+            }
+
+            if (Variables.ContainsKey(caller)) {
+                name = Variables[caller] + seperator + function;
+                if (singleton.whens.ContainsKey(name)) {
+                    WhenEvent whenEvent = singleton.whens[name];
+                    singleton.StartCoroutine(singleton.ExecuteWhen(whenEvent));
+                }
             }
 
         }
