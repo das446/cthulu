@@ -173,7 +173,6 @@ public class Npc : Interactable, IPickUpable, IManageable
             isScared = true;
             // Debug.Log("NPC is scared");
         }
-        //*/
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
