@@ -53,7 +53,7 @@ public class BuyState : NpcState {
     }
 
     public override void Exit() {
-        npc.SetMessage("$",Color.green);
+        npc.SetMessage("",Color.green);
     }
 
     //when click on buyer:
