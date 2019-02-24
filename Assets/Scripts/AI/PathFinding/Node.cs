@@ -18,6 +18,9 @@ public class Node : MonoBehaviour {
 
 	// Use this for initialization
 	public void Init() {
+		if (!name.StartsWith("node.")) {
+			name = "node."+name;
+		}
 		id = Nodes.Count;
 		Nodes.Add(this);
 		foreach (Node neighbor in neighbors) {

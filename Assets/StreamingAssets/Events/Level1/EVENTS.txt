@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //WHENS
 
 WHEN time:1 (DO door.living&1&2 open)
@@ -10,3 +11,17 @@ WHEN tentacle.1:die wait:5 (DO ghost.1 spawn DinningRoom)
 WHEN npc.normal.bob:exit wait:5 (DO npc.normal.tim spawn)
 
 //DO
+=======
+//WHENS
+
+WHEN time:1 (DO door.living&1&2 open)
+WHEN time:5 (DO npc.nerd.tim spawn)
+WHEN time:6 (DO ghost.1 spawn room.Bathroom)
+WHEN time:25 (DO npc.normal.bob goto room.DinningRoom)
+
+WHEN ghost.1:die wait:5 (DO tentacle.1 spawn room.DinningRoom)
+WHEN tentacle.1:die wait:5 (DO ghost.1 spawn room.DinningRoom)
+WHEN npc.normal.bob:exit wait:5 (DO npc.normal.tim spawn)
+
+//DO
+>>>>>>> cda3b86e955c3e429c51f11b960b7f4210cbbf63
