@@ -180,6 +180,7 @@ ModelImporter:
     2000000: System:Vantage_5_2106431
     7400000: NPC_Idle
     9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -195,19 +196,50 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'NPC_Idle' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'Mo3:Solving:LeftArm' has translation animation
+      that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: NPC_Idle
+      takeName: NPC_Idle
+      firstFrame: 5
+      lastFrame: 2400
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -246,8 +278,595 @@ ModelImporter:
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
-    human: []
-    skeleton: []
+    human:
+    - boneName: Mo3:Solving:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mo3:Solving:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: NPC_Idle(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: System
+      parentName: NPC_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: System:Vantage_5_2106431
+      parentName: System
+      position: {x: -4.947444, y: 20.207672, z: 9.461997}
+      rotation: {x: 0.9528378, y: 0.073769525, z: 0.18718004, w: 0.22720449}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3
+      parentName: NPC_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:ARIEL
+      parentName: Mo3
+      position: {x: -0.06603565, y: 1.5921838, z: -0.19000217}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LFHD
+      parentName: Mo3
+      position: {x: -0.14705774, y: 1.5309542, z: -0.10337447}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LBHD
+      parentName: Mo3
+      position: {x: -0.17031744, y: 1.4694053, z: -0.2237223}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RFHD
+      parentName: Mo3
+      position: {x: 0.0004487242, y: 1.5055807, z: -0.11526574}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RBHD
+      parentName: Mo3
+      position: {x: -0.015217612, y: 1.4697375, z: -0.2438134}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:C7
+      parentName: Mo3
+      position: {x: -0.00815262, y: 0.4846267, z: -0.11278395}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:T10
+      parentName: Mo3
+      position: {x: -0.048039425, y: 1.062534, z: -0.26006445}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:CLAV
+      parentName: Mo3
+      position: {x: -0.081429705, y: 1.1772171, z: -0.04870625}
+      rotation: {x: 0.08375507, y: 0.16254063, z: -0.3464478, w: 0.92007583}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:STRN
+      parentName: Mo3
+      position: {x: -0.079051375, y: 1.0515966, z: -0.027758844}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LFSH
+      parentName: Mo3
+      position: {x: -0.18970409, y: 1.2952455, z: -0.120694555}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LBSH
+      parentName: Mo3
+      position: {x: -0.1824114, y: 1.2933608, z: -0.28345555}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LUPA
+      parentName: Mo3
+      position: {x: -0.33792704, y: 1.3197819, z: -0.22667204}
+      rotation: {x: -0.025008244, y: -0.40128443, z: 0.14118557, w: 0.9046613}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LELB
+      parentName: Mo3
+      position: {x: -0.4779971, y: 1.3198727, z: -0.1665036}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LIEL
+      parentName: Mo3
+      position: {x: -0.45625407, y: 1.2070053, z: -0.1344002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LOWR
+      parentName: Mo3
+      position: {x: -0.69917184, y: 1.2217635, z: -0.16158882}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LIWR
+      parentName: Mo3
+      position: {x: -0.71102154, y: 1.2657672, z: -0.10269162}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LWRE
+      parentName: Mo3
+      position: {x: -0.577183, y: 1.2430332, z: -0.09343134}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LIHAND
+      parentName: Mo3
+      position: {x: -0.83584607, y: 1.2414324, z: -0.11279812}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LOHAND
+      parentName: Mo3
+      position: {x: -0.8355966, y: 1.2277288, z: -0.16251437}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RFSH
+      parentName: Mo3
+      position: {x: 0.05064367, y: 1.3112271, z: -0.11598735}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RBSH
+      parentName: Mo3
+      position: {x: -0.05292339, y: 1.278376, z: -0.29241133}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RUPA
+      parentName: Mo3
+      position: {x: 0.05536511, y: 1.2681804, z: -0.2605429}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RELB
+      parentName: Mo3
+      position: {x: 0.19613628, y: 1.2451524, z: -0.19513008}
+      rotation: {x: -0.06777309, y: -0.07789282, z: -0.30531877, w: 0.94663614}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RIEL
+      parentName: Mo3
+      position: {x: 0.28976816, y: 1.2047342, z: -0.14044026}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:ROWR
+      parentName: Mo3
+      position: {x: 0.5260932, y: 1.2201878, z: -0.08577461}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RIWR
+      parentName: Mo3
+      position: {x: 0.5161292, y: 1.2468829, z: -0.018980576}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RWRE
+      parentName: Mo3
+      position: {x: 0.2819373, y: 1.2648399, z: -0.04044148}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RIHAND
+      parentName: Mo3
+      position: {x: 0.69007474, y: 1.2240238, z: -0.023257164}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:ROHAND
+      parentName: Mo3
+      position: {x: 0.66026396, y: 1.1997098, z: -0.08046032}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LFWT
+      parentName: Mo3
+      position: {x: -0.22158085, y: 0.9488978, z: -0.051865652}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LMWT
+      parentName: Mo3
+      position: {x: -0.25397697, y: 0.94727653, z: -0.17803383}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LBWT
+      parentName: Mo3
+      position: {x: -0.18837428, y: 0.9525659, z: -0.23819774}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RFWT
+      parentName: Mo3
+      position: {x: 0.051808823, y: 0.95651996, z: -0.050527945}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RMWT
+      parentName: Mo3
+      position: {x: 0.0856296, y: 0.9515651, z: -0.13187532}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RBWT
+      parentName: Mo3
+      position: {x: 0.045877147, y: 0.9639836, z: -0.201602}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LHIP
+      parentName: Mo3
+      position: {x: -0.27564, y: 0.73094285, z: -0.1333994}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LKNE
+      parentName: Mo3
+      position: {x: -0.23167269, y: 0.45172843, z: -0.17142242}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LKNI
+      parentName: Mo3
+      position: {x: -0.10697924, y: 0.44528505, z: -0.18528073}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LSHN
+      parentName: Mo3
+      position: {x: -0.24643053, y: 0.26957136, z: -0.2098701}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LANK
+      parentName: Mo3
+      position: {x: -0.21758516, y: 0.082965955, z: -0.18829404}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LHEL
+      parentName: Mo3
+      position: {x: -0.16180553, y: 0.047196787, z: -0.24835353}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LMT5
+      parentName: Mo3
+      position: {x: -0.21336508, y: 0.046843376, z: -0.09371436}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LMT1
+      parentName: Mo3
+      position: {x: -0.14096992, y: 0.044359434, z: -0.0924469}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:LTOE
+      parentName: Mo3
+      position: {x: -0.14143783, y: 0.043329366, z: -0.04240919}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RHIP
+      parentName: Mo3
+      position: {x: 0.065973714, y: 0.6615437, z: -0.10320701}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RKNE
+      parentName: Mo3
+      position: {x: 0.054111592, y: 0.44267043, z: -0.14640798}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RKNI
+      parentName: Mo3
+      position: {x: -0.07578788, y: 0.43853313, z: -0.1842589}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RSHN
+      parentName: Mo3
+      position: {x: 0.058864996, y: 0.27994013, z: -0.17424546}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RANK
+      parentName: Mo3
+      position: {x: 0.039607458, y: 0.076977216, z: -0.18793657}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RHEL
+      parentName: Mo3
+      position: {x: -0.014832318, y: 0.033900324, z: -0.2514284}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RMT5
+      parentName: Mo3
+      position: {x: 0.03435892, y: 0.040543385, z: -0.07000699}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RMT1
+      parentName: Mo3
+      position: {x: -0.056130562, y: 0.046147157, z: -0.07631953}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:RTOE
+      parentName: Mo3
+      position: {x: -0.04516515, y: 0.04800552, z: -0.021782083}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving
+      parentName: Mo3
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:Hips
+      parentName: Mo3:Solving
+      position: {x: -0.093180634, y: 0.82153744, z: -0.143066}
+      rotation: {x: -0.11549249, y: -0.004538354, z: -0.01324639, w: 0.99320966}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:Spine
+      parentName: Mo3:Solving:Hips
+      position: {x: -0, y: 0.1612109, z: 0}
+      rotation: {x: 0.15994594, y: -0.057464253, z: 0.13842164, w: 0.9756816}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:Head
+      parentName: Mo3:Solving:Spine
+      position: {x: 0.08146624, y: 0.28917572, z: -0.004473314}
+      rotation: {x: -0.15252532, y: -0.0061669555, z: -0.2616384, w: 0.95301807}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:Head_End
+      parentName: Mo3:Solving:Head
+      position: {x: -0, y: 0.114999995, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftShoulder
+      parentName: Mo3:Solving:Spine
+      position: {x: 0.08146624, y: 0.2756024, z: -0.004473314}
+      rotation: {x: -0.41494152, y: 0.29417425, z: 0.47918022, w: 0.71531206}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftArm
+      parentName: Mo3:Solving:LeftShoulder
+      position: {x: -0.022969225, y: 0.20852017, z: 0.012430983}
+      rotation: {x: -0.29173875, y: 0.7934715, z: 0.49085632, w: -0.21059796}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftForeArm
+      parentName: Mo3:Solving:LeftArm
+      position: {x: -0.04389553, y: 0.12723964, z: 0.15843862}
+      rotation: {x: 0.24679065, y: 0.6232162, z: 0.53762335, w: 0.5115243}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftHand
+      parentName: Mo3:Solving:LeftForeArm
+      position: {x: 0.011328042, y: 0.19120955, z: 0.10394333}
+      rotation: {x: -0.04045304, y: 0.018303009, z: -0.41181415, w: 0.9101855}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftHandThumb1
+      parentName: Mo3:Solving:LeftHand
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.21767214, y: -0.27779627, z: -0.06478247, w: 0.93340844}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftHandThumb2
+      parentName: Mo3:Solving:LeftHandThumb1
+      position: {x: -0, y: 0, z: 0.099999994}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftHandEnd
+      parentName: Mo3:Solving:LeftHand
+      position: {x: -0, y: 0.099999994, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightShoulder
+      parentName: Mo3:Solving:Spine
+      position: {x: 0.08146624, y: 0.2756024, z: -0.004473314}
+      rotation: {x: -0.26827306, y: 0.046421368, z: -0.7350563, w: 0.62094045}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightArm
+      parentName: Mo3:Solving:RightShoulder
+      position: {x: -0, y: 0.27055427, z: 0}
+      rotation: {x: 0.23802607, y: -0.0627206, z: -0.20005496, w: 0.94836056}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightForeArm
+      parentName: Mo3:Solving:RightArm
+      position: {x: -0, y: 0.25157928, z: 0}
+      rotation: {x: 0.12603708, y: -0.25090596, z: -0.0329684, w: 0.9592049}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightHand
+      parentName: Mo3:Solving:RightForeArm
+      position: {x: -0, y: 0.2353304, z: 0}
+      rotation: {x: -0.14424016, y: -0.017957827, z: 0.1222336, w: 0.9818}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightHandThumb1
+      parentName: Mo3:Solving:RightHand
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.2020969, y: 0.27651268, z: 0.059599727, w: 0.9376276}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightHandThumb2
+      parentName: Mo3:Solving:RightHandThumb1
+      position: {x: -0, y: 0, z: 0.099999994}
+      rotation: {x: 3.1918912e-16, y: 2.7755578e-16, z: -3.8857806e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightHandEnd
+      parentName: Mo3:Solving:RightHand
+      position: {x: -0, y: 0.099999994, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftUpLeg
+      parentName: Mo3:Solving:Hips
+      position: {x: -0.09960229, y: 0, z: 0}
+      rotation: {x: 0.17957143, y: 0.037756514, z: 0.007950087, w: 0.982988}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftLeg
+      parentName: Mo3:Solving:LeftUpLeg
+      position: {x: -0, y: -0.41543996, z: 0}
+      rotation: {x: -0.026759326, y: 0, z: -0, w: 0.9996419}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftFoot
+      parentName: Mo3:Solving:LeftLeg
+      position: {x: -0, y: -0.36058375, z: 0}
+      rotation: {x: -0.01026923, y: 0.10765531, z: 0.038208503, w: 0.99340075}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftToeBase
+      parentName: Mo3:Solving:LeftFoot
+      position: {x: -0, y: 0, z: 0.13600662}
+      rotation: {x: 0.0063203825, y: -0, z: -0, w: 0.99998003}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:LeftToeEnd
+      parentName: Mo3:Solving:LeftToeBase
+      position: {x: -0, y: 0, z: 0.074999996}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightUpLeg
+      parentName: Mo3:Solving:Hips
+      position: {x: 0.09960229, y: 0, z: 0}
+      rotation: {x: 0.16399056, y: -0.07594279, z: 0.01249708, w: 0.98345494}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightLeg
+      parentName: Mo3:Solving:RightUpLeg
+      position: {x: -0, y: -0.41543996, z: 0}
+      rotation: {x: -0.012675976, y: 0, z: -0, w: 0.99991965}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightFoot
+      parentName: Mo3:Solving:RightLeg
+      position: {x: -0, y: -0.36058375, z: 0}
+      rotation: {x: -0.02167181, y: -0.073221505, z: -0.076929, w: 0.9941081}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightToeBase
+      parentName: Mo3:Solving:RightFoot
+      position: {x: -0, y: 0, z: 0.13600662}
+      rotation: {x: -0.032322265, y: 0, z: -0, w: 0.9994775}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mo3:Solving:RightToeEnd
+      parentName: Mo3:Solving:RightToeBase
+      position: {x: -0, y: 0, z: 0.074999996}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Unlabeled_Markers
+      parentName: NPC_Idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -257,10 +876,10 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
