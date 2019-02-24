@@ -11,12 +11,10 @@ using UnityEngine.UI;
 public class Npc : Interactable, IPickUpable, IManageable
 {
 
-    //* 
     LineOfSightChecker eyes;
     List<GameObject> seenMonsters;
     float temp;
     string stemp;
-    //*/
     NpcState curState;
 
     public float vision;
@@ -173,7 +171,6 @@ public class Npc : Interactable, IPickUpable, IManageable
             isScared = true;
             // Debug.Log("NPC is scared");
         }
-        //*/
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
