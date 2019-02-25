@@ -22,6 +22,8 @@ public class Player : MonoBehaviour, ICanHold {
 
     public GameObject pos;
 
+    public GameObject reticle;
+
     public float Power => power;
 
     public Transform Hand => hand;
@@ -75,7 +77,7 @@ public class Player : MonoBehaviour, ICanHold {
     public void Release(IPickUpable f) {
         movement.SetSpeed(x => x * curItem.weight);
         curItem = null;
-        Debug.Log("Release p");
+        reticle.gameObject.SetActive(false);
 
     }
 
@@ -150,6 +152,7 @@ public class Player : MonoBehaviour, ICanHold {
         curItem = f;
         Debug.Log(f);
         movement.SetSpeed(x => x / curItem.weight);
+        reticle.gameObject.SetActive(true);
     }
 
     public Vector3 GetThrowDir() {

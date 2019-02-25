@@ -45,11 +45,9 @@ namespace Cthulu.Events {
         }
 
         IEnumerator ExecuteWhen(WhenEvent w) {
-            List<string> aEvent = new List<string>();
             for (int i = 0; i < w.dos.Length; i++) {
-                if (w.dos[i] != "(do") {
-
-                } else if (w.dos[i] == "(do") {
+                if (w.dos[i] == "(do") {
+                    List<string> aEvent = new List<string>();
                     aEvent.Add("a");
                     aEvent.Add("do");
                     i++;
@@ -66,7 +64,9 @@ namespace Cthulu.Events {
 
                 } else if (w.dos[i].StartsWith("wait:")) {
                     int time = Int32.Parse(w.dos[i].Split(':') [1]);
+                    Debug.Log("Wait:"+time);
                     yield return new WaitForSeconds(time);
+                    Debug.Log("Done waiting");
                 } else {
                     DoEvent d = events[w.dos[0]];
                     Do(d);
@@ -85,6 +85,7 @@ namespace Cthulu.Events {
             }
 
             if (Variables.ContainsKey(caller)) {
+                Debug.Log("var");
                 name = Variables[caller] + seperator + function;
                 if (singleton.whens.ContainsKey(name)) {
                     WhenEvent whenEvent = singleton.whens[name];

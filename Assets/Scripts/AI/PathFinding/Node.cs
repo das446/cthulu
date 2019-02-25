@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cthulu;
 using UnityEngine;
 
@@ -19,8 +20,9 @@ public class Node : MonoBehaviour {
 	// Use this for initialization
 	public void Init() {
 		if (!name.StartsWith("node.")) {
-			name = "node."+name;
+			name = "node." + name;
 		}
+		name = name.ToLower();
 		id = Nodes.Count;
 		Nodes.Add(this);
 		foreach (Node neighbor in neighbors) {
@@ -67,5 +69,14 @@ public class Node : MonoBehaviour {
 
 	public Node RandomNeighbor(Node exclude) {
 		return neighbors.RandomItem(x => x != exclude);
+	}
+
+	public static Node Get(string n) {
+		try {
+			return Nodes.Where(x => x.name == n.ToLower()).First();
+		} catch {
+			Debug.LogError("No node named " + n.ToLower());
+			return null;
+		}
 	}
 }

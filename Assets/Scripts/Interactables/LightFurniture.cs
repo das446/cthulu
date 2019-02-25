@@ -28,7 +28,7 @@ public class LightFurniture : Furniture, IPickUpable {
         rb.isKinematic = false;
         col.enabled = false;
         holder = h;
-        gameObject.layer = heldLayer;
+        gameObject.SetLayerRecursively(heldLayer);
 
     }
 
@@ -39,9 +39,9 @@ public class LightFurniture : Furniture, IPickUpable {
         col.enabled = true;
         Vector3 dir = holder.GetThrowDir();
         rb.AddForce(dir * holder.Power, ForceMode.Impulse);
-        gameObject.layer = 0;
+        gameObject.SetLayerRecursively(0);
         holder = null;
-        this.DoAfterTime(() => TakeDamage(10),1);
+        this.DoAfterTime(() => TakeDamage(10),3);
     }
 
     public bool CanBePickedUp(ICanHold h) {

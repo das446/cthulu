@@ -12,7 +12,6 @@ public class DoEventBuyer {
     }
 
     public void Do(DoEvent buyerDo) {
-        Debug.Log(buyerDo.Print());
         string buyerAction = buyerDo.action;
         switch (buyerAction) {
             case "spawn":

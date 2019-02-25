@@ -22,7 +22,6 @@ namespace Cthulu {
         public AudioClip CurrentSong;
         private static AudioSource _source1;
         string currentSongName;
-        
 
         private static Music instance = null;
 
@@ -69,7 +68,7 @@ namespace Cthulu {
             Source.loop = true;
             Source.clip = CurrentSong;
             Source.Play();
-            
+
         }
 
         // Update is called once per frame
@@ -94,7 +93,12 @@ namespace Cthulu {
         public static void ChangeSong(string SongName) {
 
             Source.Stop();
-            instance.CurrentSong = instance.songs.Where(x => x.name == SongName).First().sound;
+            try {
+                instance.CurrentSong = instance.songs.Where(x => x.name == SongName).First().sound;
+            }
+            catch{
+                Debug.LogWarning("No music named " +SongName );
+            }
             Source.loop = true;
             Source.clip = instance.CurrentSong;
             Source.Play();

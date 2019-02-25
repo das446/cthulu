@@ -31,6 +31,8 @@ public class Ghost : Monster {
         transform.eulerAngles = new Vector3(-90, 0, 0);
         transform.parent = p.gameObject.transform;
         transform.localPosition = Vector3.zero;
+
+        GameManager.When(name,"possess");
         
     }
 
@@ -78,6 +80,9 @@ public class Ghost : Monster {
             transform.position = Room.GetRoom(de.args[0]).transform.position;
             OnSpawn();
         }
+        else if(de.action == "target"){
+            possedObject.SetTarget(GameManager.Objects[de.args[0]].obj);
+        }
     }
 }
 
@@ -87,5 +92,6 @@ public interface IPossesable {
     void GhostUpdate();
     bool Possessed();
     bool Possessable();
+    void SetTarget(GameObject g);
     GameObject gameObject { get; }
 }

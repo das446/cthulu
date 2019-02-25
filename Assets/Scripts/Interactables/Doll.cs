@@ -71,21 +71,13 @@ public class Doll : Furniture, IPossesable, IPickUpable {
         rb.angularVelocity = Vector3.zero;
         col.isTrigger = true;
         gameObject.SetLayerRecursively(13);
-        UpdateTarget();
     }
 
-    private void UpdateTarget() {
+    public void SetTarget(GameObject g) {
 
-        Collider[] cols = Physics.OverlapSphere(transform.position, 30);
-        foreach (Collider col in cols) {
-            if (col.gameObject.GetComponent<Npc>()) {
-                targetPos = col.gameObject.transform.position;
-                return;
-            }
-        }
-        float x = Random.Range(-15f, 15f);
-        float z = Random.Range(-15f, 15f);
-        targetPos = new Vector3(x, transform.position.y, z);
+        target = g;
+        targetPos = g.transform.position;
+        targetPos.y = transform.position.y;
 
     }
 
@@ -110,9 +102,9 @@ public class Doll : Furniture, IPossesable, IPickUpable {
         transform.LookAt(targetPos);
 
         // if near npc scare it
-        
+
         if (Vector3.Distance(transform.position, targetPos) <= 0.1f) {
-            UpdateTarget();
+            SetTarget(target);
         }
     }
 
@@ -126,6 +118,10 @@ public class Doll : Furniture, IPossesable, IPickUpable {
 
     public void TargetBuyer(Npc npc) {
         target = npc.gameObject;
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.DrawSphere(targetPos, 1);
     }
 
 }

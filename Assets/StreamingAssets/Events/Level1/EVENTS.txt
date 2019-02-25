@@ -1,12 +1,13 @@
 //WHENS
 
-WHEN time:1 (DO door.living&1&2 open )
-WHEN time:5 (DO npc.normal|bob|tim=npc1 spawn )
-WHEN time:6 (DO tentacle.1 spawn room.Kitchen )
-WHEN time:10 (DO npc1 goto room.DinningRoom )
+WHEN time:1 (DO door.living.1 open ) (DO door.living.2 open )
+WHEN time:5 (DO npc.normal.bob spawn ) wait:3 (DO npc.normal.tim spawn ) wait:3 (DO npc.normal.david spawn )
+WHEN time:2 (DO tentacle.1 spawn room.DinningRoom )
+WHEN time:10 (DO npc.normal.bob goto node.node11 )
 
 WHEN ghost.1:die wait:5 (DO tentacle.1 spawn room.DinningRoom )
-WHEN tentacle.1:die wait:5 (DO ghost.1 spawn room.DinningRoom )
+WHEN tentacle.1:die wait:5 (DO ghost.1 spawn room.bathroom )
 WHEN npc1:exit wait:5 (DO npc.normal.tim spawn )
+WHEN ghost.1:possess (DO ghost.1 target npc.normal.bob )
 
 //DO
