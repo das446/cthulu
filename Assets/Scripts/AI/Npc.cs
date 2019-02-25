@@ -14,6 +14,11 @@ public class Npc : Interactable, IPickUpable, IManageable {
     List<GameObject> seenMonsters;
     float temp;
     string stemp;
+    //*/
+    //*
+    public LineOfSightGetCollisions iballs;
+    
+    // */
     NpcState curState;
 
     public float vision;
@@ -150,7 +155,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
             SetMessage(stemp);
         }
 
-        seenMonsters = eyes.CheckMonsters();
+        seenMonsters = eyes.CheckMonsters(iballs.cols);
 
         if (seenMonsters.Count != 0) {
             Debug.Log("Seen Monster");
@@ -162,7 +167,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
             interest = 100;
         }
 
-        if (interest >= 100 && !isBuying) {
+        if (interest >= 100 && !isBuying && !isScared) // no buying when scared
+        {
             ReadyToBuy();
             isBuying = true;
         }
