@@ -7,6 +7,7 @@ public class Pauser : MonoBehaviour
 {
     bool paused = false;
     [SerializeField] GameObject menu;
+    public GameObject cam;
 
     // Update is called once per frame
     void Update()
@@ -26,12 +27,15 @@ public class Pauser : MonoBehaviour
 
     private void UnPause()
     {
-        throw new NotImplementedException();
+        Time.timeScale = 1;
+        Player.singleton.Unlock();
+        cam.SetActive(false);
     }
 
     private void Pause()
     {
         Time.timeScale = 0;
         Player.singleton.Lock();
+        cam.SetActive(true);
     }
 }
