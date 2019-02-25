@@ -18,7 +18,7 @@ public class Npc : Interactable, IPickUpable, IManageable
     NpcState curState;
 
     public float vision;
-    [SerializeField] float speed;
+    public float speed;
     [SerializeField] float tolerance;
     [SerializeField] int money;
     public float interest;
@@ -30,7 +30,7 @@ public class Npc : Interactable, IPickUpable, IManageable
 
     [SerializeField] Room curRoom;
 
-    public float Speed { get => speed; }
+    
     public Room CurRoom { get => curRoom; }
 
     public PathFollower follower;
@@ -132,6 +132,7 @@ public class Npc : Interactable, IPickUpable, IManageable
     {
         p.ChangeMoney(money);
         SetMessage(happy, Color.yellow);
+        SetState(new WanderState(this));
         SetState(new LeaveState(this, exitNode));
     }
 
