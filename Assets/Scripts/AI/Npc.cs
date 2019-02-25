@@ -46,8 +46,8 @@ public class Npc : Interactable, IPickUpable, IManageable
     public Node exitNode;
 
     //TODO: replace next two bools with scared state trigger
-    public bool isScared = false;
-    public bool isRunning = false;
+    private bool isScared = false;
+    private bool isRunning = false;
 
     public Node lobbyNode;
 
