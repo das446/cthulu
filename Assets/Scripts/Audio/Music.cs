@@ -97,7 +97,7 @@ namespace Cthulu {
                 instance.CurrentSong = instance.songs.Where(x => x.name == SongName).First().sound;
             }
             catch{
-                Debug.LogError("No music named " +SongName );
+                Debug.LogWarning("No music named " +SongName );
             }
             Source.loop = true;
             Source.clip = instance.CurrentSong;

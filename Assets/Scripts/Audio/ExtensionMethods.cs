@@ -148,7 +148,10 @@ namespace Cthulu {
         }
 
         public static void SetLayerRecursively(this GameObject obj, int newLayer) {
-            if (null == obj) {
+            if (obj == null) {
+                return;
+            }
+            if (obj.layer == 14) { //Minimap Layer
                 return;
             }
 
