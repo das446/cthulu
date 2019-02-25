@@ -45,10 +45,11 @@ namespace Cthulu.Events {
         }
 
         IEnumerator ExecuteWhen(WhenEvent w) {
-            List<string> aEvent = new List<string>();
+            Debug.Log(w.dos.Print());
             for (int i = 0; i < w.dos.Length; i++) {
                 Debug.Log(w.dos[i]);
                 if (w.dos[i] == "(do") {
+                    List<string> aEvent = new List<string>();
                     aEvent.Add("a");
                     aEvent.Add("do");
                     i++;
