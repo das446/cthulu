@@ -179,12 +179,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
             Die();
         }
 
-        /*  if (Input.GetKeyDown(KeyCode.A))
-         {
-             gameObject.PlaySound("Test");
-             Debug.Log("!");
-         }
-         */
 
         curState?.StateUpdate();
 
