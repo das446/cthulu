@@ -29,8 +29,8 @@ public class FleeState : NpcState {
     }
 
     public override void Enter() {
-        
-        npc.speed *= 2;
+
+        npc.SetSpeed(x => x *= 3);
 
         npc.resetAnimParams();
         npc.animControl.SetBool("isScared", true);
