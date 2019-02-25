@@ -27,7 +27,12 @@ public List<GameObject> CheckMonsters(List<Collider> cols) {
         
     
        // Debug.Log(cols.Count);
-        //Collider[] cols = Physics.OverlapSphere(t.position, vision, Monster.layer);
+        Collider[] _cols = Physics.OverlapSphere(t.position, vision/2, Monster.layer); // give NPC small radial awarness as well.
+        for (int k = 0; k < _cols.Length;k++)
+        {
+            cols.Add(_cols[k]);
+        }
+
         for (int i = 0; i < cols.Count; i++) {
             Vector3 dir = cols[i].gameObject.transform.position - t.position;
             //if (Physics.SphereCast(t.position, 1, dir, out hit, vision)) {
