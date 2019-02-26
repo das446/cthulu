@@ -11,6 +11,12 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     /// </summary>
     [SerializeField] protected float Weight = 1;
     public float weight => Weight;
+    //
+    public float resTimer ;
+    public float countdown = 0;
+
+    float hpRef;
+    //
 
     public float health = 10;
     [HideInInspector] public Vector3 startPos;
@@ -38,6 +44,15 @@ public class Furniture : Interactable, IEvaluated, IManageable {
         startPos = transform.position;
         curState = new GroundedState(this);
         //this.SetName();
+        //
+        countdown = 0;
+        hpRef = health;
+        if (resTimer == 0)
+        {
+            resTimer = 60; // Default res time.
+        }
+
+        //
     }
 
     /// <summary>
@@ -71,7 +86,8 @@ public class Furniture : Interactable, IEvaluated, IManageable {
         if (debris != null) {
             Instantiate(debris, transform.position, Quaternion.identity);
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        Off();
     }
 
     public virtual float Evaluate(Npc npc, Room r) {
@@ -88,5 +104,46 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     public virtual void Do(DoEvent ge) {
         
     }
+
+    /////
+
+    void Update()
+    {
+        
+        if (countdown > 0)
+        {
+            countdown -= Time.deltaTime;
+        if ( countdown < 0 )
+            {
+            Respawn();
+            }
+
+        }
+    }
+
+    public void Respawn()
+    {
+        transform.position = startPos;
+        On();
+    }
+
+    public void Off()
+    {
+        rb.useGravity = false;
+        rb.isKinematic = false;
+        col.enabled = false;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        countdown = resTimer;
+    }
+
+    public void On()
+    {
+        health = hpRef;
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        rb.useGravity = true;
+        rb.isKinematic = true;
+        col.enabled = true;
+    }
+
 
 }
