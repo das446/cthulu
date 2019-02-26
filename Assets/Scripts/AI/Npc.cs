@@ -155,7 +155,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
             SetMessage(stemp);
         }
 
-        seenMonsters = eyes.CheckMonsters(iballs.cols);
+        seenMonsters = eyes.CheckMonsters();
 
         if (seenMonsters.Count != 0) {
             Debug.Log("Seen Monster");

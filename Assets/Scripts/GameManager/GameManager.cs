@@ -35,16 +35,33 @@ namespace Cthulu.Events {
             string path = Application.streamingAssetsPath + "/Events/" + SceneManager.GetActiveScene().name + "/";
             string f = path + fileName;
             string[] lines = System.IO.File.ReadAllLines(f);
+            List<string> newLine = new List<string>();
+            bool comment = false;
             for (int i = 0; i < lines.Length; i++) {
-                if (lines[i].StartsWith("//") || String.IsNullOrWhiteSpace(lines[i])) {
-                    continue;
+                string[] line = lines[i].Split(' ');
+                for (int j = 0; j < line.Length; j++) {
+                    string word = line[j];
+                    if (word.StartsWith("//")) {
+                        comment = true;
+                    } else if (word == ";" && !comment) {
+                        Debug.Log("end- " + newLine.ToArray().Print());
+                        MakeAndAddEvent(newLine.ToArray());
+                        newLine = new List<string>();
+                    } else if (!comment && !String.IsNullOrWhiteSpace(word)) {
+                        newLine.Add(word.ToLower());
+                    }
+
+                    if (j >= line.Length - 1) {
+                        comment = false;
+                    }
+
                 }
-                MakeAndAddEvent(lines[i].ToLower().Split());
 
             }
         }
 
         IEnumerator ExecuteWhen(WhenEvent w) {
+            Debug.Log(w.dos.Print());
             for (int i = 0; i < w.dos.Length; i++) {
                 if (w.dos[i] == "(do") {
                     List<string> aEvent = new List<string>();
@@ -62,11 +79,9 @@ namespace Cthulu.Events {
                     DoEvent d = new DoEvent("a", aEvent[2], aEvent[3], aEvent.ToArray().Slice(4, -1));
                     Do(d);
 
-                } else if (w.dos[i].StartsWith("wait:")) {
-                    int time = Int32.Parse(w.dos[i].Split(':') [1]);
-                    Debug.Log("Wait:"+time);
+                } else if (w.dos[i].StartsWith("wait.")) {
+                    int time = Int32.Parse(w.dos[i].Split('.') [1]);
                     yield return new WaitForSeconds(time);
-                    Debug.Log("Done waiting");
                 } else {
                     DoEvent d = events[w.dos[0]];
                     Do(d);

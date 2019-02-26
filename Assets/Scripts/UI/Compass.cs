@@ -17,7 +17,7 @@ public class Compass : MonoBehaviour {
     }
 
     public static void UpdateTarget(GameObject g) {
-        singleton.target = g;
+        if (singleton != null) { singleton.target = g; }
     }
 
     // Update is called once per frame
