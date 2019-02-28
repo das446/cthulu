@@ -112,9 +112,9 @@ namespace Cthulu {
         public static void AddToManager(this IManageable i) {
             if (GameManager.Objects.ContainsKey(i.obj.name.ToLower())) {
                 Debug.LogWarning(i.obj.name + " has the same name as another object in the scene");
-
             } else {
-                GameManager.Objects.Add(i.obj.name.ToLower(), i);
+                i.obj.name = i.obj.name.ToLower();
+                GameManager.Objects.Add(i.obj.name, i);
             }
         }
 

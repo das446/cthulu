@@ -157,8 +157,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
         seenMonsters = eyes.CheckMonsters();
 
-        if (seenMonsters.Count != 0) {
-            Debug.Log("Seen Monster");
+        if (seenMonsters.Count != 0 && !isScared) {
             isScared = true;
             // Debug.Log("NPC is scared");
         }
@@ -289,7 +288,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
         for (int i = 0; i < items.Count; i++) {
             interest += items[i].Evaluate(this, r);
         }
-        Debug.Log(name + " interest increased by " + interest);
         return interest;
 
     }

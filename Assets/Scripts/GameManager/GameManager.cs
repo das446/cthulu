@@ -25,10 +25,15 @@ namespace Cthulu.Events {
         static string seperator = ":";
         public string fileName = "EVENTS.txt";
 
+        [SerializeField] bool printToFIle;
+
         void Awake() {
             singleton = this;
 
             ReadFile();
+            if (printToFIle) {
+                PrintManageablesToFile();
+            }
         }
 
         void ReadFile() {
@@ -44,7 +49,6 @@ namespace Cthulu.Events {
                     if (word.StartsWith("//")) {
                         comment = true;
                     } else if (word == ";" && !comment) {
-                        Debug.Log("end- " + newLine.ToArray().Print());
                         MakeAndAddEvent(newLine.ToArray());
                         newLine = new List<string>();
                     } else if (!comment && !String.IsNullOrWhiteSpace(word)) {
@@ -61,7 +65,6 @@ namespace Cthulu.Events {
         }
 
         IEnumerator ExecuteWhen(WhenEvent w) {
-            Debug.Log(w.dos.Print());
             for (int i = 0; i < w.dos.Length; i++) {
                 if (w.dos[i] == "(do") {
                     List<string> aEvent = new List<string>();
@@ -135,6 +138,22 @@ namespace Cthulu.Events {
 
         public static bool HasObject(string n) {
             return Objects.ContainsKey(n);
+        }
+
+        List<string> AllManageableNames() {
+            List<string> lines = new List<string>();
+            foreach (string s in Objects.Keys) {
+                lines.Add(s);
+            }
+            lines.Sort();
+            return lines;
+        }
+
+        public void PrintManageablesToFile() {
+            List<string> lines = AllManageableNames();
+            string path = Application.streamingAssetsPath + "/Events/" + SceneManager.GetActiveScene().name + "/";
+            string f = path + "objects.txt";
+            System.IO.File.WriteAllLines(f, lines);
         }
 
     }

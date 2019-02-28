@@ -81,23 +81,7 @@ public class PathFollower : MonoBehaviour {
     }
 
     public Node ClosestNode(Vector3 v) {
-        if (Node.Nodes.Count == 0) {
-            Debug.Log("Node list empty");
-            return null;
-        }
-        if (path.Count == 0 && end != null && !moving) {
-            return end;
-        }
-        float dis = Mathf.Infinity;
-        Node closest = Node.Nodes[0];
-        for (int i = 1; i < Node.Nodes.Count; i++) {
-            float d = Vector3.Distance(v, Node.Nodes[i].transform.position);
-            if (d < dis) {
-                closest = Node.Nodes[i];
-                dis = d;
-            }
-        }
-        return closest;
+        return Node.ClosestNode(v);
     }
 
     Node FarthestNode() {

@@ -62,7 +62,6 @@ public class LineOfSightChecker {
                 Debug.DrawRay(t.position, dir * hit.distance, Color.yellow, Time.deltaTime, true);
                 GameObject m = hit.collider.gameObject;
                 if (m != null) {
-                    Debug.Log("Monster");
                     monsters.Add(m);
                 }
             }
