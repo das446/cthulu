@@ -237,6 +237,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void ReadyToBuy() {
+        GameManager.When(name,"readytobuy");
         curState?.Exit();
         curState = new BuyState(this, lobbyNode);
         Debug.Log("Cur state = buy");

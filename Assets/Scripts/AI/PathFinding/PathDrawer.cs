@@ -15,6 +15,10 @@ public class PathDrawer : MonoBehaviour, IManageable {
 
     public GameObject obj => gameObject;
 
+    void Awake(){
+        this.AddToManager();
+    }
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             Set(start, end);
@@ -53,7 +57,7 @@ public class PathDrawer : MonoBehaviour, IManageable {
     public void Do(DoEvent de) {
         if (de.action == "clear") {
             ClearLines();
-        } else if (de.action == "guide") {
+        } else if (de.action == "draw") {
             string node = de.args[0];
             Node start = Node.ClosestNode(Player.singleton.transform.position);
             Node end = Node.Get(de.args[0]);

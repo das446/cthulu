@@ -41,6 +41,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     public GameObject obj => gameObject;
 
     protected void Start() {
+        if(health<=0){health = 1;}
         startPos = transform.position;
         curState = new GroundedState(this);
         //this.SetName();

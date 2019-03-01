@@ -14,8 +14,7 @@ public class SubtitleController : MonoBehaviour, IManageable {
 
     public GameObject obj => gameObject;
 
-    void Start() {
-        name = "subtitles";
+    void Awake() {
         if (subtitles.Count == 0) {
             LoadSubtitles();
         }
