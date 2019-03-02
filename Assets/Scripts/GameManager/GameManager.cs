@@ -10,6 +10,7 @@ namespace Cthulu.Events {
     public class GameManager : MonoBehaviour {
         Dictionary<string, DoEvent> events = new Dictionary<string, DoEvent>(); //uses id name as key
         Dictionary<string, WhenEvent> whens = new Dictionary<string, WhenEvent>(); //uses event name as key
+        Dictionary<string, string> flags = new Dictionary<string, string>(); //all flags default to 0
 
         public static Dictionary<string, IManageable> Objects = new Dictionary<string, IManageable>();
 
@@ -67,29 +68,58 @@ namespace Cthulu.Events {
         IEnumerator ExecuteWhen(WhenEvent w) {
             for (int i = 0; i < w.dos.Length; i++) {
                 if (w.dos[i] == "(do") {
-                    List<string> aEvent = new List<string>();
-                    aEvent.Add("a");
-                    aEvent.Add("do");
-                    i++;
-                    aEvent.Add(w.dos[i]);
-                    i++;
-                    aEvent.Add(w.dos[i]);
-                    i++;
-                    while (w.dos[i] != ")") {
-                        aEvent.Add(w.dos[i]);
-                        i++;
-                    }
-                    DoEvent d = new DoEvent("a", aEvent[2], aEvent[3], aEvent.ToArray().Slice(4, -1));
-                    Do(d);
+                    i = ExecuteAnonymousDo(w, i);
 
-                } else if (w.dos[i].StartsWith("wait.")) {
-                    int time = Int32.Parse(w.dos[i].Split('.') [1]);
+                } else if (w.dos[i].StartsWith("wait")) {
+                    int time = Int32.Parse(w.dos[i].Split('.',':') [1]);
                     yield return new WaitForSeconds(time);
-                } else {
+
+                } else if (w.dos[i].StartsWith("if.flag.")) {
+                    string flag = w.dos[i].Split('.', '=') [2];
+                    string checkVal = w.dos[i].Split('=') [1];
+                    if (!flags.ContainsKey(flag)) {
+                        flags.Add(flag, "0");
+                    }
+                    string flagVal = flags[flag];
+                    if (flagVal != checkVal) {
+                        yield break;
+                    }
+
+                } else if (w.dos[i].StartsWith("flag."))
+                {
+                    SetFlag(w, i);
+
+                }
+                else {
                     DoEvent d = events[w.dos[0]];
                     Do(d);
                 }
             }
+        }
+
+        private void SetFlag(WhenEvent w, int i)
+        {
+            string flag = w.dos[i].Split('.', '=')[1];
+            string val = w.dos[i].Split('=')[1];
+            flags[flag] = val;
+        }
+
+        private int ExecuteAnonymousDo(WhenEvent w, int i) {
+            List<string> aEvent = new List<string>();
+            aEvent.Add("a");
+            aEvent.Add("do");
+            i++;
+            aEvent.Add(w.dos[i]);
+            i++;
+            aEvent.Add(w.dos[i]);
+            i++;
+            while (w.dos[i] != ")") {
+                aEvent.Add(w.dos[i]);
+                i++;
+            }
+            DoEvent d = new DoEvent("a", aEvent[2], aEvent[3], aEvent.ToArray().Slice(4, -1));
+            Do(d);
+            return i;
         }
 
         public static void When(string caller, string function) {

@@ -1,46 +1,49 @@
-//Timed Whens
-
-WHEN time:1 
-    (DO door.living.1 open )
-    (DO door.living.2 open )
+WHEN time:1
+    flag.curt=1
+    (DO tutorial play tutorial1 )
+    (DO guide draw node.node3 ) 
     ;
 
-WHEN time:5
+WHEN player:release
+    if.flag.curt=1
+    (DO tutorial play tutorial2 )
+    (DO guide clear ) 
+    flag.curt=2
+    ;
+
+WHEN player:sweep
+    if.flag.curt=2
+    wait.4
+    (DO tutorial play tutorial3 )
+    (DO tentacle.1 spawn room.dinningroom )
+    (DO guide draw node.node13 ) 
+    flag.curt=3
+    ;
+
+WHEN tentacle.1:die
+    if.flag.curt=3
+    (DO tutorial play tutorial4 )
     (DO npc.normal.bob spawn )
-    wait.3 (DO npc.normal.tim spawn )
-    wait.3 (DO npc.normal.david spawn ) 
+    (DO guide draw node.node4 ) 
+    flag.curt=4
+   ;
+
+WHEN npc.normal.bob:player.goto
+    if.flag.curt=4
+    (DO guide clear )
+    (DO tutorial play tutorial5 )
+    flag.curt=5
+    ;
+    
+WHEN npc.normal.bob:readytobuy
+    if.flag.curt=5
+    (DO tutorial play tutorial6 )
+    flag.curt=6
     ;
 
-WHEN time:6 
-    (DO tentacle.1 spawn room.DinningRoom )
-    ;
-
-WHEN time:10 
-    (DO npc.normal.bob goto room.DinningRoom )
-    ;
-
-
-
-//Triggered Whens
-
-WHEN ghost.1:die
-    wait.5 
-    (DO tentacle.1 spawn room.DinningRoom ) 
-    ;
-
-WHEN tentacle.1:die 
-    wait.5 
-    (DO ghost.1 spawn room.bathroom ) 
-    ;
-
-WHEN npc1:exit 
-    wait.5 
-    (DO npc.normal.tim spawn ) 
-    ;
-
-WHEN ghost.1:possess 
-    (DO ghost.1 target npc.normal.bob ) 
+WHEN npc.normal.bob:acceptoffer
+    if.flag.curt=6
+    (DO tutorial play tutorial7 )
     ;
 
 
-//Dos

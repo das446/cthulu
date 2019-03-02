@@ -12,7 +12,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     [SerializeField] protected float Weight = 1;
     public float weight => Weight;
     //
-    public float resTimer ;
+    public float resTimer;
     public float countdown = 0;
 
     float hpRef;
@@ -39,16 +39,18 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     [SerializeField] FurnitureDebris debris;
 
     public GameObject obj => gameObject;
+    MeshRenderer meshRenderer;
 
     protected void Start() {
+        meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        if (health <= 0) { health = 1; }
         startPos = transform.position;
         curState = new GroundedState(this);
         //this.SetName();
         //
         countdown = 0;
         hpRef = health;
-        if (resTimer == 0)
-        {
+        if (resTimer == 0) {
             resTimer = 60; // Default res time.
         }
 
@@ -80,14 +82,14 @@ public class Furniture : Interactable, IEvaluated, IManageable {
 
     public void Break() {
 
-        if(Player.singleton.CurHeld() == this)
+        if (Player.singleton.CurHeld() == this)
             Player.singleton.Release(Player.singleton.CurHeld());
         //Particle Effect
         if (debris != null) {
             Instantiate(debris, transform.position, Quaternion.identity);
         }
         //Destroy(gameObject);
-        Off();
+        TurnOff();
     }
 
     public virtual float Evaluate(Npc npc, Room r) {
@@ -102,48 +104,33 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     }
 
     public virtual void Do(DoEvent ge) {
-        
+
     }
 
     /////
 
-    void Update()
-    {
-        
-        if (countdown > 0)
-        {
+    void Update() {
+
+        if (countdown > 0) {
             countdown -= Time.deltaTime;
-        if ( countdown < 0 )
-            {
-            Respawn();
+            if (countdown < 0) {
+                Respawn();
             }
 
         }
     }
 
-    public void Respawn()
-    {
+    public void Respawn() {
         transform.position = startPos;
-        On();
+        TurnOn();
     }
 
-    public void Off()
-    {
-        rb.useGravity = false;
-        rb.isKinematic = false;
-        col.enabled = false;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
-        countdown = resTimer;
+    public void TurnOff() {
+        gameObject.SetActive(false);
     }
 
-    public void On()
-    {
-        health = hpRef;
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
-        rb.useGravity = true;
-        rb.isKinematic = true;
-        col.enabled = true;
+    public void TurnOn() {
+       gameObject.SetActive(true);
     }
-
 
 }

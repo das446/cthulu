@@ -10,8 +10,11 @@ public class LightFurniture : Furniture, IPickUpable {
     //     rb.centerOfMass = transform.position + Vector3.down;
     // }
 
+    bool readyToBreak = false;
+    [SerializeField] int throwDmg = 10;
+
     public override void Interact(Player p) {
-        if (p.CurHeld() == null) {
+        if (p.CurHeld() == null && !readyToBreak) {
             GetPickedUp(p);
             p.PickUp(this);
         }
@@ -41,7 +44,11 @@ public class LightFurniture : Furniture, IPickUpable {
         rb.AddForce(dir * holder.Power, ForceMode.Impulse);
         gameObject.SetLayerRecursively(0);
         holder = null;
-        this.DoAfterTime(() => TakeDamage(10),3);
+        //the below is dumb but I don't feel like using on collision enter, feel free to try adding that
+        if(health<=throwDmg){
+            readyToBreak=true;
+        }
+        this.DoAfterTime( () => TakeDamage(throwDmg), 3);
     }
 
     public bool CanBePickedUp(ICanHold h) {

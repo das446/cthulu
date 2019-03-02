@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using Cthulu.Events; 
 
 public class Player : MonoBehaviour, ICanHold {
 
@@ -61,7 +62,7 @@ public class Player : MonoBehaviour, ICanHold {
 
     bool CheckFurnitureInput() {
         if (Input.GetMouseButtonDown(0) && curItem != null) {
-            Debug.Log("Use");
+            GameManager.When("player","release");
             curItem.Use(this);
             return true;
         }
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour, ICanHold {
         movement.SetSpeed(x => x * curItem.weight);
         curItem = null;
         reticle.gameObject.SetActive(false);
+        GameManager.When("player","release");
 
     }
 

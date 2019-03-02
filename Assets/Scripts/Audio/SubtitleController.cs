@@ -15,7 +15,6 @@ public class SubtitleController : MonoBehaviour, IManageable {
     public GameObject obj => gameObject;
 
     void Awake() {
-        name = "subtitles";
         if (subtitles.Count == 0) {
             LoadSubtitles();
         }
@@ -24,11 +23,17 @@ public class SubtitleController : MonoBehaviour, IManageable {
     }
 
     public void Play(string sound, string caller = "") {
-
-        Subtitle sub = subtitles.Where(x => x.name == sound).First();
+        Subtitle sub;
+        sound = sound.ToLower();
+        try {
+            sub = subtitles.Where(x => x.name.ToLower() == sound).First();
+        } catch {
+            Debug.LogError("No subtitle named " + sound);
+            return;
+        }
         Cthulu.Audio.PlaySound(sub.audio);
         string t = sub.text;
-        if (caller != null) {
+        if (caller != "") {
             t = caller + ": " + t;
         }
         text.text = t;

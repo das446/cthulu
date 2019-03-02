@@ -41,6 +41,7 @@ public class PathDrawer : MonoBehaviour, IManageable {
                 lines.Add(lr);
             } else {
                 lr = lines[i];
+                lr.enabled = true;
             }
             lr.SetPositions(new Vector3[] { path[i].transform.position, path[i + 1].transform.position });
             Debug.Log(lr);
@@ -57,7 +58,7 @@ public class PathDrawer : MonoBehaviour, IManageable {
     public void Do(DoEvent de) {
         if (de.action == "clear") {
             ClearLines();
-        } else if (de.action == "guide") {
+        } else if (de.action == "draw") {
             string node = de.args[0];
             Node start = Node.ClosestNode(Player.singleton.transform.position);
             Node end = Node.Get(de.args[0]);
