@@ -109,6 +109,10 @@ namespace Cthulu {
 
         }
 
+        /// <summary>
+        /// Call this from Awake()
+        /// </summary>
+        /// <param name="i"></param>
         public static void AddToManager(this IManageable i) {
             if (GameManager.Objects.ContainsKey(i.obj.name.ToLower())) {
                 Debug.LogWarning(i.obj.name + " has the same name as another object in the scene");
