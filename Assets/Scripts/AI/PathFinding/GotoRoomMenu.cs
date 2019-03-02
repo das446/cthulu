@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,9 +46,11 @@ public class GotoRoomMenu : MonoBehaviour {
         curNpc.GoToRoom(r);
         curNpc.locked = false;
         curNpc.Unlock();
+        string npcName = curNpc.name;
         curNpc = null;
         gameObject.SetActive(false);
         player.Unlock();
+        GameManager.When(npcName,"player.goto");
 
     }
 }

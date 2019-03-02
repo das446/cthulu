@@ -12,12 +12,12 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     LineOfSightChecker eyes;
     List<GameObject> seenMonsters;
-    float temp;
-    string stemp;
+    float tempFontSize;
+    string tempMessage;
     //*/
     //*
     public LineOfSightGetCollisions iballs;
-    
+
     // */
     NpcState curState;
 
@@ -90,7 +90,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     void Awake() {
         //
         eyes = new LineOfSightChecker(this, vision);
-        temp = message.fontSize;
+        tempFontSize = message.fontSize;
         //
 
         follower = GetComponent<PathFollower>();
@@ -103,8 +103,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public void Spawn() {
         transform.position = startPos;
-        StartWandering();
         Active.Add(this);
+        GoToNode(lobbyNode);
     }
 
     public void GoToRoom(string room) {
@@ -144,15 +144,15 @@ public class Npc : Interactable, IPickUpable, IManageable {
         //* 
         if (Input.GetKey(KeyCode.Tab) && !isBuying) {
             Debug.Log("NPC_Info_Updated:" + name);
-            stemp = message.text;
+            tempMessage = message.text;
             string npcInfo;
             npcInfo = name + "\n isScared?:" + isScared + "\n Dest. :" + follower.end.name + "\n Interest:" + interest.ToString();
             message.fontSize = .1f;
             SetMessage(npcInfo, Color.blue);
             //message.fontSize = temp;
         } else if (Input.GetKeyUp(KeyCode.Tab)) {
-            message.fontSize = temp;
-            SetMessage(stemp);
+            message.fontSize = tempFontSize;
+            SetMessage(tempMessage);
         }
 
         seenMonsters = eyes.CheckMonsters();
@@ -183,7 +183,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
         if (isDead) {
             Die();
         }
-
 
         curState?.StateUpdate();
 
@@ -237,7 +236,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void ReadyToBuy() {
-        GameManager.When(name,"readytobuy");
+        GameManager.When(name, "readytobuy");
         curState?.Exit();
         curState = new BuyState(this, lobbyNode);
         Debug.Log("Cur state = buy");

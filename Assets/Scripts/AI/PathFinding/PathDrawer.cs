@@ -41,6 +41,7 @@ public class PathDrawer : MonoBehaviour, IManageable {
                 lines.Add(lr);
             } else {
                 lr = lines[i];
+                lr.enabled = true;
             }
             lr.SetPositions(new Vector3[] { path[i].transform.position, path[i + 1].transform.position });
             Debug.Log(lr);

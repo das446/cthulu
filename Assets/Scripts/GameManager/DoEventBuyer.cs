@@ -34,11 +34,12 @@ public class DoEventBuyer {
                 }
 
                 break;
-                // case "fakeOut":
-                //     string fakeLoc = buyerDo.args[0];
-                //     string realLoc = buyerDo.args[1];
-                //     FakeOut(fakeLoc, realLoc);
-                //     break;
+            case "wander":
+                npc.StartWandering();
+                break;
+            case "setInterest":
+                npc.interest = 100;
+                break;
         }
     }
 

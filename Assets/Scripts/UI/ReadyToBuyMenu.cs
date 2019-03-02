@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 
 public class ReadyToBuyMenu : MonoBehaviour {
@@ -49,8 +50,10 @@ public class ReadyToBuyMenu : MonoBehaviour {
         curNpc.locked = false;
         curNpc.Unlock();
         curNpc.Buy(player);
+        string npcName = curNpc.name;
         curNpc = null;
         gameObject.SetActive(false);
         player.Unlock();
+        GameManager.When(npcName,"acceptoffer");
     }
 }
