@@ -99,6 +99,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
         this.AddToManager();
         startPos = transform.position;
         gameObject.SetActive(false);
+        StartWandering();
     }
 
     public void Spawn() {
@@ -130,6 +131,11 @@ public class Npc : Interactable, IPickUpable, IManageable {
         SetMessage(happy, Color.yellow);
         SetState(new WanderState(this));
         SetState(new LeaveState(this, exitNode));
+    }
+
+    public void Chat(Player p, Image timer)
+    {
+        SetState(new ChattingState(this, p, timer));
     }
 
     /// <summary>

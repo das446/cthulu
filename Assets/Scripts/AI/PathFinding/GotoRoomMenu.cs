@@ -11,6 +11,7 @@ public class GotoRoomMenu : MonoBehaviour {
     [SerializeField] Player player;
     [SerializeField] float speed = 0.1f;
     public Image interest;
+    public Image chatTimer;
 
     void Start() {
         NpcState.OnClick += Open;
@@ -52,5 +53,11 @@ public class GotoRoomMenu : MonoBehaviour {
         player.Unlock();
         GameManager.When(npcName,"player.goto");
 
+    }
+
+    public void ClickChat()
+    {
+        curNpc.Chat(player, chatTimer);
+        gameObject.SetActive(false);
     }
 }
