@@ -51,6 +51,9 @@ namespace Cthulu {
             m_WalkSpeed = f(m_WalkSpeed);
         }
 
+        public float GetSpeed(){
+            return m_WalkSpeed;
+        }
         public void UpdateMouseLock() {
             m_MouseLook.InternalLockUpdate();
         }
