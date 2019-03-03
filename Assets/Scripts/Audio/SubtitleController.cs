@@ -41,7 +41,8 @@ public class SubtitleController : MonoBehaviour, IManageable {
             t = caller + ": " + t;
         }
         text.text = t;
-        this.DoAfterTime(() => text.text = "", sub.text.Length);
+        this.StopAllCoroutines();
+        this.DoAfterTime(() => text.text = "", sub.audio.length+1);
 
     }
 
