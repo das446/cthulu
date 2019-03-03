@@ -6,6 +6,7 @@ using Cthulu.Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class SubtitleController : MonoBehaviour, IManageable {
     public List<Subtitle> subtitles;
@@ -14,12 +15,14 @@ public class SubtitleController : MonoBehaviour, IManageable {
 
     public GameObject obj => gameObject;
 
+    AudioSource _source;
+
     void Awake() {
         if (subtitles.Count == 0) {
             LoadSubtitles();
         }
         this.AddToManager();
-
+        _source = GetComponent<AudioSource>();
     }
 
     public void Play(string sound, string caller = "") {
@@ -31,7 +34,8 @@ public class SubtitleController : MonoBehaviour, IManageable {
             Debug.LogError("No subtitle named " + sound);
             return;
         }
-        Cthulu.Audio.PlaySound(sub.audio);
+        _source.Stop();
+        _source.PlayOneShot(sub.audio);
         string t = sub.text;
         if (caller != "") {
             t = caller + ": " + t;
