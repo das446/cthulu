@@ -350,7 +350,7 @@ Transform:
   m_LocalScale: {x: 0.45985994, y: 0.40000004, z: 0.40000004}
   m_Children: []
   m_Father: {fileID: 7915790987636722741}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 25.904001, y: -90.00001, z: 0}
 --- !u!108 &6156605759561455081
 Light:
@@ -362,10 +362,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 0
-  m_Color: {r: 1, g: 0.9974496, b: 0.9481132, a: 1}
+  m_Color: {r: 1, g: 0.96681917, b: 0.8443396, a: 1}
   m_Intensity: 5
-  m_Range: 15.966814
-  m_SpotAngle: 86.27697
+  m_Range: 25
+  m_SpotAngle: 55.297703
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -452,7 +452,7 @@ Transform:
   m_Father: {fileID: 7915790987636722741}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6462066907437683491
+--- !u!1 &6928470325780889545
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -460,10 +460,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1832510377886845219}
-  - component: {fileID: 9137793387831331357}
-  - component: {fileID: 8831074839334467877}
-  - component: {fileID: 9083842852219649615}
+  - component: {fileID: 8072344124631552300}
+  - component: {fileID: 245571777284270825}
+  - component: {fileID: 3634731634224113466}
+  - component: {fileID: 2879172746727191278}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -471,35 +471,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1832510377886845219
+--- !u!4 &8072344124631552300
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6462066907437683491}
+  m_GameObject: {fileID: 6928470325780889545}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.015, y: 0.30914307, z: 0}
-  m_LocalScale: {x: 0.058690783, y: 0.058690783, z: 0.058690783}
+  m_LocalPosition: {x: 0.045, y: 0.3157, z: 0.0054}
+  m_LocalScale: {x: 0.059082218, y: 0.4, z: 0.058337305}
   m_Children: []
   m_Father: {fileID: 7915790987636722741}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!33 &9137793387831331357
+--- !u!33 &245571777284270825
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6462066907437683491}
+  m_GameObject: {fileID: 6928470325780889545}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8831074839334467877
+--- !u!23 &3634731634224113466
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6462066907437683491}
+  m_GameObject: {fileID: 6928470325780889545}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -510,7 +510,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f0a5b075bbbe2bf4097167798456b124, type: 2}
+  - {fileID: 2100000, guid: e15a37cdfe704c54684dbed3f29e0c07, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -530,13 +530,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &9083842852219649615
+--- !u!64 &2879172746727191278
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6462066907437683491}
+  m_GameObject: {fileID: 6928470325780889545}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -569,7 +569,7 @@ Transform:
   m_GameObject: {fileID: 8008140494740874403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.174575}
+  m_LocalScale: {x: 2.500001, y: 2.5, z: 2.1745808}
   m_Children:
   - {fileID: 3043472637439919531}
   - {fileID: 5386776558800930578}
@@ -578,8 +578,8 @@ Transform:
   - {fileID: 4673722145606638870}
   - {fileID: 8900161757241559812}
   - {fileID: 1690282511659636475}
-  - {fileID: 1832510377886845219}
   - {fileID: 155027646746608201}
+  - {fileID: 8072344124631552300}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
