@@ -92,13 +92,15 @@ namespace Cthulu {
 
         public static void ChangeSong(string SongName) {
 
-            Source.Stop();
+            
             try {
                 instance.CurrentSong = instance.songs.Where(x => x.name == SongName).First().sound;
             }
             catch{
                 Debug.LogWarning("No music named " +SongName );
+                return;
             }
+            Source.Stop();
             Source.loop = true;
             Source.clip = instance.CurrentSong;
             Source.Play();

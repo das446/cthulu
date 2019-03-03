@@ -71,13 +71,26 @@ public class Tentacle : Monster, ICanHold {
     public override void Do(DoEvent de) {
         if (de.action == "spawn") {
             Room r = Room.GetRoom(de.args[0]);
-            SpawnPortal(r);
+            if (de.args.Length > 1) {
+                int delay = Int32.Parse(de.args[1]);
+                SpawnPortal(r, delay);
+            } else {
+                SpawnPortal(r);
+            }
         }
     }
 
     Portal SpawnPortal(Room r) {
-        Portal p = (Portal)r.SpawnAtRandom(portal);
+        Portal p = (Portal) r.SpawnAtRandom(portal);
         p.monsterBase = this;
+        p.StartCoroutine(p.SpawnTentacle());
+        return p;
+    }
+
+    Portal SpawnPortal(Room r, int delay) {
+        Portal p = (Portal) r.SpawnAtRandom(portal);
+        p.monsterBase = this;
+        p.StartCoroutine(p.SpawnTentacle(delay));
         return p;
     }
 }

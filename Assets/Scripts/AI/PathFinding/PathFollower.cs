@@ -59,7 +59,6 @@ public class PathFollower : MonoBehaviour {
     }
 
     public void SetPath(Node s, Node f) {
-        Debug.Log(StackTraceUtility.ExtractStackTrace());
         start = s;
         end = f;
         path = new PathFinder(start, end).ShortestPath();

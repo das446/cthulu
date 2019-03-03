@@ -10,7 +10,7 @@ using UnityEngine.Audio;
 
 public class SubtitleController : MonoBehaviour, IManageable {
     public List<Subtitle> subtitles;
-    public Text text;
+    public TMPro.TextMeshProUGUI text;
     string folder;
 
     public GameObject obj => gameObject;
