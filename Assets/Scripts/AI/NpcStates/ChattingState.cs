@@ -40,7 +40,8 @@ public class ChattingState : NpcState
     public override void StateUpdate()
     {
         chatTimer -= Time.deltaTime;
-        visualTimer.fillAmount = chatTimer/100f;
+        visualTimer.fillAmount = chatTimer/chatTime;
+
         if (chatTimer <= 0)
         {
             npc.interest += 10;
