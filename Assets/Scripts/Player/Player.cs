@@ -157,6 +157,12 @@ public class Player : MonoBehaviour, ICanHold {
         reticle.gameObject.SetActive(true);
     }
 
+    public void SetRange(float r){
+        interactRange = r;
+    }
+    public void SetPower(float p){
+        power = p;
+    }
     public Vector3 GetThrowDir() {
         return cam.transform.forward;
     }
