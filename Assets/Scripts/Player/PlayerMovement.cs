@@ -51,7 +51,7 @@ namespace Cthulu {
             m_WalkSpeed = f(m_WalkSpeed);
         }
 
-        public float getSpeed(){
+        public float GetSpeed(){
             return m_WalkSpeed;
         }
         public void UpdateMouseLock() {
