@@ -34,6 +34,7 @@ public class SubtitleController : MonoBehaviour, IManageable {
             Debug.LogError("No subtitle named " + sound);
             return;
         }
+        _source.Stop();
         _source.PlayOneShot(sub.audio);
         string t = sub.text;
         if (caller != "") {
