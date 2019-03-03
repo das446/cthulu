@@ -26,6 +26,7 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
 
     public virtual void GetHit(int damageAmount) {
         this.hp -= damageAmount;
+        gameObject.PlaySound("MonsterHurt");
         if (hp <= 0) {
             Die();
         }
