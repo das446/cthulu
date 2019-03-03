@@ -30,8 +30,6 @@ public class PathDrawer : MonoBehaviour, IManageable {
 
         path = new PathFinder(start, end).ShortestPath();
 
-        Debug.Log(path.Count);
-
         for (int i = 0; i < path.Count - 1; i++) {
             LineRenderer lr;
             if (i >= lines.Count) {
