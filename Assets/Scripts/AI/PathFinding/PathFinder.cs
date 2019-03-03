@@ -113,7 +113,12 @@ public class PathFinder {
 		if (avoid.Contains(b)) {
 			return Mathf.Infinity;
 		}
-		return Vector3.Distance(a.transform.position, b.transform.position);
+		float dist = Vector3.Distance(a.transform.position, b.transform.position);
+		Vector3 dir = b.transform.position - a.transform.position;
+		if (Physics.Raycast(a.transform.position, dir, dist)) {
+			return Mathf.Infinity;
+		}
+		return dist;
 	}
 
 	List<Node> CalculatePath() {

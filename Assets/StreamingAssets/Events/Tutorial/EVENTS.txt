@@ -1,5 +1,6 @@
 WHEN time:1
     flag.curt=1
+    (DO npc.normal.bob spawn )
     (DO tutorial play tutorial1 )
     (DO guide draw node.node3 ) 
     ;
@@ -23,7 +24,7 @@ WHEN player:sweep
 WHEN tentacle.1:die
     if.flag.curt=3
     (DO tutorial play tutorial4 )
-    (DO npc.normal.bob spawn )
+    //(DO npc.normal.bob spawn )
     (DO guide draw node.node4 ) 
     flag.curt=4
    ;
