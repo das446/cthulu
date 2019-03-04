@@ -4,9 +4,9 @@ using System.Linq;
 using Cthulu;
 using Cthulu.Events;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 
 public class SubtitleController : MonoBehaviour, IManageable {
     public List<Subtitle> subtitles;
@@ -16,6 +16,8 @@ public class SubtitleController : MonoBehaviour, IManageable {
     public GameObject obj => gameObject;
 
     AudioSource _source;
+
+    public List<string> log;
 
     void Awake() {
         if (subtitles.Count == 0) {
@@ -41,8 +43,9 @@ public class SubtitleController : MonoBehaviour, IManageable {
             t = caller + ": " + t;
         }
         text.text = t;
+        log.Add(t);
         this.StopAllCoroutines();
-        this.DoAfterTime(() => text.text = "", sub.audio.length+1);
+        this.DoAfterTime(() => text.text = "", sub.audio.length + 1);
 
     }
 
@@ -57,6 +60,14 @@ public class SubtitleController : MonoBehaviour, IManageable {
         subtitles = new List<Subtitle>();
         subtitles = Resources.LoadAll<Subtitle>("Subtitles/Default").ToList();
         subtitles.AddRange(Resources.LoadAll<Subtitle>("Subtitles/" + folder));
+    }
+
+    public string PrintLog() {
+        string s = "";
+        for (int i = 0; i < log.Count; i++) {
+            s += log[i] + "\n"+"----------------------------------------------------------"+"\n";
+        }
+        return s;
     }
 
 }

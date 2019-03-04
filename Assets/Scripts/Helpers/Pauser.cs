@@ -2,12 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pauser : MonoBehaviour
 {
     bool paused = false;
     [SerializeField] GameObject menu;
     public GameObject cam;
+
+    public Text logText;
+    public GameObject logPanel;
+
+    public SubtitleController subs;
 
     // Update is called once per frame
     void Update()
@@ -29,13 +35,14 @@ public class Pauser : MonoBehaviour
     {
         Time.timeScale = 1;
         Player.singleton.Unlock();
-        cam.SetActive(false);
+        logPanel.gameObject.SetActive(false);
     }
 
     private void Pause()
     {
         Time.timeScale = 0;
         Player.singleton.Lock();
-        cam.SetActive(true);
+        logPanel.gameObject.SetActive(true);
+        logText.text = subs.PrintLog();
     }
 }
