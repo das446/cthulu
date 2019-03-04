@@ -13,6 +13,10 @@ public class GotoRoomMenu : MonoBehaviour {
     public Image interest;
     public Image chatTimer;
 
+    public float chatLength = 5;
+
+    public SubtitleController subControl;
+
     void Start() {
         NpcState.OnClick += Open;
         gameObject.SetActive(false);
@@ -57,7 +61,8 @@ public class GotoRoomMenu : MonoBehaviour {
 
     public void ClickChat()
     {
-        curNpc.Chat(player, chatTimer);
+        curNpc.Chat(player, chatTimer, chatLength);
+        subControl.RandSubOnly(chatLength);
         gameObject.SetActive(false);
     }
 }
