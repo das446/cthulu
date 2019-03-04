@@ -8,7 +8,7 @@ public class Door : Interactable, IManageable {
 	[SerializeField]
 	private GameObject[] doorsInSet;
 
-	private bool isLocked;
+	private bool isLocked = false;
 
 	[SerializeField]
 	private bool isOpen;
@@ -17,55 +17,32 @@ public class Door : Interactable, IManageable {
 	public GameObject obj => gameObject;
 	Vector3 pos;
 	Vector3 rot;
-	[SerializeField] Rigidbody rb;
 
 	// Use this for initialization
 	void Awake() {
 		this.AddToManager();
-		pos = transform.position;
 		rot = transform.eulerAngles;
 	}
 
-	public void Open() { //TODO: Make Coroutine
+	public void Open() {
 		GameManager.When(name, "open");
-        gameObject.PlaySound("DoorOpening");
+		gameObject.PlaySound("DoorOpening");
 		transform.Rotate(0, 90, 0);
+		isOpen = true;
 	}
 
-	public void Close() { //TODO: Make Coroutine
-        gameObject.PlaySound("DoorClosing");
+	public void Close() {
+		gameObject.PlaySound("DoorClosing");
 		transform.eulerAngles = rot;
-	}
-
-	public void Lock() {
-		Close();
-		rb.isKinematic=false;
-		isLocked = true;
-	}
-
-	public void Unlock() {
-		isLocked = false;
-		rb.isKinematic = true;
-	}
-
-	public bool IsLocked() {
-		return isLocked;
-	}
-
-	public bool IsOpen() {
-		return isOpen;
+		isOpen = false;
 	}
 
 	public override void Interact(Player p) {
-		throw new System.NotImplementedException();
-	}
-
-	public void Set() {
-		throw new System.NotImplementedException();
-	}
-
-	public string[] ValidArgs() {
-		throw new System.NotImplementedException();
+		if (isOpen) {
+			Close();
+		} else {
+			Open();
+		}
 	}
 
 	public void Do(DoEvent de) {
@@ -74,31 +51,6 @@ public class Door : Interactable, IManageable {
 			Open();
 		} else if (param == "close") {
 			Close();
-		} else if (param == "lock") {
-			Lock();
-		} else if (param == "unlock") {
-			Unlock();
 		}
-	}
-
-	void FixedUpdate() {
-		transform.position = pos;
-		//ClampRotation();
-
-	}
-
-	private void ClampRotation() {
-		Vector3 e = transform.eulerAngles;
-		float angleY = e.y;
-		if (angleY > 350) {
-			angleY = 350;
-			rb.angularVelocity = Vector3.zero;
-		}
-		else if (angleY > 135) {
-			angleY = 135;
-			rb.angularVelocity = Vector3.zero;
-		} 
-		e.y = angleY;
-		transform.eulerAngles = e;
 	}
 }

@@ -30,8 +30,6 @@ public class PathDrawer : MonoBehaviour, IManageable {
 
         path = new PathFinder(start, end).ShortestPath();
 
-        Debug.Log(path.Count);
-
         for (int i = 0; i < path.Count - 1; i++) {
             LineRenderer lr;
             if (i >= lines.Count) {
@@ -44,7 +42,6 @@ public class PathDrawer : MonoBehaviour, IManageable {
                 lr.enabled = true;
             }
             lr.SetPositions(new Vector3[] { path[i].transform.position, path[i + 1].transform.position });
-            Debug.Log(lr);
             lr.material = material;
         }
     }
