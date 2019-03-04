@@ -30,7 +30,7 @@ public class FleeState : NpcState {
 
     public override void Enter() {
 
-        npc.SetSpeed(x => x *= 3);
+        npc.SetSpeed(x => x *= 2);
 
         npc.resetAnimParams();
         npc.animControl.SetBool("isScared", true);
@@ -52,6 +52,14 @@ public class FleeState : NpcState {
     }
 
     public override void Exit() {
-        //GameObject.Destroy(npc.gameObject);
+         npc.SetSpeed(x => x /= 2);
+    }
+
+    public override bool IsScared(){
+        return true;
+    }
+
+    public override bool IsRunning(){
+        return true;
     }
 }

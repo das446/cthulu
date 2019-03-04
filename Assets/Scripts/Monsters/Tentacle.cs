@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu;
 using Cthulu.Events;
 using UnityEngine;
 
@@ -56,11 +57,11 @@ public class Tentacle : Monster, ICanHold {
     }
 
     void OnTriggerEnter(Collider other) {
-        Npc npc = other.GetComponent<Npc>();
-        if (npc != null) {
-            PickUp(npc);
-            StartCoroutine(DelayThrow(10));
-        }
+        // Npc npc = other.GetComponent<Npc>();
+        // if (npc != null) {
+        //     PickUp(npc);
+        //     StartCoroutine(DelayThrow(10));
+        // }
     }
 
     IEnumerator DelayThrow(float delay) {
@@ -70,7 +71,16 @@ public class Tentacle : Monster, ICanHold {
 
     public override void Do(DoEvent de) {
         if (de.action == "spawn") {
-            Room r = Room.GetRoom(de.args[0]);
+            string arg = de.args[0];
+            Room r;
+            if (arg.Contains("|")) {
+                string room = arg;
+                room = arg.Split('|') [0] + arg.Split('|').Slice(1, -1).RandomItem();
+                r = Room.GetRoom(room);
+            } else {
+                r = Room.GetRoom(de.args[0]);
+            }
+
             if (de.args.Length > 1) {
                 int delay = Int32.Parse(de.args[1]);
                 SpawnPortal(r, delay);

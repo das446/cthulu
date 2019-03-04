@@ -26,6 +26,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     [SerializeField] float tolerance;
     [SerializeField] int money;
     public float interest;
+    public float maxInterest = 100;
     [SerializeField] float baseInterest;
 
     [SerializeField] float idleWaitTime = 10;
@@ -49,8 +50,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
     public Node exitNode;
 
     //TODO: replace next two bools with scared state trigger
-    private bool isScared = false;
-    private bool isRunning = false;
+    private bool isScared => curState.IsScared();
+    private bool isRunning => curState.IsRunning();
 
     public Node lobbyNode;
 
@@ -85,6 +86,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public int buyerID;
 
+    public int baseInterestIncrease = 10;
+
     // [SerializeField] GameObject deadNpc;
 
     void Awake() {
@@ -103,7 +106,10 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void Spawn() {
-        transform.position = startPos;
+        Debug.Log(name + " spawn");
+        Unlock();
+        resetAnimParams();
+        SetMessage("");
         Active.Add(this);
         GoToNode(lobbyNode);
     }
@@ -127,14 +133,21 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void Buy(Player p) {
-        p.ChangeMoney(money);
+
+        int m = money;
+        if (interest / maxInterest >= 1) {
+            m *= 2;
+        } else if (interest / maxInterest >= 1.5f) {
+            m = (int) (m * 1.5f);
+        }
+
+        p.ChangeMoney(m);
         SetMessage(happy, Color.yellow);
         SetState(new WanderState(this));
         SetState(new LeaveState(this, exitNode));
     }
 
-    public void Chat(Player p, Image timer)
-    {
+    public void Chat(Player p, Image timer) {
         SetState(new ChattingState(this, p, timer));
     }
 
@@ -146,8 +159,26 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     void Update() {
-
         //* 
+        DebugMessage();
+
+        bool seesMonsters = eyes.CheckMonsters().Count > 0;
+
+        if (interest >= 100 && !isBuying && !seesMonsters) // no buying when scared
+        {
+            ReadyToBuy();
+            isBuying = true;
+        } else if (seesMonsters) {
+            Debug.Log("GetScared");
+            GetScared();
+
+        }
+
+        curState?.StateUpdate();
+
+    }
+
+    private void DebugMessage() {
         if (Input.GetKey(KeyCode.Tab) && !isBuying) {
             Debug.Log("NPC_Info_Updated:" + name);
             tempMessage = message.text;
@@ -160,38 +191,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
             message.fontSize = tempFontSize;
             SetMessage(tempMessage);
         }
-
-        seenMonsters = eyes.CheckMonsters();
-
-        if (seenMonsters.Count != 0 && !isScared) {
-            isScared = true;
-            // Debug.Log("NPC is scared");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            interest = 100;
-        }
-
-        if (interest >= 100 && !isBuying && !isScared) // no buying when scared
-        {
-            ReadyToBuy();
-            isBuying = true;
-        }
-        if (isScared && !isRunning) {
-            Alerted();
-            alertTimer -= Time.deltaTime;
-            if (alertTimer <= 0) {
-                RunToExit();
-                isRunning = true;
-            }
-
-        }
-        if (isDead) {
-            Die();
-        }
-
-        curState?.StateUpdate();
-
     }
 
     public void SetState(NpcState state) {
@@ -218,6 +217,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     /// </summary>
     /// <param name="r"></param>
     public void EnterRoom(Room r) {
+        if (isScared || isRunning) { return; }
         if (!visitedRooms.Contains(r)) {
             visitedRooms.Add(r);
             float roomInterest = EvaluateRoom(r);
@@ -226,12 +226,16 @@ public class Npc : Interactable, IPickUpable, IManageable {
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
     }
 
-    public void Alerted() {
-        soundType = SoundType.Scream;
-        PlaySoundHere();
+    public void GetScared() {
+        GetScared(alertTimer);
+    }
+
+    public void GetScared(float scareTime) {
+        if (curState.IsScared()) { return; }
+        Debug.Log("scared");
         Lock();
         curState?.Exit();
-        curState = new ScaredState(this);
+        curState = new ScaredState(this, 6);
     }
 
     public void RunToExit() {
@@ -261,7 +265,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
     /// </summary>
     public void Lock() {
         rb.useGravity = false;
-        rb.isKinematic = false;
         col.enabled = false;
         locked = true;
         follower.Stop();
@@ -275,7 +278,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
     /// </summary>
     public void Unlock() {
         rb.useGravity = true;
-        rb.isKinematic = true;
         col.enabled = true;
         locked = false;
 
@@ -306,16 +308,14 @@ public class Npc : Interactable, IPickUpable, IManageable {
             if (ev != null) {
                 items.Add(ev);
             }
-
         }
-
         return items;
     }
 
     public void Die() {
         GameManager.When(name, "die");
         soundType = SoundType.Death;
-        PlaySoundHere();
+        PlayDeathSound();
         SetState(new DeadState(this, ragdollVersion));
     }
     // public void Die()
@@ -341,16 +341,12 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void ExitHouse() {
+        ResetStats();
         gameObject.SetActive(false);
         Active.Remove(this);
+        Lock();
         GameManager.When(name, "exit");
-        ResetStats();
-    }
 
-    public void Spawn(Node n) {
-        Npc npc = Instantiate(this, n.transform.position + Vector3.up, Quaternion.identity);
-        npc.exitNode = n;
-        npc.SetState(new WanderState(npc, 10));
     }
 
     void OnDrawGizmos() {
@@ -373,27 +369,29 @@ public class Npc : Interactable, IPickUpable, IManageable {
         rb.AddForce(h.GetThrowDir());
     }
 
-    public void PlaySoundHere() {
-        if (soundType == SoundType.Scream) {
+    public void PlayScreamSound() {
+        if (name.StartsWith("npc.nerd")) {
+            screamSound = "NerdScream";
+            gameObject.PlaySound(screamSound);
+        } else {
+            screamSound = "PoshScream";
+            gameObject.PlaySound(screamSound);
+        }
+    }
 
-            if (name.StartsWith("npc.nerd")) {
-                screamSound = "NerdScream";
-                gameObject.PlaySound(screamSound);
-            } else {
-                screamSound = "PoshScream";
-                gameObject.PlaySound(screamSound);
-            }
-        } else if (soundType == SoundType.Death) {
-            if (name.StartsWith("npc.nerd")) {
-                deathSound = "NerdDeath";
-                gameObject.PlaySound(deathSound);
-            } else {
-                deathSound = "Death1";
-                gameObject.PlaySound(deathSound);
+    private void PlayDeathSound() {
+        if (name.StartsWith("npc.nerd")) {
+            deathSound = "NerdDeath";
+            gameObject.PlaySound(deathSound);
+        } else {
+            deathSound = "Death1";
+            gameObject.PlaySound(deathSound);
 
-            }
+        }
+    }
 
-        } else if (soundType == SoundType.Talk) {
+    private void PlayTalkSound() {
+        if (soundType == SoundType.Talk) {
             if (name.StartsWith("npc.nerd")) {
                 talkSound = "NerdTalk";
                 gameObject.PlaySound(talkSound);

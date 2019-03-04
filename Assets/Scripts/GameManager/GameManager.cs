@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 namespace Cthulu.Events {
     public class GameManager : MonoBehaviour {
         Dictionary<string, DoEvent> events = new Dictionary<string, DoEvent>(); //uses id name as key
-        Dictionary<string, WhenEvent> whens = new Dictionary<string, WhenEvent>(); //uses event name as key
+        Dictionary<string, List<WhenEvent>> whens = new Dictionary<string, List<WhenEvent>>(); //uses event name as key
         Dictionary<string, string> flags = new Dictionary<string, string>(); //all flags default to 0
 
         public static Dictionary<string, IManageable> Objects = new Dictionary<string, IManageable>();
@@ -26,13 +26,13 @@ namespace Cthulu.Events {
         static string seperator = ":";
         public string fileName = "EVENTS.txt";
 
-        [SerializeField] bool printToFIle;
+        [SerializeField] bool printToFile;
 
         void Awake() {
             singleton = this;
 
             ReadFile();
-            if (printToFIle) {
+            if (printToFile) {
                 PrintManageablesToFile();
             }
         }
@@ -71,7 +71,7 @@ namespace Cthulu.Events {
                     i = ExecuteAnonymousDo(w, i);
 
                 } else if (w.dos[i].StartsWith("wait")) {
-                    int time = Int32.Parse(w.dos[i].Split('.',':') [1]);
+                    int time = Int32.Parse(w.dos[i].Split('.', ':') [1]);
                     yield return new WaitForSeconds(time);
 
                 } else if (w.dos[i].StartsWith("if.flag.")) {
@@ -85,22 +85,19 @@ namespace Cthulu.Events {
                         yield break;
                     }
 
-                } else if (w.dos[i].StartsWith("flag."))
-                {
+                } else if (w.dos[i].StartsWith("flag.")) {
                     SetFlag(w, i);
 
-                }
-                else {
+                } else {
                     DoEvent d = events[w.dos[0]];
                     Do(d);
                 }
             }
         }
 
-        private void SetFlag(WhenEvent w, int i)
-        {
-            string flag = w.dos[i].Split('.', '=')[1];
-            string val = w.dos[i].Split('=')[1];
+        private void SetFlag(WhenEvent w, int i) {
+            string flag = w.dos[i].Split('.', '=') [1];
+            string val = w.dos[i].Split('=') [1];
             flags[flag] = val;
         }
 
@@ -128,16 +125,20 @@ namespace Cthulu.Events {
 
             string name = caller + seperator + function;
             if (singleton.whens.ContainsKey(name)) {
-                WhenEvent whenEvent = singleton.whens[name];
-                singleton.StartCoroutine(singleton.ExecuteWhen(whenEvent));
+                List<WhenEvent> whenEvents = singleton.whens[name];
+                foreach (WhenEvent whenEvent in whenEvents) {
+                    singleton.StartCoroutine(singleton.ExecuteWhen(whenEvent));
+                }
             }
 
             if (Variables.ContainsKey(caller)) {
                 Debug.Log("var");
                 name = Variables[caller] + seperator + function;
+                List<WhenEvent> whenEvents = singleton.whens[name];
                 if (singleton.whens.ContainsKey(name)) {
-                    WhenEvent whenEvent = singleton.whens[name];
-                    singleton.StartCoroutine(singleton.ExecuteWhen(whenEvent));
+                    foreach (WhenEvent whenEvent in whenEvents) {
+                        singleton.StartCoroutine(singleton.ExecuteWhen(whenEvent));
+                    }
                 }
             }
 
@@ -149,7 +150,11 @@ namespace Cthulu.Events {
                 events.Add(se.id, se);
             } else if (args[0] == "when") {
                 WhenEvent we = new WhenEvent(args[1], args.Slice(2, -1));
-                whens.Add(we.name, we);
+                if (whens.ContainsKey(we.name)) {
+                    whens[we.name].Add(we);
+                } else {
+                    whens.Add(we.name, new List<WhenEvent>() { we });
+                }
             }
         }
 

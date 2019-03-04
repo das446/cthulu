@@ -53,7 +53,7 @@ public class WanderState : NpcState {
 
     private void MoveToRandomNeighbor() {
 
-        SetFollower(npc.follower.ClosestNode().RandomNeighbor(exclude: npc.exitNode));
+        SetFollower(npc.follower.ClosestNode().RandomUnblockedNeighbor());
 
     }
 

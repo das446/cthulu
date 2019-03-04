@@ -17,7 +17,7 @@ namespace Cthulu {
         public static T RandomItem<T>(this List<T> list, Predicate<T> condition) {
             List<T> temp = list.FindAll(condition);
             if (temp.Count == 0) { return default(T); }
-            return temp[UnityEngine.Random.Range(0, list.Count)];
+            return temp[UnityEngine.Random.Range(0, temp.Count)];
 
         }
         public static T RandomItem<T>(this List<T> list) {

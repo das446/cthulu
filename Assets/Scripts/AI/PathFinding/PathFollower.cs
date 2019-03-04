@@ -33,11 +33,19 @@ public class PathFollower : MonoBehaviour {
         target.y = transform.position.y;
         transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
         transform.LookAt(target);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1)) {
+            hit.collider.GetComponent<Door>()?.Open();
+        }
+
         if (Vector3.Distance(transform.position, target) < minDist) {
             if (ReachNode != null) {
                 ReachNode(npc, path[0]);
             }
-            path.RemoveAt(0);
+            if (path.Count > 0) {
+                path.RemoveAt(0);
+            }
             if (path.Count == 0) {
                 moving = false;
                 start = null;

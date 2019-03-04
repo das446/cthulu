@@ -40,5 +40,17 @@ public abstract class NpcState {
         follower.SetPath(target,avoid);
         return follower;
     }
-    
+
+    /// <summary>
+    /// override this in states that are scared
+    /// </summary>
+    /// <returns></returns>
+    public virtual bool IsScared(){
+        return false;
+    }
+
+    public virtual bool IsRunning()
+    {
+        return false;
+    }
 }
