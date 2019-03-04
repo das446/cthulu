@@ -147,8 +147,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
         SetState(new LeaveState(this, exitNode));
     }
 
-    public void Chat(Player p, Image timer) {
-        SetState(new ChattingState(this, p, timer));
+    public void Chat(Player p, Image timer, float chatTime) {
+        SetState(new ChattingState(this, chatTime, p, timer, curState));
     }
 
     /// <summary>

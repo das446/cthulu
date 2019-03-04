@@ -12,26 +12,30 @@ public class ChattingState : NpcState
     Player player;
 
     Image visualTimer;
+    
+    NpcState prevState;
 
-    public ChattingState(Npc npc, float chatTime, Player player, Image timer) : base(npc)
+    public ChattingState(Npc npc, float chatTime, Player player, Image timer, NpcState state) : base(npc)
     {
         this.npc = npc;
         this.chatTime = chatTime;
         chatTimer = chatTime;
         this.player = player;
         visualTimer = timer;
+        prevState = state;
         Enter();
 
         npc.resetAnimParams();
     }
 
-    public ChattingState(Npc npc, Player player, Image timer) : base(npc)
+    public ChattingState(Npc npc, Player player, Image timer, NpcState state) : base(npc)
     {
         this.npc = npc;
         this.chatTime = 3;
         chatTimer = chatTime;
         this.player = player;
         visualTimer = timer;
+        prevState = state;
         Enter();
 
         npc.resetAnimParams();
@@ -47,7 +51,7 @@ public class ChattingState : NpcState
             npc.interest += 10;
             npc.Unlock();
             player.Unlock();
-            npc.StartWandering();
+            npc.SetState(prevState);
         }
     }
 
