@@ -17,7 +17,7 @@ namespace Cthulu {
         public static T RandomItem<T>(this List<T> list, Predicate<T> condition) {
             List<T> temp = list.FindAll(condition);
             if (temp.Count == 0) { return default(T); }
-            return temp[UnityEngine.Random.Range(0, list.Count)];
+            return temp[UnityEngine.Random.Range(0, temp.Count)];
 
         }
         public static T RandomItem<T>(this List<T> list) {
@@ -109,12 +109,16 @@ namespace Cthulu {
 
         }
 
+        /// <summary>
+        /// Call this from Awake()
+        /// </summary>
+        /// <param name="i"></param>
         public static void AddToManager(this IManageable i) {
             if (GameManager.Objects.ContainsKey(i.obj.name.ToLower())) {
                 Debug.LogWarning(i.obj.name + " has the same name as another object in the scene");
-
             } else {
-                GameManager.Objects.Add(i.obj.name.ToLower(), i);
+                i.obj.name = i.obj.name.ToLower();
+                GameManager.Objects.Add(i.obj.name, i);
             }
         }
 
@@ -148,7 +152,10 @@ namespace Cthulu {
         }
 
         public static void SetLayerRecursively(this GameObject obj, int newLayer) {
-            if (null == obj) {
+            if (obj == null) {
+                return;
+            }
+            if (obj.layer == 14) { //Minimap Layer
                 return;
             }
 

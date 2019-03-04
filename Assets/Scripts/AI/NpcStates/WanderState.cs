@@ -16,7 +16,7 @@ public class WanderState : NpcState {
         this.waitTime = waitTime;
         timeUntilMove = 0;
         Enter();
-        
+
         npc.resetAnimParams();
     }
 
@@ -52,10 +52,9 @@ public class WanderState : NpcState {
     }
 
     private void MoveToRandomNeighbor() {
-        if(nodesToAvoid == null)
-            SetFollower(npc.follower.ClosestNode().RandomNeighbor());
-        else
-            SetFollower(npc.follower.ClosestNode().RandomNeighbor(), nodesToAvoid);
+
+        SetFollower(npc.follower.ClosestNode().RandomUnblockedNeighbor());
+
     }
 
     public override void Enter() {

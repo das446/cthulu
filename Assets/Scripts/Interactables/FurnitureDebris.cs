@@ -15,6 +15,7 @@ public class FurnitureDebris : Interactable, IEvaluated {
     }
 
     public override void Interact(Player p) {
+        Cthulu.Events.GameManager.When("player","sweep");
         StartCoroutine(CleanUp(p));
     }
 

@@ -15,6 +15,10 @@ namespace Cthulu {
             SoundEffects.DefaultSounds.PlaySound(soundName, volume);
         }
 
+        public static void PlaySound(AudioClip sound, bool OnScreen = false, float volume = 1, bool randomPitch = false) {
+            SoundEffects.DefaultSounds.PlaySound(sound, volume);
+        }
+
         /// <summary>
         /// Call with this.PlaySound("sfx",OnScreen: true, param2: false)
         /// Uses GetComponent to get the audio source from the object

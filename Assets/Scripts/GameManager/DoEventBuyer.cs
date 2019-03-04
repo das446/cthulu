@@ -12,7 +12,6 @@ public class DoEventBuyer {
     }
 
     public void Do(DoEvent buyerDo) {
-        Debug.Log(buyerDo.Print());
         string buyerAction = buyerDo.action;
         switch (buyerAction) {
             case "spawn":
@@ -35,11 +34,12 @@ public class DoEventBuyer {
                 }
 
                 break;
-                // case "fakeOut":
-                //     string fakeLoc = buyerDo.args[0];
-                //     string realLoc = buyerDo.args[1];
-                //     FakeOut(fakeLoc, realLoc);
-                //     break;
+            case "wander":
+                npc.StartWandering();
+                break;
+            case "setInterest":
+                npc.interest = 100;
+                break;
         }
     }
 
@@ -48,11 +48,10 @@ public class DoEventBuyer {
     /// </summary>
     /// <param name="name">identifier for buyer</param>
     void Spawn() {
+        if(npc.gameObject.activeSelf){return;}
         npc.gameObject.SetActive(true);
         npc.interest = 0;
-        npc.GoToRoom("room.livingroom");
-        //tell npc to enter building
-        // npc.GoToRoom(npc.lobbyNode);
+        npc.Spawn();
     }
 
     /// <summary>

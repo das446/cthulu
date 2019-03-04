@@ -11,7 +11,9 @@ using UnityEngine.UI;
 /// </summary>
 public class Timer : MonoBehaviour {
 
+
     public float timeLeft = 360;
+    public float anxietyTime = 90;
     public float startTime;
 
     public Text timerText;
@@ -45,7 +47,12 @@ public class Timer : MonoBehaviour {
 
         UpdateTimer(timeLeft);
 
+        if(timeLeft <= anxietyTime)
+        {
+            Music.ChangeSong("Anxiety");
+        }
         if(timeLeft<=0){
+            Music.ChangeSong("LoseSong");
             Player.singleton.LoseLevel();
         }
     }

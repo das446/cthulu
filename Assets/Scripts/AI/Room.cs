@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cthulu;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Room : MonoBehaviour {
     public List<Furniture> furniture;
@@ -12,7 +14,9 @@ public class Room : MonoBehaviour {
 
     public static Dictionary<string, Room> rooms = new Dictionary<string, Room>();
 
-    void Start() {
+    public static bool writeFile = true;
+
+    void Awake() {
         PathFollower.ReachNode += CheckEnter;
         string n = name.ToLower();
         if (rooms.ContainsKey(n)) {
@@ -20,6 +24,16 @@ public class Room : MonoBehaviour {
         } else {
             rooms.Add(n, this);
         }
+    }
+
+    void Start() {
+        // if (writeFile) {
+        //     string path = Application.streamingAssetsPath + "/Events/" + SceneManager.GetActiveScene().name + "/rooms.txt";
+        //     List<string> names = rooms.Keys.ToList();
+        //     names.Sort();
+        //     System.IO.File.WriteAllLines(path, names);
+        //     writeFile = false;
+        // }
     }
 
     private void CheckEnter(Npc npc, Node node) {

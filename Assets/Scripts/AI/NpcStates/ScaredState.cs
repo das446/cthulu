@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu;
 using UnityEngine;
 
 public class ScaredState : NpcState 
@@ -18,8 +19,10 @@ public class ScaredState : NpcState
     //     Enter();
     // }
 
-    public ScaredState(Npc npc) : base(npc) 
+    public ScaredState(Npc npc, float time) : base(npc) 
     {
+        npc.DoAfterTime(npc.RunToExit,time);
+        Debug.Log("EnterScaredState");
         Enter();
     }
 
@@ -49,6 +52,7 @@ public class ScaredState : NpcState
         // npc.SetState(new LeaveState(npc, exit));
         
         npc.resetAnimParams();
+        npc.PlayScreamSound();
         npc.animControl.SetBool("gotScared", true);
         // npc.animControl.SetBool("isScared", true);
         /* 
@@ -65,5 +69,9 @@ public class ScaredState : NpcState
     public override void OnInteract(Player p)
     {
         
+    }
+
+    public override bool IsScared(){
+        return true;
     }
 }

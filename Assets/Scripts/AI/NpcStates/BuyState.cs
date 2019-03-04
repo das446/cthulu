@@ -23,7 +23,9 @@ public class BuyState : NpcState {
     }
 
     public override void OnInteract(Player p) {
-        OnClick(npc,p);
+        if (OnClick != null) {
+            OnClick(npc, p);
+        }
         Debug.Log("Buy");
     }
 
@@ -41,7 +43,7 @@ public class BuyState : NpcState {
         SetFollower(lobby);
         waitTimer = defaultWaitTime;
         PathFollower.ReachNode += ReachLobby;
-        npc.SetMessage("$",Color.green);
+        npc.SetMessage("$", Color.green);
     }
 
     void ReachLobby(Npc n, Node node) {
@@ -49,11 +51,11 @@ public class BuyState : NpcState {
             atLobby = true;
             PathFollower.ReachNode -= ReachLobby;
         }
-        
+
     }
 
     public override void Exit() {
-        npc.SetMessage("$",Color.green);
+        npc.SetMessage("", Color.green);
     }
 
     //when click on buyer:

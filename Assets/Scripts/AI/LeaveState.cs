@@ -8,9 +8,6 @@ public class LeaveState : NpcState {
         this.exit = exit;
         npc.follower.SetPath(exit);
         PathFollower.ReachNode += ReachExit;
-        
-        npc.resetAnimParams();
-        npc.animControl.SetBool("isWalking", true);
     }
 
     private void ReachExit(Npc npc, Node node) {

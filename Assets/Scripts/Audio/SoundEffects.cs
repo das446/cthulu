@@ -22,7 +22,6 @@ namespace Cthulu {
         [HideInInspector] public bool Updated;
         public float DefaultVolume;
         public static SoundEffects DefaultSounds;
-        
 
         public void PlaySound(string Sound) {
             PlaySound(Sound, DefaultVolume);
@@ -51,6 +50,13 @@ namespace Cthulu {
             } else {
                 Debug.LogWarning("No sound effect named " + Sound);
             }
+        }
+
+        public void PlaySound(AudioClip Sound, float volume) {
+
+            Music.PlaySound(Sound, volume);
+            Music.Source.pitch = 1;
+
         }
 
         public void PlaySound(string Sound, AudioSource sounds, float volume) {

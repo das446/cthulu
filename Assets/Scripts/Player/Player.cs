@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using cakeslice;
 using Cthulu;
+using Cthulu.Events;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 
-public class Player : MonoBehaviour, ICanHold {
+public class Player : MonoBehaviour, ICanHold, IManageable {
 
     cakeslice.Outline curOutline;
     [SerializeField] float interactRange;
@@ -22,18 +23,22 @@ public class Player : MonoBehaviour, ICanHold {
 
     public GameObject pos;
 
+    public GameObject reticle;
+
     public float Power => power;
 
     public Transform Hand => hand;
+
+    public GameObject obj => gameObject;
 
     [SerializeField] int goalMoney;
 
     public static Player singleton;
 
-    void Awake()
-    {   
-        if(singleton == null)
-            singleton = this;
+    void Awake() {
+        if (singleton == null) { singleton = this; }
+        this.AddToManager();
+
     }
 
     // Start is called before the first frame update
@@ -59,7 +64,7 @@ public class Player : MonoBehaviour, ICanHold {
 
     bool CheckFurnitureInput() {
         if (Input.GetMouseButtonDown(0) && curItem != null) {
-            Debug.Log("Use");
+            GameManager.When("player", "release");
             curItem.Use(this);
             return true;
         }
@@ -75,7 +80,8 @@ public class Player : MonoBehaviour, ICanHold {
     public void Release(IPickUpable f) {
         movement.SetSpeed(x => x * curItem.weight);
         curItem = null;
-        Debug.Log("Release p");
+        reticle.gameObject.SetActive(false);
+        GameManager.When("player", "release");
 
     }
 
@@ -150,8 +156,15 @@ public class Player : MonoBehaviour, ICanHold {
         curItem = f;
         Debug.Log(f);
         movement.SetSpeed(x => x / curItem.weight);
+        reticle.gameObject.SetActive(true);
     }
 
+    public void SetRange(float r) {
+        interactRange = r;
+    }
+    public void SetPower(float p) {
+        power = p;
+    }
     public Vector3 GetThrowDir() {
         return cam.transform.forward;
     }
@@ -178,5 +191,11 @@ public class Player : MonoBehaviour, ICanHold {
 
     public IPickUpable CurHeld() {
         return curItem;
+    }
+
+    public void Do(DoEvent de) {
+        if (de.action == "setgoal") {
+            goalMoney = Int32.Parse(de.args[0]);
+        }
     }
 }

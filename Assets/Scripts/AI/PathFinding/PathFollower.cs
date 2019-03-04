@@ -33,11 +33,19 @@ public class PathFollower : MonoBehaviour {
         target.y = transform.position.y;
         transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
         transform.LookAt(target);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1)) {
+            hit.collider.GetComponent<Door>()?.Open();
+        }
+
         if (Vector3.Distance(transform.position, target) < minDist) {
             if (ReachNode != null) {
                 ReachNode(npc, path[0]);
             }
-            path.RemoveAt(0);
+            if (path.Count > 0) {
+                path.RemoveAt(0);
+            }
             if (path.Count == 0) {
                 moving = false;
                 start = null;
@@ -81,23 +89,7 @@ public class PathFollower : MonoBehaviour {
     }
 
     public Node ClosestNode(Vector3 v) {
-        if (Node.Nodes.Count == 0) {
-            Debug.Log("Node list empty");
-            return null;
-        }
-        if (path.Count == 0 && end != null && !moving) {
-            return end;
-        }
-        float dis = Mathf.Infinity;
-        Node closest = Node.Nodes[0];
-        for (int i = 1; i < Node.Nodes.Count; i++) {
-            float d = Vector3.Distance(v, Node.Nodes[i].transform.position);
-            if (d < dis) {
-                closest = Node.Nodes[i];
-                dis = d;
-            }
-        }
-        return closest;
+        return Node.ClosestNode(v);
     }
 
     Node FarthestNode() {

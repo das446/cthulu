@@ -8,4 +8,6 @@ public interface IPickUpable {
     void Release(ICanHold h);
 
     float weight { get; }
+
+    //GameObject obj { get; }
 }
