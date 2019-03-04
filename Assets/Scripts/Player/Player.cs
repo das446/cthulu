@@ -30,6 +30,10 @@ public class Player : MonoBehaviour, ICanHold {
 
     public static Player singleton;
 
+    public float speed;
+    //public PlayerMovement Movement; Don't know if I need this because movement exists
+    public IUnityService UnityService;
+
     void Awake()
     {   
         if(singleton == null)
@@ -38,6 +42,11 @@ public class Player : MonoBehaviour, ICanHold {
 
     // Start is called before the first frame update
     void Start() {
+        movement = new PlayerMovement(speed);
+        if(UnityService == null)
+        {
+            UnityService = new UnityService();
+        }
 
     }
 
@@ -46,6 +55,12 @@ public class Player : MonoBehaviour, ICanHold {
         CheckOutline();
         CheckInput();
         pos.transform.position = transform.position + Vector3.up;
+
+        //Testing Code Below
+        transform.position += Movement.Calculate(
+            UnityService.GetAxisRaw("Horizontal"),
+            UnityService.GetAxisRaw("Vertical"),
+            UnityService.GetDeltaTime());
     }
 
     void CheckInput() {

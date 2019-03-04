@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using NSubstitute;
 
 namespace Tests
 {
-    public class NewTestScript : MonoBehaviour
+    public class NewTestScript
     {
 
-        public GameObject monsterSpawnController = GameObject.Find("MonsterSpawnController");
+        //public GameObject monsterSpawnController = GameObject.Find("MonsterSpawnController");
         // A Test behaves as an ordinary method
         [Test]
         public void NewTestScriptSimplePasses()
@@ -40,9 +41,41 @@ namespace Tests
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
         // `yield return null;` to skip a frame.
 
+        [Test]
+        public IEnumerator Moves_Along_X_Axis_For_Horizontal_Input()
+        {
+            var player = new GameObject().AddComponent<Player>();
+            player.speed = 1;
+            var unityService = Substitute.For<IUnityService>();
+            unityService.GetAxisRaw("Horizontal").Returns(1);
+            unityService.GetDeltaTime().Returns(1);
+            player.UnityService = unityService;
+
+            yield return null;
+
+            Assert.AreEqual(1, player.transform.position.x, 0.1f);
+        }
+
+        [Test]
+        public IEnumerator Moves_Along_Z_Axis_For_Vertical_Input()
+        {
+            var player = new GameObject().AddComponent<Player>();
+            player.speed = 1;
+            var unityService = Substitute.For<IUnityService>();
+            unityService.GetAxisRaw("Vertical").Returns(1);
+            unityService.GetDeltaTime().Returns(1);
+            player.UnityService = unityService;
+            yield return null;
+
+            Assert.AreEqual(1, player.transform.position.z, 0.1f);
+        }
+
+
         [UnityTest]
         public IEnumerator InstantiateTentacleFromMonsterSpawner()
         {
+            //Tests to see if Tentacle spawns correctly
+
             var tentaclePrefab = Resources.Load("Tests/Tentacle");
             var tentacleSpawner = new GameObject().AddComponent<MonsterSpawnController>();
             tentacleSpawner.Construct(tentaclePrefab, 0, 1);
@@ -58,6 +91,8 @@ namespace Tests
         [UnityTest]
         public IEnumerator InstantiatePortalFromMonsterSpawner()
         {
+            //Tests to see if Portal spawns correctly
+
             var portalPrefab = Resources.Load("Tests/Portal");
             var portalSpawner = new GameObject().AddComponent<MonsterSpawnController>();
             portalSpawner.Construct(portalPrefab, 0, 1);
@@ -75,6 +110,8 @@ namespace Tests
         [UnityTest]
         public IEnumerator InstantiateGameObjectAtRandomPosition()
         {
+            //Tests if a Game Object instantiates at a random position
+
             var portalPrefab = Resources.Load("Tests/Portal");
             var portalSpawner = new GameObject().AddComponent<MonsterSpawnController>();
             portalSpawner.Construct(portalPrefab, 0, 1);
@@ -98,6 +135,8 @@ namespace Tests
         [UnityTest]
         public IEnumerator InstantiationsOccurOnAnInterval()
         {
+            //Tests if instantiation occurs during a set interval
+
             var portalPrefab = Resources.Load("Tests/Portal");
             var portalSpawner = new GameObject().AddComponent<MonsterSpawnController>();
             portalSpawner.Construct(portalPrefab,1,1);
@@ -113,7 +152,7 @@ namespace Tests
             Assert.IsNull(spawnedTentacle);
             Assert.IsNull(spawnedPortal);
         }
-/* Need NSubstitute to get this to work, but can't seem to figure out how to get NSubstitute
+
         [UnityTest]
         public IEnumerator InstantiatesGameObjectsAtRandomPositionOnCircularBoundary()
         {
@@ -138,7 +177,7 @@ namespace Tests
             yield return null;
 
         }
-*/
+
         [UnityTest]
         public IEnumerator MoneyGoesUp()
         {
