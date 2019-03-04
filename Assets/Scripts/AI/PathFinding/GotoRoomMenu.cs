@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class GotoRoomMenu : MonoBehaviour {
     [SerializeField] Player player;
     [SerializeField] float speed = 0.1f;
     public Image interest;
+    public Image chatTimer;
 
     void Start() {
         NpcState.OnClick += Open;
@@ -21,12 +23,14 @@ public class GotoRoomMenu : MonoBehaviour {
         curNpc = npc;
         player = p;
         player.Lock();
-        interest.fillAmount = (float)(curNpc.interest)/100f;
+        interest.fillAmount = (float)(curNpc.interest)/(curNpc.maxInterest);
 
         //Camera.main.transform.localEulerAngles = new Vector3(0, 0, 0);
 
         StartCoroutine(MoveCamera());
 
+        npc.resetAnimParams();
+        npc.animControl.SetBool("isTalking", true);
     }
 
     IEnumerator MoveCamera() {
@@ -43,9 +47,17 @@ public class GotoRoomMenu : MonoBehaviour {
         curNpc.GoToRoom(r);
         curNpc.locked = false;
         curNpc.Unlock();
+        string npcName = curNpc.name;
         curNpc = null;
         gameObject.SetActive(false);
         player.Unlock();
+        GameManager.When(npcName,"player.goto");
 
+    }
+
+    public void ClickChat()
+    {
+        curNpc.Chat(player, chatTimer);
+        gameObject.SetActive(false);
     }
 }

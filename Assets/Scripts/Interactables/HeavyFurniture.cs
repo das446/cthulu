@@ -8,8 +8,10 @@ public class HeavyFurniture : Furniture,IPickUpable {
     Vector3 prevPos;
 
     public override void Interact(Player p, Vector3 pos) {
-        if (p.CurFurniture() == null) {
+        if (p.CurHeld() == null) {
+            Debug.Log("Interact");
             GetPickedUp(p, pos);
+            p.PickUp(this);
         }
     }
 
@@ -31,22 +33,23 @@ public class HeavyFurniture : Furniture,IPickUpable {
         prevPos = transform.position;
     }
 
-    public override void Release(ICanHold h) {
-        base.Release(h);
+    public void Release(ICanHold h) {
+        rb.useGravity = true;
         DisableJoint();
     }
 
     private void DisableJoint() {
+        Debug.Log("DisableJoint");
         joint.connectedBody = null;
         joint.spring = 0;
     }
 
     void GetPickedUp(ICanHold h, Vector3 pos) {
-        h.PickUp(this);
         EnableJoint(h, pos);
     }
 
     private void EnableJoint(ICanHold h, Vector3 pos) {
+        Debug.Log("Enable Joint");
         joint.connectedBody = h.Hand.GetComponent<Rigidbody>();
         joint.spring = 50;
         joint.anchor = pos;
@@ -54,11 +57,11 @@ public class HeavyFurniture : Furniture,IPickUpable {
 
     public bool CanBePickedUp(ICanHold h)
     {
-        throw new System.NotImplementedException();
+        return true;
     }
 
     public void GetPickedUp(ICanHold h)
     {
-        throw new System.NotImplementedException();
+       EnableJoint(h, transform.position);
     }
 }

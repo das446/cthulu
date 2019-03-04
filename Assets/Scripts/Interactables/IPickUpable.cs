@@ -6,4 +6,8 @@ public interface IPickUpable {
     bool CanBePickedUp(ICanHold h);
     void GetPickedUp(ICanHold h);
     void Release(ICanHold h);
+
+    float weight { get; }
+
+    //GameObject obj { get; }
 }

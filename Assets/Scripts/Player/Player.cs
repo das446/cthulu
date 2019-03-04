@@ -3,16 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using cakeslice;
 using Cthulu;
+using Cthulu.Events;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour, ICanHold {
+public class Player : MonoBehaviour, ICanHold, IManageable {
 
     cakeslice.Outline curOutline;
     [SerializeField] float interactRange;
     public Transform hand;
-    public Furniture curItem;
+    IPickUpable curItem;
     [SerializeField] PlayerMovement movement;
     [SerializeField] float power;
     [SerializeField] Camera cam;
@@ -21,11 +23,23 @@ public class Player : MonoBehaviour, ICanHold {
 
     public GameObject pos;
 
+    public GameObject reticle;
+
     public float Power => power;
 
     public Transform Hand => hand;
 
+    public GameObject obj => gameObject;
+
     [SerializeField] int goalMoney;
+
+    public static Player singleton;
+
+    void Awake() {
+        if (singleton == null) { singleton = this; }
+        this.AddToManager();
+
+    }
 
     // Start is called before the first frame update
     void Start() {
@@ -36,32 +50,38 @@ public class Player : MonoBehaviour, ICanHold {
     void Update() {
         CheckOutline();
         CheckInput();
-        pos.transform.position = transform.position;
+        pos.transform.position = transform.position + Vector3.up;
     }
 
     void CheckInput() {
-        CheckInteract();
-        CheckFurnitureInput();
+        //weird things were happening when interact and using furniture were bound to the same butoon but this should fix it
+        //so they don't happen on the same frame
+        bool f = CheckFurnitureInput();
+        if (!f) {
+            CheckInteract();
+        }
     }
 
-    void CheckFurnitureInput() {
-        if (Input.GetMouseButtonDown(0)) {
-            curItem?.Use(this);
-        } else if (Input.GetMouseButtonDown(1)) {
-            Release(curItem);
+    bool CheckFurnitureInput() {
+        if (Input.GetMouseButtonDown(0) && curItem != null) {
+            GameManager.When("player", "release");
+            curItem.Use(this);
+            return true;
         }
+        return false;
     }
 
     void LoseItem() {
         movement.SetSpeed(x => x * curItem.weight);
         curItem = null;
-        
+
     }
 
-    public void Release(Furniture f) {
+    public void Release(IPickUpable f) {
         movement.SetSpeed(x => x * curItem.weight);
-        f?.Release(this);
         curItem = null;
+        reticle.gameObject.SetActive(false);
+        GameManager.When("player", "release");
 
     }
 
@@ -70,7 +90,7 @@ public class Player : MonoBehaviour, ICanHold {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange)) {
                 Interactable i = hit.collider.gameObject.GetComponent<Interactable>();
-                i?.Interact(this,hit.point);
+                i?.Interact(this, hit.point);
             }
         }
     }
@@ -88,6 +108,12 @@ public class Player : MonoBehaviour, ICanHold {
                     curOutline.enabled = false;
                 }
                 curOutline = null;
+            } else if (curItem != null) {
+                if (curOutline != null) {
+                    curOutline.enabled = false;
+                }
+                curOutline = null;
+
             } else if (outline != curOutline) {
                 if (curOutline != null) {
                     curOutline.enabled = false;
@@ -126,45 +152,50 @@ public class Player : MonoBehaviour, ICanHold {
         movement.Unlock();
     }
 
-    public void PickUp(Furniture f) {
+    public void PickUp(IPickUpable f) {
         curItem = f;
+        Debug.Log(f);
         movement.SetSpeed(x => x / curItem.weight);
+        reticle.gameObject.SetActive(true);
     }
 
+    public void SetRange(float r) {
+        interactRange = r;
+    }
+    public void SetPower(float p) {
+        power = p;
+    }
     public Vector3 GetThrowDir() {
         return cam.transform.forward;
     }
 
-    public Furniture CurFurniture() {
-        return curItem;
-    }
+    public void ChangeMoney(int amnt) {
+        Audio.PlaySound("SaleMade");
+        money += amnt;
+        moneyText.text = "$" + money.ToString("#,##0");
 
-    public void ChangeMoney(int amnt){
-        money+=amnt;
-        moneyText.text = money.ToString("#,##0")+"$";
-
-        if(money>=goalMoney){
+        if (money >= goalMoney) {
             WinLevel();
         }
     }
 
-    private void WinLevel()
-    {
+    private void WinLevel() {
+        Lock();
         SceneManager.LoadScene("WinScreen");
     }
 
-    public void PickUp(IPickUpable i)
-    {
-        throw new NotImplementedException();
+    public void LoseLevel() {
+        Lock();
+        SceneManager.LoadScene("LoseScreen");
     }
 
-    public void Release(IPickUpable i)
-    {
-        throw new NotImplementedException();
+    public IPickUpable CurHeld() {
+        return curItem;
     }
 
-    public IPickUpable CurHeld()
-    {
-        throw new NotImplementedException();
+    public void Do(DoEvent de) {
+        if (de.action == "setgoal") {
+            goalMoney = Int32.Parse(de.args[0]);
+        }
     }
 }

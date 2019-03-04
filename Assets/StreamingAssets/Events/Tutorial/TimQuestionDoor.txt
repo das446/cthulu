@@ -1,0 +1,4 @@
+﻿WHEN room.dining.door.1:lock BobLeaveRoom
+
+BobLeaveRoom DO npc.Bob goTo rooms.except.current
+TimQuestion.dining.door.1 DO npc.Tim room.dining.door.1

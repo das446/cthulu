@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu;
+using Cthulu.Events;
 using UnityEngine;
 
 public class Tentacle : Monster, ICanHold {
+    [SerializeField] Portal portal;
     [SerializeField] IPickUpable held;
     [SerializeField] float range;
     [SerializeField] BoxCollider hitbox;
@@ -54,16 +57,50 @@ public class Tentacle : Monster, ICanHold {
     }
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log(other.gameObject);
-        Npc npc = other.GetComponent<Npc>();
-        if (npc != null) {
-            PickUp(npc);
-            StartCoroutine(DelayThrow(10));
-        }
+        // Npc npc = other.GetComponent<Npc>();
+        // if (npc != null) {
+        //     PickUp(npc);
+        //     StartCoroutine(DelayThrow(10));
+        // }
     }
 
     IEnumerator DelayThrow(float delay) {
         yield return new WaitForSeconds(delay);
         Release(held);
+    }
+
+    public override void Do(DoEvent de) {
+        if (de.action == "spawn") {
+            string arg = de.args[0];
+            Room r;
+            if (arg.Contains("|")) {
+                string room = arg;
+                room = arg.Split('|') [0] + arg.Split('|').Slice(1, -1).RandomItem();
+                r = Room.GetRoom(room);
+            } else {
+                r = Room.GetRoom(de.args[0]);
+            }
+
+            if (de.args.Length > 1) {
+                int delay = Int32.Parse(de.args[1]);
+                SpawnPortal(r, delay);
+            } else {
+                SpawnPortal(r);
+            }
+        }
+    }
+
+    Portal SpawnPortal(Room r) {
+        Portal p = (Portal) r.SpawnAtRandom(portal);
+        p.monsterBase = this;
+        p.StartCoroutine(p.SpawnTentacle());
+        return p;
+    }
+
+    Portal SpawnPortal(Room r, int delay) {
+        Portal p = (Portal) r.SpawnAtRandom(portal);
+        p.monsterBase = this;
+        p.StartCoroutine(p.SpawnTentacle(delay));
+        return p;
     }
 }

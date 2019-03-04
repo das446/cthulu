@@ -31,9 +31,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6648903153705052784}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: -0.91440004, z: -0.2670325}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.013223999, y: 0.013223999, z: 0.013223999}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4ca4081e16c8e304086a59d1a1e92d98, type: 3}
+  - {fileID: 2100000, guid: 29aeb8fd7f775284ba991b7383aea408, type: 2}
   - {fileID: 2100002, guid: 4ca4081e16c8e304086a59d1a1e92d98, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   o: {fileID: 504451384561576508}
-  weight: 0
-  health: 0
+  Weight: 1
+  health: 100
   startPos: {x: 0, y: 0, z: 0}
   rb: {fileID: 1981649415065491553}
   col: {fileID: 5093386301398429292}
@@ -147,7 +147,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!145 &2183801337123691941
 SpringJoint:
@@ -159,7 +159,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 0}
   m_Anchor: {x: 0, y: 212.63947, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.2119944, z: -0.2670325}
+  m_ConnectedAnchor: {x: 0, y: 1.8975439, z: -0.2670325}
   serializedVersion: 2
   m_Spring: 10
   m_Damper: 0.2
@@ -183,7 +183,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 212.63947, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.2119944, z: -0.2670325}
+  m_ConnectedAnchor: {x: 0, y: 1.8975439, z: -0.2670325}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 
 public class MoveTowardsState : NpcState {
@@ -13,20 +14,23 @@ public class MoveTowardsState : NpcState {
         Enter();
     }
 
-    public override void FrameUpdate() {
-        if (Vector3.Distance(npc.transform.position, target.transform.position) < 0.5f) {
-            npc.StartWandering();
-        }
+    public override void StateUpdate() {
+        // if (Vector3.Distance(npc.transform.position, target.transform.position) < 0.5f) {
+        //     npc.StartWandering();
+        // }
     }
 
     public override void Enter() {
         SetFollower(target);
         PathFollower.ReachNode += ReachTarget;
+        
+        npc.resetAnimParams();
+        npc.animControl.SetBool("isWalking", true);
     }
 
     private void ReachTarget(Npc npc, Node n) {
         if (this.npc == npc && n == target){
-            npc.StartWandering();
+            GameManager.When(npc.name,"reach.target");
             PathFollower.ReachNode -= ReachTarget;
         }
     }

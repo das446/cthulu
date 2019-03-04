@@ -10,7 +10,7 @@ public class BuyState : NpcState {
 
     private float waitTimer;
 
-    private float defaultWaitTime = 10;
+    private float defaultWaitTime = 15;
 
     private bool atLobby;
 
@@ -23,10 +23,13 @@ public class BuyState : NpcState {
     }
 
     public override void OnInteract(Player p) {
-        OnClick(npc,p);
+        if (OnClick != null) {
+            OnClick(npc, p);
+        }
+        Debug.Log("Buy");
     }
 
-    public override void FrameUpdate() {
+    public override void StateUpdate() {
 
         if (atLobby) {
             waitTimer -= Time.deltaTime;
@@ -40,7 +43,7 @@ public class BuyState : NpcState {
         SetFollower(lobby);
         waitTimer = defaultWaitTime;
         PathFollower.ReachNode += ReachLobby;
-        npc.SetMessage("$",Color.green);
+        npc.SetMessage("$", Color.green);
     }
 
     void ReachLobby(Npc n, Node node) {
@@ -48,11 +51,11 @@ public class BuyState : NpcState {
             atLobby = true;
             PathFollower.ReachNode -= ReachLobby;
         }
-        
+
     }
 
     public override void Exit() {
-        npc.SetMessage("$",Color.green);
+        npc.SetMessage("", Color.green);
     }
 
     //when click on buyer:

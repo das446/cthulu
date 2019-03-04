@@ -1,60 +1,56 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cthulu;
+using Cthulu.Events;
 using UnityEngine;
 
-public class Door : MonoBehaviour 
-{
+public class Door : Interactable, IManageable {
 	[SerializeField]
 	private GameObject[] doorsInSet;
 
-	private bool isLocked;
+	private bool isLocked = false;
 
 	[SerializeField]
 	private bool isOpen;
-    private AudioSource source;
+	private AudioSource source;
 
-    // Use this for initialization
-    void Start () 
-	{
-        source = GetComponent<AudioSource>();
-		isLocked = false;
-		isOpen = true;
-        doorsInSet[0].transform.Rotate(Vector3.up, 90, Space.World);
-        doorsInSet[1].transform.Rotate(Vector3.up, -90, Space.World);
-    }
+	public GameObject obj => gameObject;
+	Vector3 pos;
+	Vector3 rot;
 
-	public void open()
-	{
-        source.Play();
-		// doorsInSet[0].transform.rotation = Quaternion.Euler(0, 90, 0);
-		// doorsInSet[1].transform.rotation = Quaternion.Euler(0, -90, 0);
-		doorsInSet[0].transform.Rotate(Vector3.up, 90, Space.World);
-		doorsInSet[1].transform.Rotate(Vector3.up, -90, Space.World);
+	// Use this for initialization
+	void Awake() {
+		this.AddToManager();
+		rot = transform.eulerAngles;
+	}
+
+	public void Open() {
+		GameManager.When(name, "open");
+		gameObject.PlaySound("DoorOpening");
+		transform.Rotate(0, 90, 0);
 		isOpen = true;
 	}
 
-	public void close()
-	{
-        source.Play();
-        // doorsInSet[0].transform.rotation = Quaternion.Euler(0, 0, 0);
-        // doorsInSet[1].transform.rotation = Quaternion.Euler(0, 0, 0);
-        doorsInSet[0].transform.Rotate(Vector3.up, -90, Space.World);
-		doorsInSet[1].transform.Rotate(Vector3.up, 90, Space.World);
+	public void Close() {
+		gameObject.PlaySound("DoorClosing");
+		transform.eulerAngles = rot;
 		isOpen = false;
 	}
 
-	public void lockDoor()
-	{
-		isLocked = !isLocked;
+	public override void Interact(Player p) {
+		if (isOpen) {
+			Close();
+		} else {
+			Open();
+		}
 	}
 
-	public bool checkLock()
-	{
-		return isLocked;
-	}
-
-	public bool checkOpen()
-	{
-		return isOpen;
+	public void Do(DoEvent de) {
+		string param = de.action;
+		if (param == "open") {
+			Open();
+		} else if (param == "close") {
+			Close();
+		}
 	}
 }

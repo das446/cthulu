@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 82470865542839030}
   - component: {fileID: 135600434437505576}
   - component: {fileID: 82982032216499698}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EN_Tentacle_03
   m_TagString: Tentacle
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4650036474230264}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: joint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4093832294524676}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: joint5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4652496370553822}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: joint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,8 @@ GameObject:
   - component: {fileID: 4083184573730332}
   - component: {fileID: 65465982820966068}
   - component: {fileID: 4342329492730129385}
-  m_Layer: 0
+  - component: {fileID: 7311782923978951676}
+  m_Layer: 13
   m_Name: Tentacle
   m_TagString: Tentacle
   m_Icon: {fileID: 0}
@@ -452,10 +453,108 @@ MonoBehaviour:
   hp: 10
   scareFactor: 1
   damage: 1
+  portal: {fileID: 6159313683868300820, guid: 27b84e9e287eb964b9d953b6a57fe74d, type: 3}
   range: 5
   hitbox: {fileID: 65465982820966068}
   hand: {fileID: 4692485860127456}
   power: 10
+--- !u!82 &7311782923978951676
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184961877425042}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243821672094886944, guid: 54b270afc5b8b3c458c96606ee0591bf,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 50
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1352456171360278
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4640076860497462}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +595,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4495920926357456}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: joint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4976898986264866}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: joint7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +660,7 @@ GameObject:
   - component: {fileID: 33409236812107454}
   - component: {fileID: 23695017899053568}
   - component: {fileID: 135650427167783900}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4027397846014464}
   - component: {fileID: 137531037269281394}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: pCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,7 +836,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4906341199946796}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: joint6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,7 +867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4128594023966774}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: joint8
   m_TagString: Untagged
   m_Icon: {fileID: 0}

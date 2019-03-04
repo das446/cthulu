@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 
 public class ReadyToBuyMenu : MonoBehaviour {
@@ -23,6 +24,7 @@ public class ReadyToBuyMenu : MonoBehaviour {
     public void Open(Npc npc, Player p) {
         gameObject.SetActive(true);
         curNpc = npc;
+        npc.Lock();
         player = p;
         player.Lock();
 
@@ -30,6 +32,8 @@ public class ReadyToBuyMenu : MonoBehaviour {
 
         StartCoroutine(MoveCamera());
 
+        npc.resetAnimParams();
+        npc.animControl.SetBool("isTalking", true);
     }
 
     IEnumerator MoveCamera() {
@@ -46,8 +50,10 @@ public class ReadyToBuyMenu : MonoBehaviour {
         curNpc.locked = false;
         curNpc.Unlock();
         curNpc.Buy(player);
+        string npcName = curNpc.name;
         curNpc = null;
         gameObject.SetActive(false);
         player.Unlock();
+        GameManager.When(npcName,"acceptoffer");
     }
 }

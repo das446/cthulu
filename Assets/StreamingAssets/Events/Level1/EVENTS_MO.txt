@@ -1,0 +1,8 @@
+﻿WHEN time:2 (Do npc.normal.bob spawn)
+WHEN time:5 (Do tentacle.1 spawn room.kitchen)
+WHEN time:10 (Do npc.normal.bob goto room.lounge)
+WHEN time:15 (Do npc.normal.bob goto room.dinningroom)
+WHEN time:20 (Do npc.normal.bob goto room.livingroom)
+WHEN time:25 (Do npc.normal.bob goto room.kitchen)
+
+WHEN npc.normal.bob:see.tentacle.1 (Do npc.normal.bob goto room|lounge|dinningroom|kitchen)

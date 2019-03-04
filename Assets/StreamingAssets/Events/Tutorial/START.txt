@@ -1,0 +1,15 @@
+﻿//Tutorial Level - 
+
+BobEnter SET npc.normal.Bob nodes.entrance
+SpawnTentacle1InFoyer SET room.foyer.tentacle.normal.t1 spawn room.foyer.spawns.1
+Wait5 WAIT 5
+BobApproachTentacle1 SET npc.normal.Bob room.foyer.tentacle.normal.t1
+SpawnTim SET npc.normal.Tim nodes.entrance
+Wait5 WAIT 5
+TimApproachTentacle SET npc.normal.Tim approach room.foyer.tentacle.normal.t1
+
+UiPopup SET ui popup
+
+
+WHEN npc.normal.Bob:Die UiPopup
+WHEN npc.normal.Bob:Wander UiPopup
