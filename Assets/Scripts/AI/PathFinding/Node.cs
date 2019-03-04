@@ -76,6 +76,10 @@ public class Node : MonoBehaviour {
 		return neighbors.RandomItem(x => x != exclude);
 	}
 
+	public Node RandomUnblockedNeighbor() {
+		return neighbors.RandomItem(x => !x.Blocked(this));
+	}
+
 	public static Node Get(string n) {
 		try {
 			return Nodes.Where(x => x.name == n.ToLower()).First();
@@ -102,4 +106,26 @@ public class Node : MonoBehaviour {
         }
         return closest;
     }
+
+	public bool Blocked(Node n, out float dist){
+		dist = Vector3.Distance(transform.position, n.transform.position);
+		Vector3 dir = n.transform.position - transform.position;
+		if (Physics.Raycast(transform.position, dir, dist)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	public bool Blocked(Node n){
+		float dist = Vector3.Distance(transform.position, n.transform.position);
+		Vector3 dir = n.transform.position - transform.position;
+		if (Physics.Raycast(transform.position, dir, dist)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

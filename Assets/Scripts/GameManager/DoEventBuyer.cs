@@ -48,11 +48,10 @@ public class DoEventBuyer {
     /// </summary>
     /// <param name="name">identifier for buyer</param>
     void Spawn() {
+        if(npc.gameObject.activeSelf){return;}
         npc.gameObject.SetActive(true);
         npc.interest = 0;
-        npc.GoToRoom("room.livingroom");
-        //tell npc to enter building
-        // npc.GoToRoom(npc.lobbyNode);
+        npc.Spawn();
     }
 
     /// <summary>

@@ -23,7 +23,7 @@ public class GotoRoomMenu : MonoBehaviour {
         curNpc = npc;
         player = p;
         player.Lock();
-        interest.fillAmount = (float)(curNpc.interest)/100f;
+        interest.fillAmount = (float)(curNpc.interest)/(curNpc.maxInterest);
 
         //Camera.main.transform.localEulerAngles = new Vector3(0, 0, 0);
 

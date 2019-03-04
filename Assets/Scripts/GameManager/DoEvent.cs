@@ -66,5 +66,25 @@ namespace Cthulu.Events {
             return id + " " + name + " " + action + " " + args.Print();
         }
 
+        public Dictionary<string, string> GetParamaters() {
+            Dictionary<string, string> p = new Dictionary<string, string>();
+            for (int i = 0; i < args.Length; i++) {
+                if (args[i].Contains("=")) {
+                    string[] s = args[i].Split('=');
+                    p.Add(s[0], s[1]);
+                }
+            }
+            return p;
+        }
+
+        public string GetParamater(string s) {
+            Dictionary<string, string> p = GetParamaters();
+            if (p.ContainsKey(s)) {
+                return p[s];
+            } else {
+                return "";
+            }
+        }
+
     }
 }

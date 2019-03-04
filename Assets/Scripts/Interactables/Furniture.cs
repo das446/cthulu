@@ -19,6 +19,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     //
 
     public float health = 10;
+    float maxHealth;
     [HideInInspector] public Vector3 startPos;
 
     public Rigidbody rb;
@@ -53,6 +54,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
         if (resTimer == 0) {
             resTimer = 60; // Default res time.
         }
+        maxHealth = health;
 
         //
     }
@@ -97,7 +99,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     }
 
     public virtual float Evaluate(Npc npc, Room r) {
-        return health;
+        return health / maxHealth > 0.5f ? 1 : -1;
     }
 
     public void TakeDamage(float dmg) {
@@ -110,8 +112,6 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     public virtual void Do(DoEvent ge) {
 
     }
-
-    /////
 
     void Update() {
 
