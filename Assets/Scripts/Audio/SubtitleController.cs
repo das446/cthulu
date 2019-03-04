@@ -46,6 +46,24 @@ public class SubtitleController : MonoBehaviour, IManageable {
 
     }
 
+    public void PlaySubOnly(string sound, string caller = "") {
+        Subtitle sub;
+        try {
+            sub = subtitles.Where(x => x.name.ToLower() == sound).First();
+        } catch {
+            Debug.LogError("No subtitle named " + sound);
+            return;
+        }
+        string t = sub.text;
+        if (caller != "") {
+            t = caller + ": " + t;
+        }
+        text.text = t;
+        this.StopAllCoroutines();
+        this.DoAfterTime(() => text.text = "", 3);
+
+    }
+
     public void Do(DoEvent de) {
         if (de.action == "play") {
             Play(de.args[0]);
