@@ -46,7 +46,8 @@ public class SubtitleController : MonoBehaviour, IManageable {
 
     }
 
-    public void PlaySubOnly(string sound, string caller = "") {
+    public void PlaySubOnly(string sound, string caller = "", float time) 
+    {
         Subtitle sub;
         try {
             sub = subtitles.Where(x => x.name.ToLower() == sound).First();
@@ -62,6 +63,23 @@ public class SubtitleController : MonoBehaviour, IManageable {
         this.StopAllCoroutines();
         this.DoAfterTime(() => text.text = "", 3);
 
+    }
+
+    public void PlaySubOnly(Subtitle sub, string caller = "", float time) 
+    {
+        string t = sub.text;
+        if (caller != "") {
+            t = caller + ": " + t;
+        }
+        text.text = t;
+        this.StopAllCoroutines();
+        this.DoAfterTime(() => text.text = "", 3);
+    }
+
+    public string chooseRandLine()
+    {
+        int index = (int)Random.Range(0, 9);
+        return subtitles[index];
     }
 
     public void Do(DoEvent de) {
