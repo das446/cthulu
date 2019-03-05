@@ -21,7 +21,6 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
     public virtual void OnSpawn() {
         gameObject.SetActive(true);
         if (Spawn != null) { Spawn(this, transform.position); }
-        Compass.UpdateTarget(gameObject);
     }
 
     public virtual void GetHit(int damageAmount) {

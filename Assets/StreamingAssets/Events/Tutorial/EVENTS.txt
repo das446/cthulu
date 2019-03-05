@@ -1,27 +1,28 @@
-WHEN time:1
+WHEN time:1 //guide to vase
     flag.curt=1
     (DO player setgoal 30000000 )
     (DO tutorial play tutorial1 )
     (DO guide draw node.node3 ) 
+    (DO monster.tentacle.1 spawn room.dinningroom )
     ;
 
-WHEN player:release
+WHEN player:release //explain debris
     if.flag.curt=1
     (DO tutorial play tutorial2 )
     (DO guide clear ) 
     flag.curt=2
     ;
 
-WHEN player:sweep
+WHEN player:sweep //spawn monster
     if.flag.curt=2
     wait.4
     (DO tutorial play tutorial3 )
-    (DO monster.tentacle.1 spawn room.dinningroom 5 )
+    (DO monster.tentacle.1 spawn room.dinningroom )
     (DO guide draw node.node13 ) 
     flag.curt=3
     ;
 
-WHEN monster.tentacle.1:die
+WHEN monster.tentacle.1:die //spawn bob
     if.flag.curt=3
     (DO tutorial play tutorial4 )
     (DO npc.normal.bob spawn )
@@ -29,20 +30,20 @@ WHEN monster.tentacle.1:die
     flag.curt=4
    ;
 
-WHEN npc.normal.bob:player.goto
+WHEN npc.normal.bob:player.goto //have bob go somewhere
     if.flag.curt=4
     (DO guide clear )
     (DO tutorial play tutorial5 )
     flag.curt=5
     ;
     
-WHEN npc.normal.bob:readytobuy
+WHEN npc.normal.bob:readytobuy //bob's ready to buy
     if.flag.curt=5
     (DO tutorial play tutorial6 )
     flag.curt=6
     ;
 
-WHEN npc.normal.bob:acceptoffer
+WHEN npc.normal.bob:acceptoffer //explain goal
     if.flag.curt=6
     (DO tutorial play tutorial7 )
     ;
