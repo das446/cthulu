@@ -32,7 +32,7 @@ public class ReadyToBuyMenu : MonoBehaviour {
 
         StartCoroutine(MoveCamera());
 
-        npc.resetAnimParams();
+        npc.ResetAnimParams();
         npc.animControl.SetBool("isTalking", true);
     }
 

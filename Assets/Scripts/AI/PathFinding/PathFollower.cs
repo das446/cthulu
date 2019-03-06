@@ -89,7 +89,7 @@ public class PathFollower : MonoBehaviour {
     }
 
     public Node ClosestNode(Vector3 v) {
-        return Node.ClosestNode(v);
+        return Node.ClosestUnblockedNode(v);
     }
 
     Node FarthestNode() {

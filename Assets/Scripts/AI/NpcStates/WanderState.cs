@@ -17,7 +17,7 @@ public class WanderState : NpcState {
         timeUntilMove = 0;
         Enter();
 
-        npc.resetAnimParams();
+        npc.ResetAnimParams();
     }
 
     public WanderState(Npc npc, float waitTime, List<Node> avoids) : base(npc) {
@@ -27,26 +27,26 @@ public class WanderState : NpcState {
         nodesToAvoid = avoids;
         Enter();
 
-        npc.resetAnimParams();
+        npc.ResetAnimParams();
     }
 
     public WanderState(Npc npc) : base(npc) {
         this.waitTime = 5;
         timeUntilMove = waitTime;
 
-        npc.resetAnimParams();
+        npc.ResetAnimParams();
     }
 
     public override void StateUpdate() {
         if (!npc.follower.moving) {
-            npc.resetAnimParams();
+            npc.ResetAnimParams();
             timeUntilMove -= Time.deltaTime;
         }
         if (timeUntilMove <= 0 && !npc.locked) {
             MoveToRandomNeighbor();
             timeUntilMove = waitTime;
 
-            npc.resetAnimParams();
+            npc.ResetAnimParams();
             npc.animControl.SetBool("isWalking", true);
         }
     }

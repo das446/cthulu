@@ -25,7 +25,7 @@ public class ChattingState : NpcState
         prevState = state;
         Enter();
 
-        npc.resetAnimParams();
+        npc.ResetAnimParams();
     }
 
     public ChattingState(Npc npc, Player player, Image timer, NpcState state) : base(npc)
@@ -38,7 +38,7 @@ public class ChattingState : NpcState
         prevState = state;
         Enter();
 
-        npc.resetAnimParams();
+        npc.ResetAnimParams();
     }
 
     public override void StateUpdate()

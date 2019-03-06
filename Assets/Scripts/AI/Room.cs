@@ -27,6 +27,9 @@ public class Room : MonoBehaviour {
     }
 
     void Start() {
+        if(nodes.Count==0){
+            Debug.LogWarning(name + " has no nodes");
+        }
         // if (writeFile) {
         //     string path = Application.streamingAssetsPath + "/Events/" + SceneManager.GetActiveScene().name + "/rooms.txt";
         //     List<string> names = rooms.Keys.ToList();

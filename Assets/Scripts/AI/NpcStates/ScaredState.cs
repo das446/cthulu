@@ -51,7 +51,7 @@ public class ScaredState : NpcState
         npc.SetMessage("!",Color.red);
         // npc.SetState(new LeaveState(npc, exit));
         
-        npc.resetAnimParams();
+        npc.ResetAnimParams();
         npc.PlayScreamSound();
         npc.animControl.SetBool("gotScared", true);
         // npc.animControl.SetBool("isScared", true);

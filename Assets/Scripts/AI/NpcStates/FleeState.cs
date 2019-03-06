@@ -32,7 +32,7 @@ public class FleeState : NpcState {
 
         npc.SetSpeed(x => x *= 2);
 
-        npc.resetAnimParams();
+        npc.ResetAnimParams();
         npc.animControl.SetBool("isScared", true);
         npc.SetState(new LeaveState(npc, exit));
         /* 

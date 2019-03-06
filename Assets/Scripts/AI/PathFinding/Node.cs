@@ -89,7 +89,7 @@ public class Node : MonoBehaviour {
 		}
 	}
 
-    public static Node ClosestNode(Vector3 v)
+    public static Node ClosestUnblockedNode(Vector3 v)
     {
         if (Node.Nodes.Count == 0) {
             Debug.Log("Node list empty");
@@ -98,6 +98,7 @@ public class Node : MonoBehaviour {
         float dis = Mathf.Infinity;
         Node closest = Node.Nodes[0];
         for (int i = 1; i < Node.Nodes.Count; i++) {
+			
             float d = Vector3.Distance(v, Node.Nodes[i].transform.position);
             if (d < dis) {
                 closest = Node.Nodes[i];

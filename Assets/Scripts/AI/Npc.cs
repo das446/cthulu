@@ -25,6 +25,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     [SerializeField] float speed;
     [SerializeField] float tolerance;
     [SerializeField] int money;
+    [SerializeField] float startInterest;
     public float interest;
     public float maxInterest = 100;
     [SerializeField] float baseInterest;
@@ -108,7 +109,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     public void Spawn() {
         Debug.Log(name + " spawn");
         Unlock();
-        resetAnimParams();
+        ResetAnimParams();
         SetMessage("");
         Active.Add(this);
         GoToNode(lobbyNode);
@@ -137,10 +138,9 @@ public class Npc : Interactable, IPickUpable, IManageable {
         int m = money;
         if (interest / maxInterest >= 1) {
             m *= 2;
-        } else if (interest / maxInterest >= 1.5f) {
+        } else if (interest / maxInterest >= 0.75f) {
             m = (int) (m * 1.5f);
         }
-
         p.ChangeMoney(m);
         SetMessage(happy, Color.yellow);
         SetState(new WanderState(this));
@@ -160,11 +160,10 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     void Update() {
         //* 
-        DebugMessage();
 
         bool seesMonsters = eyes.CheckMonsters().Count > 0;
 
-        if (interest >= 100 && !isBuying && !seesMonsters) // no buying when scared
+        if (InterestPercent() >= 1 && !isBuying && !seesMonsters) // no buying when scared
         {
             ReadyToBuy();
             isBuying = true;
@@ -402,7 +401,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
         }
     }
 
-    public void resetAnimParams() {
+    public void ResetAnimParams() {
         animControl.SetBool("isWalking", false);
         animControl.SetBool("isTalking", false);
         animControl.ResetTrigger("isSitting");
@@ -421,6 +420,10 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     void ResetStats() {
+        interest = startInterest;
+    }
 
+    public float InterestPercent(){
+        return (float) (interest) / (maxInterest);
     }
 }

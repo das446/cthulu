@@ -57,7 +57,7 @@ public class PathDrawer : MonoBehaviour, IManageable {
             ClearLines();
         } else if (de.action == "draw") {
             string node = de.args[0];
-            Node start = Node.ClosestNode(Player.singleton.transform.position);
+            Node start = Node.ClosestUnblockedNode(Player.singleton.transform.position);
             Node end = Node.Get(de.args[0]);
             Set(start, end);
         }

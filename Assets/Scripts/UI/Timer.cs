@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Only the server controls the timer, it sends the time to the clients timers 
 /// </summary>
-public class Timer : MonoBehaviour {
+public class Timer : MonoBehaviour, IManageable {
 
 
     public float timeLeft = 360;
@@ -34,6 +34,8 @@ public class Timer : MonoBehaviour {
 
     int prevMin;
     int prevSec;
+
+    public GameObject obj => gameObject;
 
     public void Start() {
         startTime = timeLeft;
@@ -89,4 +91,10 @@ public class Timer : MonoBehaviour {
         return startTime - timeLeft;
     }
 
+    public void Do(DoEvent de)
+    {
+        if(de.action=="set"){
+            timeLeft = Int32.Parse(de.args[0]);
+        }
+    }
 }

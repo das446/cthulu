@@ -24,7 +24,7 @@ public class MoveTowardsState : NpcState {
         SetFollower(target);
         PathFollower.ReachNode += ReachTarget;
         
-        npc.resetAnimParams();
+        npc.ResetAnimParams();
         npc.animControl.SetBool("isWalking", true);
     }
 
