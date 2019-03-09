@@ -1,5 +1,7 @@
 WHEN time:1
     flag.curt=1
+    (DO npc.normal.david spawn )
+    (DO npc.normal.david goto room.kitchen )
     (DO player setgoal 30000000 )
     (DO tutorial play tutorial1 )
     (DO guide draw node.node3 ) 

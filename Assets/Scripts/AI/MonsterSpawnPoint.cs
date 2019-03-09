@@ -8,9 +8,10 @@ public class MonsterSpawnPoint : MonoBehaviour {
 
     public static Dictionary<string, MonsterSpawnPoint> spawns = new Dictionary<string, MonsterSpawnPoint>();
 
-
-    void Awake(){
-        spawns.Add(name,this);
+    void Awake() {
+        if (!spawns.ContainsKey(name)) {
+            spawns.Add(name, this);
+        }
     }
 
     public bool CanSpawn() {
