@@ -29,7 +29,7 @@ namespace Cthulu.Events {
 
         void Awake() {
             singleton = this;
-            fileName = PlayerPrefs.GetString("lvl","Tutorial");
+            fileName = PlayerPrefs.GetString("lvl","tutorial");
             ReadFile();
             if (printToFile) {
                 PrintManageablesToFile();
@@ -39,6 +39,7 @@ namespace Cthulu.Events {
         void ReadFile() {
             string path = Application.streamingAssetsPath + "/Events/";
             string f = path + fileName+".txt";
+            Debug.Log(f);
             string[] lines = System.IO.File.ReadAllLines(f);
             List<string> newLine = new List<string>();
             bool comment = false;
