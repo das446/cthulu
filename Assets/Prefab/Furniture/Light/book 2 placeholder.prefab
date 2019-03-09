@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1761505152370642223}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 11.426976, y: 4.08, z: 20.38}
+  m_LocalScale: {x: 50.762985, y: 18.124916, z: 90.535736}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6aaf31bb445c102409d481adf2a7cc02, type: 3}
+  - {fileID: 2100000, guid: 21651b8d637822f419ee9e1e67cc0ced, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,12 +110,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   o: {fileID: 4166501538431652463}
-  weight: 0
+  Weight: 1
+  resTimer: 0
+  countdown: 0
   health: 0
   startPos: {x: 0, y: 0, z: 0}
   rb: {fileID: 1923221864765756894}
   col: {fileID: 7575680751035440040}
   debris: {fileID: 0}
+  throwDmg: 10
 --- !u!65 &7575680751035440040
 BoxCollider:
   m_ObjectHideFlags: 0
