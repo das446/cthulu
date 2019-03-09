@@ -120,7 +120,7 @@ namespace Cthulu.Events {
         }
 
         public static void When(string caller, string function) {
-            if (singleton == null) { Debug.LogWarning("No instance of GameMAnager"); return; }
+            if (singleton == null) { Debug.LogWarning("No instance of GameManager"); return; }
             if (!singleton.enabled) { return; }
 
             string name = caller + seperator + function;

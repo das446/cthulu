@@ -6,7 +6,12 @@ public class MonsterSpawnPoint : MonoBehaviour {
 
     [SerializeField] Monster curMonster;
 
-    // Start is called before the first frame update
+    public static Dictionary<string, MonsterSpawnPoint> spawns = new Dictionary<string, MonsterSpawnPoint>();
+
+
+    void Awake(){
+        spawns.Add(name,this);
+    }
 
     public bool CanSpawn() {
         return curMonster == null;
