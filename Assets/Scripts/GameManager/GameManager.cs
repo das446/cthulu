@@ -25,12 +25,11 @@ namespace Cthulu.Events {
         static GameManager singleton;
         static string seperator = ":";
         public string fileName = "EVENTS.txt";
-
         [SerializeField] bool printToFile;
 
         void Awake() {
             singleton = this;
-
+            fileName = PlayerPrefs.GetString("lvl","Tutorial");
             ReadFile();
             if (printToFile) {
                 PrintManageablesToFile();
@@ -38,7 +37,7 @@ namespace Cthulu.Events {
         }
 
         void ReadFile() {
-            string path = Application.streamingAssetsPath + "/Events/" + SceneManager.GetActiveScene().name + "/";
+            string path = Application.streamingAssetsPath + "/Events/";
             string f = path + fileName;
             string[] lines = System.IO.File.ReadAllLines(f);
             List<string> newLine = new List<string>();
