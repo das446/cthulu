@@ -9,7 +9,7 @@ public class Room : MonoBehaviour {
     public List<Furniture> furniture;
 
     [SerializeField] List<Node> nodes;
-    [SerializeField] List<MonsterSpawnPoint> spawnPoints;
+    public List<MonsterSpawnPoint> spawnPoints;
     public List<Portal> portals;
 
     public static Dictionary<string, Room> rooms = new Dictionary<string, Room>();

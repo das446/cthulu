@@ -37,6 +37,10 @@ public class Timer : MonoBehaviour, IManageable {
 
     public GameObject obj => gameObject;
 
+    void Awake(){
+        this.AddToManager();
+    }
+
     public void Start() {
         startTime = timeLeft;
     }

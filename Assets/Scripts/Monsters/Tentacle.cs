@@ -6,12 +6,15 @@ using Cthulu.Events;
 using UnityEngine;
 
 public class Tentacle : Monster, ICanHold {
-    [SerializeField] Portal portal;
-    [SerializeField] IPickUpable held;
+    IPickUpable held;
     [SerializeField] float range;
     [SerializeField] BoxCollider hitbox;
     [SerializeField] Transform hand;
     [SerializeField] float power;
+    float tentacleLength = 2;
+    [SerializeField] float speed;
+
+    public GameObject tentacle;
 
     public Transform Hand => hand;
 
@@ -28,19 +31,18 @@ public class Tentacle : Monster, ICanHold {
 
     public Vector3 GetThrowDir() {
         //throw at NPC or player
-        return transform.forward * power;
+        float x = UnityEngine.Random.Range(-1f, 1f);
+        return (transform.right * x) + (transform.forward * power);
     }
 
-    public override void OnSpawn() {
-        SetCollider();
-    }
-
-    void SetCollider() {
+    void UpdateHitbox() {
+        float visible = tentacleLength + tentacle.transform.localPosition.x;
         Vector3 center = hitbox.center;
         Vector3 bounds = hitbox.size;
-        center.x = range / 2;
-        bounds.x = range;
+        center.x = visible / 2;
+        bounds.x = visible;
         bounds.z = range;
+        bounds.y = range;
         hitbox.center = center;
         hitbox.size = bounds;
 
@@ -71,36 +73,69 @@ public class Tentacle : Monster, ICanHold {
 
     public override void Do(DoEvent de) {
         if (de.action == "spawn") {
-            string arg = de.args[0];
-            Room r;
-            if (arg.Contains("|")) {
-                string room = arg;
-                room = arg.Split('|') [0] + arg.Split('|').Slice(1, -1).RandomItem();
-                r = Room.GetRoom(room);
-            } else {
-                r = Room.GetRoom(de.args[0]);
+            if (de.args[0] == "room") {
+                SpawnInRoom(de);
+            } else if (de.args[0] == "spawn") {
+                SpawnAtPoint(de);
             }
 
-            if (de.args.Length > 1) {
-                int delay = Int32.Parse(de.args[1]);
-                SpawnPortal(r, delay);
-            } else {
-                SpawnPortal(r);
-            }
         }
     }
 
-    Portal SpawnPortal(Room r) {
-        Portal p = (Portal) r.SpawnAtRandom(portal);
-        p.monsterBase = this;
-        p.StartCoroutine(p.SpawnTentacle());
-        return p;
+    private void SpawnInRoom(DoEvent de) {
+        string arg = de.args[0];
+        Room r;
+        if (arg.Contains("|")) {
+            string room = arg;
+            room = arg.Split('|') [0] + arg.Split('|').Slice(1, -1).RandomItem();
+            r = Room.GetRoom(room);
+        } else {
+            r = Room.GetRoom(de.args[0]);
+        }
+        Transform t = r.spawnPoints.RandomItem().transform;
+        transform.position = t.position;
+        transform.rotation = t.rotation;
+        OnSpawn();
     }
 
-    Portal SpawnPortal(Room r, int delay) {
-        Portal p = (Portal) r.SpawnAtRandom(portal);
-        p.monsterBase = this;
-        p.StartCoroutine(p.SpawnTentacle(delay));
-        return p;
+    private void SpawnAtPoint(DoEvent de) {
+        string arg = de.args[0];
+        MonsterSpawnPoint msp;
+        if (arg.Contains("|")) {
+            string spawn = arg;
+            spawn = arg.Split('|') [0] + arg.Split('|').Slice(1, -1).RandomItem();
+            msp = MonsterSpawnPoint.spawns[spawn];
+        } else {
+            msp = MonsterSpawnPoint.spawns[de.args[0]];
+        }
+        Transform t = msp.transform;
+        transform.position = t.position;
+        transform.rotation = t.rotation;
+        OnSpawn();
+    }
+
+    public override void Die() {
+        base.Die();
+        Vector3 v = tentacle.transform.position;
+        v.x = tentacleLength;
+        tentacle.transform.position = v;
+        StopAllCoroutines();
+    }
+
+    public override void OnSpawn() {
+        base.OnSpawn();
+        StartCoroutine(MoveOut());
+    }
+
+    private IEnumerator MoveOut() {
+        Debug.Log("MoveOut");
+        WaitForEndOfFrame f = new WaitForEndOfFrame();
+        while (tentacle.transform.localPosition.x < tentacleLength) {
+            Vector3 v = tentacle.transform.localPosition;
+            v.x += Time.deltaTime * speed;
+            tentacle.transform.localPosition = v;
+            UpdateHitbox();
+            yield return f;
+        }
     }
 }
