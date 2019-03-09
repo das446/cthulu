@@ -73,9 +73,9 @@ public class Tentacle : Monster, ICanHold {
 
     public override void Do(DoEvent de) {
         if (de.action == "spawn") {
-            if (de.args[0] == "room") {
+            if (de.args[0].StartsWith("room.")) {
                 SpawnInRoom(de);
-            } else if (de.args[0] == "spawn") {
+            } else if (de.args[0].StartsWith("spawn.")) {
                 SpawnAtPoint(de);
             }
 
