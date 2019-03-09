@@ -1,5 +1,108 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &178742447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 178742449}
+  - component: {fileID: 178742448}
+  m_Layer: 0
+  m_Name: Node12 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &178742449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178742447}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.87, y: 0, z: 3.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5591671954737953451}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &178742448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178742447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0693e508d69224a8a35b4ff493f194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbors:
+  - {fileID: 5591671955290823208}
+  - {fileID: 5591671954950895425}
+  prefab: {fileID: 0}
+  draw: 1
+  lineThickness: 0.5
+  id: 0
+  interestMultiplier: 1
+--- !u!1 &1755025582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1755025583}
+  - component: {fileID: 1755025584}
+  m_Layer: 0
+  m_Name: Node12 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &1755025583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755025582}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.71, y: 0, z: 4.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5591671954737953451}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1755025584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755025582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0693e508d69224a8a35b4ff493f194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbors:
+  - {fileID: 5591671955290823208}
+  - {fileID: 178742448}
+  - {fileID: 0}
+  prefab: {fileID: 0}
+  draw: 1
+  lineThickness: 0.5
+  id: 0
+  interestMultiplier: 1
 --- !u!1 &351118937903985288
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,7 +117,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1813495135005432496
 Transform:
@@ -51,7 +154,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8521427661279379863
 Transform:
@@ -81,6 +184,120 @@ Transform:
   m_Father: {fileID: 5591671954937903711}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &693487323649333940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4655449798529586578}
+  - component: {fileID: 6986503463706489394}
+  m_Layer: 0
+  m_Name: Spawn.DiningRoom.South
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: 3439acf7ed9b4c44ea507a5691c6e4ee, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4655449798529586578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693487323649333940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.666, y: 5.04, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1611236872274797913}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6986503463706489394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693487323649333940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b05f810dfc7e638409e8c71bb89d533c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curMonster: {fileID: 0}
+--- !u!65 &2015306885
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409556381393542758}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 374.1105, y: 144.88126, z: 201.90018}
+  m_Center: {x: 0, y: -0.0000038146973, z: -0.0000038146973}
+--- !u!65 &5598006560980724171
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409556381393542758}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 374.1105, y: 144.88126, z: 201.90018}
+  m_Center: {x: 0, y: -0.0000038146973, z: -0.0000038146973}
+--- !u!1 &2560175762268144721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7799640088105949734}
+  - component: {fileID: 7239908860733664850}
+  m_Layer: 0
+  m_Name: Spawn.DiningRoom.North
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: 3439acf7ed9b4c44ea507a5691c6e4ee, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7799640088105949734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560175762268144721}
+  m_LocalRotation: {x: -0.00092559936, y: -0.70710623, z: 0.00092559936, w: 0.70710623}
+  m_LocalPosition: {x: 0.17, y: 5.25, z: -4.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1611236872274797913}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0.15}
+--- !u!114 &7239908860733664850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560175762268144721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b05f810dfc7e638409e8c71bb89d533c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curMonster: {fileID: 0}
 --- !u!1 &3813002391197226996
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +312,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5809887838059024482
 Transform:
@@ -118,6 +335,38 @@ Transform:
   m_Father: {fileID: 5884081615742108830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4193604556228573323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611236872274797913}
+  m_Layer: 0
+  m_Name: DinningRoomSpawns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611236872274797913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4193604556228573323}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.9556046, y: -3, z: -1.0401764}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7799640088105949734}
+  - {fileID: 4655449798529586578}
+  m_Father: {fileID: 5591671954937903711}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4478567472639287969
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +381,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5884081615742108830
 Transform:
@@ -167,7 +416,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5591671953371092709
 Transform:
@@ -177,7 +426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5591671953371092710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.75, y: 0, z: -3.57}
+  m_LocalPosition: {x: 3.88, y: 0, z: -3.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5591671954737953451}
@@ -222,7 +471,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &5591671953538390511
 Transform:
@@ -538,7 +787,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &5591671953780180712
 Transform:
@@ -846,7 +1095,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &5591671954691233157
 Transform:
@@ -1162,7 +1411,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &5591671954702107181
 Transform:
@@ -1474,7 +1723,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5591671954737953451
 Transform:
@@ -1490,6 +1739,8 @@ Transform:
   - {fileID: 5591671955290823207}
   - {fileID: 5591671954950895424}
   - {fileID: 5591671953371092709}
+  - {fileID: 178742449}
+  - {fileID: 1755025583}
   m_Father: {fileID: 5591671954937903711}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1508,7 +1759,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5591671954937903711
 Transform:
@@ -1531,6 +1782,7 @@ Transform:
   - {fileID: 8521427661279379863}
   - {fileID: 2384674228050074230}
   - {fileID: 7406066325888882999}
+  - {fileID: 1611236872274797913}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1551,7 +1803,11 @@ MonoBehaviour:
   - {fileID: 5591671955290823208}
   - {fileID: 5591671954950895425}
   - {fileID: 5591671953371092708}
-  spawnPoints: []
+  - {fileID: 178742448}
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   portals: []
 --- !u!1 &5591671954950895426
 GameObject:
@@ -1568,7 +1824,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5591671954950895424
 Transform:
@@ -1597,7 +1853,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbors:
-  - {fileID: 5591671955290823208}
   - {fileID: 5591671953371092708}
   prefab: {fileID: 0}
   draw: 1
@@ -1619,7 +1874,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5591671955290823207
 Transform:
@@ -1629,7 +1884,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5591671955290823209}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.75, y: 0, z: 2.73}
+  m_LocalPosition: {x: 3.85, y: 0, z: 2.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5591671954737953451}
@@ -1647,9 +1902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0693e508d69224a8a35b4ff493f194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neighbors:
-  - {fileID: 0}
-  - {fileID: 5591671954950895425}
+  neighbors: []
   prefab: {fileID: 0}
   draw: 1
   lineThickness: 0.5
@@ -1673,7 +1926,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &5591671955357227420
 Transform:
@@ -2204,7 +2457,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4509780434751903371
 Transform:
@@ -2241,7 +2494,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1981291996218367767
 Transform:
@@ -2274,6 +2527,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OBJ_EndTable_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101354192432967726, guid: c4df01b724b615044914dfd9158e7360,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5673629969004457583, guid: c4df01b724b615044914dfd9158e7360,
         type: 3}
@@ -2360,11 +2618,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5809887838059024482}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2420,6 +2673,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &2397946788130601922 stripped
@@ -2435,11 +2693,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5809887838059024482}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2504,6 +2757,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
@@ -2585,25 +2843,30 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 2338542674128010013, guid: db437d590b70de1428ce014401a72871,
+    - target: {fileID: 2220098455776266843, guid: db437d590b70de1428ce014401a72871,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.62615424
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2338542674128010013, guid: db437d590b70de1428ce014401a72871,
+    - target: {fileID: 2220098455776266843, guid: db437d590b70de1428ce014401a72871,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2338542674128010013, guid: db437d590b70de1428ce014401a72871,
+    - target: {fileID: 2220098455776266843, guid: db437d590b70de1428ce014401a72871,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7796992
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2338542674128010013, guid: db437d590b70de1428ce014401a72871,
+    - target: {fileID: 2220098455776266843, guid: db437d590b70de1428ce014401a72871,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 77.534004
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134226770167436785, guid: db437d590b70de1428ce014401a72871,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.96
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db437d590b70de1428ce014401a72871, type: 3}
@@ -2695,11 +2958,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4509780434751903371}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2755,6 +3013,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &3077038931752831769 stripped
@@ -2770,11 +3033,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5809887838059024482}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2839,6 +3097,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
@@ -2920,6 +3183,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2220098455776266843, guid: db437d590b70de1428ce014401a72871,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220098455776266843, guid: db437d590b70de1428ce014401a72871,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db437d590b70de1428ce014401a72871, type: 3}
 --- !u!4 &7793268402263100946 stripped
@@ -2939,6 +3212,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DinningRoomWall_Door_4m
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563643048432757158, guid: d180b0909f5db5a4e8f5c1db284cd84d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 233183857033159875, guid: d180b0909f5db5a4e8f5c1db284cd84d,
         type: 3}
@@ -2995,6 +3273,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3133115020014874784, guid: d180b0909f5db5a4e8f5c1db284cd84d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133115020014874786, guid: d180b0909f5db5a4e8f5c1db284cd84d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133115020014874788, guid: d180b0909f5db5a4e8f5c1db284cd84d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d180b0909f5db5a4e8f5c1db284cd84d, type: 3}
 --- !u!4 &1233340757535479429 stripped
@@ -3010,11 +3303,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4509780434751903371}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3070,6 +3358,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &4576203201550055099 stripped
@@ -3085,11 +3378,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1813495135005432496}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3145,6 +3433,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &449178675131097690 stripped
@@ -3160,11 +3453,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4509780434751903371}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3220,6 +3508,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &516275814461496728 stripped
@@ -3235,11 +3528,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4509780434751903371}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3295,6 +3583,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &304279947917448876 stripped
@@ -3310,11 +3603,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_Name
-      value: KitchenChair 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3323,7 +3611,7 @@ PrefabInstance:
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.355
       objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
@@ -3370,20 +3658,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_Name
+      value: KitchenChair 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4007ec006c1994fa675bf356fa6509, type: 3}
@@ -3475,11 +3758,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5809887838059024482}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3535,6 +3813,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &1095946335696635820 stripped
@@ -3550,11 +3833,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 9031768777112107767, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
-        type: 3}
-      propertyPath: m_Name
-      value: candlestick 2 placeholder (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 5370541512417154692, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3563,7 +3841,7 @@ PrefabInstance:
     - target: {fileID: 5370541512417154692, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.805
+      value: 1.871
       objectReference: {fileID: 0}
     - target: {fileID: 5370541512417154692, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
         type: 3}
@@ -3625,6 +3903,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9970999
       objectReference: {fileID: 0}
+    - target: {fileID: 9031768777112107767, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
+        type: 3}
+      propertyPath: m_Name
+      value: candlestick 2 placeholder (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9031768777112107767, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8279bd69ff1f38d4d9066cdf32bafd36, type: 3}
 --- !u!4 &7185040361582710538 stripped
@@ -3644,6 +3932,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DinningRoomWall_Straight_5m
+      objectReference: {fileID: 0}
+    - target: {fileID: 280667147428467842, guid: 779103e689a62bc46a609d763ad67dec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1030995317715537124, guid: 779103e689a62bc46a609d763ad67dec,
         type: 3}
@@ -3700,6 +3993,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7006800915806260196, guid: 779103e689a62bc46a609d763ad67dec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006800915806260192, guid: 779103e689a62bc46a609d763ad67dec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006800915806260198, guid: 779103e689a62bc46a609d763ad67dec,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006800915808195878, guid: 779103e689a62bc46a609d763ad67dec,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 779103e689a62bc46a609d763ad67dec, type: 3}
 --- !u!4 &4551665224308710857 stripped
@@ -3715,11 +4028,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 6648903153705052784, guid: 1106d39514d276c49b75baa86d9351be,
-        type: 3}
-      propertyPath: m_Name
-      value: placeholder_GrandfatherClock_v03 (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 3936894953157639480, guid: 1106d39514d276c49b75baa86d9351be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3790,6 +4098,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.01322
       objectReference: {fileID: 0}
+    - target: {fileID: 6648903153705052784, guid: 1106d39514d276c49b75baa86d9351be,
+        type: 3}
+      propertyPath: m_Name
+      value: placeholder_GrandfatherClock_v03 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6648903153705052784, guid: 1106d39514d276c49b75baa86d9351be,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2183801337123691941, guid: 1106d39514d276c49b75baa86d9351be,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -3835,25 +4153,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_Name
-      value: KitchenChair 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6622205
+      value: -4.939
       objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.355
       objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.81248
+      value: -0.806
       objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
@@ -3895,20 +4208,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_Name
+      value: KitchenChair 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4007ec006c1994fa675bf356fa6509, type: 3}
@@ -3929,6 +4237,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HallwayWall_DoorSmall_2m
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491963972334410646, guid: d4c2c7dab057d2b42949043d799bc7db,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7043983826569806231, guid: d4c2c7dab057d2b42949043d799bc7db,
         type: 3}
@@ -3985,6 +4298,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 215960743872627243, guid: d4c2c7dab057d2b42949043d799bc7db,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4c2c7dab057d2b42949043d799bc7db, type: 3}
 --- !u!4 &6284739002008592130 stripped
@@ -4000,11 +4318,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_Name
-      value: KitchenChair 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4013,7 +4326,7 @@ PrefabInstance:
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.355
       objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
@@ -4060,20 +4373,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_Name
+      value: KitchenChair 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4007ec006c1994fa675bf356fa6509, type: 3}
@@ -4094,6 +4402,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HallwayWall_DoorSmall_2m
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491963972334410646, guid: d4c2c7dab057d2b42949043d799bc7db,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7043983826569806231, guid: d4c2c7dab057d2b42949043d799bc7db,
         type: 3}
@@ -4150,6 +4463,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 215960743872627243, guid: d4c2c7dab057d2b42949043d799bc7db,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4c2c7dab057d2b42949043d799bc7db, type: 3}
 --- !u!4 &6450206738706191051 stripped
@@ -4165,11 +4483,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_Name
-      value: KitchenChair 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4178,7 +4491,7 @@ PrefabInstance:
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.355
       objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
@@ -4225,20 +4538,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_Name
+      value: KitchenChair 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4007ec006c1994fa675bf356fa6509, type: 3}
@@ -4255,11 +4563,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1813495135005432496}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4315,6 +4618,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &7422608584528033096 stripped
@@ -4330,11 +4638,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4509780434751903371}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4390,6 +4693,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &7222846076342740351 stripped
@@ -4405,11 +4713,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5591671954937903711}
     m_Modifications:
-    - target: {fileID: 6122148382989874805, guid: 5306cbb572ce5c04dac1bf4f65b6f46b,
-        type: 3}
-      propertyPath: m_Name
-      value: OBJ_VaseB_01
-      objectReference: {fileID: 0}
     - target: {fileID: 7254018648698353171, guid: 5306cbb572ce5c04dac1bf4f65b6f46b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4464,6 +4767,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122148382989874805, guid: 5306cbb572ce5c04dac1bf4f65b6f46b,
+        type: 3}
+      propertyPath: m_Name
+      value: OBJ_VaseB_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122148382989874805, guid: 5306cbb572ce5c04dac1bf4f65b6f46b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5306cbb572ce5c04dac1bf4f65b6f46b, type: 3}
@@ -4555,11 +4868,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1981291996218367767}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4625,6 +4933,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &7583430970845419883 stripped
@@ -4640,11 +4953,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4509780434751903371}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4700,6 +5008,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &8409847361781634909 stripped
@@ -4715,11 +5028,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_Name
-      value: KitchenChair 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4728,7 +5036,7 @@ PrefabInstance:
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.355
       objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
@@ -4775,20 +5083,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_Name
+      value: KitchenChair 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4007ec006c1994fa675bf356fa6509, type: 3}
@@ -4809,6 +5112,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OBJ_VaseA_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880022997720182502, guid: 604b929c1d0ae3e4e9b6a59ee5c45002,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3509978116009383079, guid: 604b929c1d0ae3e4e9b6a59ee5c45002,
         type: 3}
@@ -4880,11 +5188,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 9031768777112107767, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
-        type: 3}
-      propertyPath: m_Name
-      value: candlestick 2 placeholder (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 5370541512417154692, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4893,7 +5196,7 @@ PrefabInstance:
     - target: {fileID: 5370541512417154692, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.805
+      value: 1.871
       objectReference: {fileID: 0}
     - target: {fileID: 5370541512417154692, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
         type: 3}
@@ -4955,6 +5258,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.9970999
       objectReference: {fileID: 0}
+    - target: {fileID: 9031768777112107767, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
+        type: 3}
+      propertyPath: m_Name
+      value: candlestick 2 placeholder (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9031768777112107767, guid: 8279bd69ff1f38d4d9066cdf32bafd36,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8279bd69ff1f38d4d9066cdf32bafd36, type: 3}
 --- !u!4 &1686448108285420617 stripped
@@ -4970,11 +5283,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5809887838059024482}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5030,6 +5338,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m
+      objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539967844767743716, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923287896272424712, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069185685669033724, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7376249538806288939, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602492904829115276, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &5056099539608853019 stripped
@@ -5045,11 +5388,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1813495135005432496}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5105,6 +5443,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &4832150488940612197 stripped
@@ -5120,11 +5463,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_Name
-      value: KitchenChair 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5133,7 +5471,7 @@ PrefabInstance:
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.355
       objectReference: {fileID: 0}
     - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
@@ -5180,20 +5518,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_Name
+      value: KitchenChair 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
+    - target: {fileID: 7894326518903751447, guid: 9a4007ec006c1994fa675bf356fa6509,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3156031493883299354, guid: 9a4007ec006c1994fa675bf356fa6509,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4007ec006c1994fa675bf356fa6509, type: 3}
@@ -5210,11 +5543,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 5401117901980215373, guid: 670d2544ed26011428b51ab837a1bc3d,
-        type: 3}
-      propertyPath: m_Name
-      value: KitchenTable (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3825620630176090443, guid: 670d2544ed26011428b51ab837a1bc3d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5275,11 +5603,37 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.4909999
       objectReference: {fileID: 0}
+    - target: {fileID: 5401117901980215373, guid: 670d2544ed26011428b51ab837a1bc3d,
+        type: 3}
+      propertyPath: m_Name
+      value: KitchenTable (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401117901980215373, guid: 670d2544ed26011428b51ab837a1bc3d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845300332053120718, guid: 670d2544ed26011428b51ab837a1bc3d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893571017568275249, guid: 670d2544ed26011428b51ab837a1bc3d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 670d2544ed26011428b51ab837a1bc3d, type: 3}
 --- !u!4 &6770275860726963228 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3825620630176090443, guid: 670d2544ed26011428b51ab837a1bc3d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7558042619776144727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1409556381393542758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8893571017568275249, guid: 670d2544ed26011428b51ab837a1bc3d,
     type: 3}
   m_PrefabInstance: {fileID: 7558042619776144727}
   m_PrefabAsset: {fileID: 0}
@@ -5290,11 +5644,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4509780434751903371}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5350,6 +5699,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &5531082472656028953 stripped
@@ -5365,11 +5719,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1981291996218367767}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5425,6 +5774,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &5336048782087916133 stripped
@@ -5440,11 +5794,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 6249121273732222100, guid: 5c8322cefbae288429f03021c3f2e5b5,
-        type: 3}
-      propertyPath: m_Name
-      value: OBJ_Nightstand_01 (8)
-      objectReference: {fileID: 0}
     - target: {fileID: 7143055480583382370, guid: 5c8322cefbae288429f03021c3f2e5b5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5453,7 +5802,7 @@ PrefabInstance:
     - target: {fileID: 7143055480583382370, guid: 5c8322cefbae288429f03021c3f2e5b5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.79
       objectReference: {fileID: 0}
     - target: {fileID: 7143055480583382370, guid: 5c8322cefbae288429f03021c3f2e5b5,
         type: 3}
@@ -5515,6 +5864,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5.2531476
       objectReference: {fileID: 0}
+    - target: {fileID: 6249121273732222100, guid: 5c8322cefbae288429f03021c3f2e5b5,
+        type: 3}
+      propertyPath: m_Name
+      value: OBJ_Nightstand_01 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6249121273732222100, guid: 5c8322cefbae288429f03021c3f2e5b5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c8322cefbae288429f03021c3f2e5b5, type: 3}
 --- !u!4 &1945073101574343495 stripped
@@ -5530,11 +5889,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5809887838059024482}
     m_Modifications:
-    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
-        type: 3}
-      propertyPath: m_Name
-      value: DinningRoomWall_Straight_1m Variant
-      objectReference: {fileID: 0}
     - target: {fileID: 2749904859716719262, guid: ba6e7661e6a12694f9b374a76fb88437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5590,6 +5944,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663171565407533200, guid: ba6e7661e6a12694f9b374a76fb88437,
+        type: 3}
+      propertyPath: m_Name
+      value: DinningRoomWall_Straight_1m Variant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6e7661e6a12694f9b374a76fb88437, type: 3}
 --- !u!4 &6697146332052297178 stripped
@@ -5605,11 +5964,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 5628215471669188247, guid: d8708254b5bae1a4fbebb4c182e0b6f0,
-        type: 3}
-      propertyPath: m_Name
-      value: placeholder_BarStool_v01 (8)
-      objectReference: {fileID: 0}
     - target: {fileID: 5915744848644438412, guid: d8708254b5bae1a4fbebb4c182e0b6f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5665,6 +6019,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5628215471669188247, guid: d8708254b5bae1a4fbebb4c182e0b6f0,
+        type: 3}
+      propertyPath: m_Name
+      value: placeholder_BarStool_v01 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628215471669188247, guid: d8708254b5bae1a4fbebb4c182e0b6f0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8708254b5bae1a4fbebb4c182e0b6f0, type: 3}
 --- !u!4 &3176123793378376110 stripped
@@ -5680,11 +6044,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8521427661279379863}
     m_Modifications:
-    - target: {fileID: 7202548062206704482, guid: 7359306e7d8c76948bf3406e6078704c,
-        type: 3}
-      propertyPath: m_Name
-      value: StandingLamp_v01 (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 2214511389752227276, guid: 7359306e7d8c76948bf3406e6078704c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5754,6 +6113,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 3.22747
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202548062206704482, guid: 7359306e7d8c76948bf3406e6078704c,
+        type: 3}
+      propertyPath: m_Name
+      value: StandingLamp_v01 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202548062206704482, guid: 7359306e7d8c76948bf3406e6078704c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582966741453505641, guid: 7359306e7d8c76948bf3406e6078704c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757498883382694214, guid: 7359306e7d8c76948bf3406e6078704c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 9032340922616397616, guid: 7359306e7d8c76948bf3406e6078704c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306752001637164524, guid: 7359306e7d8c76948bf3406e6078704c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677411887700665343, guid: 7359306e7d8c76948bf3406e6078704c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7359306e7d8c76948bf3406e6078704c, type: 3}
