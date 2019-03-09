@@ -87,8 +87,8 @@ public class Timer : MonoBehaviour, IManageable {
     }
 
     void UpdateDisplay(float t) {
-        float elapsed = 360f * elapsedTime / maxTime;
-        clockHand.transform.eulerAngles = new Vector3(0, 0, -elapsed);
+        float percent = 0.42f * elapsedTime / maxTime;
+        mask.fillAmount = percent;
     }
 
     public void Do(DoEvent de) {

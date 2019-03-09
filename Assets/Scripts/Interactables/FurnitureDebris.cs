@@ -21,7 +21,7 @@ public class FurnitureDebris : Interactable, IEvaluated {
 
     void Start() {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity)) {
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity)) {
             Vector3 v = hit.point;
             transform.position = v;
             Debug.Log(v);
@@ -33,7 +33,10 @@ public class FurnitureDebris : Interactable, IEvaluated {
     IEnumerator CleanUp(Player p) {
         p.Lock();
         GameObject s = Instantiate(sweep, transform.position, transform.rotation);
-        s.transform.position = transform.position;
+        s.transform.parent = transform;
+        s.transform.localPosition = Vector3.zero;
+        Debug.Log(transform.position);
+        Debug.Log(s.transform.position);
         gameObject.PlaySound(sweepsound);
         //s.transform.Rotate(0, 90, 0);
         yield return new WaitForSeconds(delay);
