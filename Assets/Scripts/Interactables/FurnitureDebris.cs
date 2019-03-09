@@ -32,9 +32,10 @@ public class FurnitureDebris : Interactable, IEvaluated {
     //The Clean Up Script
     IEnumerator CleanUp(Player p) {
         p.Lock();
-        GameObject s = Instantiate(sweep, transform.position, p.transform.rotation);
+        GameObject s = Instantiate(sweep, transform.position, transform.rotation);
+        s.transform.position = transform.position;
         gameObject.PlaySound(sweepsound);
-        s.transform.Rotate(0, 90, 0);
+        //s.transform.Rotate(0, 90, 0);
         yield return new WaitForSeconds(delay);
         p.Unlock();
         Destroy(s);

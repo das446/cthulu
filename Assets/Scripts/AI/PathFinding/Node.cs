@@ -27,7 +27,11 @@ public class Node : MonoBehaviour {
 		id = Nodes.Count;
 		Nodes.Add(this);
 		foreach (Node neighbor in neighbors) {
-			if (!neighbor.neighbors.Contains(this)) {
+			if(neighbor==null){}
+			else if(neighbor.neighbors==null){
+
+			}
+			else if (!neighbor.neighbors.Contains(this)) {
 				neighbor.neighbors.Add(this);
 			}
 			// if (draw) {
