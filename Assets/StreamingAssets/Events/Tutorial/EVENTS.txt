@@ -1,7 +1,7 @@
 WHEN time:1
     flag.curt=1
     (DO npc.normal.david spawn )
-    (DO npc.normal.david.subs play NerdGreeting )
+    (DO npc.normal.david.subs play PoshGreeting )
     (DO npc.normal.david goto room.kitchen )
     (DO monster.tentacle.1 spawn room.kitchen )
     (DO player setgoal 30000000 )
@@ -54,4 +54,14 @@ WHEN npc.normal.bob:acceptoffer
     (DO npc.normal.bob.subs play PoshPurchase )
     ;
 
+WHEN npc.normal.bob:GetScared
+    if.flag.curt=2
+    (DO npc.normal.bob.subs play PoshScream)
+    flag.curt=3
+    ;
 
+WHEN npc.normal.david:GetScared
+    if.flag.curt=2
+    (DO npc.normal.david.subs play PoshScream)
+    flag.curt=3
+    ;
