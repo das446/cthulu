@@ -64,6 +64,7 @@ public class Tentacle : Monster, ICanHold {
         //     PickUp(npc);
         //     StartCoroutine(DelayThrow(10));
         // }
+        Debug.Log("Hit something");
     }
 
     IEnumerator DelayThrow(float delay) {

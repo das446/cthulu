@@ -60,7 +60,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public List<Node> nodesToAvoid;
 
-    public DeadNpc ragdollVersion;
+    public GameObject ragdollVersion;
 
     public bool isDead;
 
@@ -175,6 +175,10 @@ public class Npc : Interactable, IPickUpable, IManageable {
         }
 
         curState?.StateUpdate();
+
+        if(isDead){
+            Die();
+        }
 
     }
 
@@ -328,7 +332,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public void Die(ICanHold h) {
         GameManager.When(name, "die");
-        SetState(new DeadState(this, ragdollVersion, h));
+        SetState(new DeadState(this, null, h));
     }
 
     public void SetMessage(string s, Color c) {

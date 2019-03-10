@@ -90,7 +90,7 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange)) {
                 Interactable i = hit.collider.gameObject.GetComponent<Interactable>();
-                i?.Interact(this, hit.point);
+                i?.Interact(this);
             }
         }
     }
@@ -196,6 +196,11 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
     public void Do(DoEvent de) {
         if (de.action == "setgoal") {
             goalMoney = Int32.Parse(de.args[0]);
+        }
+
+        else if(de.action == "load"){
+            PlayerPrefs.SetString("lvl",de.args[0]);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
