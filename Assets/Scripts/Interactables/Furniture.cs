@@ -15,7 +15,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     public float resTimer;
     public float countdown = 0;
 
-    float hpRef;
+    protected float hpRef;
     //
 
     public float health = 10;
@@ -147,12 +147,14 @@ public class Furniture : Interactable, IEvaluated, IManageable {
        // gameObject.GetComponent<Furniture>().enabled = true;
     }
 
-    public void TurnOn() {
+    public virtual void TurnOn() {
 
          
         gameObject.GetComponent<Collider>().enabled = true;
         gameObject.GetComponentInChildren<Renderer>().enabled = true;
-        
+        //Debug.Log(curState);
+        //Debug.Log(heldLayer);
+
        
     }
 
