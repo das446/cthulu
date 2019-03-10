@@ -90,7 +90,7 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange)) {
                 Interactable i = hit.collider.gameObject.GetComponent<Interactable>();
-                i?.Interact(this, hit.point);
+                i?.Interact(this);
             }
         }
     }
