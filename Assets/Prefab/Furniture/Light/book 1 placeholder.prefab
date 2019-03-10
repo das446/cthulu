@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7fa7dd6ca591ed840a07637bb70b09fb, type: 3}
+  - {fileID: 2100000, guid: 3a2686721c33dbe41992fc14f1ba1377, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,12 +123,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   o: {fileID: 5130442862342946032}
-  weight: 0
+  Weight: 1
+  resTimer: 0
+  countdown: 0
   health: 0
   startPos: {x: 0, y: 0, z: 0}
   rb: {fileID: 8629480529456134016}
   col: {fileID: 4991726997583085504}
   debris: {fileID: 0}
+  throwDmg: 10
 --- !u!114 &5130442862342946032
 MonoBehaviour:
   m_ObjectHideFlags: 0

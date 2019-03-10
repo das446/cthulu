@@ -26,8 +26,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3156031493883299354}
   - component: {fileID: 1465645938425771469}
-  - component: {fileID: 8757224668500979543}
   - component: {fileID: 2061288345811162711}
+  - component: {fileID: 7742596957578970080}
+  - component: {fileID: 1055853398682292050}
   m_Layer: 0
   m_Name: KitchenChair 1
   m_TagString: Untagged
@@ -69,22 +70,9 @@ MonoBehaviour:
   health: 50
   startPos: {x: 0, y: 0, z: 0}
   rb: {fileID: 2061288345811162711}
-  col: {fileID: 8757224668500979543}
+  col: {fileID: 7742596957578970080}
   debris: {fileID: 4966297709812258871, guid: d3c741359b5964447bfbed15c7974b47, type: 3}
   throwDmg: 10
---- !u!65 &8757224668500979543
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7894326518903751447}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.8190622, z: 0.91468537}
-  m_Center: {x: 0, y: -0.45, z: -0.32703847}
 --- !u!54 &2061288345811162711
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -101,6 +89,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7742596957578970080
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7894326518903751447}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.83255994, y: 1, z: 0.18112439}
+  m_Center: {x: -0.0006747842, y: 0, z: -0.027913272}
+--- !u!65 &1055853398682292050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7894326518903751447}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8022196, y: 0.7754047, z: 0.83528715}
+  m_Center: {x: 0.0015115887, y: -0.8778895, z: -0.34541622}
 --- !u!1001 &5142195920446786623
 PrefabInstance:
   m_ObjectHideFlags: 0

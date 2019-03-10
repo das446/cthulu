@@ -4,9 +4,9 @@ using System.Linq;
 using Cthulu;
 using Cthulu.Events;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 
 public class SubtitleController : MonoBehaviour, IManageable {
     public List<Subtitle> subtitles;
@@ -42,12 +42,11 @@ public class SubtitleController : MonoBehaviour, IManageable {
         }
         text.text = t;
         this.StopAllCoroutines();
-        this.DoAfterTime(() => text.text = "", sub.audio.length+1);
+        this.DoAfterTime(() => text.text = "", sub.audio.length + 1);
 
     }
 
-    public void PlaySubOnly(string sound, float time, string caller = "") 
-    {
+    public void PlaySubOnly(string sound, float time, string caller = "") {
         Subtitle sub;
         try {
             sub = subtitles.Where(x => x.name.ToLower() == sound).First();
@@ -65,8 +64,7 @@ public class SubtitleController : MonoBehaviour, IManageable {
 
     }
 
-    public void PlaySubOnly(Subtitle sub, float time,  string caller = "") 
-    {
+    public void PlaySubOnly(Subtitle sub, float time, string caller = "") {
         string t = sub.text;
         if (caller != "") {
             t = caller + ": " + t;
@@ -76,9 +74,8 @@ public class SubtitleController : MonoBehaviour, IManageable {
         this.DoAfterTime(() => text.text = "", time);
     }
 
-    public void RandSubOnly(float time, string caller = "")
-    {
-        int index = (int)Random.Range(0, 9);
+    public void RandSubOnly(float time, string caller = "") {
+        int index = (int) Random.Range(0, 9);
         PlaySubOnly(subtitles[index], time, caller);
     }
 

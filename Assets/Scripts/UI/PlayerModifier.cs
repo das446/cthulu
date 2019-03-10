@@ -15,6 +15,8 @@ namespace Cthulu.debug
         public static bool open = true;
         [SerializeField] private Player player;
         [SerializeField] private PlayerMovement playerMv;
+        [SerializeField] private MinimapCam Minimap;
+        [SerializeField] private Camera camera;
         public Slider speedSlider;
         public Text speedText;
         public Text RangeText;
@@ -57,6 +59,16 @@ namespace Cthulu.debug
             player.Unlock();
         }
 
+        public void SetRotate(float r){
+            if(r ==1){
+                Minimap.SetRotate(true);
+            }else{
+                Minimap.SetRotate(false);
+            }
+        }
 
+        public void SetCamSize(float s){
+            camera.orthographicSize = s;
+        }
     }
 }

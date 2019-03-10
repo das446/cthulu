@@ -1,29 +1,49 @@
 fileFormatVersion: 2
-guid: 8313d7b6b8f054646b3ad21b77fd43f4
+guid: 81f3501fbe4654f459a780f2316f58f9
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: handle_rotate
-    100002: ITM_Broom_ref:bristles1
-    100004: ITM_Broom_ref:broom
-    100006: ITM_Broom_ref:new_handle
-    100008: //RootNode
-    400000: handle_rotate
-    400002: ITM_Broom_ref:bristles1
-    400004: ITM_Broom_ref:broom
-    400006: ITM_Broom_ref:new_handle
-    400008: //RootNode
-    2100000: ITM_Broom_ref_br_handle_txtr
-    2100002: ITM_Broom_ref_broom_red_txtr
-    2100004: ITM_Broom_ref_broom_txtr
-    2300000: ITM_Broom_ref:bristles1
-    2300002: ITM_Broom_ref:new_handle
-    3300000: ITM_Broom_ref:bristles1
-    3300002: ITM_Broom_ref:new_handle
-    4300000: ITM_Broom_ref:new_handle
-    4300002: ITM_Broom_ref:bristles1
-    7400000: Take 001
-    9500000: //RootNode
+    100000: blockDebris_1
+    100002: blockDebris_2
+    100004: debris_1
+    100006: debris_2
+    100008: glass_shard
+    100010: //RootNode
+    100012: trash_pile
+    100014: wood_piece
+    400000: blockDebris_1
+    400002: blockDebris_2
+    400004: debris_1
+    400006: debris_2
+    400008: glass_shard
+    400010: //RootNode
+    400012: trash_pile
+    400014: wood_piece
+    2100000: trashPile_txtr
+    2100002: woodDebris_txtr
+    2100004: glassShard_txtr
+    2100006: debris_txtr
+    2300000: blockDebris_1
+    2300002: blockDebris_2
+    2300004: debris_1
+    2300006: debris_2
+    2300008: glass_shard
+    2300010: trash_pile
+    2300012: wood_piece
+    3300000: blockDebris_1
+    3300002: blockDebris_2
+    3300004: debris_1
+    3300006: debris_2
+    3300008: glass_shard
+    3300010: trash_pile
+    3300012: wood_piece
+    4300000: trash_pile
+    4300002: wood_piece
+    4300004: glass_shard
+    4300006: debris_1
+    4300008: debris_2
+    4300010: blockDebris_1
+    4300012: blockDebris_2
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -51,35 +71,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Take 001
-      takeName: Take 001
-      firstFrame: 1
-      lastFrame: 180
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -104,8 +96,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.30479997
-    hasPreviousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -132,7 +124,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
