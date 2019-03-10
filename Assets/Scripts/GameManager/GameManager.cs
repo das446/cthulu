@@ -29,7 +29,7 @@ namespace Cthulu.Events {
 
         void Awake() {
             singleton = this;
-            fileName = PlayerPrefs.GetString("lvl","tutorial");
+            fileName = PlayerPrefs.GetString("lvl", "tutorial");
             ReadFile();
             if (printToFile) {
                 PrintManageablesToFile();
@@ -38,7 +38,7 @@ namespace Cthulu.Events {
 
         void ReadFile() {
             string path = Application.streamingAssetsPath + "/Events/";
-            string f = path + fileName+".txt";
+            string f = path + fileName + ".txt";
             Debug.Log(f);
             string[] lines = System.IO.File.ReadAllLines(f);
             List<string> newLine = new List<string>();
@@ -119,6 +119,12 @@ namespace Cthulu.Events {
             return i;
         }
 
+        public static void When(string caller, string function, params string[] args) {
+            for (int i = 0; i < args.Length; i++) {
+                When(caller,function+"."+args[i]);
+            }
+        }
+
         public static void When(string caller, string function) {
             if (singleton == null) { Debug.LogWarning("No instance of GameManager"); return; }
             if (!singleton.enabled) { return; }
@@ -164,7 +170,7 @@ namespace Cthulu.Events {
                 IManageable m;
                 Objects.TryGetValue(n, out m);
                 if (m == null) {
-                    Debug.LogWarning("No object named " + n + " in scene. "+d.Print());
+                    Debug.LogWarning("No object named " + n + " in scene. " + d.Print());
                 } else {
                     m?.Do(d);
                 }

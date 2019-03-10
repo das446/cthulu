@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 
 public class BuyState : NpcState {
@@ -40,6 +41,7 @@ public class BuyState : NpcState {
     }
 
     public override void Enter() {
+        GameManager.When(npc.name,"readytobuy");
         SetFollower(lobby);
         waitTimer = defaultWaitTime;
         PathFollower.ReachNode += ReachLobby;
