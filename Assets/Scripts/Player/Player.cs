@@ -197,5 +197,10 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
         if (de.action == "setgoal") {
             goalMoney = Int32.Parse(de.args[0]);
         }
+
+        else if(de.action == "load"){
+            PlayerPrefs.SetString("lvl",de.args[0]);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
