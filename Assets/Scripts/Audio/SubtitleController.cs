@@ -13,11 +13,16 @@ public class SubtitleController : MonoBehaviour, IManageable {
     public TMPro.TextMeshProUGUI text;
     string folder;
 
+    public static SubtitleController singleton;
+
     public GameObject obj => gameObject;
 
     AudioSource _source;
 
     void Awake() {
+        if(singleton==null){
+            singleton = this;
+        }
         if (subtitles.Count == 0) {
             LoadSubtitles();
         }
