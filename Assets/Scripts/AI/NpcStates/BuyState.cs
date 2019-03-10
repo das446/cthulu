@@ -15,19 +15,11 @@ public class BuyState : NpcState {
 
     private bool atLobby;
 
-    public new static event Action<Npc, Player> OnClick;
     public static event Action<Npc> ExitState;
 
     public BuyState(Npc npc, Node node) : base(npc) {
         lobby = node;
         Enter();
-    }
-
-    public override void OnInteract(Player p) {
-        if (OnClick != null) {
-            OnClick(npc, p);
-        }
-        Debug.Log("Buy");
     }
 
     public override void StateUpdate() {

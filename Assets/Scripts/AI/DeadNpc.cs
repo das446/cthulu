@@ -9,7 +9,7 @@ public class DeadNpc : MonoBehaviour, IPickUpable, IEvaluated {
     ICanHold holder;
     [SerializeField] float Weight = 1;
 
-    public float weight => weight;
+    public float weight => Weight;
 
     public bool CanBePickedUp(ICanHold h) {
         return true;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cthulu.Events;
@@ -11,6 +12,8 @@ public class BuyerInteractMenu : MonoBehaviour {
     public Image interest;
     public Image chatTimer;
     public Button buyButton;
+    public Button sendButton;
+    public Button chatButton;
     public GameObject map;
 
     public float chatLength = 5;
@@ -28,6 +31,7 @@ public class BuyerInteractMenu : MonoBehaviour {
         player = p;
         player.Lock();
         SetInterestBar();
+        SetButtons();
 
         //Camera.main.transform.localEulerAngles = new Vector3(0, 0, 0);
 
@@ -35,6 +39,16 @@ public class BuyerInteractMenu : MonoBehaviour {
 
         npc.ResetAnimParams();
         npc.animControl.SetBool("isTalking", true);
+    }
+
+    private void SetButtons() {
+        if (curNpc.InterestPercent() >= 1) {
+            sendButton.gameObject.SetActive(false);
+            chatButton.gameObject.SetActive(false);
+        } else {
+            sendButton.gameObject.SetActive(true);
+            chatButton.gameObject.SetActive(true);
+        }
     }
 
     private void SetInterestBar() {
@@ -89,7 +103,7 @@ public class BuyerInteractMenu : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
-     public void Sell() {
+    public void Sell() {
         curNpc.locked = false;
         curNpc.Unlock();
         curNpc.Buy(player);
@@ -97,7 +111,7 @@ public class BuyerInteractMenu : MonoBehaviour {
         curNpc = null;
         gameObject.SetActive(false);
         player.Unlock();
-        GameManager.When(npcName,"acceptoffer");
+        GameManager.When(npcName, "acceptoffer");
     }
 
 }
