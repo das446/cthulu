@@ -35,6 +35,7 @@ public class FurnitureDebris : Interactable, IEvaluated {
         GameObject s = Instantiate(sweep, transform.position, transform.rotation);
         s.transform.parent = transform;
         s.transform.localPosition = Vector3.zero;
+        s.transform.Rotate(0,90,0);
         Debug.Log(transform.position);
         Debug.Log(s.transform.position);
         gameObject.PlaySound(sweepsound);

@@ -51,16 +51,16 @@ public class LineOfSightChecker {
         return monsters;
     }
 
-    public List<GameObject> CheckMonsters() {
+    public List<Monster> CheckMonsters() {
         RaycastHit hit;
         Transform t = npc.transform;
-        List<GameObject> monsters = new List<GameObject>(); // this doesn't use the monster class because of things like possesed furniture
+        List<Monster> monsters = new List<Monster>(); // this doesn't use the monster class because of things like possesed furniture
         Collider[] cols = Physics.OverlapSphere(t.position, vision, Monster.layer);
         for (int i = 0; i < cols.Length; i++) {
             Vector3 dir = cols[i].gameObject.transform.position - t.position;
             if (Physics.SphereCast(t.position, 1, dir, out hit, vision)) {
                 Debug.DrawRay(t.position, dir * hit.distance, Color.yellow, Time.deltaTime, true);
-                GameObject m = hit.collider.gameObject;
+                Monster m = hit.collider.gameObject.GetComponent<Monster>();
                 if (m != null) {
                     monsters.Add(m);
                 }

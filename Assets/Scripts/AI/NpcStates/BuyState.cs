@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 
 public class BuyState : NpcState {
@@ -14,19 +15,11 @@ public class BuyState : NpcState {
 
     private bool atLobby;
 
-    public new static event Action<Npc, Player> OnClick;
     public static event Action<Npc> ExitState;
 
     public BuyState(Npc npc, Node node) : base(npc) {
         lobby = node;
         Enter();
-    }
-
-    public override void OnInteract(Player p) {
-        if (OnClick != null) {
-            OnClick(npc, p);
-        }
-        Debug.Log("Buy");
     }
 
     public override void StateUpdate() {
@@ -40,6 +33,7 @@ public class BuyState : NpcState {
     }
 
     public override void Enter() {
+        GameManager.When(npc.name,"readytobuy");
         SetFollower(lobby);
         waitTimer = defaultWaitTime;
         PathFollower.ReachNode += ReachLobby;

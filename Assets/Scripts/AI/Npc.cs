@@ -134,7 +134,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void Buy(Player p) {
-
+        GameManager.When(name,"buy");
         int m = money;
         if (interest / maxInterest >= 1) {
             m *= 2;
@@ -160,13 +160,15 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     void Update() {
 
-        bool seesMonsters = eyes.CheckMonsters().Count > 0;
+        List<Monster> m = eyes.CheckMonsters();
+        bool seesMonsters = m.Count > 0;
 
         if (InterestPercent() >= 1 && !isBuying && !seesMonsters) // no buying when scared
         {
             ReadyToBuy();
             isBuying = true;
         } else if (seesMonsters) {
+            GameManager.When(name, "seemonster", m.Select(x => x.name).ToArray());
             Debug.Log("GetScared");
             GetScared();
 
@@ -222,6 +224,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
             interest += roomInterest;
         }
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
+        GameManager.When(name, "enter", r.name);
     }
 
     public void GetScared() {
@@ -230,7 +233,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public void GetScared(float scareTime) {
         if (curState.IsScared()) { return; }
-        Debug.Log("scared");
+        GameManager.When(name,"scared");
         Lock();
         curState?.Exit();
         curState = new ScaredState(this, 6);
@@ -422,12 +425,12 @@ public class Npc : Interactable, IPickUpable, IManageable {
         interest = startInterest;
     }
 
-    public float InterestPercent(){
+    public float InterestPercent() {
         return (float) (interest) / (maxInterest);
     }
 
-    public string DisplayName(){
+    public string DisplayName() {
         string s = name.Split('.').Last();
-        return char.ToUpper(s[0])+s.Substring(1);
+        return char.ToUpper(s[0]) + s.Substring(1);
     }
 }
