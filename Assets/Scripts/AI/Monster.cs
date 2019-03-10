@@ -62,4 +62,9 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
     }
 
     public abstract void Do(DoEvent de);
+
+    public virtual void SeeBuyer(Npc npc)
+    {
+        
+    }
 }

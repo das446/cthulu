@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class Npc : Interactable, IPickUpable, IManageable {
 
-    LineOfSightChecker eyes;
+    [SerializeField] LineOfSightChecker eyes;
     List<GameObject> seenMonsters;
     float tempFontSize;
     string tempMessage;
@@ -160,7 +160,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     void Update() {
 
-        List<Monster> m = eyes.CheckMonsters();
+        List<GameObject> m = eyes.CheckMonsters();
         bool seesMonsters = m.Count > 0;
 
         if (InterestPercent() >= 1 && !isBuying && !seesMonsters) // no buying when scared
@@ -170,7 +170,9 @@ public class Npc : Interactable, IPickUpable, IManageable {
         } else if (seesMonsters) {
             GameManager.When(name, "seemonster", m.Select(x => x.name).ToArray());
             Debug.Log("GetScared");
-            GetScared();
+            Debug.Log(m[0].name);
+            Monster mon = m.FirstOrDefault(x=>x.GetComponent<Monster>()!=null)?.GetComponent<Monster>();
+            GetScared(mon);
 
         }
 
@@ -231,8 +233,9 @@ public class Npc : Interactable, IPickUpable, IManageable {
         GameManager.When(name, "enter", r.name);
     }
 
-    public void GetScared() {
+    public void GetScared(Monster m) {
         GetScared(alertTimer);
+        m?.SeeBuyer(this);
     }
 
     public void GetScared(float scareTime) {
@@ -318,10 +321,14 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void Die() {
+        if(!gameObject.activeSelf){return;}
         GameManager.When(name, "die");
         soundType = SoundType.Death;
         PlayDeathSound();
-        SetState(new DeadState(this, ragdollVersion));
+        GameObject d = GameObject.Instantiate(ragdollVersion,transform.position, transform.rotation);
+        Debug.Log(d.name + "shows up");
+        gameObject.SetActive(false);
+        Npc.Active.Remove(this);
     }
     // public void Die()
     // {
@@ -329,11 +336,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
     //     GameObject d = Instantiate(deadNpc,transform.position,transform.rotation);
     //     Destroy(gameObject);
     // }
-
-    public void Die(ICanHold h) {
-        GameManager.When(name, "die");
-        SetState(new DeadState(this, null, h));
-    }
 
     public void SetMessage(string s, Color c) {
         message.text = s;
@@ -366,7 +368,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public void GetPickedUp(ICanHold h) {
         if (CanBePickedUp(h)) {
-            Die(h);
+            Die();
         }
     }
 

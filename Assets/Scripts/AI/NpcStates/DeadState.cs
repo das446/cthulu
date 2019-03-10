@@ -11,12 +11,7 @@ public class DeadState : NpcState {
         Enter();
     }
 
-    public DeadState(Npc npc, DeadNpc ragdollNpc, ICanHold holder) : base(npc) {
-        ragdoll = null;
-        this.holder = holder;
-        this.npc = npc;
-        Enter();
-    }
+   
 
     public override void StateUpdate() {
 
@@ -30,10 +25,7 @@ public class DeadState : NpcState {
         // if(holder!=null){
         //     holder.PickUp(d);
         // }
-        GameObject d = GameObject.Instantiate(ragdoll,npc.transform.position, npc.transform.rotation);
-        Debug.Log(d.name + "shows up");
-        npc.gameObject.SetActive(false);
-        Npc.Active.Remove(npc);
+       
         
     }
 
