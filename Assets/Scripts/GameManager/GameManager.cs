@@ -29,7 +29,7 @@ namespace Cthulu.Events {
 
         void Awake() {
             singleton = this;
-            fileName = PlayerPrefs.GetString("lvl","Tutorial");
+            fileName = PlayerPrefs.GetString("lvl","tutorial");
             ReadFile();
             if (printToFile) {
                 PrintManageablesToFile();
@@ -39,6 +39,7 @@ namespace Cthulu.Events {
         void ReadFile() {
             string path = Application.streamingAssetsPath + "/Events/";
             string f = path + fileName+".txt";
+            Debug.Log(f);
             string[] lines = System.IO.File.ReadAllLines(f);
             List<string> newLine = new List<string>();
             bool comment = false;
@@ -163,7 +164,7 @@ namespace Cthulu.Events {
                 IManageable m;
                 Objects.TryGetValue(n, out m);
                 if (m == null) {
-                    Debug.LogWarning("No object named " + n + " in scene");
+                    Debug.LogWarning("No object named " + n + " in scene. "+d.Print());
                 } else {
                     m?.Do(d);
                 }

@@ -21,7 +21,7 @@ public class SubtitleController : MonoBehaviour, IManageable {
         if (subtitles.Count == 0) {
             LoadSubtitles();
         }
-        this.AddToManager();
+        this.AddToManager("subs");
         _source = GetComponent<AudioSource>();
     }
 

@@ -14,6 +14,7 @@ public class LightFurniture : Furniture, IPickUpable {
     [SerializeField] int throwDmg = 10;
 
     public override void Interact(Player p) {
+        Debug.Log(p.CurHeld() == null && !readyToBreak);
         if (p.CurHeld() == null && !readyToBreak) {
             GetPickedUp(p);
             p.PickUp(this);
@@ -62,6 +63,22 @@ public class LightFurniture : Furniture, IPickUpable {
         } else {
             SetState(new GroundedState(this));
         }
+    }
+
+
+
+    
+    public  override void TurnOn() {
+
+        Debug.Log("Calling Child script function 'On'");
+        gameObject.GetComponent<Collider>().enabled = true;
+        gameObject.GetComponentInChildren<Renderer>().enabled = true;
+        readyToBreak = false;
+        Debug.Log(readyToBreak);
+        //Debug.Log(curState);
+        //Debug.Log(heldLayer);
+
+       
     }
 
 }
