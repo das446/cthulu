@@ -72,11 +72,12 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: 00cbdb6c0bff3084cae2c8b5377ecfb2, type: 3}
   - name: DoorClosing
     sound: {fileID: 8300000, guid: 092377d322ce5534bbebacd1461725fa, type: 3}
+  - name: MonsterHurt
+    sound: {fileID: 8300000, guid: 3de8893bd92aff348b6126c3e4c631dc, type: 3}
   prevNames: []
   prevSounds: []
   Updated: 0
   DefaultVolume: 1
-  sounds: {fileID: 2144439653002381403}
 --- !u!82 &2144439653002381403
 AudioSource:
   m_ObjectHideFlags: 0
@@ -285,15 +286,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2596305212522323165, guid: c1d86cf8202845646bb558b95eafab62,
+        type: 3}
+      propertyPath: songs.Array.data[0].sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 89a95df0ab8b1dd4082aac4167711cf8, type: 3}
+    - target: {fileID: 2596305212522323165, guid: c1d86cf8202845646bb558b95eafab62,
+        type: 3}
+      propertyPath: CurrentSong
+      value: 
+      objectReference: {fileID: 8300000, guid: 89a95df0ab8b1dd4082aac4167711cf8, type: 3}
+    - target: {fileID: 2596305212522323163, guid: c1d86cf8202845646bb558b95eafab62,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 243241003600179988, guid: 54b270afc5b8b3c458c96606ee0591bf,
+        type: 2}
     - target: {fileID: 2596305212522323163, guid: c1d86cf8202845646bb558b95eafab62,
         type: 3}
       propertyPath: m_Volume
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2596305212522323166, guid: c1d86cf8202845646bb558b95eafab62, type: 3}
-    - {fileID: 5961260032341936522, guid: c1d86cf8202845646bb558b95eafab62, type: 3}
-    - {fileID: 647171419, guid: c1d86cf8202845646bb558b95eafab62, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1d86cf8202845646bb558b95eafab62, type: 3}
 --- !u!4 &4162866837872059705 stripped
 Transform:

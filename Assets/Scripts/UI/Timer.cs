@@ -11,16 +11,17 @@ using UnityEngine.UI;
 /// </summary>
 public class Timer : MonoBehaviour, IManageable {
 
-
-    public float timeLeft = 360;
+    public float maxTime = 360;
     public float anxietyTime = 90;
-    public float startTime;
+    public float elapsedTime;
 
     public Text timerText;
 
     public GameObject clockHand;
 
     public bool paused = false;
+
+    public Image mask;
 
     ///<summary>Does it make more sense for it to be time elapsed or time remaining?</summary>
     /// <param name="minutes">minutes left</param>
@@ -30,34 +31,33 @@ public class Timer : MonoBehaviour, IManageable {
     /// <summary>
     /// Subscribe to this event to have a function occur at a certain time
     /// </summary>
-    public static event OnTimeAlert TimeLeftAlert;
+    public static event OnTimeAlert TimeAlert;
 
     int prevMin;
     int prevSec;
 
     public GameObject obj => gameObject;
 
-    void Awake(){
+    void Awake() {
         this.AddToManager();
     }
 
     public void Start() {
-        startTime = timeLeft;
+        elapsedTime = 0;
     }
 
     public void PlayWarning() { }
 
     void Update() {
         if (paused) { return; }
-        timeLeft = timeLeft - Time.deltaTime;
+        elapsedTime = elapsedTime + Time.deltaTime;
 
-        UpdateTimer(timeLeft);
+        UpdateTimer(elapsedTime);
 
-        if(timeLeft <= anxietyTime)
-        {
+        if (elapsedTime >= anxietyTime) {
             Music.ChangeSong("Anxiety");
         }
-        if(timeLeft<=0){
+        if (elapsedTime >= maxTime) {
             Music.ChangeSong("LoseSong");
             Player.singleton.LoseLevel();
         }
@@ -75,30 +75,25 @@ public class Timer : MonoBehaviour, IManageable {
             //to prevent the event from being called multiple times per second
         } else {
 
-            if (TimeLeftAlert != null) {
-                TimeLeftAlert(minutes, seconds);
+            if (TimeAlert != null) {
+                TimeAlert(minutes, seconds);
             }
             prevMin = minutes;
             prevSec = seconds;
-            int t = (int) TimeElapsed();
+            int t = (int) elapsedTime;
             GameManager.When("time", t.ToString());
         }
 
     }
 
     void UpdateDisplay(float t) {
-        float elapsed = 360f * startTime / timeLeft;
-        clockHand.transform.eulerAngles = new Vector3(0, 0, -elapsed);
+        float percent = 0.42f * elapsedTime / maxTime;
+        mask.fillAmount = percent;
     }
 
-    float TimeElapsed() {
-        return startTime - timeLeft;
-    }
-
-    public void Do(DoEvent de)
-    {
-        if(de.action=="set"){
-            timeLeft = Int32.Parse(de.args[0]);
+    public void Do(DoEvent de) {
+        if (de.action == "set") {
+            maxTime = Int32.Parse(de.args[0]);
         }
     }
 }
