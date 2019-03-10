@@ -164,7 +164,7 @@ namespace Cthulu.Events {
                 IManageable m;
                 Objects.TryGetValue(n, out m);
                 if (m == null) {
-                    Debug.LogWarning("No object named " + n + " in scene");
+                    Debug.LogWarning("No object named " + n + " in scene. "+d.Print());
                 } else {
                     m?.Do(d);
                 }

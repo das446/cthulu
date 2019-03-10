@@ -159,7 +159,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     void Update() {
-        //* 
 
         bool seesMonsters = eyes.CheckMonsters().Count > 0;
 
