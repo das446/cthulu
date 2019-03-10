@@ -1,7 +1,7 @@
 WHEN time:1
     flag.curt=1
     (DO npc.normal.david spawn )
-    (DO tutorial play NerdGreeting )
+    (DO npc.normal.david.subs play NerdGreeting )
     (DO npc.normal.david goto room.kitchen )
     (DO monster.tentacle.1 spawn room.kitchen )
     (DO player setgoal 30000000 )
@@ -30,7 +30,7 @@ WHEN monster.tentacle.1:die
     if.flag.curt=3
     (DO tutorial play tutorial4 )
     (DO npc.normal.bob spawn )
-    (DO tutorial play PoshGreeting )
+    (DO npc.normal.bob.subs play PoshGreeting )
     (DO guide draw node.node4 ) 
     flag.curt=4
    ;
@@ -51,7 +51,7 @@ WHEN npc.normal.bob:readytobuy
 WHEN npc.normal.bob:acceptoffer
     if.flag.curt=6
     (DO tutorial play tutorial7 )
-    (DO tutorial play PoshPurchase )
+    (DO npc.normal.bob.subs play PoshPurchase )
     ;
 
 
