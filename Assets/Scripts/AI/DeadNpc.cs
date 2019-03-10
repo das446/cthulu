@@ -23,15 +23,15 @@ public class DeadNpc : Interactable, IPickUpable, IEvaluated
 
     void FixedUpdate()
     {
-        if (!held)
-        {
-            float x = (joint.transform.position.x - transform.position.x)/2;
-            float z = (joint.transform.position.z - transform.position.z)/2;
-            Vector3 v = collider.center;
-            v.x = x;
-            v.z = z;
-            collider.center = v;
-        }
+        // if (!held)
+        // {
+        //     float x = (joint.transform.position.x - transform.position.x)/2;
+        //     float z = (joint.transform.position.z - transform.position.z)/2;
+        //     Vector3 v = collider.center;
+        //     v.x = x;
+        //     v.z = z;
+        //     collider.center = v;
+        // }
     }
 
     public float Evaluate(Npc npc, Room r)

@@ -783,8 +783,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 459680005}
-  - component: {fileID: 6595592848577986218}
-  - component: {fileID: 6376799426963221255}
   m_Layer: 0
   m_Name: ENT_Nerd_RagDoll
   m_TagString: Untagged
@@ -814,37 +812,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6595592848577986218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 459680003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976a308ae9d8d784cb780745eab5385a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  o: {fileID: 5305534738151020852}
-  rb: {fileID: 0}
-  joint: {fileID: 2930978817078830143}
-  Weight: 1
-  collider: {fileID: 6376799426963221255}
---- !u!136 &6376799426963221255
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 459680003}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.59243035, z: 0}
 --- !u!1 &491792805
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,6 +2226,8 @@ GameObject:
   - component: {fileID: 971752327}
   - component: {fileID: 1049905168}
   - component: {fileID: 1049905169}
+  - component: {fileID: 6056082406128934709}
+  - component: {fileID: 7790591255326762081}
   m_Layer: 0
   m_Name: QuickRigCharacter1_Hips
   m_TagString: Untagged
@@ -2312,6 +2281,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.4655662, y: 4.470812, z: 7.7311363}
   m_Center: {x: -7.008209, y: 0.16897297, z: -0.00000023841858}
+--- !u!114 &6056082406128934709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971752326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976a308ae9d8d784cb780745eab5385a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  o: {fileID: 5305534738151020852}
+  rb: {fileID: 0}
+  joint: {fileID: 2930978817078830143}
+  Weight: 1
+  collider: {fileID: 7790591255326762081}
+--- !u!136 &7790591255326762081
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971752326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 10.7
+  m_Height: 44.569637
+  m_Direction: 0
+  m_Center: {x: 0.5281254, y: 1.1811827e-10, z: 0}
 --- !u!1 &986998107
 GameObject:
   m_ObjectHideFlags: 0
