@@ -40,6 +40,9 @@ public class DoEventBuyer {
             case "setInterest":
                 npc.interest = 100;
                 break;
+            case "play":
+                SubtitleController.singleton.Play(buyerDo.args[0],npc.DisplayName());
+                break;
         }
     }
 

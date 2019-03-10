@@ -425,4 +425,9 @@ public class Npc : Interactable, IPickUpable, IManageable {
     public float InterestPercent(){
         return (float) (interest) / (maxInterest);
     }
+
+    public string DisplayName(){
+        string s = name.Split('.').Last();
+        return char.ToUpper(s[0])+s.Substring(1);
+    }
 }
