@@ -24,9 +24,12 @@ public class Tentacle : Monster, ICanHold {
         return held;
     }
 
-    public override void SeeBuyer(Npc npc){
-        PickUp(npc);
-        npc.GetPickedUp(this);
+    public override void SeeBuyer(Npc npc) {
+        Debug.Log("see npc");
+        DeadNpc d = npc.Die();
+        d.GetPickedUp(this);
+        PickUp(d);
+
     }
 
     public override void FurnitureContact(Furniture furniture) {
@@ -55,9 +58,12 @@ public class Tentacle : Monster, ICanHold {
 
     public void PickUp(IPickUpable pickUpable) {
         held = pickUpable;
+        held.obj.transform.position = hand.transform.position;
+        StartCoroutine(DelayThrow(10));
     }
 
     public void Release(IPickUpable pickUpable) {
+        held.obj.GetComponent<Rigidbody>().AddForce(GetThrowDir());
         held = null;
     }
 
@@ -72,7 +78,9 @@ public class Tentacle : Monster, ICanHold {
 
     IEnumerator DelayThrow(float delay) {
         yield return new WaitForSeconds(delay);
+        held.Release(this);
         Release(held);
+        
     }
 
     public override void Do(DoEvent de) {

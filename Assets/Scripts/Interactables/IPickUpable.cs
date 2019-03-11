@@ -9,5 +9,5 @@ public interface IPickUpable {
 
     float weight { get; }
 
-    //GameObject obj { get; }
+    GameObject obj { get; }
 }

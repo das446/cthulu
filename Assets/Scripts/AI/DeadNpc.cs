@@ -9,8 +9,11 @@ public class DeadNpc : Interactable, IPickUpable, IEvaluated
     [SerializeField] SpringJoint joint;
     ICanHold holder;
     [SerializeField] float Weight = 1;
+    [SerializeField] GameObject body;
 
     public float weight => Weight;
+
+    public GameObject obj => body;
 
     [SerializeField] CapsuleCollider collider;
 
@@ -41,10 +44,13 @@ public class DeadNpc : Interactable, IPickUpable, IEvaluated
 
     public void GetPickedUp(ICanHold h)
     {
+        Debug.Log("Get Picked Up");
         holder = h;
+        //transform.position = h.Hand.transform.position;
         joint.connectedBody = h.Hand.GetComponent<Rigidbody>();
         joint.spring = 200;
         held = true;
+        
     }
 
     //this is dumb

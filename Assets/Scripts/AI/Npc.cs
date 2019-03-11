@@ -320,16 +320,17 @@ public class Npc : Interactable, IPickUpable, IManageable {
         return items;
     }
 
-    public void Die() {
-        if(!gameObject.activeSelf){return;}
+    public DeadNpc Die() {
+        if(!gameObject.activeSelf){return null;}
         GameManager.When(name, "die");
         soundType = SoundType.Death;
         PlayDeathSound();
-        GameObject d = GameObject.Instantiate(ragdollVersion,transform.position, transform.rotation);
-        Debug.Log(d.name + "shows up");
+        DeadNpc d = GameObject.Instantiate(ragdollVersion,transform.position, transform.rotation).GetComponentInChildren<DeadNpc>();
         gameObject.SetActive(false);
         Npc.Active.Remove(this);
+        return d;
     }
+
     // public void Die()
     // {
     //     SetState(new DeadState(this, ragdollVersion));
