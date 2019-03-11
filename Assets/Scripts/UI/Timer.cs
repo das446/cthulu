@@ -87,7 +87,7 @@ public class Timer : MonoBehaviour, IManageable {
     }
 
     void UpdateDisplay(float t) {
-        float percent = 0.42f * elapsedTime / maxTime;
+        float percent = elapsedTime / maxTime;
         mask.fillAmount = percent;
     }
 
