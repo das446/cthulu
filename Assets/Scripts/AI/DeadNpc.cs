@@ -2,43 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadNpc : MonoBehaviour, IPickUpable, IEvaluated {
+public class DeadNpc : Interactable, IPickUpable, IEvaluated
+{
 
     [SerializeField] Rigidbody rb;
-    [SerializeField] FixedJoint joint;
+    [SerializeField] SpringJoint joint;
     ICanHold holder;
     [SerializeField] float Weight = 1;
 
     public float weight => Weight;
 
-    public bool CanBePickedUp(ICanHold h) {
+    [SerializeField] CapsuleCollider collider;
+
+    bool held;
+
+    public bool CanBePickedUp(ICanHold h)
+    {
         return true;
     }
 
-    public float Evaluate(Npc npc, Room r) {
+    void FixedUpdate()
+    {
+        // if (!held)
+        // {
+        //     float x = (joint.transform.position.x - transform.position.x)/2;
+        //     float z = (joint.transform.position.z - transform.position.z)/2;
+        //     Vector3 v = collider.center;
+        //     v.x = x;
+        //     v.z = z;
+        //     collider.center = v;
+        // }
+    }
+
+    public float Evaluate(Npc npc, Room r)
+    {
         return -50;
     }
 
-    public void GetPickedUp(ICanHold h) {
+    public void GetPickedUp(ICanHold h)
+    {
         holder = h;
-        transform.position = h.Hand.transform.position;
-        transform.localPosition = Vector3.zero;
-        StartCoroutine(SetJoint(h));
-    }
-
-    //this is dumb;
-    IEnumerator SetJoint(ICanHold h) {
-        for (int i = 0; i < 10; i++) {
-
-            yield return new WaitForFixedUpdate();
-        }
         joint.connectedBody = h.Hand.GetComponent<Rigidbody>();
+        joint.spring = 200;
+        held = true;
     }
 
-    public void Release(ICanHold h) {
-        Destroy(joint);
+    //this is dumb
+
+    public void Release(ICanHold h)
+    {
+        joint.spring = 0;
         Vector3 dir = h.GetThrowDir();
-        rb.AddForce(dir);
+        held = false;
+    }
+
+    public override void Interact(Player p)
+    {
+
+        Debug.Log("Get");
+        if (p.CurHeld() == null)
+        {
+            GetPickedUp(p);
+            p.PickUp(this);
+        }
     }
 
     // void FixedUpdate() {

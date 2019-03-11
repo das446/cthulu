@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DeadState : NpcState {
-    private DeadNpc ragdoll;
+    private GameObject ragdoll;
     private ICanHold holder;
-
-    public DeadState(Npc npc, DeadNpc ragdollNpc) : base(npc) {
+    private GameObject gb;
+    public DeadState(Npc npc, GameObject ragdollNpc) : base(npc) {
         ragdoll = ragdollNpc;
         Enter();
     }
 
     public DeadState(Npc npc, DeadNpc ragdollNpc, ICanHold holder) : base(npc) {
-        ragdoll = ragdollNpc;
+        ragdoll = null;
         this.holder = holder;
+        this.npc = npc;
         Enter();
     }
 
@@ -25,14 +26,15 @@ public class DeadState : NpcState {
 
         // Vector3 buyerPos = npc.gameObject.transform.position;
         // Quaternion buyerRot = npc.gameObject.transform.rotation;
-        // DeadNpc d = GameObject.Instantiate(ragdoll, buyerPos, buyerRot);
+        // 
         // if(holder!=null){
         //     holder.PickUp(d);
         // }
+        GameObject d = GameObject.Instantiate(ragdoll,npc.transform.position, npc.transform.rotation);
+        Debug.Log(d.name + "shows up");
         npc.gameObject.SetActive(false);
         Npc.Active.Remove(npc);
-
-        // throw new System.NotImplementedException();
+        
     }
 
     public override void Exit() {
