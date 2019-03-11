@@ -46,7 +46,7 @@ namespace Cthulu.Events {
             for (int i = 0; i < lines.Length; i++) {
                 string[] line = lines[i].Split(' ');
                 for (int j = 0; j < line.Length; j++) {
-                    string word = line[j];
+                    string word = line[j].Trim();
                     if (word.StartsWith("//")) {
                         comment = true;
                     } else if (word == ";" && !comment) {
