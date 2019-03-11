@@ -91,3 +91,13 @@ WHEN npc.normal.bob:enterroom
    if.flag.curt=2
    (DO npc.normal.bob.subs play PoshGeneric 14)
    flag.curt=3;
+
+WHEN npc.normal.bob:chat
+   if.flag.curt=2
+   (DO npc.normal.bob.subs play PoshGeneric 12)
+   flag.curt=3;
+
+WHEN npc.normal.david:chat
+   if.flag.curt=2
+   (DO npc.normal.bob.subs play PoshGeneric 6)
+   flag.curt=3;
