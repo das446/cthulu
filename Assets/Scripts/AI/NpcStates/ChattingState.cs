@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cthulu.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,6 +58,7 @@ public class ChattingState : NpcState
 
     public override void Enter()
     {
+        GameManager.When(npc.name,"chat");
         visualTimer.gameObject.SetActive(true);
     }
 

@@ -24,6 +24,11 @@ public class Tentacle : Monster, ICanHold {
         return held;
     }
 
+    public override void SeeBuyer(Npc npc){
+        PickUp(npc);
+        npc.GetPickedUp(this);
+    }
+
     public override void FurnitureContact(Furniture furniture) {
         GetHit((int) furniture.weight);
         //Randomly grab it
@@ -50,11 +55,9 @@ public class Tentacle : Monster, ICanHold {
 
     public void PickUp(IPickUpable pickUpable) {
         held = pickUpable;
-        held.GetPickedUp(this);
     }
 
     public void Release(IPickUpable pickUpable) {
-        held.Release(this);
         held = null;
     }
 
