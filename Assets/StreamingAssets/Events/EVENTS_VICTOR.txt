@@ -1,0 +1,21 @@
+﻿//tentacle spawns
+WHEN time:2
+	(Do monster.tentacle.1 spawn room.kitchen )
+	wait.3
+	//buyer spawns
+	(Do npc.normal.bob spawn )
+	wait.5
+	//buyer goes to room with tentacle
+	(Do npc.normal.bob goto room.kitchen )
+	;
+
+//spawn another tentacle
+WHEN monster.tentacle.1:die
+	wait.3
+	(Do monster.tentacle.1 spawn room.livingroom )
+	wait.2
+	(Do npc.normal.david spawn )
+	(Do npc.normal.tim spawn )
+	wait.1
+	(Do npc.normal.tim goto room.livingroom )
+	;

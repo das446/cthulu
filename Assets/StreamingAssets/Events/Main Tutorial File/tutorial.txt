@@ -1,0 +1,56 @@
+WHEN time:1
+    flag.curt=1
+    (DO npc.normal.david spawn )
+    (DO npc.normal.david goto room.kitchen )
+    (DO monster.tentacle.1 spawn room.kitchen )
+    (DO monster.tentacle.1 spawn room.kitchen )
+    (DO monster.tentacle.1 spawn room.kitchen )
+    (DO player setgoal 30000000 )
+    (DO tutorial.subs play tutorial1 )
+    (DO guide draw node.node3 ) 
+    //(DO timer set 9999 )
+    ;
+
+WHEN player:release
+    if.flag.curt=1
+    (DO tutorial.subs play tutorial2 )
+    (DO guide clear ) 
+    flag.curt=2
+    ;
+
+WHEN player:sweep
+    if.flag.curt=2
+    wait.4
+    (DO tutorial.subs play tutorial3 )
+    (DO monster.tentacle.1 spawn room.diningroom 5 )
+    (DO guide draw node.node13 ) 
+    flag.curt=3
+    ;
+
+WHEN monster.tentacle.1:die
+    if.flag.curt=3
+    (DO tutorial.subs play tutorial4 )
+    (DO npc.normal.bob spawn )
+    (DO guide draw node.node4 ) 
+    flag.curt=4
+   ;
+
+WHEN npc.normal.bob:player.goto
+    if.flag.curt=4
+    (DO guide clear )
+    (DO tutorial.subs play tutorial5 )
+    flag.curt=5
+    ;
+    
+WHEN npc.normal.bob:readytobuy
+    if.flag.curt=5
+    (DO tutorial.subs play tutorial6 )
+    flag.curt=6
+    ;
+
+WHEN npc.normal.bob:acceptoffer
+    if.flag.curt=6
+    (DO tutorial.subs play tutorial7 )
+    ;
+
+
