@@ -54,14 +54,40 @@ WHEN npc.normal.bob:acceptoffer
     (DO npc.normal.bob.subs play PoshPurchase )
     ;
 
+WHEN npc.normal.david:acceptoffer
+    if.flag.curt=6
+    (DO tutorial play tutorial7 )
+    (DO npc.normal.david.subs play PoshPurchase )
+    ;
+
 WHEN npc.normal.bob:GetScared
-    if.flag.curt=2
+    if.flag.curt=3
     (DO npc.normal.bob.subs play PoshScream)
-    flag.curt=3
+    flag.curt=4
     ;
 
 WHEN npc.normal.david:GetScared
-    if.flag.curt=2
+    if.flag.curt=3
     (DO npc.normal.david.subs play PoshScream)
-    flag.curt=3
+    flag.curt=4
     ;
+
+WHEN npc.normal.david:die
+   if.flag.curt=4
+   (DO npc.normal.david.subs play PoshDeath1)
+   flag.curt=5;
+
+WHEN npc.normal.bob:die
+   if.flag.curt=4
+   (DO npc.normal.bob.subs play PoshDeath 1)
+   flag.curt=5;
+
+WHEN npc.normal.david:enterroom
+   if.flag.curt=2
+   (DO npc.normal.david.subs play PoshGeneric 1)
+   flag.curt=3;
+
+WHEN npc.normal.bob:enterroom
+   if.flag.curt=2
+   (DO npc.normal.bob.subs play PoshGeneric 14)
+   flag.curt=3;
