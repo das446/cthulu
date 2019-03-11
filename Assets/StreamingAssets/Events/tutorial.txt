@@ -1,14 +1,9 @@
 WHEN time:1
     flag.curt=1
-    (DO npc.normal.david spawn )
-    (DO npc.normal.david goto node.node14 )
-    (DO monster.tentacle.1 spawn room.kitchen )
-    (DO monster.tentacle.1 spawn room.kitchen )
-    (DO monster.tentacle.1 spawn room.kitchen )
     (DO player setgoal 30000000 )
     (DO tutorial.subs play tutorial1 )
     (DO guide draw node.node3 ) 
-    //(DO timer set 9999 )
+    (DO timer set 9999 )
     ;
 
 WHEN player:release
@@ -22,7 +17,7 @@ WHEN player:sweep
     if.flag.curt=2
     wait.4
     (DO tutorial.subs play tutorial3 )
-    (DO monster.tentacle.1 spawn room.diningroom 5 )
+    (DO monster.tentacle.1 spawn room.diningroom )
     (DO guide draw node.node13 ) 
     flag.curt=3
     ;
