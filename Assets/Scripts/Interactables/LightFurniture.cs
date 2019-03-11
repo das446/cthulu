@@ -13,6 +13,7 @@ public class LightFurniture : Furniture, IPickUpable {
     bool readyToBreak = false;
     [SerializeField] int throwDmg = 10;
 
+
     public override void Interact(Player p) {
         Debug.Log(p.CurHeld() == null && !readyToBreak);
         if (p.CurHeld() == null && !readyToBreak) {
@@ -39,6 +40,7 @@ public class LightFurniture : Furniture, IPickUpable {
     public void Release(ICanHold h) {
         curState = new InAirState(this, h);
         transform.parent = null;
+        transform.position = transform.position+h.obj.transform.forward;
         rb.useGravity = true;
         col.enabled = true;
         Vector3 dir = holder.GetThrowDir();

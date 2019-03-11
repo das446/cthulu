@@ -20,6 +20,8 @@ public class Tentacle : Monster, ICanHold {
 
     public float Power => power;
 
+    float startX;
+
     public IPickUpable CurHeld() {
         return held;
     }
@@ -80,7 +82,7 @@ public class Tentacle : Monster, ICanHold {
         yield return new WaitForSeconds(delay);
         held.Release(this);
         Release(held);
-        
+
     }
 
     public override void Do(DoEvent de) {
@@ -129,7 +131,7 @@ public class Tentacle : Monster, ICanHold {
     public override void Die() {
         base.Die();
         Vector3 v = tentacle.transform.position;
-        v.x = tentacleLength;
+        v.x = -tentacleLength;
         tentacle.transform.position = v;
         StopAllCoroutines();
     }

@@ -12,6 +12,10 @@ public interface ICanHold {
         get;
     }
 
+    GameObject obj{
+        get;
+    }
+
     IPickUpable CurHeld();
 
     Vector3 GetThrowDir();
