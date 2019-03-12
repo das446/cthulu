@@ -99,6 +99,14 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
         //0=close enough
         //1=too far
         //2=close enough but can't, not implemented yet, does someone want to?
+        if(movement.IsLocked()){
+            if(curOutline!=null){
+                curOutline.enabled = false;
+                curOutline = null;
+            }
+            return;
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange * 10)) {
             IHasOutline ho = hit.collider.gameObject.GetComponent<IHasOutline>();
@@ -172,7 +180,7 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
     public void ChangeMoney(int amnt) {
         Audio.PlaySound("SaleMade");
         money += amnt;
-        moneyText.text = "$" + money.ToString("#,##0");
+        moneyText.text =  money + "M$";
 
         if (money >= goalMoney) {
             WinLevel();
@@ -196,10 +204,8 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
     public void Do(DoEvent de) {
         if (de.action == "setgoal") {
             goalMoney = Int32.Parse(de.args[0]);
-        }
-
-        else if(de.action == "load"){
-            PlayerPrefs.SetString("lvl",de.args[0]);
+        } else if (de.action == "load") {
+            PlayerPrefs.SetString("lvl", de.args[0]);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

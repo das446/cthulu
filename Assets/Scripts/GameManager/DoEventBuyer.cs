@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cthulu;
@@ -38,7 +39,7 @@ public class DoEventBuyer {
                 npc.StartWandering();
                 break;
             case "setInterest":
-                npc.interest = 100;
+                npc.interest = Convert.ToInt32(buyerDo.args[0]);
                 break;
             case "play":
                 SubtitleController.singleton.Play(buyerDo.args[0],npc.DisplayName());
