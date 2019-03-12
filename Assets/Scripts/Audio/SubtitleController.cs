@@ -88,13 +88,19 @@ public class SubtitleController : MonoBehaviour, IManageable {
     public void Do(DoEvent de) {
         if (de.action == "play") {
             Play(de.args[0]);
-        } else if (de.action == "play.rand") {
-            PlayRand(de.args[0]);
+        } else if (de.action == "play.starts") {
+            PlayRandStart(de.args[0]);
+        } else if (de.action == "play.ends") {
+            PlayRandEnds(de.args[0]);
         }
     }
 
-    private void PlayRand(string v) {
+    private void PlayRandStart(string v) {
         Play(subtitles.RandomItem(x => x.name.StartsWith(v)).name);
+    }
+
+    private void PlayRandEnds(string v) {
+        Play(subtitles.RandomItem(x => x.name.EndsWith(v)).name);
     }
 
     public void LoadSubtitles() {
