@@ -12,10 +12,17 @@ public class Ghost : Monster {
     IPossesable possedObject;
     GameObject g;
     IPossesable target;
+    Vector3 rotation;
 
     public static List<IPossesable> possesables = new List<IPossesable>();
 
     [SerializeField] float speed = 1;
+
+    new void Awake()
+    {
+        base.Awake();
+        rotation = transform.eulerAngles;
+    }
 
 
     public override void FurnitureContact(Furniture furniture) {
@@ -51,6 +58,8 @@ public class Ghost : Monster {
         if (possedObject != null) {
             possedObject?.GhostUpdate();
         }
+
+        transform.eulerAngles = rotation;
     }
 
     private IPossesable ClosestPossessable() {

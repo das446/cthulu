@@ -39,7 +39,7 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
         gameObject.SetActive(false);
     }
 
-    void Awake() {
+    protected void Awake() {
         if (!GameManager.HasObject(name)) {
             this.AddToManager();
             gameObject.SetActive(false);
