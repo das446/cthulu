@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ public class SubtitleController : MonoBehaviour, IManageable {
     AudioSource _source;
 
     void Awake() {
-        if(singleton==null){
+        if (singleton == null) {
             singleton = this;
         }
         if (subtitles.Count == 0) {
@@ -80,14 +81,20 @@ public class SubtitleController : MonoBehaviour, IManageable {
     }
 
     public void RandSubOnly(float time, string caller = "") {
-        int index = (int) Random.Range(0, 9);
+        int index = UnityEngine.Random.Range(0, 9);
         PlaySubOnly(subtitles[index], time, caller);
     }
 
     public void Do(DoEvent de) {
         if (de.action == "play") {
             Play(de.args[0]);
+        } else if (de.action == "play.rand") {
+            PlayRand(de.args[0]);
         }
+    }
+
+    private void PlayRand(string v) {
+        Play(subtitles.RandomItem(x => x.name.StartsWith(v)).name);
     }
 
     public void LoadSubtitles() {
