@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cthulu;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,10 @@ public class Room : MonoBehaviour {
         } else {
             rooms.Add(n, this);
         }
+    }
+
+    public String RoomName() {
+        return name.Split('.').Last().ToLower();
     }
 
     void Start() {
@@ -52,7 +57,7 @@ public class Room : MonoBehaviour {
 
     public Node RandomNode() {
         if (nodes.Count == 0) {
-            Debug.LogError(name + "has no nodes" );
+            Debug.LogError(name + "has no nodes");
             return null;
         }
         return nodes.RandomItem();
@@ -77,4 +82,16 @@ public class Room : MonoBehaviour {
             throw new NullReferenceException("No room named " + s);
         }
     }
+
+    [MenuItem("Node/RenameAll")]
+    public static void RenameNodes() {
+        Room[] rooms = GameObject.FindObjectsOfType<Room>();
+        for (int i = 0; i < rooms.Length; i++) {
+            for (int j = 0; j < rooms[i].nodes.Count; j++) {
+                int k = j+1;
+                rooms[i].nodes[j].name = "node." + rooms[i].RoomName() + "." + k;
+            }
+        }
+    }
+
 }

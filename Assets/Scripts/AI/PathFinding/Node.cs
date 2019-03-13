@@ -20,9 +20,6 @@ public class Node : MonoBehaviour {
 
 	// Use this for initialization
 	public void Init() {
-		if (!name.StartsWith("node.")) {
-			name = "node." + name;
-		}
 		name = name.ToLower();
 		id = Nodes.Count;
 		Nodes.Add(this);
