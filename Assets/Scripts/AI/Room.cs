@@ -27,7 +27,7 @@ public class Room : MonoBehaviour {
     }
 
     void Start() {
-        if(nodes.Count==0){
+        if (nodes.Count == 0) {
             Debug.LogWarning(name + " has no nodes");
         }
         // if (writeFile) {
@@ -51,6 +51,10 @@ public class Room : MonoBehaviour {
     }
 
     public Node RandomNode() {
+        if (nodes.Count == 0) {
+            Debug.LogError(name + "has no nodes" );
+            return null;
+        }
         return nodes.RandomItem();
     }
 

@@ -26,6 +26,7 @@ namespace Cthulu.Events {
         static string seperator = ":";
         public string fileName = "EVENTS";
         public bool testing;
+        public bool Debugging;
         [SerializeField] bool printToFile;
 
         void Awake() {
@@ -133,6 +134,9 @@ namespace Cthulu.Events {
             if (!singleton.enabled) { return; }
 
             string name = caller + seperator + function;
+            if(singleton.Debugging){
+                Debug.Log(name);
+            }
             if (singleton.whens.ContainsKey(name)) {
                 List<WhenEvent> whenEvents = singleton.whens[name];
                 foreach (WhenEvent whenEvent in whenEvents) {
