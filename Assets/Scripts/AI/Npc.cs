@@ -101,6 +101,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         this.AddToManager();
+        Debug.Log(name+" added");
         startPos = transform.position;
         gameObject.SetActive(false);
         StartWandering();
@@ -331,7 +332,6 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public DeadNpc Die() {
-        if (!gameObject.activeSelf) { return null; }
         GameManager.When(name, "die");
         soundType = SoundType.Death;
         PlayDeathSound();
@@ -359,11 +359,12 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
     public void ExitHouse() {
+        GameManager.When(name, "exit");
         ResetStats();
         gameObject.SetActive(false);
         Active.Remove(this);
         Lock();
-        GameManager.When(name, "exit");
+        
 
     }
 

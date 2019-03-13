@@ -13,12 +13,13 @@ public class SubtitleController : MonoBehaviour, IManageable {
     public List<Subtitle> subtitles;
     public TMPro.TextMeshProUGUI text;
     string folder;
+    [SerializeField] Image bg;
 
     public static SubtitleController singleton;
 
     public GameObject obj => gameObject;
 
-    AudioSource _source;
+    [SerializeField] AudioSource _source;
 
     void Awake() {
         if (singleton == null) {
@@ -28,7 +29,6 @@ public class SubtitleController : MonoBehaviour, IManageable {
             LoadSubtitles();
         }
         this.AddToManager("subs");
-        _source = GetComponent<AudioSource>();
     }
 
     public void Play(string sound, string caller = "") {
@@ -40,15 +40,20 @@ public class SubtitleController : MonoBehaviour, IManageable {
             Debug.LogError("No subtitle named " + sound);
             return;
         }
-        _source.Stop();
-        _source.PlayOneShot(sub.audio);
+        try {
+            _source.Stop();
+            _source.PlayOneShot(sub.audio);
+        } catch {
+            Debug.LogError("Problem with audio source");
+        }
         string t = sub.text;
         if (caller != "") {
             t = caller + ": " + t;
         }
         text.text = t;
+        bg.gameObject.SetActive(true);
         this.StopAllCoroutines();
-        this.DoAfterTime(() => text.text = "", sub.audio.length + 1);
+        this.DoAfterTime(Hide, sub.audio.length + 1);
 
     }
 
@@ -108,6 +113,11 @@ public class SubtitleController : MonoBehaviour, IManageable {
         subtitles = new List<Subtitle>();
         subtitles = Resources.LoadAll<Subtitle>("Subtitles/Default").ToList();
         subtitles.AddRange(Resources.LoadAll<Subtitle>("Subtitles/" + folder));
+    }
+
+    void Hide() {
+        text.text = "";
+        bg.gameObject.SetActive(false);
     }
 
 }

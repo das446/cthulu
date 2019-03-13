@@ -30,13 +30,18 @@ namespace Cthulu.Events {
         [SerializeField] bool printToFile;
 
         void Awake() {
+
+            events = new Dictionary<string, DoEvent>();
+            whens = new Dictionary<string, List<WhenEvent>>();
+            new Dictionary<string, string>();
+            Variables = new Dictionary<string, string>();
+
             singleton = this;
-            if (!testing) {
-                fileName = PlayerPrefs.GetString("lvl", "tutorial");
-            }
+            fileName = PlayerPrefs.GetString("lvl", "tutorial");
+
             ReadFile();
             if (printToFile) {
-                PrintManageablesToFile();   
+                PrintManageablesToFile();
             }
         }
 
@@ -114,9 +119,14 @@ namespace Cthulu.Events {
             i++;
             aEvent.Add(w.dos[i]);
             i++;
-            while (w.dos[i] != ")") {
-                aEvent.Add(w.dos[i]);
-                i++;
+            while (!w.dos[i].EndsWith(")")) {
+                if (w.dos[i] == ")") {
+                    aEvent.Add(w.dos[i]);
+                    i++;
+                } else {
+                    aEvent.Add(w.dos[i].TrimEnd(')'));
+                    i++;
+                }
             }
             DoEvent d = new DoEvent("a", aEvent[2], aEvent[3], aEvent.ToArray().Slice(4, -1));
             Do(d);
@@ -134,7 +144,7 @@ namespace Cthulu.Events {
             if (!singleton.enabled) { return; }
 
             string name = caller + seperator + function;
-            if(singleton.Debugging){
+            if (singleton.Debugging) {
                 Debug.Log(name);
             }
             if (singleton.whens.ContainsKey(name)) {

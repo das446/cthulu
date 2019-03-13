@@ -20,7 +20,7 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
     public float baseJumpTime = 2;
     public float jumpForce = 300;
 
-    new void Start() {
+    new protected void Start() {
         base.Start();
         Ghost.possesables.Add(this);
     }

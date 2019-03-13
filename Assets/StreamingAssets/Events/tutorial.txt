@@ -1,4 +1,7 @@
 WHEN time:1
+
+    (DO player clearprogress )
+    //(DO player load lvl1 )
     flag.curt=1
     (DO player setgoal 1000 )
     (DO tutorial.subs play tutorial1 )
@@ -38,9 +41,7 @@ WHEN npc.normal.bob:player.goto
     ;
     
 WHEN npc.normal.bob:readytobuy
-    if.flag.curt=5
     (DO tutorial.subs play tutorial6 )
-    flag.curt=6
     ;
 
 WHEN npc.normal.bob:acceptoffer

@@ -35,6 +35,8 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
 
     public static Player singleton;
 
+    public static event Action resetStatics;
+
     void Awake() {
         if (singleton == null) { singleton = this; }
         this.AddToManager();
@@ -99,8 +101,8 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
         //0=close enough
         //1=too far
         //2=close enough but can't, not implemented yet, does someone want to?
-        if(movement.IsLocked()){
-            if(curOutline!=null){
+        if (movement.IsLocked()) {
+            if (curOutline != null) {
                 curOutline.enabled = false;
                 curOutline = null;
             }
@@ -180,7 +182,7 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
     public void ChangeMoney(int amnt) {
         Audio.PlaySound("SaleMade");
         money += amnt;
-        moneyText.text =  money + "M$";
+        moneyText.text = money + "M/"+goalMoney+"M$";
 
         if (money >= goalMoney) {
             WinLevel();
@@ -204,15 +206,28 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
     public void Do(DoEvent de) {
         if (de.action == "setgoal") {
             goalMoney = Int32.Parse(de.args[0]);
-        } else if (de.action == "load")
-        {
+            moneyText.text = money + "M/"+goalMoney+"M$";
+
+        } else if (de.action == "load") {
             LoadLevel(de.args[0]);
+        } else if (de.action == "clearprogress") {
+            Debug.Log("Delete progress");
+            PlayerPrefs.DeleteKey("lvl");
         }
     }
 
-    public static void LoadLevel(string de)
-    {
+    public static void LoadLevel(string de) {
+        ResetStatics();
         PlayerPrefs.SetString("lvl", de);
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Loading");
+    }
+
+    //this is very dumb, I don't know why static things act weird when I reload the scene
+    private static void ResetStatics() {
+        GameManager.Objects = new Dictionary<string, IManageable>();
+        Node.Nodes = new List<Node>();
+        Room.rooms = new Dictionary<string, Room>();
+        Ghost.possesables = new List<IPossesable>();
+        resetStatics();
     }
 }
