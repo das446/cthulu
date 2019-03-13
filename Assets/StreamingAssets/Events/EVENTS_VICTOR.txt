@@ -19,3 +19,7 @@ WHEN monster.tentacle.1:die
 	wait.1
 	(Do npc.normal.tim goto room.livingroom )
 	;
+
+WHEN npc.normal.bob:EnterKitchen
+	wait.2
+	(Do npc.normal.bob wander )
