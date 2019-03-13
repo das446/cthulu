@@ -113,13 +113,17 @@ namespace Cthulu {
         /// Call this from Awake()
         /// </summary>
         /// <param name="i"></param>
-        public static void AddToManager(this IManageable i,string suffix = "") {
+        public static void AddToManager(this IManageable i, string suffix = "") {
             string n = i.obj.name.ToLower();
-            if(suffix!=""){
-                n = n + "."+suffix;
+            if (suffix != "") {
+                n = n + "." + suffix;
             }
             if (GameManager.Objects.ContainsKey(n)) {
-                Debug.LogWarning(n + " has the same name as another object in the scene");
+                if (GameManager.Objects[n] == null) {
+                    GameManager.Objects[n] = i;
+                } else {
+                    Debug.LogWarning(n + " has the same name as another object in the scene");
+                }
             } else {
                 GameManager.Objects.Add(n, i);
             }

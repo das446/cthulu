@@ -100,7 +100,10 @@ public class PathFinder {
 		Node n = nodes[0];
 
 		foreach (Node cur in nodes) {
-			if (nodeData.ContainsKey(cur.id) && nodeData.ContainsKey(n.id)) {
+			if(n==null || cur == null){
+
+			}
+			else if (nodeData.ContainsKey(cur.id) && nodeData.ContainsKey(n.id)) {
 				if (nodeData[cur.id].f < nodeData[n.id].f) {
 					n = cur;
 				}

@@ -25,11 +25,20 @@ namespace Cthulu.Events {
         static GameManager singleton;
         static string seperator = ":";
         public string fileName = "EVENTS";
+        public bool testing;
+        public bool Debugging;
         [SerializeField] bool printToFile;
 
         void Awake() {
+
+            events = new Dictionary<string, DoEvent>();
+            whens = new Dictionary<string, List<WhenEvent>>();
+            new Dictionary<string, string>();
+            Variables = new Dictionary<string, string>();
+
             singleton = this;
             fileName = PlayerPrefs.GetString("lvl", "tutorial");
+
             ReadFile();
             if (printToFile) {
                 PrintManageablesToFile();
@@ -110,9 +119,14 @@ namespace Cthulu.Events {
             i++;
             aEvent.Add(w.dos[i]);
             i++;
-            while (w.dos[i] != ")") {
-                aEvent.Add(w.dos[i]);
-                i++;
+            while (!w.dos[i].EndsWith(")")) {
+                if (w.dos[i] == ")") {
+                    aEvent.Add(w.dos[i]);
+                    i++;
+                } else {
+                    aEvent.Add(w.dos[i].TrimEnd(')'));
+                    i++;
+                }
             }
             DoEvent d = new DoEvent("a", aEvent[2], aEvent[3], aEvent.ToArray().Slice(4, -1));
             Do(d);
@@ -121,7 +135,7 @@ namespace Cthulu.Events {
 
         public static void When(string caller, string function, params string[] args) {
             for (int i = 0; i < args.Length; i++) {
-                When(caller,function+"."+args[i]);
+                When(caller, function + "." + args[i]);
             }
         }
 
@@ -130,6 +144,9 @@ namespace Cthulu.Events {
             if (!singleton.enabled) { return; }
 
             string name = caller + seperator + function;
+            if (singleton.Debugging) {
+                Debug.Log(name);
+            }
             if (singleton.whens.ContainsKey(name)) {
                 List<WhenEvent> whenEvents = singleton.whens[name];
                 foreach (WhenEvent whenEvent in whenEvents) {

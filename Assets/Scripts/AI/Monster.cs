@@ -6,13 +6,14 @@ using UnityEngine;
 public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
 
     [SerializeField] protected int hp;
+    [SerializeField] int startHp;
     [SerializeField] protected float scareFactor;
 
     [SerializeField] protected int damage;
 
     public GameObject obj => gameObject;
 
-    public const int layer = 1<<13;
+    public const int layer = 1 << 13;
 
     public static event Action<Monster, Vector3> Spawn;
     public static event Action<Monster> OnDie;
@@ -20,8 +21,8 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
 
     public virtual void OnSpawn() {
         gameObject.SetActive(true);
+        hp = startHp;
         if (Spawn != null) { Spawn(this, transform.position); }
-        Compass.UpdateTarget(gameObject);
     }
 
     public virtual void GetHit(int damageAmount) {
@@ -39,11 +40,10 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
         gameObject.SetActive(false);
     }
 
-    void Awake() {
-        if (!GameManager.HasObject(name)) {
-            this.AddToManager();
-            gameObject.SetActive(false);
-        }
+    protected void Awake() {
+        this.AddToManager();
+        gameObject.SetActive(false);
+
     }
 
     public float Evaluate(Npc npc, Room r) {
@@ -63,8 +63,7 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
 
     public abstract void Do(DoEvent de);
 
-    public virtual void SeeBuyer(Npc npc)
-    {
-        
+    public virtual void SeeBuyer(Npc npc) {
+
     }
 }

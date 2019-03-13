@@ -27,10 +27,12 @@ public class Tentacle : Monster, ICanHold {
     }
 
     public override void SeeBuyer(Npc npc) {
-        Debug.Log("see npc");
-        DeadNpc d = npc.Die();
-        d.GetPickedUp(this);
-        PickUp(d);
+        if (tentacle.transform.localPosition.x >= tentacleLength) {
+            Debug.Log("see npc");
+            DeadNpc d = npc.Die();
+            d.GetPickedUp(this);
+            PickUp(d);
+        }
 
     }
 
@@ -106,7 +108,12 @@ public class Tentacle : Monster, ICanHold {
         } else {
             r = Room.GetRoom(de.args[0]);
         }
-        Transform t = r.spawnPoints.RandomItem().transform;
+        MonsterSpawnPoint m = r.spawnPoints.RandomItem();
+        if (m == null) {
+            Debug.LogError(r.name + " has no spawn points");
+            return;
+        }
+        Transform t = m.transform;
         transform.position = t.position;
         transform.rotation = t.rotation;
         OnSpawn();
@@ -130,9 +137,9 @@ public class Tentacle : Monster, ICanHold {
 
     public override void Die() {
         base.Die();
-        Vector3 v = tentacle.transform.position;
+        Vector3 v = tentacle.transform.localPosition;
         v.x = -tentacleLength;
-        tentacle.transform.position = v;
+        tentacle.transform.localPosition = v;
         StopAllCoroutines();
     }
 

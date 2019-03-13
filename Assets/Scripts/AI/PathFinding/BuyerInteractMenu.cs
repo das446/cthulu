@@ -16,13 +16,21 @@ public class BuyerInteractMenu : MonoBehaviour {
     public Button chatButton;
     public GameObject map;
 
+    public Text halfM, mostM, fullM;
+
     public float chatLength = 5;
 
     public SubtitleController subControl;
 
     void Start() {
         NpcState.OnClick += Open;
+        Player.resetStatics += removeOnclick;
         gameObject.SetActive(false);
+    }
+
+    private void removeOnclick() {
+        NpcState.OnClick -= Open;
+        Player.resetStatics -= removeOnclick;
     }
 
     public void Open(Npc npc, Player p) {
@@ -67,6 +75,11 @@ public class BuyerInteractMenu : MonoBehaviour {
         }
 
         interest.fillAmount = (float) (curNpc.interest) / (curNpc.maxInterest);
+
+        halfM.text = curNpc.CalculateSell(0.5f) + "M";
+        mostM.text = curNpc.CalculateSell(0.75f) + "M";
+        fullM.text = curNpc.CalculateSell(1) + "M";
+
     }
 
     IEnumerator MoveCamera() {

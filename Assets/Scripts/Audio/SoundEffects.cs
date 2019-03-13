@@ -32,7 +32,6 @@ namespace Cthulu {
                 DefaultSounds = this;
             }
             if (DefaultSounds == this) {
-                DontDestroyOnLoad(this);
             }
         }
 
