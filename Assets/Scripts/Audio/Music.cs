@@ -44,7 +44,6 @@ namespace Cthulu {
                 return;
             }
             instance = this;
-            DontDestroyOnLoad(gameObject);
             // SceneManager.activeSceneChanged += SceneManager_activeSceneChanged1; ;
         }
 

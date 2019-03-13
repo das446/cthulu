@@ -6,7 +6,7 @@ public class LineOfSightChecker {
 
     private Npc npc;
     private float vision;
-    static int layer = ~(1 << 10);
+    static int layer = ~(1 << 12);
     Room room;
 
     public LineOfSightChecker(Npc npc, float vision, Room r) {
@@ -58,7 +58,7 @@ public class LineOfSightChecker {
         Collider[] cols = Physics.OverlapSphere(t.position, vision, Monster.layer);
         for (int i = 0; i < cols.Length; i++) {
             Vector3 dir = cols[i].gameObject.transform.position - t.position;
-            if (Physics.SphereCast(t.position, 1, dir, out hit, vision)) {
+            if (Physics.SphereCast(t.position, 1, dir, out hit, vision, layer)) {
                 Debug.DrawRay(t.position, dir * hit.distance, Color.yellow, Time.deltaTime, true);
                 GameObject m = hit.collider.gameObject;
                 if (m != null) {
