@@ -106,7 +106,12 @@ public class Tentacle : Monster, ICanHold {
         } else {
             r = Room.GetRoom(de.args[0]);
         }
-        Transform t = r.spawnPoints.RandomItem().transform;
+        MonsterSpawnPoint m = r.spawnPoints.RandomItem();
+        if(m==null){
+            Debug.LogError(r.name + " has no spawn points");
+            return;
+        }
+        Transform t = m.transform;
         transform.position = t.position;
         transform.rotation = t.rotation;
         OnSpawn();

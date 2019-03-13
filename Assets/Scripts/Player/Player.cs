@@ -204,9 +204,15 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
     public void Do(DoEvent de) {
         if (de.action == "setgoal") {
             goalMoney = Int32.Parse(de.args[0]);
-        } else if (de.action == "load") {
-            PlayerPrefs.SetString("lvl", de.args[0]);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        } else if (de.action == "load")
+        {
+            LoadLevel(de.args[0]);
         }
+    }
+
+    public static void LoadLevel(string de)
+    {
+        PlayerPrefs.SetString("lvl", de);
+        SceneManager.LoadScene("Tutorial");
     }
 }

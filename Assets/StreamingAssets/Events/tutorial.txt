@@ -1,6 +1,6 @@
 WHEN time:1
     flag.curt=1
-    (DO player setgoal 3 )
+    (DO player setgoal 1000 )
     (DO tutorial.subs play tutorial1 )
     (DO guide draw node.node3 ) 
     (DO timer set 9999 )
@@ -44,8 +44,9 @@ WHEN npc.normal.bob:readytobuy
     ;
 
 WHEN npc.normal.bob:acceptoffer
-    if.flag.curt=6
     (DO tutorial.subs play tutorial7 )
+    wait.12
+    (DO player load lvl1 )
     ;
 
 

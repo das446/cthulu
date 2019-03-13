@@ -1,0 +1,57 @@
+WHEN time:1 //spawn bob, tim, and sue each 5 seconds apart, then have them wander
+    (DO player setgoal 50 )
+    (DO timer set 9999 )
+    wait.5
+    (DO npc.normal.bob spawn )
+    (DO npc.normal.bob goto room.kitchen )
+    wait.10
+    (DO npc.normal.david spawn )
+    (DO npc.normal.david goto room.diningroom )
+    wait.10
+    (DO monster.tentacle.1 spawn room.lounge )
+    (DO monster.tentacle.1 spawn room.bathroom )
+    wait.10
+    (DO npc.normal.bob goto room.bathroom )
+    ;
+
+
+WHEN monster.tentacle.1:die
+    wait.5
+    (DO monster.ghost.1 spawn room.kitchen )
+    if.flag.seeghost=0
+    (DO tutorial.subs play tutorialghost )
+    flag.seeghost=1
+    ;
+
+WHEN monster.ghost.1:die
+    wait.5
+    (DO monster.tentacle.1 spawn room.diningroom )
+    ;
+
+WHEN monster.tentacle.2:die
+    wait.5
+    (DO monster.ghost.2 spawn room.kitchen )
+    if.flag.seeghost=0
+    (DO tutorial.subs play tutorialghost )
+    flag.seeghost=1
+    ;
+
+WHEN monster.ghost.1:die
+    wait.5
+    (DO monster.tentacle.1 spawn room.diningroom )
+    ;
+
+WHEN monster.ghost.2:die
+    wait.5
+    (DO monster.tentacle.2 spawn room.kitchen )
+    ;
+
+WHEN npc.normal.bob:exit
+    wait.10
+    (DO npc.normal.bob spawn )
+    (DO npc.normal.bob goto room.kitchen )
+
+WHEN npc.normal.david:exit
+    wait.10
+    (DO npc.normal.david spawn )
+    (DO npc.normal.david goto room.lounge )

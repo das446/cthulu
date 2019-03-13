@@ -34,14 +34,17 @@ public class Node : MonoBehaviour {
 			else if (!neighbor.neighbors.Contains(this)) {
 				neighbor.neighbors.Add(this);
 			}
-			// if (draw) {
-			// 	DrawNeighbor(neighbor);
-			// }
+			if (draw) {
+				DrawNeighbor(neighbor);
+			}
 
 		}
 	}
 
 	private void DrawNeighbor(Node neighbor) {
+		if(neighbor ==null){
+			return;
+		}
 		GameObject g = new GameObject();
 		g.transform.parent = transform;
 		LineRenderer lr = g.AddComponent<LineRenderer>();

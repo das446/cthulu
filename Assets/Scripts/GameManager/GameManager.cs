@@ -25,14 +25,17 @@ namespace Cthulu.Events {
         static GameManager singleton;
         static string seperator = ":";
         public string fileName = "EVENTS";
+        public bool testing;
         [SerializeField] bool printToFile;
 
         void Awake() {
             singleton = this;
-            fileName = PlayerPrefs.GetString("lvl", "tutorial");
+            if (!testing) {
+                fileName = PlayerPrefs.GetString("lvl", "tutorial");
+            }
             ReadFile();
             if (printToFile) {
-                PrintManageablesToFile();
+                PrintManageablesToFile();   
             }
         }
 
@@ -121,7 +124,7 @@ namespace Cthulu.Events {
 
         public static void When(string caller, string function, params string[] args) {
             for (int i = 0; i < args.Length; i++) {
-                When(caller,function+"."+args[i]);
+                When(caller, function + "." + args[i]);
             }
         }
 
