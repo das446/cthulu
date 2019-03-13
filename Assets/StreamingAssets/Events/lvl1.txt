@@ -1,0 +1,75 @@
+WHEN time:1 //spawn bob, tim, and sue each 5 seconds apart, then have them wander
+    (DO player clearprogress )
+    (DO player setgoal 12 )
+    (DO timer set 360 )
+    (DO npc.normal.bob spawn )
+    (DO npc.normal.bob goto room.kitchen )
+    wait.10
+    (DO npc.normal.david spawn )
+    (DO npc.normal.david goto room.diningroom )
+    wait.5
+    (DO monster.tentacle.1 spawn room.diningroom )
+    (DO monster.tentacle.1 spawn room.kitchen )
+    wait.10
+    (DO npc.normal.bob goto room.bathroom )
+    (DO npc.normal.tim spawn )
+    (DO npc.normal.tim goto room.kitchen )
+    (DO monster.ghost.1 spawn bathroom )
+    ;
+
+
+WHEN monster.tentacle.1:die
+    wait.5
+    (DO monster.tentacle.1 spawn room.kitchen )
+    if.flag.seeghost=0
+    ;
+
+WHEN monster.ghost.1:die
+    wait.5
+    (DO monster.tentacle.1 spawn room.diningroom )
+    ;
+
+WHEN monster.tentacle.2:die
+    wait.10
+    (DO monster.tentacle.2 spawn room.kitchen )
+    ;
+
+WHEN monster.ghost.1:die
+    wait.5
+    (DO monster.ghost.1 spawn room.diningroom )
+    ;
+
+WHEN monster.ghost.2:die
+    wait.5
+    (DO monster.ghost.2 spawn room.kitchen )
+    ;
+
+WHEN npc.normal.bob:exit
+    wait.10
+    (DO npc.normal.bob spawn )
+    (DO npc.normal.bob goto room.kitchen )
+
+WHEN npc.normal.david:exit
+    wait.10
+    (DO npc.normal.david spawn )
+    (DO npc.normal.david goto room.lounge )
+
+WHEN npc.normal.bob:die
+    wait.10
+    (DO npc.normal.bob spawn )
+    (DO npc.normal.bob goto room.kitchen )
+
+WHEN npc.normal.david:die
+    wait.10
+    (DO npc.normal.david spawn )
+    (DO npc.normal.david goto room.lounge )
+
+WHEN npc.normal.tim:die
+    wait.10
+    (DO npc.normal.tim spawn )
+    (DO npc.normal.tim goto room.kitchen )
+
+WHEN npc.normal.tim:die
+    wait.10
+    (DO npc.normal.tim spawn )
+    (DO npc.normal.tim goto room.lounge )
