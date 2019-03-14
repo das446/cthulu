@@ -145,7 +145,7 @@ public class Tentacle : Monster, ICanHold {
 
     public override void OnSpawn() {
         base.OnSpawn();
-        StartCoroutine(MoveOut());
+       // StartCoroutine(MoveOut());
     }
 
     private IEnumerator MoveOut() {
