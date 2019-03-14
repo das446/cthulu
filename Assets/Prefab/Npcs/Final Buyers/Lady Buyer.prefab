@@ -77,6 +77,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &34648231178596911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4676399487422450356}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!1 &6204180762803306222
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5acfc8f1f063c1a43ae30d67c2a3548a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  o: {fileID: 0}
+  o: {fileID: 34648231178596911}
   iballs: {fileID: 0}
   vision: 3
   speed: 2
@@ -772,6 +788,12 @@ Transform:
 --- !u!95 &4676399487415171448 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: fc8c5e3bdc90bc04fb66264cdfce76c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4676399487422549016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4676399487422450356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100012, guid: fc8c5e3bdc90bc04fb66264cdfce76c7,
     type: 3}
   m_PrefabInstance: {fileID: 4676399487422549016}
   m_PrefabAsset: {fileID: 0}
