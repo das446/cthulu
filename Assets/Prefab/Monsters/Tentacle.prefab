@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
+  startHp: 0
   scareFactor: 1
   damage: 1
   range: 7
@@ -384,6 +385,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4083184573730332}
     m_Modifications:
+    - target: {fileID: 6159313683868300820, guid: 27b84e9e287eb964b9d953b6a57fe74d,
+        type: 3}
+      propertyPath: monsterBase
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1884699085697894, guid: 27b84e9e287eb964b9d953b6a57fe74d, type: 3}
       propertyPath: m_Name
       value: TentaclePortal
@@ -432,11 +438,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6159313683868300820, guid: 27b84e9e287eb964b9d953b6a57fe74d,
-        type: 3}
-      propertyPath: monsterBase
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27b84e9e287eb964b9d953b6a57fe74d, type: 3}
 --- !u!4 &5724526230402736490 stripped
@@ -458,11 +459,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 422538458, guid: 11badc9eae951c1498e2e69714021d0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03
+      value: -0.88
       objectReference: {fileID: 0}
     - target: {fileID: 422538458, guid: 11badc9eae951c1498e2e69714021d0e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.057
       objectReference: {fileID: 0}
     - target: {fileID: 422538458, guid: 11badc9eae951c1498e2e69714021d0e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -516,6 +517,14 @@ PrefabInstance:
       propertyPath: Destination
       value: 
       objectReference: {fileID: 293467351}
+    - target: {fileID: 422538456, guid: 11badc9eae951c1498e2e69714021d0e, type: 3}
+      propertyPath: LearningRate
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 415985560, guid: 11badc9eae951c1498e2e69714021d0e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3dc2b4b9dc43f3346a50f6d0665da997, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11badc9eae951c1498e2e69714021d0e, type: 3}
 --- !u!1 &5977506498154325809 stripped
