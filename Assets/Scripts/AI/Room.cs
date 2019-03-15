@@ -88,8 +88,12 @@ public class Room : MonoBehaviour {
         Room[] rooms = GameObject.FindObjectsOfType<Room>();
         for (int i = 0; i < rooms.Length; i++) {
             for (int j = 0; j < rooms[i].nodes.Count; j++) {
-                int k = j+1;
-                rooms[i].nodes[j].name = "node." + rooms[i].RoomName() + "." + k;
+                int k = j + 1;
+                try {
+                    rooms[i].nodes[j].name = "node." + rooms[i].RoomName() + "." + k;
+                } catch (Exception e) {
+                    Debug.LogError("Problem with room " + rooms[i] + ", node " + rooms[i].nodes[j] + ", j=" + j);
+                }
             }
         }
     }
