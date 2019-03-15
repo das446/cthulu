@@ -117,7 +117,7 @@ public class SubtitleController : MonoBehaviour, IManageable {
 
     void Hide() {
         text.text = "";
-        bg.gameObject.SetActive(false);
+        //bg.gameObject.SetActive(false);
     }
 
 }
