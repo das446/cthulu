@@ -79,11 +79,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   o: {fileID: 1605250845127695758}
   Weight: 1
+  resTimer: 0
+  countdown: 0
   health: 10
   startPos: {x: 0, y: 0, z: 0}
   rb: {fileID: 54208805802893544}
   col: {fileID: 136398460085461184}
   debris: {fileID: 4966297709812258871, guid: d3c741359b5964447bfbed15c7974b47, type: 3}
+  throwDmg: 10
+  possessable: 1
+  baseJumpTime: 1
+  jumpForce: 300
 --- !u!108 &4959265686556152761
 Light:
   m_ObjectHideFlags: 0
@@ -145,6 +151,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4500205773145858}
     m_Modifications:
+    - target: {fileID: 100000, guid: 3bb6d6fe2e2b364449d972fb0bfb9a10, type: 3}
+      propertyPath: m_Name
+      value: Model
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3bb6d6fe2e2b364449d972fb0bfb9a10, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -200,10 +210,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 3bb6d6fe2e2b364449d972fb0bfb9a10, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 3bb6d6fe2e2b364449d972fb0bfb9a10, type: 3}
-      propertyPath: m_Name
-      value: Model
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 3bb6d6fe2e2b364449d972fb0bfb9a10, type: 3}
       propertyPath: m_Materials.Array.data[0]
