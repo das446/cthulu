@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &319920756388067658
 Transform:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7625175032295664446
 Transform:
   m_ObjectHideFlags: 0
@@ -202,7 +202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2395105466163249421
 Transform:
   m_ObjectHideFlags: 0
@@ -294,7 +294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3930879757802130614
 Transform:
   m_ObjectHideFlags: 0
@@ -386,7 +386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3841174677488247421
 Transform:
   m_ObjectHideFlags: 0
@@ -478,7 +478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3714528767908863394
 Transform:
   m_ObjectHideFlags: 0
@@ -561,6 +561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5767094657114764228}
+  - component: {fileID: 4939437711101707877}
   m_Layer: 0
   m_Name: frame_wall_placeholder
   m_TagString: Untagged
@@ -593,6 +594,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4939437711101707877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461859381060753397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061b1a681be9b874c90f86f5883b3c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  midFrame: {fileID: 0}
+  tallFrame: {fileID: 0}
+  wideFrame: {fileID: 0}
+  paintings:
+  - {fileID: 4331397360379662719}
+  - {fileID: 1273191295165305472}
+  - {fileID: 3314841479532853452}
+  - {fileID: 7821420652895704886}
+  - {fileID: 2348315146374901913}
+  - {fileID: 4799345205077057649}
+  - {fileID: 6823978248541185932}
+  - {fileID: 1949301665667055237}
 --- !u!1 &6823978248541185932
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1420453551244141931
 Transform:
   m_ObjectHideFlags: 0
@@ -703,7 +728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9105162809119822655
 Transform:
   m_ObjectHideFlags: 0
@@ -788,6 +813,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tall_frame_placeholder
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2665ae877cc735d4c8eb70ffbcd4e79d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2665ae877cc735d4c8eb70ffbcd4e79d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -866,6 +895,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 2665ae877cc735d4c8eb70ffbcd4e79d, type: 3}
       propertyPath: m_Name
       value: Medium_frame_placeholder (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2665ae877cc735d4c8eb70ffbcd4e79d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2665ae877cc735d4c8eb70ffbcd4e79d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -956,7 +989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4c3071f72fba9ed4c92ca77695618f01, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4c3071f72fba9ed4c92ca77695618f01, type: 3}
       propertyPath: m_LocalPosition.x
