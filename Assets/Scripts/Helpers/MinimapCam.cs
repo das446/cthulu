@@ -8,6 +8,7 @@ public class MinimapCam : MonoBehaviour {
     [SerializeField] bool is_rotate;
     [SerializeField] float h1, h2;
     [SerializeField] float py;
+    Vector3 rot = new Vector3(90, 0, 180);
 
     void Start() {
         is_rotate = false;
@@ -19,6 +20,8 @@ public class MinimapCam : MonoBehaviour {
     private void RotateMap(bool r = false) {
         if (r) {
             gameObject.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.eulerAngles.x, target.transform.rotation.eulerAngles.y, target.transform.rotation.eulerAngles.z);
+        } else {
+            gameObject.transform.eulerAngles = rot;
         }
         Vector3 v = gameObject.transform.position;
         v.x = target.transform.position.x;
