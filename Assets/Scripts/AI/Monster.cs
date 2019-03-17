@@ -21,9 +21,10 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
 
     AudioSource _audio;
 
-    public AudioClip hurt;
+    public AudioClip spawn, hurt;
 
     public virtual void OnSpawn() {
+        _audio.PlayOneShot(spawn);
         gameObject.SetActive(true);
         hp = startHp;
         if (Spawn != null) { Spawn(this, transform.position); }
