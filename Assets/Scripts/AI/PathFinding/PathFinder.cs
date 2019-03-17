@@ -70,6 +70,10 @@ public class PathFinder {
 			}
 
 			foreach (Node neighbor in current.Neighbors) {
+				if(neighbor == null)
+				{
+					continue;
+				}
 				if (!nodeData.ContainsKey(neighbor.id)) {
 					nodeData.Add(neighbor.id, new NodeData(neighbor, this));
 				}
