@@ -22,6 +22,10 @@ public class BuyerInteractMenu : MonoBehaviour {
 
     public SubtitleController subControl;
 
+    public List<GameObject> floors;
+
+    int floor = 0;
+
     void Start() {
         NpcState.OnClick += Open;
         Player.resetStatics += removeOnclick;
@@ -125,6 +129,22 @@ public class BuyerInteractMenu : MonoBehaviour {
         gameObject.SetActive(false);
         player.Unlock();
         GameManager.When(npcName, "acceptoffer");
+    }
+
+    public void NextFloor(bool right) {
+        if (right) {
+            if (floors.Count > floor + 1) {
+                floors[floor].SetActive(false);
+                floor++;
+                floors[floor].SetActive(true);
+            }
+        } else {
+            if (floor > 0) {
+                floors[floor].SetActive(false);
+                floor--;
+                floors[floor].SetActive(true);
+            }
+        }
     }
 
 }

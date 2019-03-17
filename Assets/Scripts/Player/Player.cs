@@ -223,7 +223,7 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
     }
 
     //this is very dumb, I don't know why static things act weird when I reload the scene
-    private static void ResetStatics() {
+    public static void ResetStatics() {
         GameManager.Objects = new Dictionary<string, IManageable>();
         Node.Nodes = new List<Node>();
         Room.rooms = new Dictionary<string, Room>();

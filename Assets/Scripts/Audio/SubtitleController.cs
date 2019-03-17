@@ -29,6 +29,9 @@ public class SubtitleController : MonoBehaviour, IManageable {
             LoadSubtitles();
         }
         this.AddToManager("subs");
+
+        Pauser.OnPause += OnPause;
+        Pauser.OnUnPause += OnResume;
     }
 
     public void Play(string sound, string caller = "") {
@@ -51,7 +54,7 @@ public class SubtitleController : MonoBehaviour, IManageable {
             t = caller + ": " + t;
         }
         text.text = t;
-        bg.gameObject.SetActive(true);
+        //bg.gameObject.SetActive(true);
         this.StopAllCoroutines();
         this.DoAfterTime(Hide, sub.audio.length + 1);
 
@@ -117,7 +120,20 @@ public class SubtitleController : MonoBehaviour, IManageable {
 
     void Hide() {
         text.text = "";
-        bg.gameObject.SetActive(false);
+        //bg.gameObject.SetActive(false);
+    }
+
+    void OnPause() {
+        singleton._source.Pause();
+    }
+
+    void OnResume() {
+        singleton._source.UnPause();
+    }
+
+    private void OnDestroy() {
+        Pauser.OnPause -= OnPause;
+        Pauser.OnUnPause -= OnResume;
     }
 
 }
