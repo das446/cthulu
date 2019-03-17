@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3070890855051913437}
   - component: {fileID: 7384140457343430364}
   - component: {fileID: 4859677365341582296}
+  - component: {fileID: 5573225003531215146}
   m_Layer: 0
   m_Name: placeholder_BarStool_v01
   m_TagString: Untagged
@@ -61,8 +62,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30.000008, y: 83.82, z: 30.000008}
-  m_Center: {x: 0, y: 41.91, z: 0}
+  m_Size: {x: 61.1938, y: 83.82, z: 57.89513}
+  m_Center: {x: 0.38437247, y: 41.91, z: -0.19892752}
 --- !u!114 &4859677365341582296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +89,103 @@ MonoBehaviour:
   possessable: 1
   baseJumpTime: 4
   jumpForce: 500
+  thud: {fileID: 8300000, guid: 7146fa7b1bbf0c141a41e3c6dbf6dabe, type: 3}
+--- !u!82 &5573225003531215146
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628215471669188247}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0.2
+  MinDistance: 0.2
+  MaxDistance: 15
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &8767882600237923661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,10 +209,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5915744848644438412}
     m_Modifications:
-    - target: {fileID: 100000, guid: 01e3a892c78c4c34b806946c7eb7ff51, type: 3}
-      propertyPath: m_Name
-      value: placeholder_BarStool_v01
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 01e3a892c78c4c34b806946c7eb7ff51, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -161,20 +255,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 01e3a892c78c4c34b806946c7eb7ff51, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.57521
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 01e3a892c78c4c34b806946c7eb7ff51, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.57521
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 01e3a892c78c4c34b806946c7eb7ff51, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.57521
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 01e3a892c78c4c34b806946c7eb7ff51, type: 3}
+      propertyPath: m_Name
+      value: placeholder_BarStool_v01
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 01e3a892c78c4c34b806946c7eb7ff51, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 885a53e20da662345a4d774a025d4f58, type: 2}
+    - target: {fileID: 3300000, guid: 01e3a892c78c4c34b806946c7eb7ff51, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: a6edf60fb5aead5478c87d9d2deb0033, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01e3a892c78c4c34b806946c7eb7ff51, type: 3}
 --- !u!1 &6874468501907089902 stripped
