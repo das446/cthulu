@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5477774208518437499}
   - component: {fileID: 8115516198626297479}
   - component: {fileID: 2841689406651039144}
+  - component: {fileID: 5116842589168669113}
   m_Layer: 0
   m_Name: book 3 placeholder
   m_TagString: Untagged
@@ -121,6 +122,103 @@ MonoBehaviour:
   possessable: 1
   baseJumpTime: 5
   jumpForce: 750
+  thud: {fileID: 8300000, guid: 7146fa7b1bbf0c141a41e3c6dbf6dabe, type: 3}
+--- !u!82 &5116842589168669113
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334603350074675458}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0.2
+  MinDistance: 0.2
+  MaxDistance: 15
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1261862782344364713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,10 +226,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3122948538678615017}
     m_Modifications:
-    - target: {fileID: 100000, guid: e47e155b8ff2ead49bf118fc518beaa3, type: 3}
-      propertyPath: m_Name
-      value: OBJ_Book01_v01
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e47e155b8ff2ead49bf118fc518beaa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -188,6 +282,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.26023617
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e47e155b8ff2ead49bf118fc518beaa3, type: 3}
+      propertyPath: m_Name
+      value: OBJ_Book01_v01
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: e47e155b8ff2ead49bf118fc518beaa3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -213,14 +311,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3122948538678615017}
     m_Modifications:
-    - target: {fileID: 100000, guid: 8829bc050cf59af4ea83560a0b2f491b, type: 3}
-      propertyPath: m_Name
-      value: book 3 placeholder
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 8829bc050cf59af4ea83560a0b2f491b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8829bc050cf59af4ea83560a0b2f491b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -276,6 +366,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 8829bc050cf59af4ea83560a0b2f491b, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8829bc050cf59af4ea83560a0b2f491b, type: 3}
+      propertyPath: m_Name
+      value: book 3 placeholder
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8829bc050cf59af4ea83560a0b2f491b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 8829bc050cf59af4ea83560a0b2f491b, type: 3}
       propertyPath: m_Materials.Array.data[0]

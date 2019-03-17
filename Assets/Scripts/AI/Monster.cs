@@ -19,6 +19,10 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
     public static event Action<Monster> OnDie;
     public abstract void FurnitureContact(Furniture furniture);
 
+    AudioSource _audio;
+
+    public AudioClip hurt;
+
     public virtual void OnSpawn() {
         gameObject.SetActive(true);
         hp = startHp;
@@ -27,6 +31,10 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
 
     public virtual void GetHit(int damageAmount) {
         this.hp -= damageAmount;
+        if(!_audio.isPlaying)
+        {
+            _audio.PlayOneShot(hurt);
+        }
         if (hp <= 0) {
             Die();
         }
@@ -43,7 +51,7 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
     protected void Awake() {
         this.AddToManager();
         gameObject.SetActive(false);
-
+        _audio = GetComponent<AudioSource>();
     }
 
     public float Evaluate(Npc npc, Room r) {

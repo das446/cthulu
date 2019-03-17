@@ -19,6 +19,8 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
     float jumpTime;
     public float baseJumpTime = 2;
     public float jumpForce = 300;
+
+    float timer = 0;
     
     AudioSource _audio;
     public AudioClip thud;
@@ -26,6 +28,7 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
     new protected void Start() {
         base.Start();
         Ghost.possesables.Add(this);
+        _audio = GetComponent<AudioSource>();
     }
 
     public override void Interact(Player p) {
@@ -82,7 +85,7 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
         } else {
             SetState(new GroundedState(this));
         }
-        if(other.relativeVelocity.magnitude > 2 && !_audio.isPlaying)
+        if(!_audio.isPlaying && timer > 2)
         {
             _audio.PlayOneShot(thud);
         }
@@ -142,7 +145,10 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
         rb.AddForce(dir*jumpForce);
     }
 
-
+    void Update()
+    {
+        timer += Time.deltaTime;
+    }
 
 
 }
