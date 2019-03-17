@@ -11,6 +11,9 @@ WHEN time:2
 	wait.2
 	(Do npc.normal.tim spawn )
 	;
+	
+WHEN time:10
+	(Do npc.normal.bob)
 
 //spawn another tentacle
 WHEN monster.tentacle.1:die
@@ -23,4 +26,14 @@ WHEN monster.tentacle.1:die
 WHEN monster.tentcle.2:die
 	wait.1
 	(Do monster.tentacle.2 spawn room.livingroom )
+	;
+	
+WHEN npc.normal.bob:enterroom
+	wait.2
+	(Do npc.normal.bob wander )
+	;
+	
+WHEN npc.normal.david:enterroom
+	wait.2
+	(Do npc.normal.david wander )
 	;
