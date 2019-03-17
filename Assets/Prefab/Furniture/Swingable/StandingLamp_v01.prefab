@@ -63,12 +63,12 @@ MonoBehaviour:
   Weight: 1
   resTimer: 0
   countdown: 0
-  health: 1
+  health: 10
   startPos: {x: 0, y: 0, z: 0}
   rb: {fileID: 1726530915446104418}
   col: {fileID: 7202548062206704485}
   debris: {fileID: 4966297709812258871, guid: d3c741359b5964447bfbed15c7974b47, type: 3}
-  throwDmg: 10
+  throwDmg: 1
   possessable: 1
   baseJumpTime: 1
   jumpForce: 300
@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 21651b8d637822f419ee9e1e67cc0ced, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
 --- !u!4 &8678383987626972764 stripped
