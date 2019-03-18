@@ -53,4 +53,9 @@ public abstract class NpcState {
     {
         return false;
     }
+
+    public virtual bool CanSeeMonster()
+    {
+        return true;
+    }
 }

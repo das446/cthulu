@@ -197,6 +197,7 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
     }
 
     private void WinLevel() {
+        GameManager.When("player", "win");
         Lock();
         SceneManager.LoadScene("WinScreen");
     }

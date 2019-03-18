@@ -51,7 +51,7 @@ WHEN monster.tentacle.1:die
 
     (DO tutorial.subs play tutorial4 )
 
-    (DO npc.normal.bob spawn )
+    (DO npc.tutorial.bob spawn )
 
     (DO guide draw node.livingroom.4 ) 
 
@@ -60,7 +60,7 @@ WHEN monster.tentacle.1:die
     ;
 
 
-WHEN npc.normal.bob:player.goto
+WHEN npc.tutorial.bob:player.goto
 
     if.flag.curt=4
 
@@ -74,14 +74,14 @@ WHEN npc.normal.bob:player.goto
 
     
 
-WHEN npc.normal.bob:readytobuy
+WHEN npc.tutorial.bob:readytobuy
 
     (DO tutorial.subs play tutorial6 )
 
     ;
 
 
-WHEN npc.normal.bob:acceptoffer
+WHEN npc.tutorial.bob:acceptoffer
 
     (DO tutorial.subs play tutorial7 )
 
