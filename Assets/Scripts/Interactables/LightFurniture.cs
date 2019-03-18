@@ -94,22 +94,21 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
             SetState(new GroundedState(this));
         }
         if (_audio == null) { return; }
-        if (!_audio.isPlaying && audioTimer > 2)
-        {
+        if (!_audio.isPlaying && audioTimer > 2) {
             _audio.PlayOneShot(thud);
-            //MakeDebris(other.contacts[0].point);
+            MakeDebris(other.contacts[0].point);
         }
     }
 
-    private void MakeDebris(Vector3 point)
-    {
+    private void MakeDebris(Vector3 point) {
         GameObject d = dustPool.FirstOrDefault(x => !x.gameObject.activeSelf);
-        if (d == null)
-        {
+        if (d == null) {
             d = Instantiate(dust);
             dustPool.Add(dust);
         }
+        d.SetActive(true);
         d.transform.position = point;
+        this.DoAfterTime(() => d.gameObject.SetActive(false), 1);
     }
 
     public override void TurnOn() {
