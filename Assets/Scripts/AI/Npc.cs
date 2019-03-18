@@ -174,7 +174,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
         {
             ReadyToBuy();
             isBuying = true;
-        } else if (seesMonsters) {
+        } else if (seesMonsters && curState.CanSeeMonster()) {
             GameManager.When(name, "seemonster", m.Select(x => x.name).ToArray());
             Debug.Log("GetScared");
             Debug.Log(m[0].name);

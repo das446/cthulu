@@ -46,6 +46,7 @@ public abstract class Monster : MonoBehaviour, IEvaluated, IManageable {
     public virtual void Die() {
         if (OnDie != null) { OnDie(this); }
         GameManager.When(name, "die");
+        Debug.Log(name+":die");
         gameObject.SetActive(false);
     }
 

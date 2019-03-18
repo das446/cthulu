@@ -45,7 +45,7 @@ Transform:
   m_GameObject: {fileID: 7880022997720182502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.072027564, y: 0.072027564, z: 0.072027564}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1903379904150194671}
   m_Father: {fileID: 0}
@@ -87,10 +87,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2.040035
-  m_Height: 9.290302
+  m_Radius: 0.14693874
+  m_Height: 0.6691578
   m_Direction: 1
-  m_Center: {x: 0.00000035762784, y: 4.645151, z: -0.00000047683713}
+  m_Center: {x: 0, y: 0.36, z: 0}
 --- !u!54 &4471196258710221111
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -210,6 +210,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3509978116009383079}
     m_Modifications:
+    - target: {fileID: 100000, guid: 4b9bf91667fbff84390f0c5bb076b617, type: 3}
+      propertyPath: m_Name
+      value: OBJ_VaseA_01
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4b9bf91667fbff84390f0c5bb076b617, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -256,19 +260,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4b9bf91667fbff84390f0c5bb076b617, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.07202756
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4b9bf91667fbff84390f0c5bb076b617, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.07202756
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4b9bf91667fbff84390f0c5bb076b617, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 4b9bf91667fbff84390f0c5bb076b617, type: 3}
-      propertyPath: m_Name
-      value: OBJ_VaseA_01
+      value: 0.07202756
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b9bf91667fbff84390f0c5bb076b617, type: 3}

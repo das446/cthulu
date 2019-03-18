@@ -86,5 +86,18 @@ namespace Cthulu.Events {
             }
         }
 
+        public string GetArg(int a) {
+            if (a > args.Length) {
+                return "";
+            }
+            string arg = args[a];
+            if (arg.Contains("|")) {
+                string[] split = arg.Split('|');
+                //for now no vars
+                arg = split[0] + "." + split.Slice(1, -1).RandomItem();
+            }
+            return arg;
+        }
+
     }
 }

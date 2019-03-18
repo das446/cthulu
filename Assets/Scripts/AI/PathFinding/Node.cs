@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cthulu;
+using UnityEditor;
 using UnityEngine;
 
 public class Node : MonoBehaviour {
@@ -24,11 +25,9 @@ public class Node : MonoBehaviour {
 		id = Nodes.Count;
 		Nodes.Add(this);
 		foreach (Node neighbor in neighbors) {
-			if(neighbor==null){}
-			else if(neighbor.neighbors==null){
+			if (neighbor == null) { } else if (neighbor.neighbors == null) {
 
-			}
-			else if (!neighbor.neighbors.Contains(this)) {
+			} else if (!neighbor.neighbors.Contains(this)) {
 				neighbor.neighbors.Add(this);
 			}
 			if (draw) {
@@ -39,7 +38,7 @@ public class Node : MonoBehaviour {
 	}
 
 	private void DrawNeighbor(Node neighbor) {
-		if(neighbor ==null){
+		if (neighbor == null) {
 			return;
 		}
 		GameObject g = new GameObject();
@@ -93,44 +92,58 @@ public class Node : MonoBehaviour {
 		}
 	}
 
-    public static Node ClosestUnblockedNode(Vector3 v)
-    {
-        if (Node.Nodes.Count == 0) {
-            Debug.Log("Node list empty");
-            return null;
-        }
-        float dis = Mathf.Infinity;
-        Node closest = Node.Nodes[0];
-        for (int i = 1; i < Node.Nodes.Count; i++) {
-			
-            float d = Vector3.Distance(v, Node.Nodes[i].transform.position);
-            if (d < dis) {
-                closest = Node.Nodes[i];
-                dis = d;
-            }
-        }
-        return closest;
-    }
+	public static Node ClosestUnblockedNode(Vector3 v) {
+		if (Node.Nodes.Count == 0) {
+			Debug.Log("Node list empty");
+			return null;
+		}
+		float dis = Mathf.Infinity;
+		Node closest = Node.Nodes[0];
+		for (int i = 1; i < Node.Nodes.Count; i++) {
 
-	public bool Blocked(Node n, out float dist){
+			float d = Vector3.Distance(v, Node.Nodes[i].transform.position);
+			if (d < dis) {
+				closest = Node.Nodes[i];
+				dis = d;
+			}
+		}
+		return closest;
+	}
+
+	public bool Blocked(Node n, out float dist) {
 		dist = Vector3.Distance(transform.position, n.transform.position);
 		Vector3 dir = n.transform.position - transform.position;
 		if (Physics.Raycast(transform.position, dir, dist)) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
 
-	public bool Blocked(Node n){
+	public bool Blocked(Node n) {
 		float dist = Vector3.Distance(transform.position, n.transform.position);
 		Vector3 dir = n.transform.position - transform.position;
 		if (Physics.Raycast(transform.position, dir, dist)) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
+
+	[MenuItem("Node/DrawAll")]
+	public static void DrawAll() {
+		Node[] nodes = GameObject.FindObjectsOfType<Node>();
+		foreach (Node n in nodes) {
+			n.draw = true;
+		}
+	}
+
+	[MenuItem("Node/DrawNone")]
+	public static void DrawNone() {
+		Node[] nodes = GameObject.FindObjectsOfType<Node>();
+		foreach (Node n in nodes) {
+			n.draw = false;
+		}
+	}
+
 }

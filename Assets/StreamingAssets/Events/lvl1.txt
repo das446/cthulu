@@ -48,28 +48,37 @@ WHEN npc.normal.bob:exit
     wait.10
     (DO npc.normal.bob spawn )
     (DO npc.normal.bob goto room.kitchen )
+    ;
 
 WHEN npc.normal.david:exit
     wait.10
     (DO npc.normal.david spawn )
     (DO npc.normal.david goto room.lounge )
+    ;
 
 WHEN npc.normal.bob:die
     wait.10
     (DO npc.normal.bob spawn )
     (DO npc.normal.bob goto room.kitchen )
+    ;
 
 WHEN npc.normal.david:die
     wait.10
     (DO npc.normal.david spawn )
     (DO npc.normal.david goto room.lounge )
+    ;
 
 WHEN npc.normal.tim:die
     wait.10
     (DO npc.normal.tim spawn )
     (DO npc.normal.tim goto room.kitchen )
+    ;
 
 WHEN npc.normal.tim:die
     wait.10
     (DO npc.normal.tim spawn )
     (DO npc.normal.tim goto room.lounge )
+    ;
+
+WHEN player:win
+    (DO player load guan )

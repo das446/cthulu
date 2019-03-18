@@ -22,9 +22,7 @@ public class SubtitleController : MonoBehaviour, IManageable {
     [SerializeField] AudioSource _source;
 
     void Awake() {
-        if (singleton == null) {
-            singleton = this;
-        }
+        singleton = this;
         if (subtitles.Count == 0) {
             LoadSubtitles();
         }
@@ -124,11 +122,11 @@ public class SubtitleController : MonoBehaviour, IManageable {
     }
 
     void OnPause() {
-        singleton._source.Pause();
+        singleton?._source.Pause();
     }
 
     void OnResume() {
-        singleton._source.UnPause();
+        singleton?._source.UnPause();
     }
 
     private void OnDestroy() {

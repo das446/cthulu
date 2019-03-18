@@ -1,0 +1,45 @@
+WHEN time:1
+    (DO player clearprogress )
+    //(DO player load lvl1 )
+    (DO player setgoal 10 )
+    (DO timer set 540 )
+    (DO monster.tentacle.2 spawn room.diningroom )
+    (DO monster.ghost.1 spawn room.Livingroom )
+    (DO monster.ghost.1 goto chair.dining|1|2|3|4|5|6 )
+    wait.10
+    (DO npc.normal.bob spawn )
+    wait.3
+    (Do npc.normal.bob goto room.diningroom )
+    wait.2
+    (Do npc.normal.bob wander )
+	wait.5
+	(DO monster.tentacle.1 spawn room.kitchen )
+    ;
+
+WHEN monster.tentacle.2:die
+    wait.10
+    (DO npc.normal.david spawn )
+    (Do npc.normal.david goto room.kitchen )
+    wait.5
+    (Do npc.normal.david wander )
+    (DO npc.normal.tim spawn )
+    (Do npc.normal.tim goto room.Bathroom )
+    (DO monster.tentacle.2 spawn room.diningroom )
+    ;
+
+
+WHEN monster.tentacle.1:die
+	wait.10
+	(DO monster.tentacle.1 spawn room|Bathroom|kitchen )
+    ;
+
+WHEN monster.ghost.1:die
+	wait.10
+	(DO monster.ghost.1 spawn room|smokingroom|kitchen )
+    (DO monster.ghost.1 goto chair.dining|1|2|3|4|5|6 )
+    ;
+
+WHEN npc.normal.bob:exit
+    wait.10
+    (DO npc.normal.bob spawn )
+    ;

@@ -20,14 +20,17 @@ public class LeaveState : NpcState {
 
     }
 
-    public override void OnInteract(Player p){
+    public override void OnInteract(Player p) {
 
     }
 
-    public override void Exit() {
-    }
+    public override void Exit() { }
 
     public override void StateUpdate() {
 
+    }
+
+    public override bool CanSeeMonster() {
+        return false;
     }
 }

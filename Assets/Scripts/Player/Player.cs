@@ -9,8 +9,7 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour, ICanHold, IManageable
-{
+public class Player : MonoBehaviour, ICanHold, IManageable {
 
     cakeslice.Outline curOutline;
     [SerializeField] float interactRange;
@@ -40,42 +39,35 @@ public class Player : MonoBehaviour, ICanHold, IManageable
 
     [SerializeField] Rigidbody rigidBody;
 
-    void Awake()
-    {
+    void Awake() {
         if (singleton == null) { singleton = this; }
         this.AddToManager();
 
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         CheckOutline();
         CheckInput();
         pos.transform.position = transform.position + Vector3.up;
     }
 
-    void CheckInput()
-    {
+    void CheckInput() {
         //weird things were happening when interact and using furniture were bound to the same butoon but this should fix it
         //so they don't happen on the same frame
         bool f = CheckFurnitureInput();
-        if (!f)
-        {
+        if (!f) {
             CheckInteract();
         }
     }
 
-    bool CheckFurnitureInput()
-    {
-        if (Input.GetMouseButtonDown(0) && curItem != null)
-        {
+    bool CheckFurnitureInput() {
+        if (Input.GetMouseButtonDown(0) && curItem != null) {
             GameManager.When("player", "release");
             curItem.Use(this);
             return true;
@@ -83,15 +75,13 @@ public class Player : MonoBehaviour, ICanHold, IManageable
         return false;
     }
 
-    void LoseItem()
-    {
+    void LoseItem() {
         movement.SetSpeed(x => x * curItem.weight);
         curItem = null;
 
     }
 
-    public void Release(IPickUpable f)
-    {
+    public void Release(IPickUpable f) {
         movement.SetSpeed(x => x * curItem.weight);
         curItem = null;
         reticle.gameObject.SetActive(false);
@@ -99,28 +89,22 @@ public class Player : MonoBehaviour, ICanHold, IManageable
 
     }
 
-    private void CheckInteract()
-    {
-        if (Input.GetMouseButtonDown(0) && !movement.IsLocked())
-        {
+    private void CheckInteract() {
+        if (Input.GetMouseButtonDown(0) && !movement.IsLocked()) {
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange))
-            {
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange)) {
                 Interactable i = hit.collider.gameObject.GetComponent<Interactable>();
                 i?.Interact(this);
             }
         }
     }
 
-    void CheckOutline()
-    { //TODO: Make the logic less of a mess
+    void CheckOutline() { //TODO: Make the logic less of a mess
         //0=close enough
         //1=too far
         //2=close enough but can't, not implemented yet, does someone want to?
-        if (movement.IsLocked())
-        {
-            if (curOutline != null)
-            {
+        if (movement.IsLocked()) {
+            if (curOutline != null) {
                 curOutline.enabled = false;
                 curOutline = null;
             }
@@ -128,58 +112,43 @@ public class Player : MonoBehaviour, ICanHold, IManageable
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange * 10))
-        {
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactRange * 10)) {
             IHasOutline ho = hit.collider.gameObject.GetComponent<IHasOutline>();
             cakeslice.Outline outline = ho?.GetOutline();
-            if (outline == null)
-            {
-                if (curOutline != null)
-                {
+            if (outline == null) {
+                if (curOutline != null) {
                     curOutline.enabled = false;
                 }
                 curOutline = null;
-            }
-            else if (curItem != null)
-            {
-                if (curOutline != null)
-                {
+            } else if (curItem != null) {
+                if (curOutline != null) {
                     curOutline.enabled = false;
                 }
                 curOutline = null;
 
-            }
-            else if (outline != curOutline)
-            {
-                if (curOutline != null)
-                {
+            } else if (outline != curOutline) {
+                if (curOutline != null) {
                     curOutline.enabled = false;
                 }
                 curOutline = outline;
-                if (hit.distance <= interactRange)
-                {
+                if (!ho.Valid(this)) {
+                    curOutline.enabled = false;
+                } else if (hit.distance <= interactRange) {
                     curOutline.color = 0;
-                }
-                else
-                {
+                } else {
                     curOutline.color = 1;
                 }
                 curOutline.enabled = true;
-            }
-            else if (curOutline != null)
-            {
-                if (hit.distance <= interactRange)
-                {
+            } else if (curOutline != null) {
+                if (!ho.Valid(this)) {
+                    curOutline.enabled = false;
+                } else if (hit.distance <= interactRange) {
                     curOutline.color = 0;
-                }
-                else
-                {
+                } else {
                     curOutline.color = 1;
                 }
             }
-        }
-        else if (curOutline != null)
-        {
+        } else if (curOutline != null) {
             curOutline.enabled = false;
             curOutline = null;
         }
@@ -188,98 +157,81 @@ public class Player : MonoBehaviour, ICanHold, IManageable
     /// <summary>
     /// While locked the camera and player wont move, and you can see the cursor
     /// </summary>
-    public void Lock()
-    {
+    public void Lock() {
         movement.Lock();
     }
 
     /// <summary>
     /// While unlocked the camera and player can move, and you can't see the cursor
     /// </summary>
-    public void Unlock()
-    {
+    public void Unlock() {
         movement.Unlock();
     }
 
-    public void PickUp(IPickUpable f)
-    {
+    public void PickUp(IPickUpable f) {
         curItem = f;
         Debug.Log(f);
         movement.SetSpeed(x => x / curItem.weight);
         reticle.gameObject.SetActive(true);
+        f.obj.SetLayerRecursively(Furniture.heldLayer);
     }
 
-    public void SetRange(float r)
-    {
+    public void SetRange(float r) {
         interactRange = r;
     }
-    public void SetPower(float p)
-    {
+    public void SetPower(float p) {
         power = p;
     }
-    public Vector3 GetThrowDir()
-    {
+    public Vector3 GetThrowDir() {
         return cam.transform.forward;
     }
 
-    public void ChangeMoney(int amnt)
-    {
+    public void ChangeMoney(int amnt) {
         Audio.PlaySound("SaleMade");
         money += amnt;
         moneyText.text = money + "M/" + goalMoney + "M$";
 
-        if (money >= goalMoney)
-        {
+        if (money >= goalMoney) {
             WinLevel();
         }
     }
 
-    private void WinLevel()
-    {
+    private void WinLevel() {
+        GameManager.When("player", "win");
         Lock();
         SceneManager.LoadScene("WinScreen");
     }
 
-    public void LoseLevel()
-    {
+    public void LoseLevel() {
         Lock();
         SceneManager.LoadScene("LoseScreen");
     }
 
-    public IPickUpable CurHeld()
-    {
+    public IPickUpable CurHeld() {
         return curItem;
     }
 
-    public void Do(DoEvent de)
-    {
-        if (de.action == "setgoal")
-        {
+    public void Do(DoEvent de) {
+        if (de.action == "setgoal") {
             goalMoney = Int32.Parse(de.args[0]);
             moneyText.text = money + "M/" + goalMoney + "M$";
 
-        }
-        else if (de.action == "load")
-        {
+        } else if (de.action == "load") {
             LoadLevel(de.args[0]);
-        }
-        else if (de.action == "clearprogress")
-        {
+        } else if (de.action == "clearprogress") {
             Debug.Log("Delete progress");
             PlayerPrefs.DeleteKey("lvl");
         }
     }
 
-    public static void LoadLevel(string de)
-    {
+    public static void LoadLevel(string de) {
         ResetStatics();
         PlayerPrefs.SetString("lvl", de);
         SceneManager.LoadScene("Loading");
     }
 
     //this is very dumb, I don't know why static things act weird when I reload the scene
-    public static void ResetStatics()
-    {
+    public static void ResetStatics() {
         GameManager.Objects = new Dictionary<string, IManageable>();
         Node.Nodes = new List<Node>();
         Room.rooms = new Dictionary<string, Room>();

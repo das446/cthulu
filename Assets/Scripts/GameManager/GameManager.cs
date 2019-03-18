@@ -55,7 +55,7 @@ namespace Cthulu.Events {
             for (int i = 0; i < lines.Length; i++) {
                 string[] line = lines[i].Split(' ');
                 for (int j = 0; j < line.Length; j++) {
-                    string word = line[j];
+                    string word = line[j].Trim();
                     if (word.StartsWith("//")) {
                         comment = true;
                     } else if (word == ";" && !comment) {
@@ -98,8 +98,13 @@ namespace Cthulu.Events {
                     SetFlag(w, i);
 
                 } else {
-                    DoEvent d = events[w.dos[0]];
-                    Do(d);
+                    if (events.ContainsKey(w.dos[0])) {
+
+                        DoEvent d = events[w.dos[0]];
+                        Do(d);
+                    } else {
+                        Debug.Log("No do event " + w.dos[0] + ", " + w.Print());
+                    }
                 }
             }
         }

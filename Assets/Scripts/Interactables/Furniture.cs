@@ -35,7 +35,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
 
     protected ICanHold holder;
 
-    protected int heldLayer = 11;
+    public const int heldLayer = 11;
 
     [SerializeField] FurnitureDebris debris;
 
@@ -99,7 +99,7 @@ public class Furniture : Interactable, IEvaluated, IManageable {
     }
 
     public virtual float Evaluate(Npc npc, Room r) {
-        return health / maxHealth > 0.5f ? 1 : -1;
+        return health / maxHealth > 0.75f ? 1 : -1;
     }
 
     public void TakeDamage(float dmg) {

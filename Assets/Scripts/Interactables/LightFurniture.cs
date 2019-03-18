@@ -21,7 +21,7 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
     public float jumpForce = 300;
 
     float timer = 0;
-    
+
     AudioSource _audio;
     public AudioClip thud;
 
@@ -50,7 +50,6 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
         rb.isKinematic = false;
         col.enabled = false;
         holder = h;
-        gameObject.SetLayerRecursively(heldLayer);
 
         ghost?.UnPossess();
         UnPossess();
@@ -85,8 +84,8 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
         } else {
             SetState(new GroundedState(this));
         }
-        if(!_audio.isPlaying && timer > 2)
-        {
+        if (_audio == null) { return; }
+        if (!_audio.isPlaying && timer > 2) {
             _audio.PlayOneShot(thud);
         }
     }
@@ -110,7 +109,7 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
         gameObject.SetLayerRecursively(13);
         jumpTime = baseJumpTime;
         SetTarget(Player.singleton.gameObject);
-        g.transform.localScale = Vector3.one;
+
     }
 
     public void SetTarget(GameObject g) {
@@ -139,16 +138,17 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
         }
     }
 
-    private void Jump(Transform ghostTarget)
-    {
+    private void Jump(Transform ghostTarget) {
         Vector3 dir = (ghostTarget.transform.position - transform.position + Vector3.up).normalized;
-        rb.AddForce(dir*jumpForce);
+        rb.AddForce(dir * jumpForce);
     }
 
-    void Update()
-    {
+    void Update() {
         timer += Time.deltaTime;
     }
 
+    public override bool Valid(Player p) {
+        return health > 0;
+    }
 
 }
