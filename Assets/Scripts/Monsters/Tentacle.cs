@@ -36,12 +36,11 @@ public class Tentacle : Monster, ICanHold {
     }
 
     public override void SeeBuyer(Npc npc) {
-        if (tentacle.transform.localPosition.x >= tentacleLength) {
-            Debug.Log("see npc");
-            DeadNpc d = npc.Die();
-            d.GetPickedUp(this);
-            PickUp(d);
-        }
+
+        Debug.Log("see npc");
+        DeadNpc d = npc.Die();
+        d.GetPickedUp(this);
+        PickUp(d);
 
     }
 

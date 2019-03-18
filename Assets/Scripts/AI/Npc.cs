@@ -91,13 +91,11 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     [SerializeField] string buyerType;
 
-    // [SerializeField] GameObject deadNpc;
+    [SerializeField] GameObject deadNpc;
 
     void Awake() {
-        //
         eyes = new LineOfSightChecker(this, vision);
         tempFontSize = message.fontSize;
-        //
 
         follower = GetComponent<PathFollower>();
         rb = GetComponent<Rigidbody>();
@@ -341,15 +339,10 @@ public class Npc : Interactable, IPickUpable, IManageable {
         DeadNpc d = GameObject.Instantiate(ragdollVersion, transform.position, transform.rotation).GetComponentInChildren<DeadNpc>();
         gameObject.SetActive(false);
         Npc.Active.Remove(this);
+        ResetStats();
         return d;
     }
 
-    // public void Die()
-    // {
-    //     SetState(new DeadState(this, ragdollVersion));
-    //     GameObject d = Instantiate(deadNpc,transform.position,transform.rotation);
-    //     Destroy(gameObject);
-    // }
 
     public void SetMessage(string s, Color c) {
         message.text = s;
@@ -444,6 +437,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     void ResetStats() {
         interest = startInterest;
+        curState = null;
     }
 
     public float InterestPercent() {
