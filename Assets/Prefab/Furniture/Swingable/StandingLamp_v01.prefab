@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2214511389752227276}
-  - component: {fileID: 7202548062206704485}
   - component: {fileID: 5296903088664359572}
   - component: {fileID: 1726530915446104418}
-  - component: {fileID: 2373615923991292595}
+  - component: {fileID: 688257789305824646}
   m_Layer: 0
   m_Name: StandingLamp_v01
   m_TagString: Untagged
@@ -35,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7202548062206704485
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7202548062206704482}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.14476842, y: 0.6264063, z: 0.1964854}
-  m_Center: {x: -0.0028581917, y: 0.308567, z: -0.0038093925}
 --- !u!114 &5296903088664359572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,13 +53,14 @@ MonoBehaviour:
   health: 10
   startPos: {x: 0, y: 0, z: 0}
   rb: {fileID: 1726530915446104418}
-  col: {fileID: 7202548062206704485}
+  col: {fileID: 688257789305824646}
   debris: {fileID: 4966297709812258871, guid: d3c741359b5964447bfbed15c7974b47, type: 3}
   throwDmg: 1
   possessable: 1
   baseJumpTime: 1
   jumpForce: 300
-  thud: {fileID: 8300000, guid: 7146fa7b1bbf0c141a41e3c6dbf6dabe, type: 3}
+  throwRot: {x: 0, y: 0, z: 90}
+  thud: {fileID: 0}
 --- !u!54 &1726530915446104418
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -90,129 +77,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &2373615923991292595
-AudioSource:
+--- !u!136 &688257789305824646
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7202548062206704482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 10
-  Pan2D: 0
-  rolloffMode: 1
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.06666667
-      value: 1
-      inSlope: -15.005997
-      outSlope: -15.005997
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.13333334
-      value: 0.5
-      inSlope: -3.7514992
-      outSlope: -3.7514992
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.26666668
-      value: 0.25
-      inSlope: -0.9378748
-      outSlope: -0.9378748
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.53333336
-      value: 0.125
-      inSlope: -0.2344687
-      outSlope: -0.2344687
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -0.06669331
-      outSlope: -0.06669331
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_Radius: 0.11558828
+  m_Height: 0.8452151
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.39886892, z: -0.0010756552}
 --- !u!114 &456204050060665031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +114,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2214511389752227276}
     m_Modifications:
+    - target: {fileID: 100004, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
+      propertyPath: m_Name
+      value: StandingLamp_v01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 21651b8d637822f419ee9e1e67cc0ced, type: 2}
     - target: {fileID: 400004, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -280,14 +166,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
-      propertyPath: m_Name
-      value: StandingLamp_v01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 21651b8d637822f419ee9e1e67cc0ced, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
 --- !u!4 &8678383987626972764 stripped
