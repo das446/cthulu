@@ -8,7 +8,10 @@ public class FurnitureDebris : Interactable, IEvaluated {
 
     [SerializeField] GameObject sweep;
     [SerializeField] float delay = 3;
-    public string sweepsound;
+
+    AudioSource _audio;
+
+    public AudioClip breaksound, sweepsound;
 
     public float Evaluate(Npc npc, Room r) {
         return -20;
@@ -20,13 +23,14 @@ public class FurnitureDebris : Interactable, IEvaluated {
     }
 
     void Start() {
+        _audio = GetComponent<AudioSource>();
         RaycastHit hit;
         if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity)) {
             Vector3 v = hit.point;
             transform.position = v;
             Debug.Log(v);
         }
-
+        _audio.PlayOneShot(breaksound);
     }
 
     //The Clean Up Script
@@ -38,7 +42,7 @@ public class FurnitureDebris : Interactable, IEvaluated {
         s.transform.Rotate(0,90,0);
         Debug.Log(transform.position);
         Debug.Log(s.transform.position);
-        gameObject.PlaySound(sweepsound);
+        _audio.PlayOneShot(sweepsound);
         //s.transform.Rotate(0, 90, 0);
         yield return new WaitForSeconds(delay);
         p.Unlock();

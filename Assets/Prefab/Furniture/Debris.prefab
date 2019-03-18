@@ -62,7 +62,8 @@ MonoBehaviour:
   o: {fileID: 0}
   sweep: {fileID: 3568327319700169959, guid: 07dded994c99dff4e8d7a212b16cde63, type: 3}
   delay: 2
-  sweepsound: Sweep
+  breaksound: {fileID: 8300000, guid: e537eddb475696343b44ab43b0838388, type: 3}
+  sweepsound: {fileID: 8300000, guid: 8179cc571e1724e41845e95d5d0ae115, type: 3}
 --- !u!82 &6789143433886274198
 AudioSource:
   m_ObjectHideFlags: 0
@@ -75,7 +76,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243168465585731082, guid: 54b270afc5b8b3c458c96606ee0591bf,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: e537eddb475696343b44ab43b0838388, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -85,7 +86,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 45
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -135,7 +136,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
