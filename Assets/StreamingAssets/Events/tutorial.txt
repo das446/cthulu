@@ -1,45 +1,94 @@
 WHEN time:1
+
     (DO player clearprogress )
+
     //(DO player load lvl1 )
-    (DO player setgoal 10 )
-    (DO timer set 540 )
-    (DO monster.tentacle.2 spawn room.diningroom )
-    (DO monster.ghost.1 spawn room.Livingroom )
-    (DO monster.ghost.1 goto chair.dining|1|2|3|4|5|6 )
-    wait.10
-    (DO npc.normal.bob spawn )
-    wait.3
-    (Do npc.normal.bob goto room.diningroom )
-    wait.2
-    (Do npc.normal.bob wander )
-	wait.5
-	(DO monster.tentacle.1 spawn room.kitchen )
+
+    flag.curt=1
+
+    (DO player setgoal 1000 )
+
+    (DO tutorial.subs play tutorial1 )
+
+    (DO guide draw node.livingroom.1 ) 
+
+    (DO timer set 9999 )
+
     ;
 
-WHEN monster.tentacle.2:die
-    wait.10
-    (DO npc.normal.david spawn )
-    (Do npc.normal.david goto room.kitchen )
-    wait.5
-    (Do npc.normal.david wander )
-    (DO npc.normal.tim spawn )
-    (Do npc.normal.tim goto room.Bathroom )
-    (DO monster.tentacle.2 spawn room.diningroom )
+
+WHEN player:release
+
+    if.flag.curt=1
+
+    (DO tutorial.subs play tutorial2 )
+
+    (DO guide clear ) 
+
+    flag.curt=2
+
+    ;
+
+
+WHEN player:sweep
+
+    if.flag.curt=2
+
+    wait.4
+
+    (DO tutorial.subs play tutorial3 )
+
+    (DO monster.tentacle.1 spawn room.diningroom )
+
+    (DO guide draw node.diningroom.1 ) 
+
+    flag.curt=3
+
     ;
 
 
 WHEN monster.tentacle.1:die
-	wait.10
-	(DO monster.tentacle.1 spawn room|Bathroom|kitchen )
-    ;
 
-WHEN monster.ghost.1:die
-	wait.10
-	(DO monster.ghost.1 spawn room|smokingroom|kitchen )
-    (DO monster.ghost.1 goto chair.dining|1|2|3|4|5|6 )
-    ;
+    (DO tutorial.subs play tutorial4 )
 
-WHEN npc.normal.bob:exit
-    wait.10
     (DO npc.normal.bob spawn )
+
+    (DO guide draw node.livingroom.4 ) 
+
+    flag.curt=4
+
     ;
+
+
+WHEN npc.normal.bob:player.goto
+
+    if.flag.curt=4
+
+    (DO guide clear )
+
+    (DO tutorial.subs play tutorial5 )
+
+    flag.curt=5
+
+    ;
+
+    
+
+WHEN npc.normal.bob:readytobuy
+
+    (DO tutorial.subs play tutorial6 )
+
+    ;
+
+
+WHEN npc.normal.bob:acceptoffer
+
+    (DO tutorial.subs play tutorial7 )
+
+    wait.12
+
+    (DO player load lvl1 )
+
+    ;
+
+
