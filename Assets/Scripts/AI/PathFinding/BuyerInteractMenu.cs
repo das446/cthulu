@@ -111,7 +111,7 @@ public class BuyerInteractMenu : MonoBehaviour {
 
     public void ClickChat() {
         curNpc.Chat(player, chatTimer, chatLength);
-        //subControl.RandSubOnly(chatLength);
+        subControl.RandSubOnly(chatLength);
         gameObject.SetActive(false);
     }
 
