@@ -6,6 +6,7 @@ using Cthulu.Events;
 using UnityEngine;
 
 public class Tentacle : Monster, ICanHold {
+    
     IPickUpable held;
     [SerializeField] float range;
     [SerializeField] BoxCollider hitbox;
@@ -15,6 +16,7 @@ public class Tentacle : Monster, ICanHold {
     [SerializeField] float speed;
 
     public GameObject tentacle;
+    public GameObject deathnoise;
 
     public Transform Hand => hand;
 
@@ -169,6 +171,7 @@ public class Tentacle : Monster, ICanHold {
     }
 
     public override void Die() {
+        GameObject death = Instantiate(deathnoise, this.gameObject.transform.position, Quaternion.identity);
         base.Die();
         Vector3 v = tentacle.transform.localPosition;
         v.x = -tentacleLength;

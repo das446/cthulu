@@ -114,6 +114,9 @@ public class Npc : Interactable, IPickUpable, IManageable {
         SetMessage("");
         Active.Add(this);
         GoToNode(lobbyNode);
+
+        string subName = buyerType + "Greeting";
+        SubtitleController.singleton.Play(subName, DisplayName());
     }
 
     public void GoToRoom(string room) {
@@ -124,6 +127,11 @@ public class Npc : Interactable, IPickUpable, IManageable {
         curState?.Exit();
         curState = new MoveTowardsState(this, r.RandomNode());
         Audio.PlaySound(gameObject, buyerType + "_" + r.RoomName());
+        string subName = buyerType + r.RoomName();
+        if (!SubtitleController.singleton.HasSub(subName)){
+            //subName = buyerType+"AnyRoom";
+        }
+        SubtitleController.singleton.Play(subName,DisplayName());
     }
 
     public void GoToNode(string node) {

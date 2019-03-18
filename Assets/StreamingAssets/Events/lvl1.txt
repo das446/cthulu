@@ -5,8 +5,8 @@ WHEN time:1 //spawn bob, tim, and sue each 5 seconds apart, then have them wande
     (DO player clearprogress )
     (DO player setgoal 12 )
     (DO timer set 180 )
-    (DO npc.normal.bob spawn )
-    (DO npc.normal.bob goto room.kitchen )
+    (DO npc.normal.sue spawn )
+    (DO npc.normal.sue goto room.kitchen )
     wait.10
     (DO npc.normal.david spawn )
     (DO npc.normal.david goto room.diningroom )
@@ -19,14 +19,14 @@ WHEN time:1 //spawn bob, tim, and sue each 5 seconds apart, then have them wande
     (DO monster.ghost.1 spawn bathroom )
     ;
 
-WHEN time:2
+WHEN time:100
     (DO monster.ghost.1 spawn room.foyer )
     (DO tutorial.subs play ghosttut1 )
     wait.3
     (DO tutorial.subs play ghosttut2 )
     wait.5
     (DO tutorial.subs play ghosttut3 )
-
+;
 
 
 WHEN monster.tentacle.1:die
@@ -93,3 +93,4 @@ WHEN npc.normal.tim:die
 
 WHEN player:win
     (DO player load guan )
+;
