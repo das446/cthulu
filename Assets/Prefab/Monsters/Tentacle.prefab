@@ -181,6 +181,8 @@ MonoBehaviour:
   power: 100
   speed: 0.1
   tentacle: {fileID: 5977506498154325809}
+  deathnoise: {fileID: 7714772189825376539, guid: 747f567ce19a3db46949aeba077b6a19,
+    type: 3}
 --- !u!82 &7311782923978951676
 AudioSource:
   m_ObjectHideFlags: 0
@@ -311,6 +313,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4083184573730332}
     m_Modifications:
+    - target: {fileID: 1540197579, guid: fce2a5212326e2b4c9d64b0fb3b1a2b2, type: 3}
+      propertyPath: _curve
+      value: 
+      objectReference: {fileID: 5696958130878937408}
+    - target: {fileID: 2086514518, guid: fce2a5212326e2b4c9d64b0fb3b1a2b2, type: 3}
+      propertyPath: _curve
+      value: 
+      objectReference: {fileID: 5696958130878937408}
+    - target: {fileID: 181667772, guid: fce2a5212326e2b4c9d64b0fb3b1a2b2, type: 3}
+      propertyPath: _curve
+      value: 
+      objectReference: {fileID: 5696958130878937408}
     - target: {fileID: 815191107, guid: fce2a5212326e2b4c9d64b0fb3b1a2b2, type: 3}
       propertyPath: m_Name
       value: Tentacle_Path1
@@ -375,18 +389,6 @@ PrefabInstance:
       propertyPath: points.Array.data[3]
       value: 
       objectReference: {fileID: 5696958129741529682}
-    - target: {fileID: 1540197579, guid: fce2a5212326e2b4c9d64b0fb3b1a2b2, type: 3}
-      propertyPath: _curve
-      value: 
-      objectReference: {fileID: 5696958130878937408}
-    - target: {fileID: 2086514518, guid: fce2a5212326e2b4c9d64b0fb3b1a2b2, type: 3}
-      propertyPath: _curve
-      value: 
-      objectReference: {fileID: 5696958130878937408}
-    - target: {fileID: 181667772, guid: fce2a5212326e2b4c9d64b0fb3b1a2b2, type: 3}
-      propertyPath: _curve
-      value: 
-      objectReference: {fileID: 5696958130878937408}
     - target: {fileID: 892934128, guid: fce2a5212326e2b4c9d64b0fb3b1a2b2, type: 3}
       propertyPath: _curve
       value: 

@@ -85,7 +85,7 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
             SetState(new GroundedState(this));
         }
         if (_audio == null) { return; }
-        if (!_audio.isPlaying && timer > 2) {
+        if (timer > 2) {
             _audio.PlayOneShot(thud);
         }
     }

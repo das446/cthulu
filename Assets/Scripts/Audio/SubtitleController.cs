@@ -40,7 +40,7 @@ public class SubtitleController : MonoBehaviour, IManageable {
         try {
             sub = subtitles.Where(x => x.name.ToLower() == sound).First();
         } catch {
-            Debug.LogError("No subtitle named " + sound);
+            Debug.LogError("No subtitle named " + sound+ " on "+ gameObject.name);
             return;
         }
         try {
@@ -112,10 +112,9 @@ public class SubtitleController : MonoBehaviour, IManageable {
     }
 
     public void LoadSubtitles() {
-        folder = SceneManager.GetActiveScene().name;
         subtitles = new List<Subtitle>();
         subtitles = Resources.LoadAll<Subtitle>("Subtitles/Default").ToList();
-        subtitles.AddRange(Resources.LoadAll<Subtitle>("Subtitles/" + folder));
+        subtitles.AddRange(Resources.LoadAll<Subtitle>("Subtitles/"));
     }
 
     void Hide() {
@@ -134,6 +133,11 @@ public class SubtitleController : MonoBehaviour, IManageable {
     private void OnDestroy() {
         Pauser.OnPause -= OnPause;
         Pauser.OnUnPause -= OnResume;
+    }
+
+    public bool HasSub(string s)
+    {
+        return subtitles.Any(x => x.name == s);
     }
 
 }
