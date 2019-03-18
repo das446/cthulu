@@ -200,7 +200,7 @@ public class Tentacle : Monster, ICanHold {
     
     void Tintred()
     {
-        tintCounter = .1f;
+        tintCounter = .25f;
 
         Renderer color =  GetComponentInChildren<Renderer>();
                
