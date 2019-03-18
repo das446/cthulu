@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cthulu;
+using Cthulu.Events;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Room : MonoBehaviour {
+public class Room : MonoBehaviour, IManageable {
     public List<Furniture> furniture;
 
     [SerializeField] List<Node> nodes;
@@ -17,6 +18,10 @@ public class Room : MonoBehaviour {
 
     public static bool writeFile = true;
 
+    public GameObject obj => gameObject;
+
+    public List<Material> wallpapers;
+
     void Awake() {
         PathFollower.ReachNode += CheckEnter;
         string n = name.ToLower();
@@ -25,6 +30,8 @@ public class Room : MonoBehaviour {
         } else {
             rooms.Add(n, this);
         }
+
+        this.AddToManager();
     }
 
     public String RoomName() {
@@ -99,4 +106,9 @@ public class Room : MonoBehaviour {
         }
     }
 
+    public void Do(DoEvent de) {
+        if(de.action == "set.wallpaper"){
+            
+        }
+    }
 }
