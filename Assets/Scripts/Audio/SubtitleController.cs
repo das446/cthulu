@@ -122,11 +122,11 @@ public class SubtitleController : MonoBehaviour, IManageable {
     }
 
     void OnPause() {
-        singleton?._source.Pause();
+        singleton?._source?.Pause();
     }
 
     void OnResume() {
-        singleton?._source.UnPause();
+        singleton?._source?.UnPause();
     }
 
     private void OnDestroy() {
