@@ -82,8 +82,9 @@ public class Room : MonoBehaviour {
             throw new NullReferenceException("No room named " + s);
         }
     }
-
+#if UNITY_EDITOR	
     [MenuItem("Node/RenameAll")]
+#endif
     public static void RenameNodes() {
         Room[] rooms = GameObject.FindObjectsOfType<Room>();
         for (int i = 0; i < rooms.Length; i++) {

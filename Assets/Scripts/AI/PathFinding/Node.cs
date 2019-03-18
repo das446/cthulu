@@ -129,8 +129,9 @@ public class Node : MonoBehaviour {
 			return false;
 		}
 	}
-
+#if UNITY_EDITOR
 	[MenuItem("Node/DrawAll")]
+#endif
 	public static void DrawAll() {
 		Node[] nodes = GameObject.FindObjectsOfType<Node>();
 		foreach (Node n in nodes) {
@@ -138,7 +139,9 @@ public class Node : MonoBehaviour {
 		}
 	}
 
+#if UNITY_EDITOR
 	[MenuItem("Node/DrawNone")]
+#endif
 	public static void DrawNone() {
 		Node[] nodes = GameObject.FindObjectsOfType<Node>();
 		foreach (Node n in nodes) {
