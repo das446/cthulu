@@ -22,6 +22,15 @@ public class Tentacle : Monster, ICanHold {
 
     float startX;
 
+    //
+    int iniHpRef;
+    
+    int changeInHp;
+    Color baseColor;
+
+    float tintCounter;
+    //
+
     public IPickUpable CurHeld() {
         return held;
     }
@@ -37,9 +46,28 @@ public class Tentacle : Monster, ICanHold {
     }
 
     void Update() {
+
+       
         if (held != null) {
             held.obj.transform.position = hand.transform.position;
         }
+        
+        if ( changeInHp != hp)
+        {
+            changeInHp = hp;
+            Tintred();
+        }
+
+
+        if ( tintCounter <= 0)
+        {
+             ResetColor();
+        }
+        else
+        {
+            tintCounter -= Time.deltaTime;
+        }
+
     }
 
     public override void FurnitureContact(Furniture furniture) {
@@ -151,6 +179,9 @@ public class Tentacle : Monster, ICanHold {
 
     public override void OnSpawn() {
         base.OnSpawn();
+        iniHpRef = hp;
+        changeInHp = hp;
+        PrepBaseColor();
         // StartCoroutine(MoveOut());
     }
 
@@ -165,4 +196,35 @@ public class Tentacle : Monster, ICanHold {
             yield return f;
         }
     }
+
+
+    
+    void Tintred()
+    {
+        tintCounter = .1f;
+
+        Renderer color =  GetComponentInChildren<Renderer>();
+               
+        Color _color = color.material.GetColor("_Color");
+        
+        Color c = Color.Lerp(Color.red, _color, hp/iniHpRef); // interpolate between the two colors based on the difference between the vectors.
+
+        color.material.SetColor("_Color",c);
+    }
+
+    void ResetColor()
+    {
+        Renderer color =  GetComponentInChildren<Renderer>();
+        color.material.SetColor("_Color",baseColor);
+    } 
+
+    void PrepBaseColor()
+    {
+        Renderer color =  GetComponentInChildren<Renderer>();
+        Color _color = color.material.GetColor("_Color");
+        baseColor = _color;
+    }
+
+    
+
 }
