@@ -6,7 +6,7 @@ using Cthulu.Events;
 using UnityEngine;
 
 public class Tentacle : Monster, ICanHold {
-    
+
     IPickUpable held;
     [SerializeField] float range;
     [SerializeField] BoxCollider hitbox;
@@ -26,7 +26,7 @@ public class Tentacle : Monster, ICanHold {
 
     //
     int iniHpRef;
-    
+
     int changeInHp;
     Color baseColor;
 
@@ -48,24 +48,18 @@ public class Tentacle : Monster, ICanHold {
 
     void Update() {
 
-       
         if (held != null) {
             held.obj.transform.position = hand.transform.position;
         }
-        
-        if ( changeInHp != hp)
-        {
+
+        if (changeInHp != hp) {
             changeInHp = hp;
             Tintred();
         }
 
-
-        if ( tintCounter <= 0)
-        {
-             ResetColor();
-        }
-        else
-        {
+        if (tintCounter <= 0) {
+            ResetColor();
+        } else {
             tintCounter -= Time.deltaTime;
         }
 
@@ -129,9 +123,10 @@ public class Tentacle : Monster, ICanHold {
 
     IEnumerator DelayThrow(float delay) {
         yield return new WaitForSeconds(delay);
-        held.Release(this);
-        Release(held);
-
+        if (held != null) {
+            held.Release(this);
+            Release(held);
+        }
     }
 
     public override void Do(DoEvent de) {
@@ -171,7 +166,6 @@ public class Tentacle : Monster, ICanHold {
     }
 
     public override void Die() {
-        GameObject death = Instantiate(deathnoise, this.gameObject.transform.position, Quaternion.identity);
         base.Die();
         Vector3 v = tentacle.transform.localPosition;
         v.x = -tentacleLength;
@@ -199,34 +193,27 @@ public class Tentacle : Monster, ICanHold {
         }
     }
 
-
-    
-    void Tintred()
-    {
+    void Tintred() {
         tintCounter = .25f;
 
-        Renderer color =  GetComponentInChildren<Renderer>();
-               
-        Color _color = color.material.GetColor("_Color");
-        
-        Color c = Color.Lerp(Color.red, _color, hp/iniHpRef); // interpolate between the two colors based on the difference between the vectors.
+        Renderer color = GetComponentInChildren<Renderer>();
 
-        color.material.SetColor("_Color",c);
+        Color _color = color.material.GetColor("_Color");
+
+        Color c = Color.Lerp(Color.red, _color, hp / iniHpRef); // interpolate between the two colors based on the difference between the vectors.
+
+        color.material.SetColor("_Color", c);
     }
 
-    void ResetColor()
-    {
-        Renderer color =  GetComponentInChildren<Renderer>();
-        color.material.SetColor("_Color",baseColor);
-    } 
+    void ResetColor() {
+        Renderer color = GetComponentInChildren<Renderer>();
+        color.material.SetColor("_Color", baseColor);
+    }
 
-    void PrepBaseColor()
-    {
-        Renderer color =  GetComponentInChildren<Renderer>();
+    void PrepBaseColor() {
+        Renderer color = GetComponentInChildren<Renderer>();
         Color _color = color.material.GetColor("_Color");
         baseColor = _color;
     }
-
-    
 
 }
