@@ -19,19 +19,12 @@ public class DoEventBuyer {
                 Spawn();
                 break;
             case "goto":
-                string arg = buyerDo.args[0];
+                string arg = buyerDo.GetArg(0);
+
                 if (arg.StartsWith("room")) {
-                    string room = arg;
-                    if (arg.Contains("|")) {
-                        room = arg.Split('|').Slice(1, -1).RandomItem();
-                    }
-                    npc.GoToRoom(room);
+                    npc.GoToRoom(arg);
                 } else if (arg.StartsWith("node")) {
-                    string node = arg;
-                    if (arg.Contains("|")) {
-                        node = arg.Split('|').Slice(1, -1).RandomItem();
-                    }
-                    npc.GoToNode(node);
+                    npc.GoToNode(arg);
                 }
 
                 break;
@@ -42,7 +35,7 @@ public class DoEventBuyer {
                 npc.interest = Convert.ToInt32(buyerDo.args[0]);
                 break;
             case "play":
-                SubtitleController.singleton.Play(buyerDo.args[0],npc.DisplayName());
+                SubtitleController.singleton.Play(buyerDo.args[0], npc.DisplayName());
                 break;
         }
     }
@@ -52,7 +45,7 @@ public class DoEventBuyer {
     /// </summary>
     /// <param name="name">identifier for buyer</param>
     void Spawn() {
-        if(npc.gameObject.activeSelf){return;}
+        if (npc.gameObject.activeSelf) { return; }
         npc.gameObject.SetActive(true);
         npc.interest = 0;
         npc.Spawn();

@@ -17,7 +17,7 @@ public abstract class Interactable : MonoBehaviour, IHasOutline {
         return o;
     }
 
-    public bool Valid(Player p)
+    public virtual bool Valid(Player p)
     {
         return true;
     } 

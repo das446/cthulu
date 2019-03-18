@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using Cthulu;
 using UnityEngine;
 
-public class LightFurniture : Furniture, IPickUpable, IPossesable
-{
+public class LightFurniture : Furniture, IPickUpable, IPossesable {
 
     // new void Start(){
     //     base.Start();
@@ -26,25 +25,21 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable
     AudioSource _audio;
     public AudioClip thud;
 
-    new protected void Start()
-    {
+    new protected void Start() {
         base.Start();
         Ghost.possesables.Add(this);
         _audio = GetComponent<AudioSource>();
     }
 
-    public override void Interact(Player p)
-    {
+    public override void Interact(Player p) {
         Debug.Log(p.CurHeld() == null && !readyToBreak);
-        if (p.CurHeld() == null && !readyToBreak)
-        {
+        if (p.CurHeld() == null && !readyToBreak) {
             GetPickedUp(p);
             p.PickUp(this);
         }
     }
 
-    public void GetPickedUp(ICanHold h)
-    {
+    public void GetPickedUp(ICanHold h) {
         curState = new HeldState(this, h);
         transform.parent = h.Hand;
         transform.localPosition = Vector3.zero;
@@ -55,15 +50,13 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable
         rb.isKinematic = false;
         col.enabled = false;
         holder = h;
-        gameObject.SetLayerRecursively(heldLayer);
 
         ghost?.UnPossess();
         UnPossess();
 
     }
 
-    public void Release(ICanHold h)
-    {
+    public void Release(ICanHold h) {
         curState = new InAirState(this, h);
         transform.parent = null;
         transform.position = transform.position + h.obj.transform.forward;
@@ -74,38 +67,30 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable
         gameObject.SetLayerRecursively(0);
         holder = null;
         //the below is dumb but I don't feel like using on collision enter, feel free to try adding that
-        if (health <= throwDmg)
-        {
+        if (health <= throwDmg) {
             readyToBreak = true;
         }
         this.DoAfterTime(() => TakeDamage(throwDmg), 3);
     }
 
-    public bool CanBePickedUp(ICanHold h)
-    {
+    public bool CanBePickedUp(ICanHold h) {
         return curState.Grounded();
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
+    private void OnCollisionEnter(Collision other) {
         Monster m = other.collider.GetComponent<Monster>();
-        if (m != null)
-        {
+        if (m != null) {
             m.FurnitureContact(this);
-        }
-        else
-        {
+        } else {
             SetState(new GroundedState(this));
         }
         if (_audio == null) { return; }
-        if (!_audio.isPlaying && timer > 2)
-        {
+        if (!_audio.isPlaying && timer > 2) {
             _audio.PlayOneShot(thud);
         }
     }
 
-    public override void TurnOn()
-    {
+    public override void TurnOn() {
 
         Debug.Log("Calling Child script function 'On'");
         gameObject.GetComponent<Collider>().enabled = true;
@@ -117,59 +102,53 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable
 
     }
 
-    public void GetPossessed(Ghost g)
-    {
+    public void GetPossessed(Ghost g) {
         ghost = g;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         gameObject.SetLayerRecursively(13);
         jumpTime = baseJumpTime;
         SetTarget(Player.singleton.gameObject);
-        g.transform.localScale = Vector3.one;
+
     }
 
-    public void SetTarget(GameObject g)
-    {
+    public void SetTarget(GameObject g) {
 
         ghostTarget = g.transform;
 
     }
 
-    public void UnPossess()
-    {
+    public void UnPossess() {
         ghost = null;
     }
 
-    public bool Possessed()
-    {
+    public bool Possessed() {
         return ghost != null;
     }
 
-    public bool Possessable()
-    {
+    public bool Possessable() {
         return holder == null && possessable;
     }
 
-    public void GhostUpdate()
-    {
+    public void GhostUpdate() {
         jumpTime -= Time.deltaTime;
-        if (jumpTime <= 0)
-        {
+        if (jumpTime <= 0) {
             Jump(ghostTarget);
             jumpTime = baseJumpTime;
         }
     }
 
-    private void Jump(Transform ghostTarget)
-    {
+    private void Jump(Transform ghostTarget) {
         Vector3 dir = (ghostTarget.transform.position - transform.position + Vector3.up).normalized;
         rb.AddForce(dir * jumpForce);
     }
 
-    void Update()
-    {
+    void Update() {
         timer += Time.deltaTime;
     }
 
+    public override bool Valid(Player p) {
+        return health > 0;
+    }
 
 }

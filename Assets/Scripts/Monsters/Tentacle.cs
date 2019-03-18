@@ -36,9 +36,25 @@ public class Tentacle : Monster, ICanHold {
 
     }
 
+    void Update() {
+        if (held != null) {
+            held.obj.transform.position = hand.transform.position;
+        }
+    }
+
     public override void FurnitureContact(Furniture furniture) {
+        IPickUpable ipu = furniture.GetComponent<IPickUpable>();
+        if (ipu == held && ipu != null) {
+            return;
+        }
         GetHit((int) furniture.weight);
-        //Randomly grab it
+        if (UnityEngine.Random.Range(0, 5) == 1 && held == null) {
+            if (ipu != null) {
+                PickUp(ipu);
+                ipu.GetPickedUp(this);
+                StartCoroutine(DelayThrow(6));
+            }
+        }
     }
 
     public Vector3 GetThrowDir() {
@@ -67,6 +83,8 @@ public class Tentacle : Monster, ICanHold {
     }
 
     public void Release(IPickUpable pickUpable) {
+        held.obj.transform.position = transform.position + transform.forward;
+        held.obj.transform.parent = null;
         held.obj.GetComponent<Rigidbody>().AddForce(GetThrowDir());
         held = null;
     }
@@ -99,15 +117,9 @@ public class Tentacle : Monster, ICanHold {
     }
 
     private void SpawnInRoom(DoEvent de) {
-        string arg = de.args[0];
+        string arg = de.GetArg(0);
         Room r;
-        if (arg.Contains("|")) {
-            string room = arg;
-            room = arg.Split('|') [0] + arg.Split('|').Slice(1, -1).RandomItem();
-            r = Room.GetRoom(room);
-        } else {
-            r = Room.GetRoom(de.args[0]);
-        }
+        r = Room.GetRoom(arg);
         MonsterSpawnPoint m = r.spawnPoints.RandomItem();
         if (m == null) {
             Debug.LogError(r.name + " has no spawn points");
@@ -120,15 +132,9 @@ public class Tentacle : Monster, ICanHold {
     }
 
     private void SpawnAtPoint(DoEvent de) {
-        string arg = de.args[0];
         MonsterSpawnPoint msp;
-        if (arg.Contains("|")) {
-            string spawn = arg;
-            spawn = arg.Split('|') [0] + arg.Split('|').Slice(1, -1).RandomItem();
-            msp = MonsterSpawnPoint.spawns[spawn];
-        } else {
-            msp = MonsterSpawnPoint.spawns[de.args[0]];
-        }
+        msp = MonsterSpawnPoint.spawns[de.GetArg(0)];
+
         Transform t = msp.transform;
         transform.position = t.position;
         transform.rotation = t.rotation;
@@ -145,7 +151,7 @@ public class Tentacle : Monster, ICanHold {
 
     public override void OnSpawn() {
         base.OnSpawn();
-       // StartCoroutine(MoveOut());
+        // StartCoroutine(MoveOut());
     }
 
     private IEnumerator MoveOut() {

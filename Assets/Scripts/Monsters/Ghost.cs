@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Cthulu.Events;
-using UnityEngine;
+using System.Linq;
 using cakeslice;
 using Cthulu;
-using System.Linq;
+using Cthulu.Events;
+using UnityEngine;
 
 public class Ghost : Monster {
 
@@ -18,12 +18,10 @@ public class Ghost : Monster {
 
     [SerializeField] float speed = 1;
 
-    new void Awake()
-    {
+    new void Awake() {
         base.Awake();
         rotation = transform.eulerAngles;
     }
-
 
     public override void FurnitureContact(Furniture furniture) {
         IPossesable p = furniture.GetComponent<IPossesable>();
@@ -35,12 +33,13 @@ public class Ghost : Monster {
 
     private void Possess(IPossesable p) {
         possedObject = p;
+        //transform.SetGlobalScale(Vector3.one);
         transform.eulerAngles = new Vector3(-90, 0, 0);
         transform.parent = p.gameObject.transform;
         transform.localPosition = Vector3.zero;
 
-        GameManager.When(name,"possess");
-        
+        GameManager.When(name, "possess");
+
     }
 
     void Update() {
@@ -78,19 +77,22 @@ public class Ghost : Monster {
 
     public void UnPossess() {
         possedObject = null;
+        transform.parent = null;
         Die();
     }
 
-    public override void Do(DoEvent de)
-    {
-        if(de.action == "spawn"){
+    public override void Do(DoEvent de) {
+        if (de.action == "spawn") {
             gameObject.PlaySound("GhostSpawn");
             gameObject.SetActive(true);
-            transform.position = Room.GetRoom(de.args[0]).transform.position;
+            transform.position = Room.GetRoom(de.GetArg(0)).transform.position;
             OnSpawn();
-        }
-        else if(de.action == "target"){
-            possedObject.SetTarget(GameManager.Objects[de.args[0]].obj);
+        } else if (de.action == "target") {
+            string target = de.GetArg(0);
+            possedObject.SetTarget(GameManager.Objects[target].obj);
+        } else if (de.action == "goto") {
+            string n = de.GetArg(0);
+            target = possesables.FirstOrDefault(x => x.gameObject.name == n);
         }
     }
 }
