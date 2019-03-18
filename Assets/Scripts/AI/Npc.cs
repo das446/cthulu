@@ -89,6 +89,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     public int baseInterestIncrease = 10;
 
+    [SerializeField] string buyerType;
+
     // [SerializeField] GameObject deadNpc;
 
     void Awake() {
@@ -101,7 +103,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         this.AddToManager();
-        Debug.Log(name+" added");
+        Debug.Log(name + " added");
         startPos = transform.position;
         gameObject.SetActive(false);
         StartWandering();
@@ -123,6 +125,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
     public void GoToRoom(Room r) {
         curState?.Exit();
         curState = new MoveTowardsState(this, r.RandomNode());
+        Audio.PlaySound(gameObject, buyerType + "_" + r.RoomName());
     }
 
     public void GoToNode(string node) {
@@ -364,7 +367,7 @@ public class Npc : Interactable, IPickUpable, IManageable {
         gameObject.SetActive(false);
         Active.Remove(this);
         Lock();
-        
+        curState = null;
 
     }
 

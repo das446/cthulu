@@ -1,7 +1,7 @@
 WHEN time:1 //spawn bob, tim, and sue each 5 seconds apart, then have them wander
     (DO player clearprogress )
     (DO player setgoal 12 )
-    (DO timer set 360 )
+    (DO timer set 60 )
     (DO npc.normal.bob spawn )
     (DO npc.normal.bob goto room.kitchen )
     wait.10
@@ -9,13 +9,21 @@ WHEN time:1 //spawn bob, tim, and sue each 5 seconds apart, then have them wande
     (DO npc.normal.david goto room.diningroom )
     wait.5
     (DO monster.tentacle.2 spawn room.diningroom )
-    (DO monster.tentacle.1 spawn room.kitchen )
     wait.10
     (DO npc.normal.bob goto room.bathroom )
     (DO npc.normal.tim spawn )
     (DO npc.normal.tim goto room.kitchen )
     (DO monster.ghost.1 spawn bathroom )
     ;
+
+WHEN time:2
+    (DO monster.ghost.1 spawn room.foyer )
+    (DO tutorial.subs play ghosttut1 )
+    wait.3
+    (DO tutorial.subs play ghosttut2 )
+    wait.5
+    (DO tutorial.subs play ghosttut3 )
+
 
 
 WHEN monster.tentacle.1:die

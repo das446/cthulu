@@ -30,6 +30,8 @@ public class SubtitleController : MonoBehaviour, IManageable {
 
         Pauser.OnPause += OnPause;
         Pauser.OnUnPause += OnResume;
+
+        _source = GetComponent<AudioSource>();
     }
 
     public void Play(string sound, string caller = "") {

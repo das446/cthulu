@@ -83,7 +83,7 @@ public class Tentacle : Monster, ICanHold {
     }
 
     public void Release(IPickUpable pickUpable) {
-        held.obj.transform.position = transform.position + transform.forward;
+        held.obj.transform.position = transform.position + transform.forward * 3;
         held.obj.transform.parent = null;
         held.obj.GetComponent<Rigidbody>().AddForce(GetThrowDir());
         held = null;
