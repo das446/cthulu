@@ -639,6 +639,7 @@ MonoBehaviour:
   alertTimer: 6
   buyerID: 0
   baseInterestIncrease: 10
+  buyerType: 
 --- !u!114 &5891112171267659305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,6 +718,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Lady
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: fc8c5e3bdc90bc04fb66264cdfce76c7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2dd5d27535605c449b4ab0445f8d0461, type: 2}
+    - target: {fileID: 9500000, guid: fc8c5e3bdc90bc04fb66264cdfce76c7, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: fc8c5e3bdc90bc04fb66264cdfce76c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -772,14 +781,6 @@ PrefabInstance:
     - target: {fileID: 400010, guid: fc8c5e3bdc90bc04fb66264cdfce76c7, type: 3}
       propertyPath: m_LocalScale.z
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: fc8c5e3bdc90bc04fb66264cdfce76c7, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2dd5d27535605c449b4ab0445f8d0461, type: 2}
-    - target: {fileID: 9500000, guid: fc8c5e3bdc90bc04fb66264cdfce76c7, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc8c5e3bdc90bc04fb66264cdfce76c7, type: 3}
