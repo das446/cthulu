@@ -27,7 +27,14 @@ public class LeaveState : NpcState {
     public override void Exit() { }
 
     public override void StateUpdate() {
-
+        if (!npc.follower.moving) {
+            npc.ResetAnimParams();
+        }
+        else
+        {
+            npc.ResetAnimParams();
+            npc.animControl.SetBool("isWalking", true);
+        }
     }
 
     public override bool CanSeeMonster() {

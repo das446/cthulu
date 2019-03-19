@@ -646,9 +646,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1296463040}
     m_Modifications:
-    - target: {fileID: 100000, guid: 68575f5c7ee9f9045a9304873fee3c42, type: 3}
-      propertyPath: m_Name
-      value: LadySoftened
+    - target: {fileID: 9500000, guid: 68575f5c7ee9f9045a9304873fee3c42, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2dd5d27535605c449b4ab0445f8d0461, type: 2}
+    - target: {fileID: 9500000, guid: 68575f5c7ee9f9045a9304873fee3c42, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68575f5c7ee9f9045a9304873fee3c42, type: 3}
       propertyPath: m_LocalPosition.x
@@ -706,13 +710,9 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.8
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 68575f5c7ee9f9045a9304873fee3c42, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2dd5d27535605c449b4ab0445f8d0461, type: 2}
-    - target: {fileID: 9500000, guid: 68575f5c7ee9f9045a9304873fee3c42, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
+    - target: {fileID: 100000, guid: 68575f5c7ee9f9045a9304873fee3c42, type: 3}
+      propertyPath: m_Name
+      value: LadySoftened
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 68575f5c7ee9f9045a9304873fee3c42, type: 3}
       propertyPath: m_Materials.Array.data[0]
