@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EndScreen : MonoBehaviour {
     public void Restart() {
-        SceneManager.LoadScene("Tutorial");
+        Player.LoadLevel(PlayerPrefs.GetString("lvl"));
     }
     public void Quit() {
         Application.Quit();
