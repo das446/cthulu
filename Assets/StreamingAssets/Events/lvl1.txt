@@ -19,14 +19,6 @@ WHEN time:1 //spawn bob, tim, and sue each 5 seconds apart, then have them wande
     (DO monster.ghost.1 spawn bathroom )
     ;
 
-WHEN time:100
-    (DO monster.ghost.1 spawn room.foyer )
-    (DO tutorial.subs play ghosttut1 )
-    wait.3
-    (DO tutorial.subs play ghosttut2 )
-    wait.5
-    (DO tutorial.subs play ghosttut3 )
-;
 
 
 WHEN monster.tentacle.1:die

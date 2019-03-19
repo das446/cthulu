@@ -2,7 +2,7 @@ WHEN time:1
 
     (DO player clearprogress )
 
-    (DO player load lvl1 )
+    //(DO player load guan )
 
     flag.curt=1
 
@@ -13,6 +13,10 @@ WHEN time:1
     (DO guide draw node.livingroom.1 ) 
 
     (DO timer set 9999 )
+
+    (DO npc.normal.maggie spawn )
+
+    (DO npc.normal.maggie goto room.kitchen )
 
     ;
 

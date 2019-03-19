@@ -34,7 +34,6 @@ public class FurnitureDebris : Interactable, IEvaluated {
         if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity)) {
             Vector3 v = hit.point;
             transform.position = v;
-            Debug.Log(v);
         }
         _audio.PlayOneShot(breaksound);
         MakeDebris(transform.position);

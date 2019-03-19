@@ -177,8 +177,9 @@ namespace Cthulu {
         }
 
         public static void DoAfterTime(this MonoBehaviour control, Action coroutine, float time) {
-
-            control.StartCoroutine(MakeInvokedCoroutine(coroutine, time));
+            if (control.isActiveAndEnabled) {
+                control.StartCoroutine(MakeInvokedCoroutine(coroutine, time));
+            }
         }
 
         public static void DoAfterTimeIf(this MonoBehaviour control, Action coroutine, float time, Func<bool> cond) {

@@ -75,7 +75,9 @@ public class Tentacle : Monster, ICanHold {
             if (ipu != null) {
                 PickUp(ipu);
                 ipu.GetPickedUp(this);
-                StartCoroutine(DelayThrow(6));
+                if (gameObject.activeSelf) {
+                    StartCoroutine(DelayThrow(6));
+                }
             }
         }
     }
@@ -102,7 +104,9 @@ public class Tentacle : Monster, ICanHold {
     public void PickUp(IPickUpable pickUpable) {
         held = pickUpable;
         held.obj.transform.position = hand.transform.position;
-        StartCoroutine(DelayThrow(10));
+        if (gameObject.activeSelf) {
+            StartCoroutine(DelayThrow(10));
+        }
     }
 
     public void Release(IPickUpable pickUpable) {
