@@ -63,7 +63,7 @@ public class Doll : Furniture, IPossesable, IPickUpable {
     }
 
     public void GetPossessed(Ghost g) {
-        anim.SetFloat("walk", 1);
+        anim.SetBool("isRunning", true);
         ghost = g;
         rb.isKinematic = false;
         rb.useGravity = false;
@@ -83,7 +83,7 @@ public class Doll : Furniture, IPossesable, IPickUpable {
 
     public void UnPossess() {
         ghost = null;
-        anim.SetFloat("walk", 0);
+        anim.SetBool("isRunning", false);
     }
 
     public bool Possessed() {
