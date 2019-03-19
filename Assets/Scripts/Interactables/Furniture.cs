@@ -84,16 +84,16 @@ public class Furniture : Interactable, IEvaluated, IManageable {
 
     public void Break() {
 
-        if (Player.singleton.CurHeld() == this )
-        {
+        if (Player.singleton.CurHeld() == this) {
             Player.singleton.Release(Player.singleton.CurHeld());
         }
         //Particle Effect
         if (debris != null) {
+            Debug.Log(name + " break");
             Instantiate(debris, transform.position, Quaternion.identity);
         }
         //Destroy(gameObject);
-       
+
         TurnOff();
         countdown = resTimer;
     }
@@ -115,7 +115,6 @@ public class Furniture : Interactable, IEvaluated, IManageable {
 
     void Update() {
 
-        
         if (countdown > 0) {
             countdown -= Time.deltaTime;
             if (countdown < 0) {
@@ -126,36 +125,34 @@ public class Furniture : Interactable, IEvaluated, IManageable {
         }
     }
 
-    public void Respawn() {  
-        
+    public void Respawn() {
+
         // Series of transform manips to place object at inital pos and prevent it from falling over
-        transform.position = startPos;  // Send to location
-        transform.rotation = new Quaternion(0f,0f,0f,0f); // place it right-side up
+        transform.position = startPos; // Send to location
+        transform.rotation = new Quaternion(0f, 0f, 0f, 0f); // place it right-side up
         rb.velocity = Vector3.zero; // force it into the surface 
         rb.freezeRotation = true; // Turning rotation on and off consistantly helps the lamp to not fall after res
         health = hpRef;
-       
+
         TurnOn();
         rb.freezeRotation = false; // Turning rotation on and off consistantly helps the lamp to not fall after res
     }
 
     public void TurnOff() { // Turning off the object turns off the scripts ablilty to count down (uses update)
-       
-       gameObject.GetComponent<Collider>().enabled = false;
-       gameObject.GetComponentInChildren<Renderer>().enabled = false;
 
-       // gameObject.GetComponent<Furniture>().enabled = true;
+        gameObject.GetComponent<Collider>().enabled = false;
+        gameObject.GetComponentInChildren<Renderer>().enabled = false;
+
+        // gameObject.GetComponent<Furniture>().enabled = true;
     }
 
     public virtual void TurnOn() {
 
-         
         gameObject.GetComponent<Collider>().enabled = true;
         gameObject.GetComponentInChildren<Renderer>().enabled = true;
         //Debug.Log(curState);
         //Debug.Log(heldLayer);
 
-       
     }
 
 }

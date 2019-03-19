@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeavyFurniture : Furniture,IPickUpable {
+public class HeavyFurniture : Furniture, IPickUpable {
     // Start is called before the first frame update
     [SerializeField] SpringJoint joint;
     Vector3 prevPos;
+
+    bool held;
 
     public override void Interact(Player p, Vector3 pos) {
         if (p.CurHeld() == null) {
@@ -27,7 +29,7 @@ public class HeavyFurniture : Furniture,IPickUpable {
 
     void Update() {
         float d = Vector3.Distance(transform.position, prevPos);
-        if (d > 0.01f) {
+        if (d > 0.01f && held) {
             TakeDamage(d);
         }
         prevPos = transform.position;
@@ -55,13 +57,11 @@ public class HeavyFurniture : Furniture,IPickUpable {
         joint.anchor = pos;
     }
 
-    public bool CanBePickedUp(ICanHold h)
-    {
+    public bool CanBePickedUp(ICanHold h) {
         return true;
     }
 
-    public void GetPickedUp(ICanHold h)
-    {
-       EnableJoint(h, transform.position);
+    public void GetPickedUp(ICanHold h) {
+        EnableJoint(h, transform.position);
     }
 }
