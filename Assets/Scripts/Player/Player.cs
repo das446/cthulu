@@ -189,7 +189,7 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
     public void ChangeMoney(int amnt) {
         Audio.PlaySound("SaleMade");
         money += amnt;
-        moneyText.text = money + "M/" + goalMoney + "M$";
+        moneyText.text = "$" + money + "/$" + goalMoney;
 
         if (money >= goalMoney) {
             WinLevel();
@@ -214,7 +214,7 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
     public void Do(DoEvent de) {
         if (de.action == "setgoal") {
             goalMoney = Int32.Parse(de.args[0]);
-            moneyText.text = money + "M/" + goalMoney + "M$";
+            moneyText.text = "$" + money + "/$" + goalMoney;
 
         } else if (de.action == "load") {
             LoadLevel(de.args[0]);

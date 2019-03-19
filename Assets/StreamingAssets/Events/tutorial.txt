@@ -14,10 +14,6 @@ WHEN time:1
 
     (DO timer set 9999 )
 
-    (DO npc.normal.maggie spawn )
-
-    (DO npc.normal.maggie goto room.kitchen )
-
     ;
 
 
@@ -53,11 +49,14 @@ WHEN player:sweep
 
 WHEN monster.tentacle.1:die
 
-    (DO tutorial.subs play tutorial4 )
 
     (DO npc.tutorial.bob spawn )
 
     (DO guide draw node.livingroom.4 ) 
+
+    wait.5
+
+    (DO tutorial.subs play tutorial4 )
 
     flag.curt=4
 
