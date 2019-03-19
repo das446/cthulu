@@ -30,6 +30,14 @@ public class BuyState : NpcState {
                 npc.LeaveBuyState();
             }
         }
+        if (!npc.follower.moving) {
+            npc.ResetAnimParams();
+        }
+        else
+        {
+            npc.ResetAnimParams();
+            npc.animControl.SetBool("isWalking", true);
+        }
     }
 
     public override void Enter() {
