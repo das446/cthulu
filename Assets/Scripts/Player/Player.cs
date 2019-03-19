@@ -236,6 +236,7 @@ public class Player : MonoBehaviour, ICanHold, IManageable {
         Node.Nodes = new List<Node>();
         Room.rooms = new Dictionary<string, Room>();
         Ghost.possesables = new List<IPossesable>();
+        LightFurniture.dustPool = new List<GameObject>();
         resetStatics();
     }
 }

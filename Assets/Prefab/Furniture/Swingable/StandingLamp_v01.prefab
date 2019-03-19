@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2214511389752227276}
-  - component: {fileID: 7202548062206704485}
   - component: {fileID: 5296903088664359572}
   - component: {fileID: 1726530915446104418}
+  - component: {fileID: 688257789305824646}
   m_Layer: 0
   m_Name: StandingLamp_v01
   m_TagString: Untagged
@@ -34,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7202548062206704485
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7202548062206704482}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.14476842, y: 0.6264063, z: 0.1964854}
-  m_Center: {x: -0.0028581917, y: 0.308567, z: -0.0038093925}
 --- !u!114 &5296903088664359572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,12 +53,13 @@ MonoBehaviour:
   health: 10
   startPos: {x: 0, y: 0, z: 0}
   rb: {fileID: 1726530915446104418}
-  col: {fileID: 7202548062206704485}
+  col: {fileID: 688257789305824646}
   debris: {fileID: 4966297709812258871, guid: d3c741359b5964447bfbed15c7974b47, type: 3}
   throwDmg: 1
   possessable: 1
   baseJumpTime: 1
   jumpForce: 300
+  throwRot: {x: 0, y: 0, z: 90}
   thud: {fileID: 0}
 --- !u!54 &1726530915446104418
 Rigidbody:
@@ -89,6 +77,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &688257789305824646
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202548062206704482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.11558828
+  m_Height: 0.8452151
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.39886892, z: -0.0010756552}
 --- !u!114 &456204050060665031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +118,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StandingLamp_v01
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 21651b8d637822f419ee9e1e67cc0ced, type: 2}
     - target: {fileID: 400004, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -160,10 +166,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 21651b8d637822f419ee9e1e67cc0ced, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 873b90023921fd84bbf5cfc66da4f721, type: 3}
 --- !u!4 &8678383987626972764 stripped

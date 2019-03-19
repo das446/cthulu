@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cthulu;
 using UnityEngine;
 
@@ -13,12 +14,17 @@ public class FurnitureDebris : Interactable, IEvaluated {
 
     public AudioClip breaksound, sweepsound;
 
+    [SerializeField] GameObject dustPrefab;
+    GameObject dustInstance;
+
+    public static List<GameObject> dustPool = new List<GameObject>();
+
     public float Evaluate(Npc npc, Room r) {
         return -20;
     }
 
     public override void Interact(Player p) {
-        Cthulu.Events.GameManager.When("player","sweep");
+        Cthulu.Events.GameManager.When("player", "sweep");
         StartCoroutine(CleanUp(p));
     }
 
@@ -31,6 +37,8 @@ public class FurnitureDebris : Interactable, IEvaluated {
             Debug.Log(v);
         }
         _audio.PlayOneShot(breaksound);
+        MakeDebris(transform.position);
+
     }
 
     //The Clean Up Script
@@ -39,14 +47,31 @@ public class FurnitureDebris : Interactable, IEvaluated {
         GameObject s = Instantiate(sweep, transform.position, transform.rotation);
         s.transform.parent = transform;
         s.transform.localPosition = Vector3.zero;
-        s.transform.Rotate(0,90,0);
+        s.transform.Rotate(0, 90, 0);
         Debug.Log(transform.position);
         Debug.Log(s.transform.position);
         _audio.PlayOneShot(sweepsound);
+
         //s.transform.Rotate(0, 90, 0);
-        yield return new WaitForSeconds(delay);
+        MakeDebris(transform.position);
+        yield return new WaitForSeconds(delay/2);
+        MakeDebris(transform.position);
+        yield return new WaitForSeconds(delay/2);
+        MakeDebris(transform.position);
         p.Unlock();
         Destroy(s);
         Destroy(gameObject);
+        //dustInstance.gameObject.SetActive(false);
+
+    }
+
+    private void MakeDebris(Vector3 point) {
+        dustInstance = dustPool.FirstOrDefault(x => !x.gameObject.activeSelf);
+        if (dustInstance == null) {
+            dustInstance = Instantiate(dustPrefab);
+            dustPool.Add(dustPrefab);
+        }
+        dustInstance.SetActive(true);
+        dustInstance.transform.position = point;
     }
 }
