@@ -18,6 +18,14 @@ public class MoveTowardsState : NpcState {
         // if (Vector3.Distance(npc.transform.position, target.transform.position) < 0.5f) {
         //     npc.StartWandering();
         // }
+        if (!npc.follower.moving) {
+            npc.ResetAnimParams();
+        }
+        else
+        {
+            npc.ResetAnimParams();
+            npc.animControl.SetBool("isWalking", true);
+        }
     }
 
     public override void Enter() {
