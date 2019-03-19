@@ -69,9 +69,6 @@ public class SubtitleController : MonoBehaviour, IManageable {
             return;
         }
         string t = sub.text;
-        if (caller != "") {
-            t = caller + ": " + t;
-        }
         text.text = t;
         this.StopAllCoroutines();
         this.DoAfterTime(() => text.text = "", time);
