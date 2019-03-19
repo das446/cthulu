@@ -160,6 +160,7 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
     }
 
     private void Jump(Transform ghostTarget) {
+        Vector3 t = ghostTarget.transform.position + new Vector3(UnityEngine.Random.Range(-2f, 2f), 0, UnityEngine.Random.Range(-2f, 2f));
         Vector3 dir = (ghostTarget.transform.position - transform.position + Vector3.up).normalized;
         rb.AddForce(dir * jumpForce);
     }
@@ -173,6 +174,8 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
     }
 
     public override void Do(DoEvent de) {
-        if (de.action == "move") { }
+        if (de.action == "move") {
+            
+         }
     }
 }
