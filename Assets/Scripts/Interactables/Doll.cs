@@ -63,7 +63,7 @@ public class Doll : Furniture, IPossesable, IPickUpable {
     }
 
     public void GetPossessed(Ghost g) {
-        anim.SetFloat("walk", 1);
+        anim.SetFloat("Speed", 1);
         ghost = g;
         rb.isKinematic = false;
         rb.useGravity = false;
@@ -71,6 +71,7 @@ public class Doll : Furniture, IPossesable, IPickUpable {
         rb.angularVelocity = Vector3.zero;
         col.isTrigger = true;
         gameObject.SetLayerRecursively(13);
+        TargetPlayer();
     }
 
     public void SetTarget(GameObject g) {
@@ -83,7 +84,7 @@ public class Doll : Furniture, IPossesable, IPickUpable {
 
     public void UnPossess() {
         ghost = null;
-        anim.SetFloat("walk", 0);
+        anim.SetFloat("Speed", 0);
     }
 
     public bool Possessed() {
@@ -118,6 +119,10 @@ public class Doll : Furniture, IPossesable, IPickUpable {
 
     public void TargetBuyer(Npc npc) {
         target = npc.gameObject;
+    }
+
+    public void TargetPlayer() {
+        target = Player.singleton.gameObject;
     }
 
     private void OnDrawGizmosSelected() {
