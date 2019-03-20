@@ -45,7 +45,7 @@ public class ChattingState : NpcState
     public override void StateUpdate()
     {
         chatTimer -= Time.deltaTime;
-        visualTimer.fillAmount = chatTimer/chatTime;
+        //visualTimer.fillAmount = chatTimer/chatTime;
 
         if (chatTimer <= 0)
         {
@@ -59,7 +59,7 @@ public class ChattingState : NpcState
     public override void Enter()
     {
         GameManager.When(npc.name,"chat");
-        visualTimer.gameObject.SetActive(true);
+        //visualTimer.gameObject.SetActive(true);
     }
 
     public override void Exit()

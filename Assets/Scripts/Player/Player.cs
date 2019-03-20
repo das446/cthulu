@@ -247,7 +247,7 @@ public class Player : MonoBehaviour, ICanHold, IManageable
     {
         GameManager.When("player", "win");
         Lock();
-        SceneManager.LoadScene("WinScreen");
+        //SceneManager.LoadScene("WinScreen");
     }
 
     public void LoseLevel()
