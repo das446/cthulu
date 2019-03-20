@@ -1607,14 +1607,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.99950933
       objectReference: {fileID: 0}
-    - target: {fileID: 2018968435395439859, guid: 2b12e219ea80e114dab0d87e973101d9,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5631818190041318751, guid: 2b12e219ea80e114dab0d87e973101d9,
         type: 3}
       propertyPath: m_Colors.m_NormalColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018968435395439859, guid: 2b12e219ea80e114dab0d87e973101d9,
+        type: 3}
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8566507398903356992, guid: 2b12e219ea80e114dab0d87e973101d9,
@@ -3425,11 +3425,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2018968435395439859, guid: 2b12e219ea80e114dab0d87e973101d9,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5631818190041318751, guid: 2b12e219ea80e114dab0d87e973101d9,
         type: 3}
       propertyPath: m_Colors.m_NormalColor.a
@@ -3454,6 +3449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Tutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018968435395439859, guid: 2b12e219ea80e114dab0d87e973101d9,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8566507398903356992, guid: 2b12e219ea80e114dab0d87e973101d9,
         type: 3}
@@ -3850,8 +3850,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1721361990}
-  - {fileID: 1664269703}
   - {fileID: 567961474}
+  - {fileID: 1664269703}
   m_Father: {fileID: 1829438107}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4004,14 +4004,24 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.99950933
       objectReference: {fileID: 0}
-    - target: {fileID: 2018968435395439859, guid: 2b12e219ea80e114dab0d87e973101d9,
+    - target: {fileID: 5631818190041318751, guid: 2b12e219ea80e114dab0d87e973101d9,
         type: 3}
-      propertyPath: m_Color.a
+      propertyPath: m_Colors.m_NormalColor.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5631818190041318751, guid: 2b12e219ea80e114dab0d87e973101d9,
         type: 3}
-      propertyPath: m_Colors.m_NormalColor.a
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2078760911}
+    - target: {fileID: 5631818190041318751, guid: 2b12e219ea80e114dab0d87e973101d9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018968435395439859, guid: 2b12e219ea80e114dab0d87e973101d9,
+        type: 3}
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8566507398903356992, guid: 2b12e219ea80e114dab0d87e973101d9,

@@ -8,4 +8,9 @@ public class StartMenu : MonoBehaviour
     public void LoadLevel(string name){
         SceneManager.LoadScene(name);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
