@@ -30,6 +30,8 @@ public class Tentacle : Monster, ICanHold {
     int changeInHp;
     Color baseColor;
 
+    public GameObject shaderbody;
+
     float tintCounter;
     //
 
@@ -198,9 +200,10 @@ public class Tentacle : Monster, ICanHold {
     }
 
     void Tintred() {
+
         tintCounter = .25f;
 
-        Renderer color = GetComponentInChildren<Renderer>();
+        Renderer color = shaderbody.GetComponent<Renderer>();
 
         Color _color = color.material.GetColor("_Color");
 
@@ -210,12 +213,14 @@ public class Tentacle : Monster, ICanHold {
     }
 
     void ResetColor() {
-        Renderer color = GetComponentInChildren<Renderer>();
+        
+        Renderer color = shaderbody.GetComponent<Renderer>();
         color.material.SetColor("_Color", baseColor);
     }
 
     void PrepBaseColor() {
-        Renderer color = GetComponentInChildren<Renderer>();
+        
+        Renderer color = shaderbody.GetComponent<Renderer>();
         Color _color = color.material.GetColor("_Color");
         baseColor = _color;
     }
