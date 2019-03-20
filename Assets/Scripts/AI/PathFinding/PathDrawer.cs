@@ -15,14 +15,8 @@ public class PathDrawer : MonoBehaviour, IManageable {
 
     public GameObject obj => gameObject;
 
-    void Awake(){
+    void Awake() {
         this.AddToManager();
-    }
-
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Set(start, end);
-        }
     }
 
     public void Set(Node start, Node end) {
