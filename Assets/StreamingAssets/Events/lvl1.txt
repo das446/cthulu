@@ -77,12 +77,7 @@ WHEN npc.normal.tim:die
     (DO npc.normal.tim goto room.kitchen )
     ;
 
-WHEN npc.normal.tim:die
-    wait.10
-    (DO npc.normal.tim spawn )
-    (DO npc.normal.tim goto room.lounge )
-    ;
 
 WHEN player:win
     (DO player load guan )
-;
+    ;

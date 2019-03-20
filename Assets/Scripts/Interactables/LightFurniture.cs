@@ -33,10 +33,30 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
 
     public static List<GameObject> dustPool = new List<GameObject>();
 
+    MeshRenderer meshRenderer;
+    float maxHealth;
     new protected void Start() {
         base.Start();
         Ghost.possesables.Add(this);
         _audio = GetComponent<AudioSource>();
+
+
+        meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        if (health <= 0) { health = 1; }
+        startPos = transform.position;
+        curState = new GroundedState(this);
+        //this.SetName();
+        //
+        countdown = 0;
+        hpRef = health;
+        if (resTimer == 0) {
+            resTimer = 60; // Default res time.
+        }
+        maxHealth = health;
+
+
+
+
     }
 
     public override void Interact(Player p) {
@@ -167,6 +187,17 @@ public class LightFurniture : Furniture, IPickUpable, IPossesable {
 
     void Update() {
         audioTimer += Time.deltaTime;
+
+        if (countdown > 0) {
+            countdown -= Time.deltaTime;
+            if (countdown < 0) {
+                countdown = 0;
+                Respawn();
+            }
+
+        }
+
+
     }
 
     public override bool Valid(Player p) {

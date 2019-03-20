@@ -47,8 +47,6 @@ public class FurnitureDebris : Interactable, IEvaluated {
         s.transform.parent = transform;
         s.transform.localPosition = Vector3.zero;
         s.transform.Rotate(0, 90, 0);
-        Debug.Log(transform.position);
-        Debug.Log(s.transform.position);
         _audio.PlayOneShot(sweepsound);
 
         //s.transform.Rotate(0, 90, 0);
