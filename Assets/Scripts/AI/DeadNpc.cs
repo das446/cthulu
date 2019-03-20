@@ -51,6 +51,7 @@ public class DeadNpc : Interactable, IPickUpable, IEvaluated
         joint.spring = 200;
         held = true;
         
+        
     }
 
     //this is dumb

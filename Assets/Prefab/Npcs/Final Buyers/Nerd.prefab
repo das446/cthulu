@@ -622,7 +622,7 @@ MonoBehaviour:
   buyerID: 0
   baseInterestIncrease: 10
   buyerType: nerd
-  deadNpc: {fileID: 0}
+  deadNpc: {fileID: 1331615093, guid: b08f800088f4185498edf9795f511e6e, type: 3}
 --- !u!114 &6830956289441138519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +646,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1296463040}
     m_Modifications:
+    - target: {fileID: 100024, guid: e57c40020ce3aa646bdce86f5460a04c, type: 3}
+      propertyPath: m_Name
+      value: NerdSoftened
+      objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: e57c40020ce3aa646bdce86f5460a04c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -701,10 +705,6 @@ PrefabInstance:
     - target: {fileID: 400024, guid: e57c40020ce3aa646bdce86f5460a04c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 100024, guid: e57c40020ce3aa646bdce86f5460a04c, type: 3}
-      propertyPath: m_Name
-      value: NerdSoftened
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: e57c40020ce3aa646bdce86f5460a04c, type: 3}
       propertyPath: m_Controller
