@@ -1,81 +1,50 @@
-WHEN time:1 //spawn bob, tim, and sue each 5 seconds apart, then have them wander
-
-    //Set furniture stuff here
-    (DO player setgoal 12 )
-    (DO timer set 180 )
+WHEN time:1
+    (DO player setgoal 20 )
+    (DO timer set 600 )
+	wait.5
     (DO npc.normal.sue spawn )
     (DO npc.normal.sue goto room.kitchen )
-    wait.10
+	wait.10
+	(DO monster.tentacle.1 spawn room.diningroom )
+    wait.20
     (DO npc.normal.david spawn )
     (DO npc.normal.david goto room.diningroom )
-    wait.5
-    (DO monster.tentacle.2 spawn room.diningroom )
-    wait.10
-    (DO npc.normal.bob goto room.bathroom )
-    (DO npc.normal.tim spawn )
-    (DO npc.normal.tim goto room.kitchen )
-    (DO monster.ghost.1 spawn bathroom )
     ;
 
-
+WHEN time:60
+	(DO npc.normal.bob spawn )
+	(DO npc.normal.bob goto room.bathroom )
+	(DO monster.tentacle.3 spawn room.bathroom )
+	wait.10
+	(DO npc.normal.tim spawn )
+	(DO npc.normal.tim goto room.smokingroom )
+	(DO monster.tentacle.4 spawn room.smokingroom )
+	;
+	
+WHEN time:120
+	(DO npc.normal.maggie spawn )
+	(DO npc.normal.maggie goto room.kitchen )
+	;
 
 WHEN monster.tentacle.1:die
-    wait.5
-    (DO monster.tentacle.1 spawn room.kitchen )
-    if.flag.seeghost=0
+    wait.10
+    (DO monster.tentacle.2 spawn room|kitchen|bathroom )
     ;
-
-WHEN monster.ghost.1:die
-    wait.5
-    (DO monster.tentacle.1 spawn room.diningroom )
-    ;
-
+	
 WHEN monster.tentacle.2:die
     wait.10
-    (DO monster.tentacle.2 spawn room.kitchen )
+    (DO monster.tentacle.3 spawn room.livingroom )
     ;
 
-WHEN monster.ghost.1:die
-    wait.5
-    (DO monster.ghost.1 spawn room.diningroom )
-    ;
-
-WHEN monster.ghost.2:die
-    wait.5
-    (DO monster.ghost.2 spawn room.kitchen )
-    ;
-
-WHEN npc.normal.bob:exit
+WHEN monster.tentacle.3:die
     wait.10
-    (DO npc.normal.bob spawn )
-    (DO npc.normal.bob goto room.kitchen )
+    (DO monster.tentacle.4 spawn room.2ndbathroom )
     ;
-
-WHEN npc.normal.david:exit
-    wait.10
-    (DO npc.normal.david spawn )
-    (DO npc.normal.david goto room.lounge )
-    ;
-
-WHEN npc.normal.bob:die
-    wait.10
-    (DO npc.normal.bob spawn )
-    (DO npc.normal.bob goto room.kitchen )
-    ;
-
-WHEN npc.normal.david:die
-    wait.10
-    (DO npc.normal.david spawn )
-    (DO npc.normal.david goto room.lounge )
-    ;
-
-WHEN npc.normal.tim:die
-    wait.10
-    (DO npc.normal.tim spawn )
-    (DO npc.normal.tim goto room.kitchen )
-    ;
-
-
+	
+WHEN time:180
+	(DO monster.tentacle.5 spawn room.guestroom )
+	;
+	
 WHEN player:win
-    (DO player load guan )
+    (DO player load lvl2 )
     ;

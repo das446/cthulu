@@ -8,7 +8,8 @@ using Cthulu.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Npc : Interactable, IPickUpable, IManageable {
+public class Npc : Interactable, IPickUpable, IManageable
+{
 
     [SerializeField] LineOfSightChecker eyes;
     List<GameObject> seenMonsters;
@@ -93,7 +94,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     [SerializeField] GameObject deadNpc;
 
-    void Awake() {
+    void Awake()
+    {
         eyes = new LineOfSightChecker(this, vision);
         tempFontSize = message.fontSize;
 
@@ -107,7 +109,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
         StartWandering();
     }
 
-    public void Spawn() {
+    public void Spawn()
+    {
         Debug.Log(name + " spawn");
         Unlock();
         ResetAnimParams();
@@ -119,31 +122,37 @@ public class Npc : Interactable, IPickUpable, IManageable {
         SubtitleController.singleton.Play(subName, DisplayName());
     }
 
-    public void GoToRoom(string room) {
+    public void GoToRoom(string room)
+    {
         GoToRoom(Room.GetRoom(room));
     }
 
-    public void GoToRoom(Room r) {
+    public void GoToRoom(Room r)
+    {
         curState?.Exit();
         curState = new MoveTowardsState(this, r.RandomNode());
         Audio.PlaySound(gameObject, buyerType + "_" + r.RoomName());
         string subName = buyerType + r.RoomName();
-        if (!SubtitleController.singleton.HasSub(subName)){
+        if (!SubtitleController.singleton.HasSub(subName))
+        {
             //subName = buyerType+"AnyRoom";
         }
-        SubtitleController.singleton.Play(subName,DisplayName());
+        SubtitleController.singleton.Play(subName, DisplayName());
     }
 
-    public void GoToNode(string node) {
+    public void GoToNode(string node)
+    {
         GoToNode(Node.Get(node));
     }
 
-    public void GoToNode(Node node) {
+    public void GoToNode(Node node)
+    {
         curState?.Exit();
         curState = new MoveTowardsState(this, node);
     }
 
-    public void Buy(Player p) {
+    public void Buy(Player p)
+    {
         GameManager.When(name, "buy");
         int m = money;
         m = CalculateSell(InterestPercent());
@@ -153,28 +162,35 @@ public class Npc : Interactable, IPickUpable, IManageable {
         SetState(new LeaveState(this, exitNode));
     }
 
-    public int CalculateSell(float percent) {
-        if (percent >= 1) {
+    public int CalculateSell(float percent)
+    {
+        if (percent >= 1)
+        {
             return money * 2;
-        } else if (percent >= 0.75f) {
-            return (int) (money * 1.5f);
+        }
+        else if (percent >= 0.75f)
+        {
+            return (int)(money * 1.5f);
         }
 
         return money;
     }
 
-    public void Chat(Player p, Image timer, float chatTime) {
+    public void Chat(Player p, Image timer, float chatTime)
+    {
         SetState(new ChattingState(this, chatTime, p, timer, curState));
     }
 
     /// <summary>
     /// Interact based on the current state
     /// </summary>
-    public override void Interact(Player p) {
+    public override void Interact(Player p)
+    {
         curState.OnInteract(p);
     }
 
-    void Update() {
+    void Update()
+    {
 
         List<GameObject> m = eyes.CheckMonsters();
         bool seesMonsters = m.Count > 0;
@@ -183,25 +199,29 @@ public class Npc : Interactable, IPickUpable, IManageable {
         {
             ReadyToBuy();
             isBuying = true;
-        } else if (seesMonsters && curState.CanSeeMonster()) {
+        }
+        else if (seesMonsters && curState.CanSeeMonster())
+        {
             GameManager.When(name, "seemonster", m.Select(x => x.name).ToArray());
-            Debug.Log("GetScared");
-            Debug.Log(m[0].name);
             Monster mon = m.FirstOrDefault(x => x.GetComponent<Monster>() != null)?.GetComponent<Monster>();
             GetScared(mon);
+
 
         }
 
         curState?.StateUpdate();
 
-        if (isDead) {
+        if (isDead)
+        {
             Die();
         }
 
     }
 
-    private void DebugMessage() {
-        if (Input.GetKey(KeyCode.Tab) && !isBuying) {
+    private void DebugMessage()
+    {
+        if (Input.GetKey(KeyCode.Tab) && !isBuying)
+        {
             Debug.Log("NPC_Info_Updated:" + name);
             tempMessage = message.text;
             string npcInfo;
@@ -209,28 +229,34 @@ public class Npc : Interactable, IPickUpable, IManageable {
             message.fontSize = .1f;
             SetMessage(npcInfo, Color.blue);
             //message.fontSize = temp;
-        } else if (Input.GetKeyUp(KeyCode.Tab)) {
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
             message.fontSize = tempFontSize;
             SetMessage(tempMessage);
         }
     }
 
-    public void SetState(NpcState state) {
+    public void SetState(NpcState state)
+    {
         curState?.Exit();
         curState = state;
     }
 
-    public void StartWandering() {
+    public void StartWandering()
+    {
         curState?.Exit();
         curState = new WanderState(this, idleWaitTime, nodesToAvoid);
     }
 
-    public void SetSpeed(float speed) {
+    public void SetSpeed(float speed)
+    {
         this.speed = speed;
         follower.speed = this.speed;
     }
 
-    public void SetSpeed(Func<float, float> f) {
+    public void SetSpeed(Func<float, float> f)
+    {
         this.speed = f(this.speed);
         follower.speed = this.speed;
     }
@@ -239,26 +265,31 @@ public class Npc : Interactable, IPickUpable, IManageable {
     /// Called when the buyer enters a room
     /// </summary>
     /// <param name="r"></param>
-    public void EnterRoom(Room r) {
+    public void EnterRoom(Room r)
+    {
         if (isScared || isRunning) { return; }
-        if (!visitedRooms.Contains(r)) {
+        if (!visitedRooms.Contains(r))
+        {
             visitedRooms.Add(r);
             float roomInterest = EvaluateRoom(r);
             interest += roomInterest;
         }
         if (OnEnterRoom != null) { OnEnterRoom(this, r); }
         GameManager.When(name, "enter", r.name);
-        if (interest <= 0) {
+        if (interest <= 0)
+        {
             curState = new LeaveState(this, exitNode);
         }
     }
 
-    public void GetScared(Monster m) {
+    public void GetScared(Monster m)
+    {
         GetScared(alertTimer);
         m?.SeeBuyer(this);
     }
 
-    public void GetScared(float scareTime) {
+    public void GetScared(float scareTime)
+    {
         if (curState.IsScared()) { return; }
         GameManager.When(name, "scared");
         Lock();
@@ -266,21 +297,24 @@ public class Npc : Interactable, IPickUpable, IManageable {
         curState = new ScaredState(this, 6);
     }
 
-    public void RunToExit() {
+    public void RunToExit()
+    {
 
         curState?.Exit();
         // curState = new ScaredState(this, exitNode);
         curState = new FleeState(this, exitNode);
     }
 
-    public void ReadyToBuy() {
+    public void ReadyToBuy()
+    {
         GameManager.When(name, "readytobuy");
         curState?.Exit();
         curState = new BuyState(this, lobbyNode);
         Debug.Log("Cur state = buy");
     }
 
-    public void LeaveBuyState() {
+    public void LeaveBuyState()
+    {
         Debug.Log("NPC waited too long");
         interest -= 20;
         StartWandering();
@@ -291,7 +325,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
     /// <summary>
     /// Keeps npc from moving
     /// </summary>
-    public void Lock() {
+    public void Lock()
+    {
         rb.useGravity = false;
         col.enabled = false;
         locked = true;
@@ -304,7 +339,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
     /// <summary>
     /// Lets npc move again
     /// </summary>
-    public void Unlock() {
+    public void Unlock()
+    {
         rb.useGravity = true;
         col.enabled = true;
         locked = false;
@@ -312,7 +348,8 @@ public class Npc : Interactable, IPickUpable, IManageable {
         //transform.GetChild(0).GetComponent<Animator>().SetBool("Walking",true);
     }
 
-    float EvaluateRoom(Room r) {
+    float EvaluateRoom(Room r)
+    {
         //interest starts at 20
         //int interest = 20;
         //int fDist = 1;
@@ -321,26 +358,31 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
         List<IEvaluated> items = GetEvaluatedObjects();
 
-        for (int i = 0; i < items.Count; i++) {
+        for (int i = 0; i < items.Count; i++)
+        {
             interest += items[i].Evaluate(this, r);
         }
         return interest;
 
     }
 
-    private List<IEvaluated> GetEvaluatedObjects() {
+    private List<IEvaluated> GetEvaluatedObjects()
+    {
         Collider[] cols = Physics.OverlapSphere(transform.position, vision, wallLayer);
         List<IEvaluated> items = new List<IEvaluated>();
-        for (int i = 0; i < cols.Length; i++) {
+        for (int i = 0; i < cols.Length; i++)
+        {
             IEvaluated ev = cols[i].GetComponent<IEvaluated>();
-            if (ev != null) {
+            if (ev != null)
+            {
                 items.Add(ev);
             }
         }
         return items;
     }
 
-    public DeadNpc Die() {
+    public DeadNpc Die()
+    {
         GameManager.When(name, "die");
         soundType = SoundType.Death;
         PlayDeathSound();
@@ -352,17 +394,20 @@ public class Npc : Interactable, IPickUpable, IManageable {
     }
 
 
-    public void SetMessage(string s, Color c) {
+    public void SetMessage(string s, Color c)
+    {
         message.text = s;
         message.color = c;
     }
 
-    public void SetMessage(string s) {
+    public void SetMessage(string s)
+    {
         SetMessage(s, Color.black); // should it default to black or keep last color?
 
     }
 
-    public void ExitHouse() {
+    public void ExitHouse()
+    {
         GameManager.When(name, "exit");
         ResetStats();
         gameObject.SetActive(false);
@@ -372,60 +417,79 @@ public class Npc : Interactable, IPickUpable, IManageable {
 
     }
 
-    void OnDrawGizmos() {
+    void OnDrawGizmos()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, vision);
     }
 
-    public bool CanBePickedUp(ICanHold h) {
+    public bool CanBePickedUp(ICanHold h)
+    {
         return true;
         //return is Monster
     }
 
-    public void GetPickedUp(ICanHold h) {
-        if (CanBePickedUp(h)) {
+    public void GetPickedUp(ICanHold h)
+    {
+        if (CanBePickedUp(h))
+        {
             Die();
         }
     }
 
-    public void Release(ICanHold h) {
+    public void Release(ICanHold h)
+    {
         rb.AddForce(h.GetThrowDir());
     }
 
-    public void PlayScreamSound() {
-        if (name.StartsWith("npc.nerd")) {
+    public void PlayScreamSound()
+    {
+        if (name.StartsWith("npc.nerd"))
+        {
             screamSound = "NerdScream";
             gameObject.PlaySound(screamSound);
-        } else {
+        }
+        else
+        {
             screamSound = "PoshScream";
             gameObject.PlaySound(screamSound);
         }
     }
 
-    private void PlayDeathSound() {
-        if (name.StartsWith("npc.nerd")) {
+    private void PlayDeathSound()
+    {
+        if (name.StartsWith("npc.nerd"))
+        {
             deathSound = "NerdDeath";
             gameObject.PlaySound(deathSound);
-        } else {
+        }
+        else
+        {
             deathSound = "Death1";
             gameObject.PlaySound(deathSound);
 
         }
     }
 
-    private void PlayTalkSound() {
-        if (soundType == SoundType.Talk) {
-            if (name.StartsWith("npc.nerd")) {
+    private void PlayTalkSound()
+    {
+        if (soundType == SoundType.Talk)
+        {
+            if (name.StartsWith("npc.nerd"))
+            {
                 talkSound = "NerdTalk";
                 gameObject.PlaySound(talkSound);
-            } else {
+            }
+            else
+            {
                 talkSound = "PoshTalk";
                 gameObject.PlaySound(talkSound);
             }
         }
     }
 
-    public void ResetAnimParams() {
+    public void ResetAnimParams()
+    {
         animControl.SetBool("isWalking", false);
         animControl.SetBool("isTalking", false);
         animControl.ResetTrigger("isSitting");
@@ -439,20 +503,24 @@ public class Npc : Interactable, IPickUpable, IManageable {
         animControl.ResetTrigger("gotPossessed");
     }
 
-    public void Do(DoEvent de) {
+    public void Do(DoEvent de)
+    {
         new DoEventBuyer(this).Do(de);
     }
 
-    void ResetStats() {
+    void ResetStats()
+    {
         interest = startInterest;
         curState = null;
     }
 
-    public float InterestPercent() {
-        return (float) (interest) / (maxInterest);
+    public float InterestPercent()
+    {
+        return (float)(interest) / (maxInterest);
     }
 
-    public string DisplayName() {
+    public string DisplayName()
+    {
         string s = name.Split('.').Last();
         return char.ToUpper(s[0]) + s.Substring(1);
     }

@@ -1,42 +1,50 @@
 WHEN time:1
-    (DO player clearprogress )
-    //(DO player load lvl1 )
-    (DO player setgoal 10 )
-    (DO timer set 540 )
-    (DO monster.tentacle.2 spawn room.diningroom )
-    (DO monster.ghost.1 spawn room.Livingroom )
-    (DO monster.ghost.1 goto chair.dining|1|2|3|4|5|6 )
-    wait.10
-    (DO npc.normal.bob spawn )
-    wait.3
-    (Do npc.normal.bob goto room.diningroom )
-    wait.2
-    (Do npc.normal.bob wander )
+    (DO player setgoal 25 )
+    (DO timer set 600 )
+	(DO tutorial.subs play ghosttut1 )
+	wait.4
+	(DO tutorial.subs play ghosttut2 )
+    (DO monster.ghost.1 spawn room.Foyer )
+    (DO monster.ghost.1 goto doll.1 )
 	wait.5
-	(DO monster.tentacle.1 spawn room.kitchen )
-    ;
+	(DO tutorial.subs play ghosttut3 )
+	;
 
-WHEN monster.tentacle.2:die
-    wait.10
-    (DO npc.normal.david spawn )
-    (Do npc.normal.david goto room.kitchen )
-    wait.5
-    (Do npc.normal.david wander )
-    (DO npc.normal.tim spawn )
-    (Do npc.normal.tim goto room.Bathroom )
-    (DO monster.tentacle.2 spawn room.diningroom )
-    ;
-
-
+WHEN time:30
+	(DO npc.normal.bob spawn )
+	(DO npc.normal.bob goto room.bathroom )
+	wait.5
+	(DO monster.tentacle.1 spawn room|lounge|kitchen )
+	;
+	
+WHEN time:60
+	(DO monster.ghost.2 spawn room.Foyer )
+    (DO monster.ghost.2 goto chair.dining|1|2|3|4|5|6 )
+	(DO npc.normal.steve spawn )
+	(DO npc.normal.steve goto room.smokingroom )
+	wait.5
+	(DO npc.normal.sue spawn )
+	(DO npc.normal.sue goto room.kitchen )
+	(DO monster.tentacle.2 spawn room.masterbedroom )
+	wait.5
+	(DO npc.normal.tim spawn )
+	(DO npc.normal.tim goto room.masterbedroom )
+	;
+	
+WHEN time:120
+	(DO monster.ghost.3 spawn room.livingroom )
+    (DO monster.ghost.3 goto doll.3 )
+	;
+	
 WHEN monster.tentacle.1:die
 	wait.10
 	(DO monster.tentacle.1 spawn room|Bathroom|kitchen )
     ;
 
-WHEN monster.ghost.1:die
+WHEN monster.ghost.2:die
 	wait.10
-	(DO monster.ghost.1 spawn room|smokingroom|kitchen )
-    (DO monster.ghost.1 goto chair.dining|1|2|3|4|5|6 )
+	(DO monster.ghost.2 spawn room|smokingroom|kitchen )
+    (DO monster.ghost.2 goto chair.dining|1|2|3|4|5|6 )
     ;
 
 WHEN npc.normal.bob:exit
